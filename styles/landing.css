@@ -1,0 +1,430 @@
+@font-face{
+	font-family: 'Wearetrippin';
+	src: url('../fonts/Wearetrippin.otf');
+}
+
+body{
+	margin: auto 0;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+}
+
+/* Index */
+.fondo{
+	background: url('../images/beerBanners/bg.png') no-repeat center center fixed;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: -100;
+	-webkit-filter: blur(5px);
+  	-moz-filter: blur(5px);
+  	-o-filter: blur(5px);
+  	-ms-filter: blur(5px);
+  	filter: blur(5px);
+}
+
+.fondo_2{
+	background: url('../img/bg.png') no-repeat center center fixed;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: -100;
+	-webkit-filter: blur(5px);
+  	-moz-filter: blur(5px);
+  	-o-filter: blur(5px);
+  	-ms-filter: blur(5px);
+  	filter: blur(5px);
+  	display: none;
+}
+
+.opacidad{
+	background: #fff;
+	/*opacity: .5;*/
+	opacity:.5;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+
+.opacidad_2{
+	background: #fff;
+	opacity: .5;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+
+.idiomas{
+	text-align: center;
+	margin: auto 0;
+	position: absolute;
+	width: 100%;
+	top: 40%;
+}
+
+.idiomas span{
+	font-family: 'Wearetrippin';
+	font-size: 7em;
+	color: #000;
+}
+
+.idiomas span.lag:hover{
+	color: #fff;
+}
+
+/* Home */
+.fondo_video{
+	width: cover;
+	height: 56vw;
+	position: absolute;
+	z-index: 1;
+}
+
+.video{
+	width: 100%;
+	height: 56vw;
+}
+
+.contenido{
+	position: absolute;
+	top:50px;
+	width: 100%;
+}
+
+.present{
+	margin: 0 auto;
+	width: 60%;
+}
+
+.present img.logo{
+	width: 40%;
+	height: auto;
+}
+
+.t1{
+	color: #000;
+	font-family: 'Wearetrippin';
+	font-size: 2em;
+}
+
+.t2{
+	color: #000;
+	font-family: 'Wearetrippin';
+	font-size: 3em;
+	display: block;
+	margin-top: 50px;
+}
+
+.form{
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.input{
+	text-align: left;
+	font-family: 'Wearetrippin';
+	font-size: 2em;
+	width: 100%;
+	border-bottom: 5px solid #000;
+}
+
+.input .i1{
+	font-family: arial;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1em;
+	width: 72%;
+	border: none;
+	background: none;
+	outline: 0;
+	color: #000;
+}
+
+.input .i2{
+	font-family: arial;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 1em;
+	width: 77.8%;
+	border: none;
+	background: none;
+	outline: 0;
+	color: #000;
+}
+
+.button{
+	margin: 0 auto;
+	width: 50%;
+	margin-top: 2vw;
+	text-align: center;
+}
+
+.button input{
+}
+
+.button .i3{
+	text-align: center;
+	width: 45% !important;
+	height: auto !important;
+	border: 5px solid #000;
+	font-family: 'Wearetrippin';
+	font-size: 1.5em;
+	background: none;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 5px;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+}
+
+.button .i3:hover{
+	opacity: .5;
+}
+
+.social{
+	z-index: 1000;
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+.social_2{
+	z-index: 1000;
+	display: none;
+	margin-top: 90px;
+}
+
+.fb{
+	width: auto;
+	height: 50px;
+	margin-right: 15px;
+}
+
+.tw{
+	width: auto;
+	height: 50px;
+	margin-right: 15px;
+}
+
+.inst{
+	width: auto;
+	height: 50px;
+}
+
+
+.fb:hover, .tw:hover, .inst:hover{
+	opacity: .5;
+}
+
+.mensaje_final{
+	font-size: 1em;
+	font-family: 'Wearetrippin';
+	margin-bottom: 20px;
+}
+
+.mascara_pago{
+	border-radius: 25px;
+	z-index: 0;
+	position: fixed;
+	top: 20%;
+	left: 25%;
+	background: #fff;
+	width: 50%;
+	height: auto;
+	padding-bottom: 2.5%;
+	opacity: 0;
+}
+
+.mascara_pago span{
+	font-family: 'Wearetrippin';
+	display: block;
+}
+
+.mascara_pago span.h1{
+	margin: 0 auto;
+	width: 85%;
+	font-size: 4em;
+	margin-top: 7.5%;
+	margin-bottom: 5%;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	border-bottom: 8px solid #000;
+}
+
+.mascara_pago form:hover{
+	opacity: .5;
+}
+
+.mascara_pago span.h2{
+	margin: 0 auto;
+	width: 60%;
+	margin-top: 0%;
+	margin-bottom: 5%;
+	font-size: 1.8em;
+
+}
+
+.mascara_pago span.h3{
+	margin: 0 auto;
+	width: 70%;
+	margin-top: 5%;
+	margin-bottom: 1.5%;
+	font-size: 2.5em;
+
+}
+
+.mascara_bloqueo{
+	opacity: 0;
+	z-index: 0;
+	background: rgba(0,0,0,.8);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	transition: 1s;
+}
+
+.img_certificado{
+	width: 100%;
+	height: auto;
+}
+
+.img_certificado img{
+	width: 100%;
+	height: auto;
+	z-index: -1;
+}
+
+.img_certificado span{
+	position: absolute;
+	top: 26vw;
+	left: 7vw;
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-family: 'Wearetrippin';
+	color: #000;
+	font-size: 5em;
+	z-index: 10;
+}
+
+.contenido{
+	opacity: 0;
+	z-index: -10;
+}
+
+.fondo_video .close{
+	position: absolute;
+	top: 1.5vw;
+	right: 1.5vw;
+	width: 5vw;
+	height: auto;
+	z-index: 10;
+}
+
+.fondo_video .close img{
+	width: 100%;
+	height: auto;
+}
+
+.fondo_video .close:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.fondo_video_show{
+	position: absolute;
+	width: 70%;
+	height: auto;
+	left: 15%;
+	top: 10%;
+	z-index: -10;
+	opacity: 0;
+	transition: 1s;
+}
+
+.fondo_video_show video{
+	width: 100%;
+	height: auto;
+	z-index: 1;
+}
+
+.fondo_video_show .close_show{
+	position: absolute;
+	right: 2.5%;
+	top: 2.5%;
+	z-index: 2;
+}
+
+.fondo_video_show .close_show:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+
+.social .more_boton{
+	text-align: center;
+	width: 100% !important;
+	height: auto !important;
+	border: 5px solid #000;
+	font-family: 'Wearetrippin';
+	font-size: 1.5em;
+	background: none;
+	cursor: pointer;
+	display: block;
+	margin-left: 5px;
+	margin-top: 2.5vw;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+}
+
+.social_2 .more_boton{
+	text-align: center;
+	width: 40% !important;
+	height: auto !important;
+	border: 5px solid #000;
+	font-family: 'Wearetrippin';
+	font-size: 1.5em;
+	background: none;
+	cursor: pointer;
+	display: block;
+	margin-left: 5px;
+	margin-top: 100vw !important;
+	margin:  0 auto !important;
+	padding-top: .5vw;
+	padding-bottom: .5vw;
+}
+
+.social_2 .more_boton:hover, .social .more_boton:hover{
+	cursor: pointer;
+	opacity: .5;
+}
+
+.fondo_bloquear{
+	background: #000;
+	opacity: .8;
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	position: fixed;
+	left: 0;
+	top: 0;
+}

@@ -1,0 +1,35 @@
+<div class="table-responsive ">
+  <table class="table table-bordered">
+	  <thead>
+	  	<tr>
+	  		<th>#</th>
+	  		<th>Image</th>
+	  		<th>Options</th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="banner in dataBanners">
+	  		<th scope="row">{{banner.idBannerBeerSlider}}</th>
+	  		<td><img src="../../images/beerBanners/{{banner.bannerImage}}" style="width: 250px; height: auto;"></td>
+	  		<td>
+	  			<span ng-click="deleteBanner(banner.idBannerBeerSlider);" class="label label-danger" name="{{banner.idBannerBeerSlider}}" style="cursor: pointer;">Delete</span>
+	  		</td>
+	  	</tr>
+	  </tbody>
+  </table>
+  <div class="col-md-12">
+  	<button ng-click="selectaAddBanner()" type="button" class="btn btn-primary">Add a new Banner</button>
+	  </div>
+	  <div class="col-md-5">
+		<form class="form-horizontal" ng-show="addBanner" enctype="multipart/form-data" id="insertBannerImage" ng-submit="addBannerImg()">
+		<div class="form-group">
+			<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Image Banner *</label>
+			<div class="col-sm-12">
+				<input required type="file" class="form-control" id="beer-profile" name="bannerImage[]"></input>
+				<input type="submit" class="btn btn-primary addBanner" value="Add"  name="{{id}}" style="margin-top: 10px;"></input>
+			</div>
+
+		</div>
+	</form>
+	  </div>
+</div>

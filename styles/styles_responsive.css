@@ -1,0 +1,3975 @@
+@media (max-width: 1920px) {
+
+	.content.profile{
+		top: 1vw;
+	}
+
+	.slides{
+		margin-top: 4%;
+	}
+
+	.top_img span.text_prin{
+		font-size: 4.3em;
+	}
+
+	span.title2_alert{
+		font-size: 1.4em;
+	}
+
+	.name_profile p{
+		font-size: 54px;
+	}
+
+	.inner li .title{
+		font-size: 24px;
+	}
+
+	.inner li .subtitle{
+		font-size: 16px;
+	}
+
+	.change_profile{
+		font-size: 1rem;
+		padding: 0.8vw 1.2vw .8vw 1.2vw;
+		left: 4vw;
+	}
+
+}
+
+@media (max-width: 1680px){
+
+	.slides{
+		margin-top: 2%;
+	}
+
+	.prin_img .capa{
+		font-size: 2.7em;
+	}
+
+	.contenido_aside .title{
+		font-size: 1.8em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: 1.6em;
+	}
+
+	.contenido_aside p{
+		font-size: .9em;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 2.2em;
+	}
+	.top_info{
+		height: 4vw;
+	}
+
+	.contenedo_info{
+		height: 4vw;
+	}
+
+	.logo_tbf{
+		height: 4vw;
+	}
+
+	.perfil_tbf{
+		width: 35%;
+		height: 4vw;
+	}
+
+	.contenido_social span{
+		font-size: 2.7em;
+	}
+
+	.menu_list ul li span{
+		padding-left: 2.5vw;
+		font-size: 3.5em;
+	}
+
+	.top_img span.text_prin{
+		font-size: 3.8em;
+	}
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: 2.2em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: 1.8em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 2px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: 1.3em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 80%;
+		height: 70vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.show_info_beer{
+		width: 79.9%;
+		height: 70vw;
+	}
+
+	.list_beer li .ver_mas{
+		width: 60%;
+		font-size: 1.5em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 1vw;
+		border: 4px solid #000;
+	}
+
+	.list_beer span{
+		font-size: .9em;
+	}
+
+	.beer_info .aside_info{
+		width: 20%;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 40%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 20%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+
+	.list_beer li .title{
+		width: 70%;
+	}
+
+	.list_beer li .subtitle{
+		width: 70%;
+		margin-top: .5vw;
+		margin-bottom: .5vw;
+	}
+
+	.info_text{
+		width: 65%;
+		margin-right: 0%;
+		margin-left: 5%;
+	}
+
+	.first_contact{
+		margin-left: 8%;
+		margin-right: 7%;
+	}
+
+	.other_contact{
+		margin-right: 7%;
+	}
+
+	/* mensajes.php */
+
+	.contacttop_messages p{
+		font-size: 40px;
+	}
+
+	.image_top img{
+		-webkit-transform:scale(0.7, 0.7);
+		height: 80px;
+	}
+
+	.inner.profile article li{
+		margin-bottom: 3.5vw;
+	}
+
+	.content.profile{
+		top: 1.5vw;
+	}
+
+	.change_profile{
+		font-size: 1rem;
+		left: 4vw;
+	}
+
+}
+
+@media (max-width: 1366px){
+
+	span.title2_alert{
+		font-size: 1.2em;
+	}
+
+	.inner li .title{
+		font-size: 18px;
+	}
+
+	.inner li .subtitle{
+		font-size: 12px;
+	}
+
+	.profile_beer{
+		top: 23%;
+	}
+
+	.info_beer{
+		top: 44%;
+	}
+
+	.fav_info{
+		width: 100%;
+	}
+
+	.prin_img .capa{
+		font-size: 2.4em;
+	}
+
+	.contenido_aside .title{
+		font-size: 1.5em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: 1.3em;
+	}
+
+	.contenido_aside p{
+		font-size: .8em;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 2em;
+	}
+
+	.top_info{
+		height: 4vw;
+	}
+
+	.contenedo_info{
+		height: 4vw;
+	}
+
+	.logo_tbf{
+		height: 4vw;
+	}
+
+	.perfil_tbf{
+		width: 40%;
+		height: 4vw;
+	}
+
+	.contenido_social span{
+		font-size: 2.4em;
+	}
+
+	.bottom_site{
+		font-size: .85em;
+	}
+
+	.bottom_site .center_cont_site{
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+	}
+
+	.center_cont_site ul.social{
+		margin-bottom: 1.5vw;
+	}
+
+	.center_cont_site ul.social li{
+		height: 2.5vw;
+	}
+
+	.center_cont_site ul.nav{
+		margin-bottom: 1.5vw;
+		padding-bottom: 1.5vw;
+	}
+
+	.center_cont_site ul.nav li{
+		height: 2.5vw;
+	}
+
+	.center_cont_site span.right_about{
+		padding-top: 1.5vw;
+	}
+
+	.go_top{
+		width: 3.5%;
+	}
+
+	.menu_list ul li span{
+		padding-left: 2.5vw;
+		font-size: 3em;
+	}
+
+	.top_img span.text_prin{
+		font-size: 3.5em;
+	}
+
+
+	.favs_beers{
+		width: 100%;
+	}
+
+	.list_beer .beer_bottles li img{
+		width: 60px;
+		height: 170px;
+	}
+
+
+	.list_beer li .ver_mas{
+		font-size: 1.1em;
+	}
+
+	.name_profile p{
+		font-size: 40px;
+	}
+
+	.city_profile p{
+		font-size: 20px;
+	}
+
+	.age_profile p{
+		font-size: 20px;
+	}
+
+	.desc_profile{
+		font-size: 18px;
+	}
+
+	.profile_res{
+		font-size: 16px;
+	}
+
+
+	.first_contact{
+		margin-left: 0%;
+		margin-right: 2%;
+	}
+
+	.other_contact{
+		margin-right: 2%;
+	}
+
+	.image_top img{
+		transform: scale(0.6, 0.6);
+		-ms-transform: scale(0.6, 0.6);
+		-webkit-transform: scale(0.6, 0.6);
+		height: 50%;
+	}
+
+	.inner.profile article li{
+		margin-bottom: 2vw;
+	}
+
+	.favs_profile{
+		margin-left: 9%;
+	}
+
+	.change_profile{
+		font-size: .8rem;
+		margin-left: 20%;
+	}
+
+}
+
+@media (max-width: 1280px){
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 50px;
+	}
+
+	.prin_img .capa{
+		font-size: 2em;
+	}
+
+	.contenido_aside .title{
+		font-size: 1.2em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: 1em;
+	}
+
+	.contenido_aside p{
+		font-size: .7em;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 1.7em;
+	}
+
+	.top_info{
+		height: 5vw;
+	}
+
+	.contenedo_info{
+		height: 5vw;
+	}
+
+	.logo_tbf{
+		height: 5vw;
+	}
+
+	.perfil_tbf{
+		width: 50%;
+		height: 5vw;
+	}
+
+	.contenido_social span{
+		font-size: 2.1em;
+	}
+
+	.bottom_site{
+		font-size: .80em;
+	}
+
+	.bottom_site .center_cont_site{
+		padding-top: 3vw;
+		padding-bottom: 3vw;
+	}
+
+	.center_cont_site ul.social{
+		margin-bottom: 2vw;
+	}
+
+	.center_cont_site ul.social li{
+		height: 3vw;
+	}
+
+	.center_cont_site ul.nav{
+		margin-bottom: 2vw;
+		padding-bottom: 2vw;
+	}
+
+	.center_cont_site ul.nav li{
+		height: 3vw;
+	}
+
+	.center_cont_site span.right_about{
+		padding-top: 2vw;
+	}
+
+	.go_top{
+		width: 3.5%;
+	}
+
+	.menu_list ul li span{
+		padding-left: 2.5vw;
+		font-size: 2.5em;
+	}
+
+	#menu_options .menu_list{
+		width: 35%;
+	}
+
+	.social_other ul li{
+		height: 3.5vw !important;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+	}
+
+	.close_menu{
+		width: 4vw;
+		top: 2.5%;
+		right: 2.5%;
+	}
+
+	.top_img span.text_prin{
+		font-size: 3em;
+	}
+
+	.beer_info .aside_info{
+		width: 25%;
+	}
+
+	.show_info_beer{
+		width: 74.9%;
+		height: 70vw;
+	}
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: 2em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: 1.5em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 2px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: 1.1em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 100%;
+		height: 70vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.favs_beers{
+		width: 100%;
+	}
+
+	.list_beer li .ver_mas{
+		width: 65%;
+		font-size: 1.2em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 1vw;
+		border: 3px solid #000;
+	}
+
+
+	.list_beer span{
+		font-size: .8em;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 40%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 20%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+	.list_beer li img{
+		width: 40%;
+	}
+
+	.list_beer li .title{
+		width: 85%;
+	}
+
+	.list_beer li .subtitle{
+		width: 85%;
+		margin-top: .5vw;
+		margin-bottom: .5vw;
+	}
+
+	.list_beer li .ver_mas{
+		font-size: .8em;
+	}
+
+
+	/* contact.php 1280px */
+
+	.social_contact{
+		width: 100%;
+		padding-bottom: 5%;
+
+	}
+
+	.first_contact{
+		margin-left: 3%;
+		margin-right: 0%;
+	}
+
+	.other_contact{
+		margin-right: 0%;
+	}
+
+	.info_text{
+		width: 70%;
+	}
+
+	/* perfil */
+
+	.image_profile img{
+		width: 190px;
+		height: 220px;
+	}
+
+	.favs_profile h1{
+		margin-top: 1%;
+		margin-bottom: 0%;
+	}
+
+	.inner article li{
+		margin-top: 0vw;
+	}
+
+	.send_message img{
+		width: 23px;
+		height: 18px;
+	}
+
+	.change_profile{
+		padding: .9vw 1vw .9vw 1vw;
+	}
+	span.change_profile{
+		font-size: .9rem;
+	}
+
+	/* mensajes.php */
+
+	.img_pro img{
+		width: 45px;
+		height: 45px;
+	}
+
+	.item.i2 p p{
+		font-size: 16px;
+	}
+
+	.item.i3 p{
+		font-size: 14px;
+	}
+
+
+	#itemContainer h2,item i2{
+		font-size: 14px;
+	}
+
+	/* perfil empresa */
+
+	.image_logo img{
+		width: 190px;
+		height: 220px;
+	}
+
+
+	/* perfil beer */
+
+	.profile_beer{
+		top: 23%;
+	}
+
+	.info_beer{
+		top: 41%;
+	}
+
+	.beer_profile p{
+		font-size: 12px;
+	}
+
+	.send_message p{
+		font-size: 16px;
+	}
+
+	#show-panel img{
+		width: 140px;
+		height: 425px;
+	}
+
+
+	/* configuracion.php */
+
+	.name_config p{
+		font-size: 30px;
+	}
+
+	.edad_config p{
+		font-size: 30px;
+	}
+
+	.vivoen_config p{
+		font-size: 30px;
+	}
+
+	.pass_config p{
+		font-size: 30px;
+	}
+
+	.email_config p{
+		font-size: 30px;
+	}
+
+	.info_config h1{
+		font-size: 30px;
+	}
+
+	.name_config span{
+		font-size: .55em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.vivoen_config span{
+		font-size: .55em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.email_config span{
+		font-size: .55em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.edad_config span{
+		font-size: .55em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.pass_config span{
+		font-size: .55em;
+		margin-left: 3%;
+	}
+
+	.desc_profile{
+		font-size: 16px;
+	}
+
+	.profile_res{
+		font-size: 14px;
+	}
+
+	/* contact.php */
+
+	.top_contact{
+		font-size: 38px;
+	}
+
+	.top_contact p{
+		margin-top: 1%;
+	}
+
+	/* slider beers! */
+	.content {
+		width: 75%;
+	}
+
+	.inner li .ver_mas{
+		width: 80%;
+	}
+
+	span.title2_alert{
+		font-size: 1em;
+	}
+
+	/* comments */
+
+	.send_button.comments_send p{
+		font-size: 14.5px;
+	}
+
+	img.profile_popup{
+		width: 35%;
+	}
+
+	.contenido_usuarios span{
+		font-size: 1em;
+	}
+
+	span.user_list{
+		font-size: 1.8em;
+	}
+
+}
+
+@media (max-width: 1024px){
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 48px;
+	}
+
+	.beer_message{
+		font-size: .56em;
+	}
+
+	.profile_beer{
+		top: 15%;
+	}
+
+	.info_beer{
+		top: 38%;
+	}
+
+	.desc_profile{
+		font-size: 14px;
+	}
+
+	.profile_res{
+		font-size: 12px;
+		width: 200%;
+		margin-left:-40%;
+	}
+
+
+	.name_profile p{
+		font-size: 30px;
+	}
+
+	.prin_img .capa{
+		font-size: 1.7em;
+	}
+
+	.contenido_aside .title{
+		font-size: .9em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: .8em;
+	}
+
+	.contenido_aside p{
+		font-size: .55em;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 1.3em;
+	}
+
+	.cont_site{
+		width: 95%;
+	}
+
+	.aside_info_second .contenido_aside{
+		width: 85%;
+	}
+
+	.top_info{
+		height: 6vw;
+	}
+
+	.contenedo_info{
+		height: 6vw;
+	}
+
+	.logo_tbf{
+		height: 6vw;
+	}
+
+	.perfil_tbf{
+		width: 55%;
+		height: 6vw;
+	}
+
+	.search input{
+		width: 80%;
+		font-size: .7em;
+	}
+
+	.user_name{
+		font-size: .8em;
+	}
+
+	.contenido_social span{
+		font-size: 1.5em;
+	}
+
+
+
+	.bottom_site{
+		font-size: .7em;
+	}
+
+	.bottom_site .center_cont_site{
+		padding-top: 3.5vw;
+		padding-bottom: 3.5vw;
+	}
+
+	.center_cont_site ul.social{
+		margin-bottom: 2.5vw;
+	}
+
+	.center_cont_site ul.social li{
+		height: 3.5vw;
+	}
+
+	.center_cont_site ul.nav{
+		margin-bottom: 2.5vw;
+		padding-bottom: 2.5vw;
+	}
+
+	.center_cont_site ul.nav li{
+		height: 3.5vw;
+	}
+
+	.center_cont_site span.right_about{
+		padding-top: 2.5vw;
+	}
+
+	.go_top{
+		width: 4%;
+	}
+
+	#menu_options .menu_list{
+		width: 40%;
+	}
+
+	.menu_list ul li{
+		border-bottom: 2px solid #FFF;
+	}
+
+	.top_img span.text_prin{
+		font-size: 2.2em;
+	}
+
+	.beer_info .aside_info{
+		width: 25%;
+	}
+
+	.show_info_beer{
+		width: 74.5%;
+		height: 80vw;
+	}
+
+	.favs_beers{
+		width: 100%;
+	}
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: 1.7em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: 1.2em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 2px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: 1em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 100%;
+		height: 70vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.list_beer li .ver_mas{
+		width: 75%;
+		font-size: 1em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 1vw;
+		border: 2px solid #000;
+	}
+
+	.list_beer span{
+		font-size: .7em;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 60%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 20%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+	.list_beer li img{
+		width: 45%;
+	}
+
+	.list_beer li .title{
+		width: 100%;
+	}
+
+	.list_beer li .subtitle{
+		width: 100%;
+		margin-top: .5vw;
+		margin-bottom: .5vw;
+	}
+
+
+	.list_beer li .ver_mas{
+		font-size: .7em;
+	}
+
+	.top_contact{
+		font-size:36px;
+	}
+
+	.top_contact p{
+		margin-top: .9%;
+	}
+
+	.first_contact.fb img{
+		width: 15%;
+	}
+
+	a.other_contact.twt img{
+		width: 33%;
+	}
+
+
+	a.other_contact.ig img{
+		width: 30%;
+	}
+
+	.first_contact{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+
+	.other_contact{
+		margin-right: 0%;
+	}
+
+	/* configuracion.php */
+	.topinfo_config h1{
+		color: #2E2E2E;
+		font-size: 34px;
+	}
+
+	.info_config{
+		width: 60%;
+		font-size: 32px;
+		color: #2E2E2E;
+	}
+
+	.actualizar_info,.actualizar_fav{
+		font-size: 18px;
+	}
+
+	.name_config p{
+		font-size: 28px;
+	}
+
+	.edad_config p{
+		font-size: 28px;
+	}
+
+	.vivoen_config p{
+		font-size: 28px;
+	}
+
+	.pass_config p{
+		font-size: 28px;
+	}
+
+	.email_config p{
+		font-size: 28px;
+	}
+
+	.info_config h1{
+		font-size: 28px;
+	}
+
+	.name_config span{
+		font-size: .45em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.vivoen_config span{
+		font-size: .45em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.email_config span{
+		font-size: .45em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.edad_config span{
+		font-size: .45em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.pass_config span{
+		font-size: .45em;
+		margin-left: 3%;
+	}
+
+	.change_profile{
+		padding: .8vw .9vw .8vw .9vw;
+		left: 12vw;
+		width: 45%;
+	}
+	span.change_profile{
+		font-size: .6rem;
+	}
+
+	/* mensajes.php */
+
+	.img_pro img{
+		width: 40px;
+		height: 40px;
+	}
+
+
+	.circle_search{
+		margin-top: 5%;
+	}
+
+	.circle_search img{
+		margin-top: 2%;
+	}
+
+	.send_button{
+		margin-top: .7%;
+		padding: 1.0%;
+	}
+
+	.send_button p{
+		font-size: 14px;
+	}
+
+	.image_top img{
+		height: 46px;
+	}
+
+	.info_text{
+		width: 75%;
+	}
+
+	.contacttop_messages p{
+		font-size: 28px;
+	}
+
+	.social_contact img{
+		-webkit-transform: scale(0.65, 0.65);
+	}
+
+	.item.i2 p{
+		font-size: 14px;
+	}
+
+	.item.i3 p{
+		font-size: 12px;
+	}
+
+
+	#itemContainer h2,.item .i2{
+		font-size: 12px;
+	}
+
+	/* perfil */
+
+	.image_profile img{
+		width: 180px;
+		height: 200px;
+	}
+
+	.send_txt{
+		font-size: 14px;
+	}
+
+	.msn_form textarea{
+		height: 11vw;
+	}
+
+	/* perfil empresa */
+
+	.image_logo img{
+		width: 180px;
+		height: 200px;
+	}
+
+	.send_message p{
+		font-size: 14px;
+	}
+
+	/* perfil beer */
+
+	.profile_beer{
+		top: 20%;
+	}
+
+	.info_beer{
+		top: 38%;
+		width: 24%;
+	}
+
+	.age_profile p{
+		font-size: 16px;
+	}
+
+	.fav_box,.wishlist_box p{
+		font-size: 16px;
+	}
+
+	#show-panel img{
+		width: 135px;
+		height: 410px;
+	}
+
+	a#show-img{
+		margin-left: -40%;
+	}
+
+	.change_profile{
+		width: 35%;
+	}
+
+
+	/* configuracion.php */
+
+	.actualizar_info p{
+		font-size: 14px;
+	}
+
+	/*slider beers */
+	.inner li .ver_mas{
+		width: 80%;
+		font-size: .9em;
+	}
+
+	span.title{
+		font-size: 14px;
+	}
+
+	.inner li .subtitle{
+		font-size: 12px;
+	}
+
+	.inner article li img{
+		width: 35%;
+	}
+
+	h1.title_slider{
+		font-size: 44px;
+		top: -2.5vw;
+	}
+
+	.lightbox-content{
+		width: 40%;
+	}
+
+	/* comments */
+
+	.send_button.comments_send p{
+		font-size: 12.5px;
+	}
+
+	.send_button{
+		width: 15%;
+	}
+
+	span.title2_alert{
+		font-size: .8em;
+	}
+
+	img.profile_popup{
+		width: 45%;
+		top: 33vw;
+	}
+
+	.contenido_usuarios span{
+		font-size: .8em;
+	}
+
+	span.user_list{
+		font-size: 1.6em;
+	}
+
+
+	span.user_list{
+		font-size: 1.4em;
+	}
+
+	.login-modal{
+		width: 40%;
+	}
+
+	.signup-modal{
+		width: 55%;
+	}
+
+	input#password, input#user{
+		width: 60%;
+	}
+
+	.slides .overflow{
+		margin-left: 4vw;
+	}
+
+	.flex-item-info span:first-child{
+	  font-size: 8px;
+	}
+
+	.flex-item-info span:nth-child(2){
+	  font-size: 9px;
+	}
+	.flex-item-info span:nth-child(3){
+	  font-size: 9px;
+	}
+	.flex-item-info span:nth-child(4){
+		width: 120%;
+	}
+
+
+
+}
+
+@media (max-width: 768px){
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 46px;
+	}
+
+	.toptext-light{
+		font-size: 24px;
+	}
+
+	.slides{
+		margin-top: 3%;
+	}
+
+	span.title2_alert{
+		font-size: .6em;
+	}
+
+	.info_beer{
+		top: 33%;
+		width: 24%;
+	}
+
+	.send_message p{
+		font-size: 12px;
+	}
+
+	.send_message img{
+		width: 20px;
+		height: 16px;
+	}
+
+
+	.beer_message{
+		font-size: .42em;
+	}
+
+	.desc_profile{
+		font-size: 12px;
+	}
+
+	.favs_profile h1{
+		font-size: 55px;
+	}
+
+	.cont_site .prin_img{
+		width: 49.5%;
+		height: 28.6vw;
+		margin-bottom: .6vw;
+	}
+
+	.cont_site .prin_img img{
+		height: 28.6vw;
+	}
+
+	.cont_site .second_img_complete{
+		width: 99.6%;
+		height: 33.3vw;
+	}
+
+	.second_img_complete img{
+		height: 33.3vw;
+	}
+
+	.second_img_complete .aside_info_second{
+		width: 40%;
+	}
+
+	.prin_img .capa{
+		font-size: 1.7em;
+	}
+
+	.contenido_aside .title{
+		font-size: .9em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: .8em;
+	}
+
+	.contenido_aside p{
+		font-size: .55em;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 1em;
+	}
+
+	.cont_site{
+		width: 99%;
+	}
+
+	.aside_info_second .contenido_aside{
+		width: 80%;
+	}
+
+	.top_info{
+		height: 7vw;
+	}
+
+	.contenedo_info{
+		height: 7vw;
+	}
+
+	.logo_tbf{
+		height: 7vw;
+	}
+
+	.perfil_tbf{
+		width: 70%;
+		height: 7vw;
+	}
+
+	.contenido_social span{
+		font-size: 2.5em;
+	}
+
+	.info_bottom{
+		width: 100%;
+	}
+
+	.cont_part_less{
+		width: 44%;
+		height: 98%;
+	}
+
+	.contact_us_or_follow{
+		width: 100%;
+	}
+
+	#menu_options .menu_list{
+		width: 50%;
+	}
+
+	.menu_list ul li span{
+		padding-left: 2.5vw;
+		font-size: 2em;
+	}
+
+	.close_menu{
+		width: 6vw;
+		top: 2.5%;
+		right: 2.5%;
+	}
+
+	.social_other{
+		bottom: 2.5%;
+		right: 2.5%;
+		width: 50%;
+	}
+
+	.social_other ul li{
+		height: 5.5vw !important;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+	}
+
+	.top_img span.text_prin{
+		font-size: 1.8em;
+		top: 9vw;
+		left: 15vw;
+	}
+
+	.beer_info .aside_info{
+		width: 30%;
+	}
+
+	.show_info_beer{
+		width: 69.5%;
+		height: 80vw;
+	}
+
+	.favs_beers{
+		width: 100%;
+	}
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: 1.5em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: 1em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 2px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: .95em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 80%;
+		height: 70vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.list_beer li .ver_mas{
+		width: 75%;
+		font-size: 1em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 1vw;
+		border: 2px solid #000;
+	}
+
+	.list_beer span{
+		font-size: .7em;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 60%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 28%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+	.list_beer li img{
+		width: 45%;
+	}
+
+	.list_beer li .title{
+		width: 100%;
+	}
+
+	.list_beer li .subtitle{
+		width: 100%;
+		margin-top: .5vw;
+		margin-bottom: .5vw;
+	}
+
+	.list_beer li .ver_mas{
+		font-size: .7em;
+	}
+
+	.top_contact{
+		font-size: 34px;
+	}
+
+	.top_contact p{
+		margin-top: .7%;
+	}
+	.info_contact p{
+		font-size: 14px;
+	}
+	.social_contact{
+		margin-top: 5%;
+		padding-bottom: 0%;
+	}
+
+	.social_contact img{
+		-webkit-transform: scale(0.5, 0.5);
+	}
+
+	.first_contact{
+		margin-left: 14%;
+		margin-right: 3%;
+	}
+
+	.other_contact{
+		margin-right: 3%;
+	}
+
+	.input_contact input[value="ENVIAR"]{
+		font-size: 14px;
+	}
+
+	.content_contact{
+		width: 100%;
+		height: 60vw;
+	}
+
+	.input_contact{
+		margin-top: 4%;
+		width: 100%;
+		display: block;
+
+		-webkit-box-align: center ;
+
+		    -ms-flex-align: center ;
+
+		        align-items: center ;
+		-webkit-align-items: center;
+
+		-webkit-box-pack: center;
+
+		    -ms-flex-pack: center;
+
+		        justify-content: center;
+		-webkit-justify-content: center;
+
+		-ms-flex-wrap: wrap;
+
+		    flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+	}
+
+	.input_form{
+		width: 40%;
+		margin-left: 30%;
+	}
+
+	.info_contact{
+		width: 100%;
+
+		display: block;
+		-webkit-box-align: center ;
+		    -ms-flex-align: center ;
+		        align-items: center ;
+		-webkit-align-items: center;
+
+		-webkit-box-pack: center;
+
+		    -ms-flex-pack: center;
+
+		        justify-content: center;
+		-webkit-justify-content: center;
+
+		-ms-flex-wrap: wrap;
+
+		    flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+	}
+
+	.info_text{
+		width: 60%;
+		margin-right: 0%;
+		margin-left: 20%;
+	}
+
+	.first_contact{
+		margin-left: 4%;
+		margin-right: 2%;
+	}
+
+	.other_contact{
+		margin-right: 2%;
+	}
+
+	.topinfo_config h1{
+		color: #2E2E2E;
+		font-size: 24px;
+	}
+
+	.favs_config h1{
+		font-size: 24px;
+	}
+
+	.info_config{
+		width: 60%;
+		font-size: 24px;
+		color: #2E2E2E;
+	}
+
+	.actualizar_info,.actualizar_fav{
+		font-size: 14px;
+	}
+
+	.name_config p{
+		font-size: 19px;
+	}
+
+	.edad_config p{
+		font-size: 19px;
+	}
+
+	.vivoen_config p{
+		font-size: 19px;
+	}
+
+	.pass_config p{
+		font-size: 19px;
+	}
+
+	.email_config p{
+		font-size: 19px;
+	}
+
+	.info_config h1{
+		font-size: 19px;
+	}
+
+	.name_config span{
+		font-size: .6em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.vivoen_config span{
+		font-size: .6em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.email_config span{
+		font-size: .6em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.edad_config span{
+		font-size: .6em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+	.pass_config span{
+		font-size: .6em;
+		margin-left: 3%;
+		display: inline-block;
+	}
+
+
+	/* mensajes.php */
+
+	.send_button{
+		margin-top: .6%;
+		padding: .4%;
+	}
+
+	.send_button p{
+		font-size: 10px;
+	}
+
+
+	.search_{
+		width: 29%;
+	}
+
+	.contacttop_messages{
+		width: 70%;
+	}
+
+	#contact_list{
+		width: 29%;
+	}
+
+	#inbox_content{
+		width: 70%;
+	}
+
+	.send_a_message{
+		width: 70.9%;
+		left: 15vw;
+	}
+
+	.contacttop_messages p{
+		font-size: 26px;
+	}
+
+	.image_top img{
+		height: 43px;
+
+	}
+
+	.contactProfile P{
+		font-size: 14px;
+	}
+
+
+	.img_pro img{
+		width: 35px;
+		height: 35px;
+	}
+
+	.item.i2 p{
+		font-size: 12px;
+	}
+
+	.item.i3 p{
+		font-size: 10px;
+	}
+
+	.send_a_message input[name=message]{
+		padding-bottom: 7vw;
+		margin-bottom: .3vw;
+	}
+
+
+	#itemContainer h2,item i2{
+		font-size: 10px;
+	}
+
+	/* perfil */
+
+	.profile_res{
+		font-size: 12px;
+	}
+
+	.send_txt{
+		font-size: 11px;
+	}
+
+	.name_profile p{
+		font-size: 20px;
+	}
+
+	.city_profile p{
+		font-size: 16px;
+	}
+
+	.age_profile p{
+		font-size: 14px;
+	}
+
+	.fav_box,.wishlist_box p{
+		font-size: 14px;
+	}
+
+
+	.image_profile img{
+		width: 160px;
+		height: 180px;
+		padding: 3%;
+	}
+
+	.content_profile{
+		width: 20%;
+		margin-left: 25%;
+		width: 26%;
+	}
+
+
+	/* perfil beer */
+
+
+	#show-panel img{
+		width: 110px;
+		height: 310px;
+	}
+
+
+	/* perfil empresa */
+
+	.image_logo img{
+		width: 160px;
+		height: 180px;
+	}
+
+	.actualizar_info p{
+		font-size: 10px;
+	}
+
+	/* slider beers! */
+	.content {
+		width: 70%;
+	}
+
+
+	.inner article li{
+		width: 16.5%;
+	}
+
+	.inner article li img{
+		width: 25%;
+	}
+
+	.inner li .ver_mas{
+		font-size: .7em;
+	}
+
+	.slides .overflow .inner.material article{
+		margin-top: 1%;
+	}
+
+	.content.profile{
+		top: 2vw;
+	}
+
+	span.title{
+		font-size: 12px;
+	}
+
+	.inner li .subtitle{
+		font-size: 10px;
+	}
+
+	p.back_text{
+		font-size: 14px;
+	}
+
+	.inner article li img{
+		width: 40%;
+	}
+
+	.slides{
+		margin-top: 5%;
+	}
+
+	h1.title_slider{
+		font-size: 38px;
+		top: -1.5vw;
+	}
+
+	.favs_profile{
+		margin-left: 10%;
+	}
+
+	/* comments */
+
+	.send_a_message.comments_text{
+		width: 80.5%;
+		left: 0;
+
+	}
+
+	.send_button.comments_send p{
+		font-size: 10.5px;
+	}
+
+	.t2_alert{
+		width: 100px;
+	}
+
+	.t4_alert{
+		width: 150px;
+	}
+
+	.t4_alert, .t2_alert{
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+
+	input.t2_alert{
+		font-size: 1.5em;
+	}
+
+
+	input.t4_alert{
+		font-size: 1.5em;
+	}
+
+	button#button_alert{
+		font-size: 2.5em;
+	}
+
+	.button_alert{
+		width: 280px;
+	}
+
+	.nav_beers li{
+		width: 8px;
+		height: 8px;
+	}
+
+	.prev, .next{
+		font-size: 4em;
+	}
+
+	span.change_banner{
+		font-size: .8em;
+	}
+
+	span.change_profile{
+		font-size: .6em;
+	}
+
+	img.profile_popup{
+		width: 50%;
+		top: 42vw;
+	}
+
+	.contenido_usuarios span{
+		font-size: .8em;
+	}
+
+	span.user_list{
+		font-size: 1.4em;
+	}
+
+	.contenido_social ul li{
+		height: 12vw;
+		margin-left: 3.5%;
+		margin-right: 3.5%;
+	}
+
+	.beer_info .aside_info{
+		width: 35%;
+	}
+
+	.content{
+		width: 65%;
+	}
+
+	.Grid li{
+     width: 40%;
+     margin-bottom: 4%;
+	}
+
+	input#password, input#user{
+    width: 45%;
+  }
+
+	.send-login-content{
+		width: 55%;
+	}
+
+	.login-modal{
+		width: 60%;
+	}
+
+	.signup-modal{
+		width: 65%;
+	}
+
+	.favs_profile{
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.Grid{
+		height: 60vw;
+	}
+
+	.flex-item-info span:first-child{
+	  margin-top: 2vw;
+		margin-bottom: 1vw;
+		margin-left: 1vw;
+	  font-size: 14px;
+	}
+
+	.flex-item-info span:nth-child(2){
+	  font-size: 16px;
+		margin-bottom: 1vw;
+		margin-left: 1vw;
+	}
+	.flex-item-info span:nth-child(3){
+	  font-size: 16px;
+		margin-bottom: 1vw;
+		margin-left: 1vw;
+	}
+
+	.flex-item-info span:nth-child(4){
+	  font-size: 14px;
+		margin-bottom: 1vw;
+		margin-left: 1vw;
+	}
+
+	.profile_res{
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.favs_profile.favs_profile_material{
+		width: 80%;
+	}
+
+}
+
+@media (max-width: 640px){
+
+	/* landing age */
+
+	.img_pro img{
+		width: 30px;
+		height: 30px;
+	}
+
+	.topinfo_config h1{
+		font-size: 22px;
+	}
+
+	.favs_config h1{
+		font-size: 22px;
+	}
+
+	.beer_profile p{
+		font-size: 10px;
+	}
+
+	.info_beer{
+		width: 25%;
+		top: 31%;
+	}
+
+	.favs_profile h1{
+		font-size: 38px;
+		margin-top: 8%;
+		margin-bottom: 3%;
+	}
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 44px;
+	}
+
+	.profile_container{
+		padding-bottom: 10%;
+	}
+
+	.content.profile{
+		width: 70%;
+		left: 33vw;
+		bottom: 0;
+	}
+
+	.content_profile{
+		width: 27%;
+		left: 5vw;
+	}
+
+	.beer_message{
+		font-size: .38em;
+	}
+	.cont_site{
+		width: 100%;
+	}
+
+	.second_img_complete .aside_info_second{
+		width: 60%;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: .8em;
+		border: 1px solid #FFF;
+	}
+
+	.prin_img .capa{
+		font-size: 1.3em;
+	}
+
+	.contenido_aside .title{
+		font-size: .8em;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: .7em;
+	}
+
+	.contenido_aside p{
+		font-size: .4em;
+	}
+
+	.aside_info_second .contenido_aside{
+		width: 85%;
+	}
+
+	.top_info{
+		height: 8vw;
+	}
+
+	.contenedo_info{
+		height: 8vw;
+	}
+
+	.logo_tbf{
+		height: 8vw;
+	}
+
+	.perfil_tbf{
+		width: 80%;
+		height: 8vw;
+	}
+
+	.search input{
+		width: 80%;
+		font-size: .7em;
+		margin: 0;
+	}
+
+	.user_name{
+		font-size: .7em;
+	}
+
+	.perfil_tbf .search{
+		width: 35%;
+		height: 20px;
+	}
+
+	.search img{
+		height: 60%;
+		margin-left: 5%;
+		margin-top: 0%;
+	}
+
+	.cont_info_user{
+		width: 50%;
+	}
+
+	.cont_info_user .msg{
+		width: 10%;
+	}
+
+	.cont_info_user .profile_img{
+		width: 10%;
+	}
+
+	.menu_buttom{
+		width: 8%;
+	}
+
+	.contenido_social span{
+		font-size: 1.3em;
+	}
+
+	.info_bottom{
+		width: 100%;
+	}
+
+	.cont_part_less{
+		width: 35% !important;
+		height: 98% !important;
+	}
+
+	.contact_us_or_follow{
+		width: 100%;
+	}
+
+	.bottom_site{
+		font-size: .4em;
+	}
+
+	.bottom_site .center_cont_site{
+		padding-top: 4.5vw;
+		padding-bottom: 4.5vw;
+	}
+
+	.center_cont_site ul.social{
+		margin-bottom: 3.5vw;
+	}
+
+	.center_cont_site ul.social li{
+		height: 4.5vw;
+	}
+
+	.center_cont_site ul.nav{
+		margin-bottom: 3.5vw;
+		padding-bottom: 3.5vw;
+	}
+
+	.center_cont_site ul.nav li{
+		height: 4.5vw;
+	}
+
+	.center_cont_site span.right_about{
+		padding-top: 5vw;
+	}
+
+	.go_top{
+		width: 4.5%;
+	}
+
+	.top_img span.text_prin{
+		font-size: 1.2em;
+		top: 12vw;
+		left: 28vw;
+	}
+
+	.input_contact input[value="ENVIAR"]{
+		font-size: 10px;
+	}
+
+	.beer_info .aside_info{
+		width: 40%;
+	}
+
+	.show_info_beer{
+		width: 59.1%;
+		height: 100vw;
+	}
+
+	.favs_beers{
+		width: 100%;
+		height: 100vw;
+	}
+
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: 1em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: 1em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 2px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: .95em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 80%;
+		height: 90vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.list_beer li .ver_mas{
+		width: 75%;
+		font-size: 1em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 1vw;
+		border: 2px solid #000;
+	}
+
+	.list_beer span{
+		font-size: .7em;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 60%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 45%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+	.list_beer li img{
+		width: 45%;
+	}
+
+	.list_beer li .title{
+		width: 100%;
+	}
+
+	.list_beer li .subtitle{
+		width: 100%;
+		margin-top: 1vw;
+		margin-bottom: 1vw;
+	}
+
+	.content_contact{
+		height: 80vw;
+	}
+
+	.info_text{
+		width: 60%;
+		margin-right: 0%;
+		margin-left: 20%;
+	}
+
+	.first_contact{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+
+	.other_contact{
+		margin-right: 0%;
+	}
+
+	.top_contact{
+		font-size:32px;
+		height: 7vw;
+	}
+
+	.info_config{
+		font-size: 20px;
+	}
+
+	.actualizar_info,.actualizar_fav{
+		font-size: 12px;
+	}
+
+	/* perfil empresa */
+
+	.name_profile p{
+		font-size: 16px;
+	}
+
+	.city_profile p{
+		font-size: 14px;
+	}
+
+	.age_profile p{
+		font-size: 13px;
+	}
+
+	.ranktitle{
+		font-size: 2em;
+	}
+
+	.send_message img{
+		width: 18px;
+		height: 13px;
+	}
+
+	.favs_beer{
+		margin-left: 46.5%;
+	}
+
+	.desc_profile{
+		font-size: 9px;
+	}
+
+	.image_profile img{
+		width: 140px;
+		height: 160px;
+		padding: 3%;
+	}
+
+	.fav_box,.wishlist_box p{
+		font-size: 12px;
+	}
+
+
+	.fav_box,.wishlist_box{
+		width: 45%;
+		margin-top: 5%;
+	}
+
+	/* mensajes.php */
+
+	.circle_search img{
+		margin-top: 0%;
+		margin-left: 6%;
+		margin-bottom: 1%;
+	}
+
+	.item.i2 p{
+		font-size: 12px;
+	}
+
+	.item.i3 p{
+		font-size: 10px;
+	}
+
+	.contacttop_messages p{
+		font-size: 18px;
+	}
+
+	.contactProfile P{
+		font-size: 10px;
+	}
+
+	.image_top img{
+		height: 28px;
+	}
+
+	.send_message p{
+		font-size: 10px;
+	}
+
+	.profile_res{
+		font-size: 10px;
+	}
+
+	.send_a_message input[name=message]{
+		padding-bottom: 6vw;
+		margin-bottom: .3vw;
+	}
+
+	#itemContainer h2,item i2{
+		font-size: 8px;
+	}
+
+	/* perfil empresa */
+
+	.image_logo img{
+		width: 140px;
+		height: 160px;
+	}
+
+
+	.actualizar_info p{
+		font-size: 9px;
+	}
+
+	/* perfil beer */
+
+	.favs_profile h1{
+		margin-top: 6%;
+		margin-bottom: 2%;
+	}
+
+	.image_beer{
+		margin-top: 8%;
+	}
+
+	#show-panel img{
+		width: 105px;
+		height: 280px;
+	}
+
+	.favs_profile{
+		margin-left: 8%;
+	}
+
+	/* configuracion.php */
+
+	.topinfo_config{
+		width: 90%;
+	}
+
+	.favs_config{
+		width: 90%;
+	}
+
+	.info_config{
+		width: 70%;
+	}
+
+	.name_config p{
+		font-size: 18px;
+	}
+
+	.edad_config p{
+		font-size: 18px
+	}
+
+	.vivoen_config p{
+		font-size: 18px
+	}
+
+	.pass_config p{
+		font-size: 16px;
+	}
+
+	.email_config p{
+		font-size: 18px
+	}
+
+	.info_config h1{
+		font-size: 18px
+	}
+
+	.name_config span{
+		font-size: .7em;
+	}
+
+	.vivoen_config span{
+		font-size: .7em;
+	}
+
+	.email_config span{
+		font-size: .7em;
+	}
+
+	.edad_config span{
+		font-size: .7em;
+	}
+
+	.pass_config span{
+		font-size: .7em;
+	}
+
+	/* slider beers! */
+	.content {
+		width: 60%;
+	}
+
+	.inner li .ver_mas{
+		font-size: .6em;
+		width: 65%;
+	}
+
+	.inner article .first_beer {
+		margin-left:0%;
+		margin-right: 0%;
+	}
+
+	.inner.material article .first_beer{
+		margin-left: 10%;
+	}
+
+	.inner.material article .other_beer{
+		margin-left: 10%;
+	}
+
+	.inner article .other_beer {
+		margin-right: 0%;
+	}
+
+	li.first_beer.beertwo{
+		margin-right: 16%;
+		margin-left: 13%;
+	}
+
+	li.other_beer.beertwo{
+		margin-right: 16%;
+		margin-left: 13%;
+
+	}
+
+	.inner article li{
+		width: 30%;
+	}
+
+	span.title{
+		font-size: 11px;
+	}
+
+	.inner li .subtitle{
+		font-size: 9.5px;
+	}
+
+	p.back_text{
+		font-size: 12px;
+	}
+
+	.inner article li img{
+		width: 22%;
+	}
+
+	.slides{
+		margin-top: 6%;
+	}
+
+	h1.title_slider{
+		font-size: 38px;
+	}
+
+	.send_txt{
+		font-size: 9px;
+	}
+
+	#show-img img{
+		width: 16px;
+		height: 16px;
+	}
+
+	.lightbox-content{
+		width: 60%;
+	}
+
+	.button_alert{
+		width: 260px;
+	}
+
+	.t2_alert{
+		width: 70px;
+	}
+
+	.t4_alert{
+		width: 120px;
+	}
+
+	.social_contact img{
+		-webkit-transform: scale(0.45, 0.45);
+	}
+
+	.controls label{
+		width: 13.5px;
+		height: 13.5px;
+	}
+
+	.send_button{
+		width: 18%;
+	}
+
+	button#button_alert{
+		font-size: 2em;
+	}
+
+	.prev, .next{
+		font-size: 3em;
+	}
+
+	span.change_banner{
+		font-size: .6em;
+	}
+
+	span.change_profile{
+		font-size: .5em;
+	}
+
+	.change_profile{
+		padding-left: .3vw;
+		padding-right: .3vw;
+		left: 8vw;
+		width: 55%;
+	}
+
+	img.profile_popup{
+		width: 70%;
+		top: 55vw;
+	}
+
+
+	.contenido_usuarios span{
+		font-size: .8em;
+	}
+
+	span.user_list{
+		font-size: 1.6em;
+	}
+
+	.beer_info .aside_info{
+		width: 35%;
+	}
+
+	.content{
+		width: 65%;
+	}
+
+	li.first_beer.beertwo,li.other_beer.beertwo{
+		margin-right: 9%;
+		margin-bottom: 3vw;
+		margin-left: 10%;
+	}
+
+	.inner article li{
+		width: 36%;
+	}
+
+	.signup-modal{
+		width: 70%;
+	}
+
+	input#password, input#user{
+		width: 50%;
+	}
+
+	input.signup-form::-webkit-input-placeholder, input#user::-webkit-input-placeholder{
+		padding: 1vw 0 0 .6vw;
+		font-size: 11px;
+	}
+
+	.flex-item-info span:nth-child(4){
+		width: 85%;
+	}
+
+}
+
+@media (max-width: 480px){
+
+	/* landing age */
+
+	span.title2_alert{
+		font-size: .4em;
+	}
+
+	.t2_alert{
+		width: 70px;
+	}
+
+	.t4_alert{
+		width: 100px;
+	}
+
+	.button_alert{
+		width: 190px;
+		font-size: 2.5em;
+	}
+
+	.img_pro img{
+		width: 30px;
+		height: 30px;
+	}
+
+	.topinfo_config h1{
+		font-size: 18px;
+	}
+
+	.favs_config h1{
+		font-size: 18px;
+	}
+
+	.favs_profile{
+		margin-left: 7%;
+	}
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 36px;
+	}
+
+	.info_beer{
+		top: 29%;
+	}
+
+	.favs_beer{
+		margin-left: 50%;
+	}
+
+	.ranktitle{
+		font-size: 1.8em;
+	}
+
+	.ranklevel{
+		font-size: 1.8em;
+	}
+
+	.rankstars{
+		font-size: 1.8em;
+	}
+
+
+	.favs_profile h1{
+		font-size: 35px;
+	}
+
+	.second_img_complete .aside_info_second{
+		width: 70%;
+	}
+
+	.contenido_aside .boton_mas{
+		font-size: 7px;
+	}
+
+	.prin_img .capa{
+		font-size: 1em;
+	}
+
+	.contenido_aside .title{
+		font-size: 7px;
+	}
+
+	.contenido_aside .sub_title{
+		font-size: 6px;
+	}
+
+	.contenido_aside p{
+		font-size: .3em;
+	}
+
+	.aside_info_second .contenido_aside{
+		width: 90%;
+	}
+
+	.aside_info_second{
+		width: 34%;
+	}
+
+	.top_info{
+		height: 10vw;
+	}
+
+	.contenedo_info{
+		height: 10vw;
+	}
+
+	.logo_tbf{
+		height: 10vw;
+	}
+
+	.perfil_tbf{
+		width: 80%;
+		height: 10vw;
+	}
+
+	.search input{
+		width: 70%;
+		font-size: .5em;
+	}
+
+	.user_name{
+		font-size: .5em;
+	}
+
+	.perfil_tbf .search{
+		padding: 0;
+		margin: 0;
+		width: 30%;
+		height: 14px;
+	}
+
+	.search img{
+		height: 60%;
+		margin-left: 5%;
+		margin-top: 0%;
+	}
+
+	.cont_info_user{
+		width: 50%;
+	}
+
+	.cont_info_user .msg{
+		width: 14%;
+	}
+
+	.cont_info_user .profile_img{
+		width: 10%;
+	}
+
+	.menu_buttom{
+		width: 8%;
+	}
+
+	.contenido_social span{
+		font-size: 1em;
+	}
+
+	.bottom_site{
+		font-size: 4px;
+	}
+
+	.bottom_site .center_cont_site{
+		padding-top: 4.5vw;
+		padding-bottom: 4.5vw;
+	}
+
+	.center_cont_site ul.social{
+		margin-bottom: 3.5vw;
+	}
+
+	.center_cont_site ul.social li{
+		height: 4.5vw;
+	}
+
+	.center_cont_site ul.nav{
+		margin-bottom: 3.5vw;
+		padding-bottom: 3.5vw;
+		border-bottom: 1px solid #FFF;
+	}
+
+	.center_cont_site ul.nav li{
+		height: 4.5vw;
+	}
+
+	.center_cont_site span.right_about{
+		padding-top: 5vw;
+	}
+
+	#menu_options .menu_list{
+		width: 70%;
+	}
+
+	.menu_list ul li span{
+		padding-left: 2.5vw;
+		font-size: 1.5em;
+	}
+
+	.close_menu{
+		width: 8vw;
+		top: 2.5%;
+		right: 2.5%;
+	}
+
+	.social_other{
+		bottom: 2.5%;
+		right: 2.5%;
+		width: 100%;
+	}
+
+	.social_other ul li{
+		height: 7.5vw !important;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+	}
+
+	.top_img span.text_prin{
+		font-size: .9em;
+	}
+
+	.beer_info .aside_info{
+		width: 45%;
+	}
+
+	.show_info_beer{
+		width: 54.1%;
+		height: 150vw;
+	}
+
+	.favs_beers{
+		width: 100%;
+	}
+
+	.title_beer_info {
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		font-size: .8em;
+	}
+
+	.options_li li.option_principal span.principal_text{
+		font-size: .8em;
+		padding-top: 2.5vw;
+		padding-bottom: 2.5vw;
+		border-bottom: 1px solid #FFF;
+	}
+
+	.suboptions_li span{
+		font-size: .75em;
+		padding-top: .5vw;
+		padding-bottom: 0vw;
+	}
+
+	.show_info_beer .list_beer{
+		width: 80%;
+		height: 140vw;
+		padding-left: 8%;
+		padding-right: 8%;
+	}
+
+	.list_beer li .ver_mas{
+		width: 75%;
+		font-size: .6em;
+		padding-top: .5vw;
+		padding-bottom: .5vw;
+		padding-left: .5vw;
+		padding-right: .5vw;
+		margin-top: 2vw;
+		border: 1px solid #000;
+	}
+
+	.list_beer span{
+		font-size: .6em;
+	}
+
+	.cont_search .search{
+		width: 70%;
+		height: auto;
+		padding-top: .25vw;
+		padding-bottom: .25vw;
+		margin-top: 1.5vw;
+		margin-bottom: 1.5vw;
+	}
+
+	.suboptions_li{
+		width: 60%;
+		padding-top: 1vw;
+		padding-bottom: 4vw;
+	}
+
+	.list_beer li{
+		width: 45%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+		margin-top: 4vw;
+		margin-bottom: 2%;
+	}
+
+	.list_beer li img{
+		width: 45%;
+	}
+
+	.list_beer li .title{
+		width: 100%;
+	}
+
+	.list_beer li .subtitle{
+		width: 100%;
+		margin-top: 2vw;
+		margin-bottom: 2vw;
+	}
+
+
+	.list_beer li .ver_mas{
+		font-size: .5em;
+	}
+
+	/* contact.php */
+	.content_contact{
+		height: 85vw;
+	}
+
+	.top_contact{
+		font-size:20px;
+		height: 8vw;
+	}
+
+	.info_text{
+		margin-left: 11%;
+		margin-right: 0%;
+		padding-bottom: 0%;
+		margin-top: 0%;
+		width: 80%;
+	}
+
+	.social_contact{
+		margin-top: 5%;
+		padding-bottom: 0%;
+	}
+
+	.first_contact{
+		margin-left: 2%;
+		margin-right:1%;
+	}
+
+	.other_contact{
+		margin-right: 1%;
+	}
+
+	.info_config{
+		font-size: 16px;
+	}
+
+	.actualizar_info,.actualizar_fav{
+		font-size: 8px;
+	}
+
+	/* mensajes.php */
+
+	.image_top img{
+		height: 23px;
+	}
+
+	.circle_search img{
+		margin-bottom: 5%;
+		margin-left: 4%;
+		width: 6px;
+		height: 8px;
+	}
+
+	.contacttop_messages p{
+		font-size: 13px;
+	}
+
+	.send_a_message input[name=message]{
+		font-size: 10px;
+	}
+
+	.send_button a p{
+		font-size: 8px;
+	}
+
+	.send_a_message input[name=message]{
+		padding-bottom: 5vw;
+		margin-bottom: .3vw;
+	}
+
+	.send_message img{
+		width: 16px;
+		height: 13px;
+	}
+
+
+	#itemContainer h2,item i2{
+		font-size: 6px;
+	}
+
+	.item.i2.sent_{
+		left: 69.5%;
+	}
+
+	.item.i2{
+		top: -12%;
+	}
+
+	.item.i2 p{
+		font-size: 10px;
+	}
+
+	.item.i2.sent_{
+		left: 75.5%;
+	}
+
+	.item.i3.sent_{
+		margin-left: 3%;
+	}
+
+
+	/* perfil empresa */
+
+	.image_profile img{
+		width: 120px;
+		height: 140px;
+	}
+
+	.name_profile p{
+		font-size: 10px;
+	}
+
+	.city_profile p{
+		font-size: 9px;
+	}
+
+	.age_profile p{
+		font-size: 9px;
+	}
+
+	.desc_profile{
+		font-size: 8px;
+	}
+
+	.send_message p{
+		font-size: 8px;
+		margin-left: 3%;
+
+	}
+	.image_logo img{
+		width: 120px;
+		height: 140px;
+	}
+
+	.contactProfile P{
+		font-size:8px;
+	}
+
+	.beer_profile{
+		font-size: 8.5px;
+	}
+
+	.profile_res{
+		font-size: 10px;
+	}
+
+	.actualizar_info p{
+		font-size: 8px;
+	}
+
+	/* perfil beer */
+
+	.info_beer{
+		width: 33%;
+	}
+
+	.beer_profile p{
+		font-size: 9px;
+	}
+
+	.fav_box,.wishlist_box p{
+		font-size: 10px;
+	}
+
+
+
+	.first_contact.fb img{
+		width: 12%;
+	}
+
+	a.other_contact.twt img{
+		width: 27%;
+	}
+
+
+	a.other_contact.ig img{
+		width: 25%;
+	}
+
+	#show-panel img{
+		width: 90px;
+		height: 260px;
+	}
+
+	img.fav_button{
+		width: 15px;
+	}
+
+	.fav_box{
+		width: 60%;
+	}
+
+	.wishlist_box{
+		width: 60%;
+	}
+
+	img.fav_button{
+		width: 12px;
+	}
+
+	img.wishlist_icon{
+		width: 12px;
+		height: 12px;
+	}
+
+	/* configuracion.php */
+
+	.actualizar_info{
+		width: 20%;
+	}
+
+	.name_config p{
+		font-size: 9px;
+	}
+
+	.edad_config p{
+		font-size: 9px
+	}
+
+	.vivoen_config p{
+		font-size: 9px;
+	}
+
+	.pass_config p{
+		font-size: 9px;
+	}
+
+	.email_config p{
+		font-size: 9px;
+	}
+
+	.info_config h1{
+		font-size: 9px;
+	}
+
+	.name_config span{
+		font-size: .6em;
+	}
+
+	.vivoen_config span{
+		font-size: .6em;
+	}
+
+	.email_config span{
+		font-size: .6em;
+	}
+
+	.edad_config span{
+		font-size: .6em;
+	}
+
+	.pass_config span{
+		font-size: .6em;
+	}
+
+	.input_contact input[type="submit"]{
+		width: 30%;
+	}
+
+	/* slider beers! */
+	.content {
+		width:55%;
+	}
+
+	.inner li .ver_mas{
+		font-size: .6em;
+	}
+
+	.content.profile{
+		left: 36vw;
+	}
+
+	.controls{
+		padding-left: 5.5vw;
+	}
+
+	span.title{
+		font-size: 10px;
+	}
+
+	.inner li .subtitle{
+		font-size: 9px;
+	}
+
+	.back_ img{
+		height: 10px;
+	}
+
+	p.back_text{
+		font-size: 10px;
+	}
+
+	.back_{
+		margin-top: 0;
+	}
+
+	.send_txt{
+		font-size: 8px;
+	}
+
+	.inner article li img{
+		width: 36%;
+	}
+
+	.slides{
+		margin-top: 8%;
+		margin-left: 6%;
+	}
+
+	h1.title_slider{
+		font-size: 34px;
+		margin-top: 3%;
+	}
+
+	#show-img img{
+		width: 14px;
+		height: 14px;
+	}
+
+	.content_profile{
+		width: 31%;
+	}
+
+	h1.title_slider{
+		font-size: 32px;
+		top: 1%;
+	}
+
+	.lightbox-content{
+		width: 80%;
+	}
+
+	.msn_form textarea{
+		height: 20vw;
+	}
+
+	.toptext-light{
+		font-size: 24px;
+	}
+
+	.social_contact img{
+		-webkit-transform: scale(0.4, 0.4);
+	}
+
+	.controls label{
+		width: 10px;
+		height: 10px;
+	}
+
+	.send_button{
+		width: 20%;
+	}
+
+	.img_pro img{
+		width: 26px;
+		height: 26px;
+	}
+
+	.profile_back{
+		top: -1.8vw;
+	}
+
+	button#button_alert{
+		font-size: 1.5em;
+	}
+
+	.prev, .next{
+		font-size: 2em;
+		top: 35%;
+	}
+
+	span.change_banner{
+		font-size: .4em;
+	}
+
+	span.change_profile{
+		font-size: .4em;
+	}
+
+	.change_profile{
+		width: 50%;
+		left: 12vw;
+	}
+
+	img.profile_popup{
+		width: 80%;
+		top: 70vw;
+	}
+
+
+	.contenido_usuarios span{
+		font-size: .8em;
+	}
+
+	span.user_list{
+		font-size: 1em;
+	}
+
+	.beer_info .aside_info{
+		width: 35%;
+	}
+
+	.content{
+		width: 65%;
+	}
+
+	li.first_beer.beertwo,li.other_beer.beertwo{
+		margin-right: 9%;
+		margin-bottom: 3vw;
+		margin-left: 10%;
+	}
+
+	.inner article li{
+		width: 36%;
+	}
+
+	.login-modal,.signup-modal{
+		width: 70%;
+	}
+
+	.send-login-content{
+		width: 75%;
+	}
+
+	.signup-modal{
+		width: 90%;
+	}
+
+	input#password, input#user{
+		width: 57%;
+	}
+
+	.date-form{
+		width: 42%;
+	}
+
+	.signup-form{
+		margin-left: 0;
+		width: 41%;
+	}
+
+	.not-user, #send-login{
+		font-size: 10px;
+	}
+
+	.flex-item-info span:nth-child(4){
+		width: 100%;
+	}
+
+
+
+}
+
+@media (max-width: 320px){
+
+
+	.toptext_slider,.toptext_slider.comments_title{
+		font-size: 28px;
+	}
+
+	.img_pro img{
+		width: 18px;
+		height: 18px;
+	}
+
+	.perfil_tbf .search{
+		padding: 0;
+		margin: 5%;
+		width: 30%;
+		height: 10px;
+	}
+
+	.top_img span.text_prin{
+		font-size: .6em;
+		top: 13vw;
+	}
+
+	/* perfil.php */
+
+	.favs_profile h1{
+		font-size: 32px;
+	}
+
+	.favs_profile{
+		margin-left: 4%;
+	}
+
+	.name_profile p{
+		font-size: 32px;
+	}
+
+	.city_profile p{
+		font-size: 13px;
+	}
+
+	.age_profile p{
+		font-size: 12px;
+	}
+
+	.desc_profile p{
+		font-size: 6px;
+	}
+
+	.send_message p{
+		font-size: .5em;
+	}
+
+	img.fav_button{
+		width: 10px;
+	}
+
+	img.wishlist_icon{
+		width: 10px;
+		height: 10px;
+	}
+
+	span.change_banner{
+		font-size: .2em;
+	}
+
+	span.change_profile{
+		font-size: .2em;
+		width: 60%;
+		left: 9vw;
+	}
+
+	/* configuracion.php 320px */
+
+	.topinfo_config h1{
+		font-size: 10px;
+	}
+
+	.info_config{
+		font-size: 8px;
+	}
+
+	.desc_config{
+		font-size: 10px;
+	}
+
+
+	.favs_config h1{
+		font-size: 10px;
+	}
+
+	.actualizar_config{
+		font-size: 7px;
+	}
+
+	.actualizar_fav{
+		font-size: 7px;
+	}
+
+	/* contacto.php */
+
+	.top_contact{
+		font-size:18px;
+	}
+
+	.input_form{
+		width: 60%;
+		margin-left: 20%;
+	}
+
+	.input_form textarea{
+		height: 15vw;
+	}
+
+	.input_contact input[value="ENVIAR"]{
+		font-size: 14px;
+	}
+
+	.input_contact input[type="text"][name="message"]{
+		height: 20vw;
+	}
+
+	.content_contact{
+		height: 120vw;
+	}
+
+	.info_text{
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 0%;
+	}
+
+	.social_contact{
+		margin-top: 0%;
+		padding-bottom: 0%;
+	}
+
+
+	.social_contact img{
+		transform: scale(0.4, 0.4);
+		-ms-transform: scale(0.4, 0.4);
+		-webkit-transform: scale(0.4, 0.4);
+	}
+
+	.first_contact{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+
+	.other_contact{
+		margin-right: 0%;
+	}
+
+	.actualizar_info,.actualizar_fav{
+		font-size: 6px;
+	}
+
+	.first_contact{
+		margin-left: 0%;
+		margin-right: 0%;
+	}
+
+	.other_contact{
+		margin-right: 0%;
+	}
+
+	/*mensajes.php */
+
+	.contacttop_messages p{
+		font-size: 14px;
+		line-height: 0;
+	}
+
+	.image_top img{
+		height: 19px;
+	}
+
+	.send_a_message input[name=message]{
+		font-size: 8px;
+	}
+
+	.contactProfile P{
+		font-size: 5px;
+	}
+
+	.circle_search img{
+		width: 5px;
+		height: 6px;
+		margin-bottom: 25.5%;
+	}
+
+	.contact_left img{
+		height: 8px;
+	}
+	/* perfil empresa */
+
+	.name_profile p{
+		font-size: 20px;
+	}
+
+	.image_profile img{
+		width: 80px;
+		height: 80px;
+	}
+
+	.image_logo img{
+		width: 80px;
+		height: 80px;
+	}
+
+	.profile_res{
+		font-size: 8px;
+	}
+
+	.actualizar_info p{
+		font-size: 5.5px;
+	}
+
+	.fav_box,.wishlist_box p{
+		font-size: 8px;
+	}
+
+	#show-panel img{
+		width: 70px;
+		height: 200px;
+	}
+
+
+
+	/* configuracion.php */
+
+	.name_config p{
+		font-size: 10px;
+	}
+
+	.edad_config p{
+		font-size: 10px
+	}
+
+	.vivoen_config p{
+		font-size: 10px
+	}
+
+	.pass_config p{
+		font-size: 10px;
+	}
+
+	.email_config p{
+		font-size: 10px
+	}
+
+	.info_config h1{
+		font-size: 10px
+	}
+
+	.inner li .ver_mas{
+		font-size: 0.5em;
+	}
+
+	.inner li .title{
+		font-size: 9px;
+	}
+
+	.inner li .subtitle{
+		font-size: 8px;
+	}
+
+	.content_profile{
+		width: 31%;
+		left: 3vw;
+	}
+
+	.slides{
+		margin-top: 18%;
+	}
+
+	h1.title_slider{
+		font-size: 24px;
+		margin-top: 8%;
+	}
+
+	.send_txt{
+		font-size: 7px;
+	}
+
+	#show-img img{
+		width: 10px;
+		height: 10px;
+	}
+
+	span.title2_alert{
+		font-size: .3em;
+	}
+
+	.controls label{
+		width: 8px;
+		height: 8px;
+	}
+
+	.contenido_aside p{
+		font-size: 5px;
+	}
+
+	button#button_alert{
+		font-size: 1em;
+	}
+
+	.t2_alert{
+		width: 50px;
+	}
+
+	.t4_alert{
+		width: 80px;
+	}
+
+	.button_alert{
+		width: 160px;
+	}
+
+	.config_back img{
+		height: 10px;
+	}
+
+	img.profile_popup{
+		width: 80%;
+		top: 80vw;
+	}
+
+	.contenido_usuarios span{
+		font-size: .8em;
+	}
+
+	span.user_list{
+		font-size: .8em;
+	}
+
+	li.first_beer.beertwo,li.other_beer.beertwo{
+		margin-right: 9%;
+		margin-bottom: 3vw;
+		margin-left: 10%;
+	}
+
+	.inner article li{
+		width: 36%;
+	}
+
+	.beer_info .aside_info{
+		width: 35%;
+	}
+
+	.content{
+		width: 65%;
+	}
+
+	.login-modal,.signup-modal{
+		width: 90%;
+	}
+
+	input#password, input#user{
+		width: 65%;
+	}
+
+	.flex-item-info span:first-child{
+	  font-size: 8px;
+	}
+
+	.flex-item-info span:nth-child(2){
+	  font-size: 10px;
+	}
+	.flex-item-info span:nth-child(3){
+	  font-size: 10px;
+	}
+
+	.flex-item-info span:nth-child(4){
+	  font-size: 8px;
+	}
+
+	span.user_list.list-sub{
+		font-size: .6em;
+	}
+
+	.Grid{
+		height: 64vw;
+	}
+
+}

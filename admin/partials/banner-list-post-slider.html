@@ -1,0 +1,51 @@
+<div class="table-responsive ">
+  <table class="table table-bordered">
+	  <thead>
+	  	<tr>
+	  		<th>#</th>
+        <th>Title</th>
+        <th>Subtitle</th>
+        <th>Description</th>
+	  		<th>Image</th>
+        <th>URL</th>
+	  		<th>Options</th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="banner in dataBanners">
+	  		<th scope="row">{{banner.idBannerSliderPost}}</th>
+        <td>{{banner.bannerSliderPostTitle}}</td>
+        <td>{{banner.bannerSliderPostSubtitle}}</td>
+        <td>{{banner.bannerSliderPostDescription}}</td>
+	  		<td><img src="../../images/postBanners/{{banner.bannerSliderPostImage}}" style="width: 150px; height: auto;"></td>
+        <td>{{banner.bannerSliderPostUrl}}</td>
+	  		<td>
+	  			<span ng-click="deleteBanner(banner.idBannerSliderPost);" class="label label-danger" name="{{banner.idBannerSliderPost}}" style="cursor: pointer;">Delete</span>
+	  		</td>
+	  	</tr>
+	  </tbody>
+  </table>
+
+  <div class="col-md-12">
+  	<button ng-click="selectaAddBanner()" type="button" class="btn btn-primary">Add a new Banner</button>
+	</div>
+	<div class="col-md-5">
+		<form method="post" class="form-horizontal" ng-show="addBanner" enctype="multipart/form-data" id="insertBannerImage" ng-submit="addBannerImg()">
+  		<div class="form-group">
+  			<div class="col-sm-12">
+          <label for="banner-title" class="col-sm-12 control-label" style="text-align: left;">Banner Title *</label>
+  				<input required type="text" class="form-control" id="banner-title" name="bannerTitle" placeholder="Insert a banner title."></input>
+          <label for="banner-subtitle" class="col-sm-12 control-label" style="text-align: left;">Banner Subtitle *</label>
+  				<input required type="text" class="form-control" id="banner-subtitle" name="bannerSubtitle" placeholder="Insert a banner subtitle."></input>
+          <label for="banner-description" class="col-sm-12 control-label" style="text-align: left;">Banner Description *</label>
+  				<textarea required type="text" class="form-control" id="banner-description" name="bannerDescription" placeholder="Insert a banner description."></textarea>
+          <label for="banner-url" class="col-sm-12 control-label" style="text-align: left;">URL Banner *</label>
+  				<input required type="text" class="form-control" id="banner-url" name="bannerUrl" placeholder="Insert a URL banner."></input>
+          <label for="banner-new" class="col-sm-12 control-label" style="text-align: left;">Image Banner *</label>
+  				<input required type="file" class="form-control" id="banner-new" name="bannerImage[]"></input>
+  				<input type="submit" class="btn btn-primary addBanner" value="Add"  name="" style="margin-top: 10px;"></input>
+  			</div>
+  		</div>
+	  </form>
+	</div>
+</div>
