@@ -6,6 +6,7 @@
 		$line = mysql_fetch_array($result);
 	}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

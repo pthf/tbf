@@ -1,7 +1,14 @@
-<?php 
+<?php
+	session_start();
+	if(isset($_SESSION['idUser'])){
+		$query = "SELECT * FROM user WHERE idUser = ".$_SESSION['idUser'];
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+	}
 	include('../../admin/php/connect_bd.php');
 	connect_base_de_datos();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +31,103 @@
 
 </head>
 <body>
+
+	<?php if(!isset($_SESSION['idUser'])){ ?>
+	<div class="background-filter"></div>
+	<?php } ?>
+
+	<?php if(!isset($_SESSION['idUser'])){ ?>
+	<div class="login-modal">
+		<div class="close-icon">
+			<img src="../../images/img_galeria-02_close.png" >
+		</div>
+		<div class="login-title">
+			<span class="login-title-text">INICIAR SESIÓN</span>
+		</div>
+
+		<form action="">
+			<div class="input-boxes">
+				<input type="text" name="name" placeholder="NOMBRE:" id="password" class="input-login">
+				<br><br>
+				<input type="password" name="name" placeholder="PASSWORD:" id="password" class="input-login">
+				<br>
+			</div>
+
+			<div class="send-login-content">
+				<br>
+				<span class="not-user">¿NO TIENES CUENTA AÚN? REGÍSTRATE.</span>
+				<br><br>
+				<button type="button" name="button" id="send-login">INICIAR SESIÓN</button>
+			</div>
+		</form>
+
+	</div>
+	<?php } ?>
+
+	<?php if(!isset($_SESSION['idUser'])){ ?>
+	<div class="signup-modal">
+		<div class="close-icon">
+			<img src="../../images/img_galeria-02_close.png" >
+		</div>
+
+		<div class="login-title">
+			<span class="login-title-text">REGISTRARSE</span>
+		</div>
+
+		<div class="signup-modal-content">
+			<input type="text" name="name" placeholder="NOMBRE:" id="" class="signup-form">
+			<input type="text" name="name" placeholder="APELLIDO:" id="" class="signup-form">
+			<input type="text" name="name" placeholder="EMAIL:" id="" class="signup-form">
+		<div class="date-form">
+			<span class="titleData">Fecha de Nac.:</span>
+			<select name="month">
+				<option value="na">Mes &#x25BE;</option>
+				<option value="1">Enero</option>
+				<option value="2">Febrero</option>
+				<option value="3">Marzo</option>
+				<option value="4">Abril</option>
+				<option value="5">Mayo</option>
+				<option value="6">Junio</option>
+				<option value="7">Julio</option>
+				<option value="8">Agosto</option>
+				<option value="9">Septiembre</option>
+				<option value="10">Octubre</option>
+				<option value="11">Noviembre</option>
+				<option value="12">Diciembre</option>
+			</select>
+			<select name="day" id="day">
+			<option value="na">Día&#x25BE;</option>
+			</select>
+			<select name="year" id="year">
+			<option value="na">Año&#x25BE;</option>
+			</select>
+		</div>
+
+			<input type="text" name="name" placeholder="CIUDAD:" id="" class="signup-form">
+			<input type="text" name="name" placeholder="PAÍS:" id="" class="signup-form">
+			<input type="password" name="name" placeholder="CONTRASEÑA:" id="" class="signup-form">
+			<input type="password" name="name" placeholder="CONFIRMAR CONTRASEÑA:" id="" class="signup-form">
+
+			<div class="send-login-content sign-up-send">
+				<br>
+				<span class="not-user">ACEPTAS LOS TÉRMINOS DE PRIVACIDAD.</span>
+ 				<input type="checkbox" name="" value="">
+				<br><br>
+				<button type="button" name="button" id="send-login">ENVIAR</button>
+			</div>
+
+		</div>
+	</div>
+	<?php } ?>
+
 	<div id="menu_options">
+
 		<div class="close_menu">
 			<img src="../../images/close_image-01.png">
 		</div>
+
 		<div class="menu_list">
+			<?php if(isset($_SESSION['idUser'])){ ?>
 			<ul>
 				<a href="inicio.php"><li><span>HOME</span></li></a>
 				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
@@ -38,7 +137,17 @@
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
+			<?php }else{?>
+				<ul>
+					<a href="inicio.php"><li><span>HOME</span></li></a>
+					<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+					<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+					<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+					<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+				</ul>
+			<?php }?>
 		</div>
+
 		<div class="social_other">
 			<ul>
 				<a href=""><li><img src="../../images/bottom-05.png"></li></a>
@@ -47,6 +156,7 @@
 				<a href=""><li><img src="../../images/bottom-02.png"></li></a>
 			</ul>
 		</div>
+
 	</div>
 
 	<div id="contenedor">
@@ -65,7 +175,10 @@
 						<img src="../../images/icon-01.png" alt="search icon" title="search icon">
 						<input type="text">
 					</div>
+
 					<div class="cont_info_user">
+
+						<?php if(isset($_SESSION['idUser'])){ ?>
 						<div class="msg">
 							<a href="mensajes.php">
 							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
@@ -76,9 +189,22 @@
 							<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
 							</a>
 						</div>
-						<div class="user_name">
-							<span>USER NAME</span>
-						</div>
+						<?php }?>
+
+						<?php
+							if(isset($_SESSION['idUser'])){
+								echo '<div class="user_name">
+												<span>'.$line["userName"].'</span>
+											</div>';
+							}else {
+								echo '
+											<div class="user_name">
+												<span>INICIAR SESIÓN</span>
+											</div>
+								';
+							}
+						?>
+
 						<div class="menu_buttom">
 							<img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
 						</div>
@@ -108,7 +234,7 @@
 								<ul class="suboptions_li ">
 								<?php
 	                            $query = "SELECT * FROM beertype";
-	                            $resultado = mysql_query($query) or die(mysql_error()); 
+	                            $resultado = mysql_query($query) or die(mysql_error());
 
 	                            while($row = mysql_fetch_array($resultado)) { ?>
 									<li><span><?php echo $row['beerTypeName']; ?></span></li>
@@ -120,7 +246,7 @@
 								<ul class="suboptions_li">
 								<?php
 	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id";
-	                            $resultado1 = mysql_query($query1) or die(mysql_error()); 
+	                            $resultado1 = mysql_query($query1) or die(mysql_error());
 
 	                            while($row1 = mysql_fetch_array($resultado1)) { ?>
 									<li><span><?php echo $row1['name_c']; ?></span></li>
@@ -155,9 +281,9 @@
 		<div class="inner">
 
 			<article>
-				<?php 
+				<?php
 				$query2 = "SELECT * FROM beer";
-				$resultado2 = mysql_query($query2) or die(mysql_error()); 
+				$resultado2 = mysql_query($query2) or die(mysql_error());
 				while ($row2 = mysql_fetch_array($resultado2)) { ?>
 				<li class="first_beer beertwo ">
 					<img src="../../images/beerBottles/<?php echo $row2['beerBottleImage'];?>"> <br>
@@ -480,6 +606,7 @@
 					<a href=""><li><img src="../../images/bottom-03.png"></li></a>
 					<a href=""><li><img src="../../images/bottom-02.png"></li></a>
 				</ul>
+				<?php if(isset($_SESSION['idUser'])){ ?>
 				<ul class="nav">
 					<a href="inicio.php"><li><span>HOME</span></li></a>
 					<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
@@ -489,11 +616,82 @@
 					<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 					<a href="contact.php"><li><span>CONTACTO</span></li></a>
 				</ul>
-				<span class="right_about">About Us - Política de Privacidad - FAQS</span>
-				<span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
+				<?php }else{ ?>
+					<ul class="nav">
+						<a href="inicio.php"><li><span>HOME</span></li></a>
+						<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+						<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+						<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+						<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+						<a href="contact.php"><li><span>CONTACTO</span></li></a>
+					</ul>
+				<?php } ?>
+
+				<span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+
+				<span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
 			</div>
 		</div>
 
 	</div>
+
+
+	<script type="text/javascript">
+		$(document).on("ready",function(){
+
+			$(document).on('click', '.user_name, .user_name_click', function(){
+				$(".login-modal").css({
+					"opacity" : "1",
+					"z-index" : "10",
+				}),
+				$(".background-filter").css({
+					"opacity" : "1",
+					"z-index" : "10",
+				})
+			});
+
+			$(".close-icon,.background-filter").on("click", function(){
+				$(".login-modal").css({
+					"opacity" : "0",
+					"z-index" : "-1",
+				}),
+				$(".background-filter").css({
+					"opacity" : "0",
+					"z-index" : "-1",
+				})
+			});
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).on("ready",function(){
+
+			$(".not-user").on("click", function(){
+				$(".signup-modal").css({
+					"opacity" : "1",
+					"z-index" : "10",
+				}),
+				$(".background-filter").css({
+					"opacity" : "1",
+					"z-index" : "10",
+				})
+			});
+
+			$(".close-icon,.background-filter").on("click", function(){
+				$(".signup-modal").css({
+					"opacity" : "0",
+					"z-index" : "-1",
+				}),
+				$(".background-filter").css({
+					"opacity" : "0",
+					"z-index" : "-1",
+				})
+			});
+
+		});
+	</script>
+
+
 </body>
 </html>
