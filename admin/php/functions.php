@@ -71,8 +71,23 @@
 			case 'logOut':
 				logOut();
 				break;
+			case 'getStates':
+				getStates($_POST['idCountry']);
+				break;
 		}
 	}
+
+	function getStates($id){
+
+		$query = "SELECT * FROM states WHERE country_id = $id ORDER BY name_s ASC";
+		$result = mysql_query($query) or die(mysql_error());
+		echo '<option disabled selected value="">Select a producer state</option>';
+		while ($line = mysql_fetch_array($result)) {
+			echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
+		}
+
+	}
+
 	function logOut(){
 		session_start();
 		session_destroy();
