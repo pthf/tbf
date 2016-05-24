@@ -33,28 +33,30 @@
 
 	<?php if(!isset($_SESSION['idUser'])){ ?>
 	<div class="login-modal">
-		<div class="close-icon">
-			<img src="../../images/img_galeria-02_close.png" >
-		</div>
-		<div class="login-title">
-			<span class="login-title-text">INICIAR SESIÓN</span>
-		</div>
-
-		<form action="">
-			<div class="input-boxes">
-				<input type="text" name="name" placeholder="NOMBRE:" id="password" class="input-login">
-				<br><br>
-				<input type="password" name="name" placeholder="PASSWORD:" id="password" class="input-login">
-				<br>
+		<div class="login-modal-wrapper">
+			<div class="close-icon">
+				<img src="../../images/img_galeria-02_close.png" >
+			</div>
+			<div class="login-title">
+				<span class="login-title-text">INICIAR SESIÓN</span>
 			</div>
 
-			<div class="send-login-content">
-				<br>
-				<span class="not-user">¿NO TIENES CUENTA AÚN? REGÍSTRATE.</span>
-				<br><br>
-				<button type="button" name="button" id="send-login">INICIAR SESIÓN</button>
-			</div>
-		</form>
+			<form action="">
+				<div class="input-boxes">
+					<input type="text" name="name" placeholder="NOMBRE:" id="password" class="input-login">
+					<br><br>
+					<input type="password" name="name" placeholder="PASSWORD:" id="password" class="input-login">
+					<br>
+				</div>
+
+				<div class="send-login-content">
+					<br>
+					<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+					<br><br>
+					<button type="button" name="button" id="send-login">ENVIAR</button>
+				</div>
+			</form>
+		</div>
 
 	</div>
 	<?php } ?>
@@ -71,37 +73,46 @@
 
 		<div class="signup-modal-content">
 			<input type="text" name="name" placeholder="NOMBRE:" id="" class="signup-form">
-			<input type="text" name="name" placeholder="APELLIDO:" id="" class="signup-form">
-			<input type="text" name="name" placeholder="EMAIL:" id="" class="signup-form">
-		<div class="date-form">
-			<span class="titleData">Fecha de Nac.:</span>
-			<select name="month">
-				<option value="na">Mes &#x25BE;</option>
-				<option value="1">Enero</option>
-				<option value="2">Febrero</option>
-				<option value="3">Marzo</option>
-				<option value="4">Abril</option>
-				<option value="5">Mayo</option>
-				<option value="6">Junio</option>
-				<option value="7">Julio</option>
-				<option value="8">Agosto</option>
-				<option value="9">Septiembre</option>
-				<option value="10">Octubre</option>
-				<option value="11">Noviembre</option>
-				<option value="12">Diciembre</option>
-			</select>
-			<select name="day" id="day">
-			<option value="na">Día&#x25BE;</option>
-			</select>
-			<select name="year" id="year">
-			<option value="na">Año&#x25BE;</option>
-			</select>
-		</div>
 
-			<input type="text" name="name" placeholder="CIUDAD:" id="" class="signup-form">
-			<input type="text" name="name" placeholder="PAÍS:" id="" class="signup-form">
-			<input type="password" name="name" placeholder="CONTRASEÑA:" id="" class="signup-form">
-			<input type="password" name="name" placeholder="CONFIRMAR CONTRASEÑA:" id="" class="signup-form">
+			<input type="text" name="name" placeholder="APELLIDO:" id="" class="signup-form">
+
+			<div class="date-form">
+					<span class="titleData">Fecha de Nac:</span>
+					<select name="month">
+						<option value="na">Mes &#x25BE;</option>
+						<option value="1">Enero</option>
+						<option value="2">Febrero</option>
+						<option value="3">Marzo</option>
+						<option value="4">Abril</option>
+						<option value="5">Mayo</option>
+						<option value="6">Junio</option>
+						<option value="7">Julio</option>
+						<option value="8">Agosto</option>
+						<option value="9">Septiembre</option>
+						<option value="10">Octubre</option>
+						<option value="11">Noviembre</option>
+						<option value="12">Diciembre</option>
+					</select>
+					<select name="day" id="day">
+					<option value="na">Día&#x25BE;</option>
+					</select>
+					<select name="year" id="year">
+					<option value="na">Año&#x25BE;</option>
+					</select>
+				</div>
+
+				<input type="text" name="name" placeholder="PAÍS:" id="" class="signup-form">
+
+				<input type="text" name="name" placeholder="ESTADO:" id="" class="signup-form">
+
+
+				<input type="text" name="name" placeholder="EMAIL:" id="" class="signup-form">
+
+				<input type="text" name="name" placeholder="CONFIRMAR EMAIL:" id="" class="signup-form">
+
+				<input type="password" name="name" placeholder="CONTRASEÑA:" id="" class="signup-form">
+
+				<input type="password" name="name" placeholder="CONFIRMAR CONTRASEÑA:" id="" class="signup-form">
 
 			<div class="send-login-content sign-up-send">
 				<br>
@@ -168,7 +179,61 @@
 
 					<div class="search">
 						<img src="../../images/icon-01.png" alt="search icon" title="search icon">
-						<input type="text">
+						<input type="text" id="box-target">
+
+						<div class="search-box">
+								<div class="profile-search">
+									<span class="profile-img">
+										<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+									</span>
+									<span class="profile-info">
+										<span class="profile-name">NAME</span> <br>
+										<span class="profile-city">GDL - MX</span>
+									</span>
+								</div>
+								<div class="profile-search">
+									<span class="profile-img">
+										<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+									</span>
+									<span class="profile-info">
+										<span class="profile-name">NAME</span> <br>
+										<span class="profile-city">GDL - MX</span>
+									</span>
+								</div>
+								<div class="profile-search">
+									<span class="profile-img">
+										<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+									</span>
+									<span class="profile-info">
+										<span class="profile-name">NAME</span> <br>
+										<span class="profile-city">GDL - MX</span>
+									</span>
+								</div>
+								<div class="profile-search">
+									<span class="profile-img">
+										<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+									</span>
+									<span class="profile-info">
+										<span class="profile-name">NAME</span> <br>
+										<span class="profile-city">GDL - MX</span>
+									</span>
+								</div>
+								<div class="profile-search">
+									<span class="profile-img">
+										<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+									</span>
+									<span class="profile-info">
+										<span class="profile-name">NAME</span> <br>
+										<span class="profile-city">GDL - MX</span>
+									</span>
+								</div>
+								<div class="profile-search">
+									<span class="profile-info no-results">
+										<span class="profile-name">NO SE HA ENCONTRADO RESULTADOS</span> <br>
+									</span>
+								</div>
+						</div>
+
 					</div>
 					<div class="cont_info_user">
 
@@ -176,6 +241,7 @@
 						<div class="msg">
 							<a href="mensajes.php">
 							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
+							<span class="number">1</span>
 							</a>
 						</div>
 						<div class="profile_img">
