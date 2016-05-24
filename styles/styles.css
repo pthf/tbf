@@ -345,7 +345,7 @@ span.text_prin span{
   width: auto;
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: 1%;
+  margin-top: 3%;
 }
 
 .search input{
@@ -395,7 +395,7 @@ span.text_prin span{
 .cont_info_user .msg{
   width: 10%;
   height: auto;
-  margin-right: 8%;
+  margin-right: 10%;
 }
 
 .cont_info_user .profile_img{
@@ -3116,9 +3116,11 @@ input#slide1,#slide2,#slide3,#slide4,#slide5,#slide6{
   }
   .prev {
     left: 0;
+    margin-right: 1vw;
   }
   .next {
     right: 0;
+    margin-left: 1vw;
   }
 
 
@@ -3490,6 +3492,7 @@ input#slide1,#slide2,#slide3,#slide4,#slide5,#slide6{
 
   .heart-icon:hover{
     opacity: .8;
+  	content: "★";
   }
 
   span.delete-opt,span.mod-opt{
@@ -3533,4 +3536,67 @@ input#slide1,#slide2,#slide3,#slide4,#slide5,#slide6{
 
   .selected-star{
   	content: "★";
+  }
+
+  span.number {
+      background: red;
+      position: absolute;
+      top: 0;
+      border-radius: 50%;
+      width: 20px;
+      text-align: center;
+      line-height: 19px;
+      height: auto;
+      font-size: 10px;
+      color: white;
+      margin-top: .5vw;
+  }
+
+  .msg a img{
+    margin-right: -1vw;
+  }
+
+  .search-box{
+    position: relative;
+    width: 98%;
+    height: auto;
+    margin-top: .8vw;
+    background: rgba(255, 255, 255, .8);
+    border-radius: 3%;
+    opacity: 0;
+    z-index: -10;
+    transition: .2s;
+  }
+
+  .profile-search{
+    display: flex;
+    flex-direction: row;
+    margin-left: 3%;
+    margin-top: 1%;
+    cursor: pointer;
+  }
+
+  .profile-search:hover{
+    opacity: .5;
+  }
+
+  .profile-img{
+    width: 22%;
+  }
+  .profile-img img{
+    width: 100%;
+  }
+
+  .profile-info{
+    width: 70%;
+    margin-top: .5vw;
+    margin-left: 1vw;
+  }
+
+  span.profile-name{
+    font-size: 14px;
+  }
+
+  span.profile-city{
+    font-size: 12px;
   }
