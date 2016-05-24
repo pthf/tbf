@@ -23,7 +23,19 @@
 	<script type="text/javascript" src="../../js/slider.js"> </script>
 	<script type="text/javascript" src="../../js/slidedown.js"> </script>
 
-
+	<script type="text/javascript">
+    $(document).ready(function () {
+      (function ($) {
+        $('#filtrar').keyup(function () {
+          var rex = new RegExp($(this).val(), 'i');
+          $('.buscar .producer').hide();
+          $('.buscar .producer').filter(function () {
+            return rex.test($(this).text());
+          }).show();
+        })
+      }(jQuery));
+    });
+  	</script>
 </head>
 <body>
 	<div id="menu_options">
@@ -99,7 +111,7 @@
 				<div class="cont_search">
 					<div class="search">
 						<img src="../../images/icon-01.png" alt="search icon" title="search icon">
-						<input type="text">
+						<input type="text" id="filtrar" placeholder="">
 					</div>
 					<div class="list_options">
 						<ul class="options_li">
@@ -119,7 +131,7 @@
 								<span class="principal_text">PAÍS</span>
 								<ul class="suboptions_li">
 								<?php
-	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id";
+	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
 	                            $resultado1 = mysql_query($query1) or die(mysql_error()); 
 
 	                            while($row1 = mysql_fetch_array($resultado1)) { ?>
@@ -136,7 +148,7 @@
 
 			<!-- slider -->
 
-			<div class="content">
+			<div class="content buscar">
 				<div class="back_">
 					<a href="inicio.php">
 						<img src="../../images/flecha-izq_negro.png" />
@@ -160,7 +172,7 @@
 										$query_type = "SELECT * FROM producer pro INNER JOIN producertype pt ON pt.idProducerType = pro.idProducerType WHERE pt.producerTypeName ='".$_GET['type']."'";
 										$resultado_type = mysql_query($query_type) or die(mysql_error()); 
 										while ($row3 = mysql_fetch_array($resultado_type)) { ?>
-											<li class="first_beer beertwo ">
+											<li class="first_beer beertwo producer">
 												<img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage'];?>"> <br>
 												<span class="title"><?php echo $row3['producerName'];?></span>
 												<span class="subtitle"><?php echo $row3['producerDescription'];?></span>
@@ -173,7 +185,7 @@
 														ON co.id = pro.country_id WHERE co.name_c ='".$_GET['country']."'";
 										$resultado_country = mysql_query($query_country) or die(mysql_error()); 
 										while ($row4 = mysql_fetch_array($resultado_country)) { ?>
-											<li class="first_beer beertwo ">
+											<li class="first_beer beertwo producer">
 												<img src="../../images/producerProfiles/<?php echo $row4['producerProfileImage'];?>"> <br>
 												<span class="title"><?php echo $row4['producerName'];?></span>
 												<span class="subtitle"><?php echo $row4['producerDescription'];?></span>
@@ -184,7 +196,7 @@
 										$query2 = "SELECT * FROM producer";
 										$resultado2 = mysql_query($query2) or die(mysql_error()); 
 										while ($row2 = mysql_fetch_array($resultado2)) { ?>
-											<li class="first_beer beertwo ">
+											<li class="first_beer beertwo producer">
 												<img src="../../images/producerProfiles/<?php echo $row2['producerProfileImage'];?>"> <br>
 												<span class="title"><?php echo $row2['producerName'];?></span>
 												<span class="subtitle"><?php echo $row2['producerDescription'];?></span>

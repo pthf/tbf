@@ -22,6 +22,20 @@
 	<script type="text/javascript" src="../../js/all_pages_jquery.js"> </script>
 	<script type="text/javascript" src="../../js/slidedown.js"> </script>
 
+	<script type="text/javascript">
+    $(document).ready(function () {
+      (function ($) {
+        $('#filtrar').keyup(function () {
+          var rex = new RegExp($(this).val(), 'i');
+          $('.buscar .beers').hide();
+          $('.buscar .beers').filter(function () {
+            return rex.test($(this).text());
+          }).show();
+        })
+      }(jQuery));
+    });
+  	</script>
+
 </head>
 <body>
 	<div id="menu_options">
@@ -98,7 +112,7 @@
 				<div class="cont_search">
 					<div class="search">
 						<img src="../../images/icon-01.png" alt="search icon" title="search icon">
-						<input type="text">
+						<input type="text" id="filtrar" placeholder="">
 					</div>
 
 					<div class="list_options">
@@ -119,7 +133,7 @@
 								<span class="principal_text">PAÍS</span>
 								<ul class="suboptions_li">
 								<?php
-	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id";
+	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
 	                            $resultado1 = mysql_query($query1) or die(mysql_error()); 
 
 	                            while($row1 = mysql_fetch_array($resultado1)) { ?>
@@ -135,13 +149,13 @@
 
 <!-- slider -->
 
-<div class="content">
+<div class="content buscar">
 	<div class="back_">
 		<a href="inicio.php">
 			<img src="../../images/flecha-izq_negro.png" />
 			<p class="back_text">VOLVER A HOME</p>
 		</a>
-</div>
+	</div>
 
 	<input type="radio" id="slide1" name="slider" checked>
 	<input type="radio" id="slide2" name="slider">
@@ -149,62 +163,64 @@
 	<input type="radio" id="slide4" name="slider">
 	<input type="radio" id="slide5" name="slider">
 
-<div class="slides">
+	<div class="slides">
 
-	<div class="overflow">
-		<div class="inner">
-			<article>
-				<?php 
-					if (isset($_GET['type'])) {
-						$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idBeerType = bt.idBeerType WHERE bt.beerTypeName ='".$_GET['type']."'";
-						$resultado_type = mysql_query($query_type) or die(mysql_error()); 
-						while ($row3 = mysql_fetch_array($resultado_type)) { ?>
-							<li class="first_beer beertwo ">
-								<img src="../../images/beerBottles/<?php echo $row3['beerBottleImage'];?>"> <br>
-								<span class="title"><?php echo $row3['beerName'];?></span>
-								<span class="subtitle"><?php echo $row3['beerDescription'];?></span>
-								<a href="perfil_beer.php?id=<?php echo $row3['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
-							</li>
-				<?php 	}
-					} else if (isset($_GET['country'])){ 
-						$query_country = "SELECT * FROM beerfans.beer b 
-										INNER JOIN beerfans.producer pro 
-										ON pro.idProducer = b.idProducer 
-										INNER JOIN beerfans.countries co 
-										ON co.id = pro.country_id WHERE co.name_c ='".$_GET['country']."'";
-						$resultado_country = mysql_query($query_country) or die(mysql_error()); 
-						while ($row4 = mysql_fetch_array($resultado_country)) { ?>
-							<li class="first_beer beertwo ">
-								<img src="../../images/beerBottles/<?php echo $row4['beerBottleImage'];?>"> <br>
-								<span class="title"><?php echo $row4['beerName'];?></span>
-								<span class="subtitle"><?php echo $row4['beerDescription'];?></span>
-								<a href="perfil_beer.php?id=<?php echo $row4['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
-							</li>
-				<?php 	} 
-					} else { 
-						$query2 = "SELECT * FROM beer";
-						$resultado2 = mysql_query($query2) or die(mysql_error()); 
-						while ($row2 = mysql_fetch_array($resultado2)) { ?>
-							<li class="first_beer beertwo ">
-								<img src="../../images/beerBottles/<?php echo $row2['beerBottleImage'];?>"> <br>
-								<span class="title"><?php echo $row2['beerName'];?></span>
-								<span class="subtitle"><?php echo $row2['beerDescription'];?></span>
-								<a href="perfil_beer.php?id=<?php echo $row2['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
-							</li> 
-				<?php 	} 
-					} ?>
-			</article>
+		<div class="overflow">
+			<div class="inner">
+				<article>
+					<?php 
+						if (isset($_GET['type'])) {
+							$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idBeerType = bt.idBeerType WHERE bt.beerTypeName ='".$_GET['type']."'";
+							$resultado_type = mysql_query($query_type) or die(mysql_error()); 
+							while ($row3 = mysql_fetch_array($resultado_type)) { ?>
+								<li class="first_beer beertwo beers">
+									<img src="../../images/beerBottles/<?php echo $row3['beerBottleImage'];?>"> <br>
+									<span class="title"><?php echo $row3['beerName'];?></span>
+									<span hidden>Hola bebe</span>
+									<span class="subtitle"><?php echo $row3['beerDescription'];?></span>
+									<a href="perfil_beer.php?id=<?php echo $row3['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
+								</li>
+					<?php 	}
+						} else if (isset($_GET['country'])){ 
+							$query_country = "SELECT * FROM beerfans.beer b 
+											INNER JOIN beerfans.producer pro 
+											ON pro.idProducer = b.idProducer 
+											INNER JOIN beerfans.countries co 
+											ON co.id = pro.country_id WHERE co.name_c ='".$_GET['country']."'";
+							$resultado_country = mysql_query($query_country) or die(mysql_error()); 
+							while ($row4 = mysql_fetch_array($resultado_country)) { ?>
+								<li class="first_beer beertwo beers">
+									<img src="../../images/beerBottles/<?php echo $row4['beerBottleImage'];?>"> <br>
+									<span class="title"><?php echo $row4['beerName'];?></span>
+									<span class="subtitle"><?php echo $row4['beerDescription'];?></span>
+									<a href="perfil_beer.php?id=<?php echo $row4['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
+								</li>
+					<?php 	} 
+						} else { 
+							$query2 = "SELECT * FROM beer";
+							$resultado2 = mysql_query($query2) or die(mysql_error()); 
+							while ($row2 = mysql_fetch_array($resultado2)) { ?>
+								<li class="first_beer beertwo beers">
+									<img src="../../images/beerBottles/<?php echo $row2['beerBottleImage'];?>"> <br>
+									<span class="title"><?php echo $row2['beerName'];?></span>
+									<span hidden><?php echo $row2['beerStrength'];?></span>
+									<span class="subtitle"><?php echo $row2['beerDescription'];?></span>
+									<a href="perfil_beer.php?id=<?php echo $row2['idBeer'];?>"><span class="ver_mas">VER MÁS</span></a>
+								</li> 
+					<?php 	} 
+						} ?>
+				</article>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="controls">
-	<label for="slide1"></label>
-	<label for="slide2"></label>
-	<label for="slide3"></label>
-	<label for="slide4"></label>
-	<label for="slide5"></label>
-</div>
+	<div class="controls">
+		<label for="slide1"></label>
+		<label for="slide2"></label>
+		<label for="slide3"></label>
+		<label for="slide4"></label>
+		<label for="slide5"></label>
+	</div>
 </div>
 
 <!--- fin slider beers -->
