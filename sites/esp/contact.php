@@ -26,12 +26,12 @@
 		</div>
 		<div class="menu_list">
 			<ul>
-				<a href="inicio.html"><li><span>HOME</span></li></a>
-				<a href="cervezas.html"><li><span>CERVEZAS</span></li></a>
-				<a href="productores.html"><li><span>PRODUCTORES</span></li></a>
-				<a href="materia.html"><li><span>MATERIA PRIMA</span></li></a>
-				<a href="perfil.html"><li><span>MI PERFIL</span></li></a>
-				<a href="configuracion.html"><li><span>CONFIGURACIÓN</span></li></a>
+				<a href="inicio.php"><li><span>HOME</span></li></a>
+				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
 		</div>
@@ -50,7 +50,7 @@
 
 		<div class="top_info">
 			<div class="contenedo_info">
-				<a href="inicio.html">
+				<a href="inicio.php">
 				<div class="logo_tbf">
 					<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
 				</div>
@@ -62,12 +62,12 @@
 					</div>
 					<div class="cont_info_user">
 						<div class="msg">
-							<a href="mensajes.html">
+							<a href="mensajes.php">
 							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
 							</a>
 						</div>
 						<div class="profile_img">
-							<a href="perfil.html">
+							<a href="perfil.php">
 							<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
 							</a>
 						</div>
@@ -95,7 +95,7 @@
 
 		<div class="content_contact">
 			<div class="config_back contact_back">
-				<a href="inicio.html">
+				<a href="inicio.php">
 					<img src="../../images/flecha-izq_negro.png" />
 					<p class="back_text">VOLVER A HOME</p>
 				</a>
@@ -147,13 +147,13 @@
 			 <a href=""><li><img src="../../images/bottom-02.png"></li></a>
 		 </ul>
 		 <ul class="nav">
-			 <a href="inicio.html"><li><span>HOME</span></li></a>
-<!--			 <a href="cervezas.html"><li><span>CERVEZAS</span></li></a>
-			 <a href="productores.html"><li><span>PRODUCTORES</span></li></a>
-			 <a href="materia.html"><li><span>MATERIA PRIMA</span></li></a>
-			 <a href="perfil.html"><li><span>MI PERFIL</span></li></a>
-			 <a href="configuracion.html"><li><span>CONFIGURACIÓN</span></li></a>
-			 <a href="contact.html"><li><span>CONTACTO</span></li></a> -->
+			 <a href="inicio.php"><li><span>HOME</span></li></a>
+<!--			 <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+			 <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+			 <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+			 <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+			 <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+			 <a href="contact.php"><li><span>CONTACTO</span></li></a> -->
 		 </ul>
 		 <span class="right_about">About Us - Política de Privacidad - FAQS</span>
 		 <span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>

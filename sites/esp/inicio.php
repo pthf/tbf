@@ -107,12 +107,12 @@
 
 		<div class="menu_list">
 			<ul>
-				<a href="inicio.html"><li><span>HOME</span></li></a>
-				<a href="cervezas.html"><li><span>CERVEZAS</span></li></a>
-				<a href="productores.html"><li><span>PRODUCTORES</span></li></a>
-				<a href="materia.html"><li><span>MATERIA PRIMA</span></li></a>
-				<a href="perfil.html"><li><span>MI PERFIL</span></li></a>
-				<a href="configuracion.html"><li><span>CONFIGURACIÓN</span></li></a>
+				<a href="inicio.php"><li><span>HOME</span></li></a>
+				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
 		</div>
@@ -132,7 +132,7 @@
 
 		<div class="top_info">
 			<div class="contenedo_info">
-				<a href="inicio.html">
+				<a href="inicio.php">
 				<div class="logo_tbf">
 					<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
 				</div>
@@ -146,12 +146,12 @@
 					</div>
 					<div class="cont_info_user">
 						<div class="msg">
-							<a href="mensajes.html">
+							<a href="mensajes.php">
 							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
 							</a>
 						</div>
 						<div class="profile_img">
-							<a href="perfil.html">
+							<a href="perfil.php">
 							<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
 							</a>
 						</div>
@@ -184,7 +184,7 @@
 
 		<div class="cont_site">
 			<div class="prin_img">
-				<a href="cervezas.html" class="item-pring">
+				<a href="cervezas.php" class="item-pring">
 				<img src="../../images/beerBanners/photo_pthf_home-04.png" alt="foto 1 principal tbf" title="foto 1 principal tbf">
 				<div class="capa">
 					<span>CERVEZAS</span>
@@ -193,7 +193,7 @@
 			</div>
 
 			<div class="prin_img">
-				<a href="productores.html" class="item-pring">
+				<a href="productores.php" class="item-pring">
 				<img src="../../images/beerBanners/photo_pthf_home-02.png" alt="foto 2 principal tbf" title="foto 2 principal tbf">
 				<div class="capa">
 					<span>PRODUCTORES</span>
@@ -202,7 +202,7 @@
 			</div>
 
 			<div class="prin_img">
-				<a href="materia.html" class="item-pring">
+				<a href="materia.php" class="item-pring">
 				<img src="../../images/beerBanners/photo_pthf_home-03.png" alt="foto 3 principal tbf" title="foto 3 principal tbf">
 				<div class="capa">
 					<span>MATERIA PRIMA</span>
@@ -279,7 +279,7 @@
 									<span class="title">CUARTA CERVEZA</span>
 									<span class="sub_title">CUARTA CERVEZA</span>
 									<p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-									<a href="perfil_beer.html">
+									<a href="perfil_beer.php">
 									<div class="boton_mas">VER MÁS</div>
 									</a>
 								</div>
@@ -619,7 +619,7 @@
 								<span class="title">CONOCE A</span>
 								<span class="sub_title">NAIPE</span>
 								<p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-								<a href="perfil_beer.html">
+								<a href="perfil_beer.php">
 								<div class="boton_mas">VER MÁS</div>
 								</a>
 							</div>
@@ -635,7 +635,7 @@
 								<span class="title">CONOCE A</span>
 								<span class="sub_title">NAIPE</span>
 								<p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-								<a href="perfil_beer.html">
+								<a href="perfil_beer.php">
 								<div class="boton_mas">VER MÁS</div>
 								</a>
 							</div>
@@ -649,7 +649,7 @@
 								<a href=""><li><img src="../../images/social-04.png"></li></a>
 								<a href=""><li><img src="../../images/social-02.png"></li></a>
 								<a href=""><li><img src="../../images/social-01.png"></li></a>
-								<a href="contact.html"><li><img src="../../images/social-03.png"></li></a>
+								<a href="contact.php"><li><img src="../../images/social-03.png"></li></a>
 							</ul>
 						</div>
 					</div>
@@ -671,13 +671,13 @@
 					<a href=""><li><img src="../../images/bottom-02.png"></li></a>
 				</ul>
 				<ul class="nav">
-					<a href="inicio.html"><li><span>HOME</span></li></a>
-					<a href="cervezas.html"><li><span>CERVEZAS</span></li></a>
-					<a href="productores.html"><li><span>PRODUCTORES</span></li></a>
-					<a href="materia.html"><li><span>MATERIA PRIMA</span></li></a>
-					<a href="perfil.html"><li><span>MI PERFIL</span></li></a>
-					<a href="configuracion.html"><li><span>CONFIGURACIÓN</span></li></a>
-					<a href="contact.html"><li><span>CONTACTO</span></li></a>
+					<a href="inicio.php"><li><span>HOME</span></li></a>
+					<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+					<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+					<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+					<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+					<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+					<a href="contact.php"><li><span>CONTACTO</span></li></a>
 				</ul>
 				<span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
 				<span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
