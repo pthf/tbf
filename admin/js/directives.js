@@ -494,6 +494,26 @@
 
 				});
 
+				$("#producer-country").change(function(){
+					var idCountry = $("option:selected", this).attr('name');
+					var namefunction = 'getStates';
+					$.ajax({
+							beforeSend: function(){},
+							url: "../php/functions.php",
+							type: "POST",
+							data: {
+								namefunction: namefunction,
+								idCountry: idCountry
+							},
+							success: function(result){
+								$('#producer-state').html(result);
+							},
+							error: function(){},
+							complete: function(){},
+							timeout: 10000
+					});
+				});
+
 			}
 		}
 	})

@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	if(isset($_SESSION['idUser'])){
+		$query = "SELECT * FROM user WHERE idUser = ".$_SESSION['idUser'];
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +26,11 @@
 </head>
 <body>
 
-<div class="background-filter"></div>
+	<?php if(!isset($_SESSION['idUser'])){ ?>
+	<div class="background-filter"></div>
+	<?php } ?>
+
+	<?php if(!isset($_SESSION['idUser'])){ ?>
 	<div class="login-modal">
 		<div class="close-icon">
 			<img src="../../images/img_galeria-02_close.png" >
@@ -39,12 +51,14 @@
 				<br>
 				<span class="not-user">¿NO TIENES CUENTA AÚN? REGÍSTRATE.</span>
 				<br><br>
-				<button type="button" name="button" id="send-login">ENVIAR</button>
+				<button type="button" name="button" id="send-login">INICIAR SESIÓN</button>
 			</div>
 		</form>
 
 	</div>
+	<?php } ?>
 
+	<?php if(!isset($_SESSION['idUser'])){ ?>
 	<div class="signup-modal">
 		<div class="close-icon">
 			<img src="../../images/img_galeria-02_close.png" >
@@ -98,6 +112,7 @@
 
 		</div>
 	</div>
+	<?php } ?>
 
 	<div id="menu_options">
 
@@ -106,6 +121,7 @@
 		</div>
 
 		<div class="menu_list">
+			<?php if(isset($_SESSION['idUser'])){ ?>
 			<ul>
 				<a href="inicio.php"><li><span>HOME</span></li></a>
 				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
@@ -115,6 +131,15 @@
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
+			<?php }else{?>
+				<ul>
+					<a href="inicio.php"><li><span>HOME</span></li></a>
+					<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+					<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+					<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+					<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+				</ul>
+			<?php }?>
 		</div>
 
 		<div class="social_other">
@@ -145,6 +170,8 @@
 						<input type="text">
 					</div>
 					<div class="cont_info_user">
+
+						<?php if(isset($_SESSION['idUser'])){ ?>
 						<div class="msg">
 							<a href="mensajes.php">
 							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
@@ -155,9 +182,22 @@
 							<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
 							</a>
 						</div>
-						<div class="user_name">
-							<span>USER NAME</span>
-						</div>
+						<?php }?>
+
+						<?php
+							if(isset($_SESSION['idUser'])){
+								echo '<div class="user_name">
+												<span>'.$line["userName"].'</span>
+											</div>';
+							}else {
+								echo '
+											<div class="user_name">
+												<span>INICIAR SESIÓN</span>
+											</div>
+								';
+							}
+						?>
+
 						<div class="menu_buttom">
 							<img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
 						</div>
@@ -303,7 +343,8 @@
 					<div class="contact_us_or_follow">
 						<img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
 						<div class="contenido_usuarios">
-							<span class="user_list">USUARIOS RECOMENDADOS</span>
+							<?php if(isset($_SESSION['idUser'])){ ?>
+							<span class="user_list">USUARIOS RECOMENDADOS.</span>
 							<span class="user_list list-sub">ENCUENTRA OTROS USUARIOS CON GUSTOS SIMILARES A LOS TUYOS.</span>
 							<div class="Grid">
 
@@ -609,6 +650,9 @@
 
 
 							</div>
+							<?php }else{ ?>
+								<span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<span class="user_name">INICIAR SESIÓN</span> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
+							<?php } ?>
 						</div>
 					</div>
 
@@ -670,6 +714,8 @@
 					<a href=""><li><img src="../../images/bottom-03.png"></li></a>
 					<a href=""><li><img src="../../images/bottom-02.png"></li></a>
 				</ul>
+
+				<?php if(isset($_SESSION['idUser'])){ ?>
 				<ul class="nav">
 					<a href="inicio.php"><li><span>HOME</span></li></a>
 					<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
@@ -679,8 +725,20 @@
 					<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 					<a href="contact.php"><li><span>CONTACTO</span></li></a>
 				</ul>
+				<?php }else{ ?>
+					<ul class="nav">
+						<a href="inicio.php"><li><span>HOME</span></li></a>
+						<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+						<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+						<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+						<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+						<a href="contact.php"><li><span>CONTACTO</span></li></a>
+					</ul>
+				<?php } ?>
+
 				<span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
-				<span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
+
+				<span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
 			</div>
 		</div>
 
@@ -689,8 +747,8 @@
 	<script type="text/javascript">
 		$(document).on("ready",function(){
 
-		  $(".user_name").on("click", function(){
-		    $(".login-modal").css({
+			$(document).on('click', '.user_name, .user_name_click', function(){
+				$(".login-modal").css({
 		      "opacity" : "1",
 		      "z-index" : "10",
 		    }),

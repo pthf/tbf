@@ -78,11 +78,11 @@
 						<select required class="form-control" id="producer-state" name="state">
 							<option disabled selected value="">Select a producer state</option>
 							<?php
-								$query = "SELECT * FROM states ORDER BY name_s ASC";
-								$result = mysql_query($query) or die(mysql_error());
-								while ($line = mysql_fetch_array($result)) {
-									echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
-								}
+								// $query = "SELECT * FROM states ORDER BY name_s ASC";
+								// $result = mysql_query($query) or die(mysql_error());
+								// while ($line = mysql_fetch_array($result)) {
+								// 	echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
+								// }
 							?>
 						</select>
 					</div>
