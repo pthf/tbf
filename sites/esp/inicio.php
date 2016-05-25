@@ -81,34 +81,59 @@
 				<input required type="text" name="name" placeholder="NOMBRE:" class="signup-form">
 				<input required type="text" name="lastname" placeholder="APELLIDO:" class="signup-form">
 
-				<div class="date-form">
-					<span class="titleData">Fecha de Nac:</span>
-					<select required name="month">
-						<option selected disabled value="">Mes&#x25BE;</option>
-						<option value="1" name="1">Enero</option>
-						<option value="2" name="2">Febrero</option>
-						<option value="3" name="3" >Marzo</option>
-						<option value="4" name="4">Abril</option>
-						<option value="5" name="5">Mayo</option>
-						<option value="6" name="6">Junio</option>
-						<option value="7" name="7">Julio</option>
-						<option value="8" name="8">Agosto</option>
-						<option value="9" name="9">Septiembre</option>
-						<option value="10" name="10">Octubre</option>
-						<option value="11" name="11">Noviembre</option>
-						<option value="12" name="12">Diciembre</option>
+
+			<div class="date-input">
+				<span class="title-date">Fecha de nacimiento</span>
+
+				<div class="date-input-wrapper">
+
+					<select id="birthday_day" name="birthday_day" class="birthday day" >
+					    <option value="">Día &#x25BE;</option>
 					</select>
-					<select required name="day">
-						<option selected disabled value="">Día&#x25BE;</option>
-						<option value="1" name="1">1</option>
+
+					<select id="birthday_month" name="birthday_month" class="birthday month" >
+					    <option value="">Mes &#x25BE;</option>
+					    <option value="1">Enero</option>
+					    <option value="2">Febrero</option>
+					    <option value="3">Marzo</option>
+					    <option value="4">Abril</option>
+					    <option value="5">Mayo</option>
+					    <option value="6">Junio</option>
+					    <option value="7">Julio</option>
+					    <option value="8">Agosto</option>
+					    <option value="9">Septiembre</option>
+					    <option value="10">Octubre</option>
+					    <option value="11">Noviembre</option>
+					    <option value="12">Diciembre</option>
 					</select>
-					<select required name="year">
-						<option selected disabled value="">Año&#x25BE;</option>
-						<option value="1993" name="1993">1993</option>
+
+					<select id="birthday_year" name="birthday_year" class="birthday year" >
+					    <option value="">Año &#x25BE;</option>
+					    <option value="1995">1995</option>
+					    <option value="1994">1994</option>
+					    <option value="1993">1993</option>
+					    <option value="1992">1992</option>
+					    <option value="1991">1991</option>
+					    <option value="1990">1990</option>
+					    <option value="1989">1989</option>
+					    <option value="1988">1988</option>
+					    <option value="1987">1987</option>
+					    <option value="1986">1986</option>
+					    <option value="1985">1985</option>
+					    <option value="1984">1984</option>
+					    <option value="1983">1983</option>
+					    <option value="1982">1982</option>
+					    <option value="1981">1981</option>
+					    <option value="1980">1980</option>
 					</select>
+
+
+
 				</div>
 
-				<select required name="country" class="signup-form" id="selectCountry">
+			</div>
+
+				<select required name="country" class="signup-form select-Country" id="selectCountry">
 					<option selected disabled value="">Selecciona un país &#x25BE;</option>
 					<?php
 						$query = "SELECT * FROM countries ORDER BY name_c ASC";
@@ -119,7 +144,7 @@
 					?>
 				</select>
 
-				<select required name="state" class="signup-form" id="selectState">
+				<select required name="state" class="signup-form select-Country" id="selectState">
 					<option disabled selected value="">Selecciona un estado &#x25BE;</option>
 				</select>
 
@@ -932,6 +957,77 @@
 
 		});
 	</script>
+
+<script type="text/javascript">
+function isLeapYear(year) {
+	return (new Date(year , 2 , 0).getDate() == 29);
+}
+
+function getAge(birthDate) {
+	var today = new Date();
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
+	}
+
+	return age;
+}
+
+function getDays(year, month) {
+	var days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	if (isLeapYear(year)) {
+			days[2] = 29;
+	}
+
+	return days[month];
+}
+
+function validateDoB() {
+	var birthday_year  = $('#birthday_year');
+	var birthday_month = $('#birthday_month');
+	var birthday_day   = $('#birthday_day');
+
+	if (birthday_year.val() == '' || birthday_month.val() == '' || birthday_day.val() == '') {
+			alert('Input your date of birthday, plz.');
+	} else {
+
+			if (getAge(new Date(birthday_year.val(), birthday_month.val()-1, birthday_day.val())) >= 20) {
+					alert('Your age is older 20.');
+			} else {
+					alert('Your age is under 20.');
+			}
+	}
+
+	return false;
+}
+
+$('.birthday.year, .birthday.month').change(function(){
+	var year  = $('#birthday_year');
+	var month = $('#birthday_month');
+	var day   = $('#birthday_day');
+
+	var selected_day = day.val();
+
+	if (year.val() == '' || month.val() == '') {
+			return false;
+	}
+
+	var days = getDays(year.val(), month.val());
+	var options = ['<option value=""></option>'];
+
+	for (var i = 1; i <= days; i++) {
+			options.push('<option value="' + i + '">' + i + '</option>');
+	}
+
+	day.html('').append(options.join("\n"));
+	day.val(Math.min(selected_day, days));
+}).trigger('change');
+
+$('#btn_submit').click(validateDoB);
+</script>
 
 
 
