@@ -174,7 +174,6 @@
 
 	<div id="contenedor">
 
-
 		<div class="top_info">
 			<div class="contenedo_info">
 				<a href="inicio.php">
@@ -407,7 +406,6 @@
 				</div>
 
 				<!--- fin slider beers -->
-
 
 				<div class="bottom_site other_bottom">
 					<div class="center_cont_site">

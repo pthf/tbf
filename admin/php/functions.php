@@ -74,7 +74,21 @@
 			case 'getStates':
 				getStates($_POST['idCountry']);
 				break;
+			case 'getStatesUser':
+				getStatesUser($_POST['idCountry']);
+				break;
 		}
+	}
+
+	function getStatesUser($id){
+
+		$query = "SELECT * FROM states WHERE country_id = $id ORDER BY name_s ASC";
+		$result = mysql_query($query) or die(mysql_error());
+		echo '<option disabled selected value="">Selecciona un estado &#x25BE;</option>';
+		while ($line = mysql_fetch_array($result)) {
+			echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
+		}
+
 	}
 
 	function getStates($id){

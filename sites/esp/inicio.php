@@ -5,6 +5,9 @@
 		$result = mysql_query($query) or die(mysql_error());
 		$line = mysql_fetch_array($result);
 	}
+
+	include('../../admin/php/connect_bd.php');
+	connect_base_de_datos();
 ?>
 
 <!DOCTYPE html>
@@ -72,55 +75,74 @@
 		</div>
 
 		<div class="signup-modal-content">
-			<input type="text" name="name" placeholder="NOMBRE:" id="" class="signup-form">
 
-			<input type="text" name="name" placeholder="APELLIDO:" id="" class="signup-form">
+			<form class="formNewUser" id="formNewUser">
 
-			<div class="date-form">
+				<input required type="text" name="name" placeholder="NOMBRE:" class="signup-form">
+				<input required type="text" name="lastname" placeholder="APELLIDO:" class="signup-form">
+
+				<div class="date-form">
 					<span class="titleData">Fecha de Nac:</span>
-					<select name="month">
-						<option value="na">Mes &#x25BE;</option>
-						<option value="1">Enero</option>
-						<option value="2">Febrero</option>
-						<option value="3">Marzo</option>
-						<option value="4">Abril</option>
-						<option value="5">Mayo</option>
-						<option value="6">Junio</option>
-						<option value="7">Julio</option>
-						<option value="8">Agosto</option>
-						<option value="9">Septiembre</option>
-						<option value="10">Octubre</option>
-						<option value="11">Noviembre</option>
-						<option value="12">Diciembre</option>
+					<select required name="month">
+						<option selected disabled value="">Mes&#x25BE;</option>
+						<option value="1" name="1">Enero</option>
+						<option value="2" name="2">Febrero</option>
+						<option value="3" name="3" >Marzo</option>
+						<option value="4" name="4">Abril</option>
+						<option value="5" name="5">Mayo</option>
+						<option value="6" name="6">Junio</option>
+						<option value="7" name="7">Julio</option>
+						<option value="8" name="8">Agosto</option>
+						<option value="9" name="9">Septiembre</option>
+						<option value="10" name="10">Octubre</option>
+						<option value="11" name="11">Noviembre</option>
+						<option value="12" name="12">Diciembre</option>
 					</select>
-					<select name="day" id="day">
-					<option value="na">Día&#x25BE;</option>
+					<select required name="day">
+						<option selected disabled value="">Día&#x25BE;</option>
+						<option value="1" name="1">1</option>
 					</select>
-					<select name="year" id="year">
-					<option value="na">Año&#x25BE;</option>
+					<select required name="year">
+						<option selected disabled value="">Año&#x25BE;</option>
+						<option value="1993" name="1993">1993</option>
 					</select>
 				</div>
 
-				<input type="text" name="name" placeholder="PAÍS:" id="" class="signup-form">
+				<select required name="country" class="signup-form" id="selectCountry">
+					<option selected disabled value="">Selecciona un país &#x25BE;</option>
+					<?php
+						$query = "SELECT * FROM countries ORDER BY name_c ASC";
+						$result = mysql_query($query) or die(mysql_error());
+						while ($line = mysql_fetch_array($result)) {
+							echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_c"].'</option>';
+						}
+					?>
+				</select>
 
-				<input type="text" name="name" placeholder="ESTADO:" id="" class="signup-form">
+				<select required name="state" class="signup-form" id="selectState">
+					<option disabled selected value="">Selecciona un estado &#x25BE;</option>
+				</select>
 
+				<input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
 
-				<input type="text" name="name" placeholder="EMAIL:" id="" class="signup-form">
+				<input required type="email" name="confirmmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
 
-				<input type="text" name="name" placeholder="CONFIRMAR EMAIL:" id="" class="signup-form">
+				<input required type="password" name="password" placeholder="CONTRASEÑA:" class="signup-form">
 
-				<input type="password" name="name" placeholder="CONTRASEÑA:" id="" class="signup-form">
+				<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-				<input type="password" name="name" placeholder="CONFIRMAR CONTRASEÑA:" id="" class="signup-form">
+					<span style="display:block">Los email no son idénticos.</span>
+					<span style="display:block">Las cotraseñas no son idénticas.</span>
 
-			<div class="send-login-content sign-up-send">
-				<br>
-				<span class="not-user">ACEPTAS LOS TÉRMINOS DE PRIVACIDAD.</span>
- 				<input type="checkbox" name="" value="">
-				<br><br>
-				<button type="button" name="button" id="send-login">ENVIAR</button>
-			</div>
+				<div class="send-login-content sign-up-send">
+					<br>
+					<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
+	 				<input required type="checkbox" id="privacyTerms">
+					<br><br>
+					<button type="submit" name="button" id="send-login">ENVIAR</button>
+				</div>
+
+			</form>
 
 		</div>
 	</div>
@@ -866,16 +888,16 @@
 
 		});
 	</script>
-	
+
 	<script type="text/javascript">
- 	$( "#box-target" ).focus(function() {
- 		$(".search-box").css({
- 			"opacity" : "1",
- 			"z-index" : "9"
- 		})
- 	});
- 
- 	$( "#box-target" )
+	 	$( "#box-target" ).focus(function() {
+	 		$(".search-box").css({
+	 			"opacity" : "1",
+	 			"z-index" : "9"
+	 		})
+	 	});
+
+ 		$( "#box-target" )
  	  .focusout(function() {
  			$(".search-box").css({
  				"opacity" : "0",
@@ -883,5 +905,35 @@
  			})
  	  });
  	</script>
+
+	<script>
+		$("#selectCountry").change(function(){
+			var idCountry = $("option:selected", this).attr('name');
+			var namefunction = 'getStatesUser';
+			$.ajax({
+					beforeSend: function(){},
+					url: "../../admin/php/functions.php",
+					type: "POST",
+					data: {
+						namefunction: namefunction,
+						idCountry: idCountry
+					},
+					success: function(result){
+						$('#selectState').html(result);
+					},
+					error: function(){},
+					complete: function(){},
+					timeout: 10000
+			});
+		});
+
+		$('#formNewUser').submit(function(e){
+			e.preventDefault();
+
+		});
+	</script>
+
+
+
 </body>
 </html>
