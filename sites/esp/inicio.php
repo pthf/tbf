@@ -866,5 +866,22 @@
 
 		});
 	</script>
+	
+	<script type="text/javascript">
+ 	$( "#box-target" ).focus(function() {
+ 		$(".search-box").css({
+ 			"opacity" : "1",
+ 			"z-index" : "9"
+ 		})
+ 	});
+ 
+ 	$( "#box-target" )
+ 	  .focusout(function() {
+ 			$(".search-box").css({
+ 				"opacity" : "0",
+ 				"z-index" : "-10"
+ 			})
+ 	  });
+ 	</script>
 </body>
 </html>
