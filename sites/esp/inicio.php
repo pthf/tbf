@@ -125,14 +125,14 @@
 
 				<input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
 
-				<input required type="email" name="confirmmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
+				<input required type="email" name="confirmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
 
 				<input required type="password" name="password" placeholder="CONTRASEÑA:" class="signup-form">
 
 				<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-					<span style="display:block">Los email no son idénticos.</span>
-					<span style="display:block">Las cotraseñas no son idénticas.</span>
+					<span style="display:none;" id="mailMsg">Los email no son idénticos.</span>
+					<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
 
 				<div class="send-login-content sign-up-send">
 					<br>
@@ -929,6 +929,61 @@
 
 		$('#formNewUser').submit(function(e){
 			e.preventDefault();
+
+			var name = $('input[name=name]').val();
+			var lastname = $('input[name=lastname]').val();
+			var month = $('input[name=month]').val();
+			var day = $('input[name=day]').val();
+			var year = $('input[name=year]').val();
+			var country = $('input[name=country]').val();
+			var state = $('input[name=state]').val();
+			var confirmEmail = $('input[name=confirmEmail]').val();
+			var email = $('input[name=email]').val();
+			var confirmPassword = $('input[name=confirmPassword]').val();
+			var password = $('input[name=password]').val();
+			var namefunction = "addNewUser";
+
+			if(confirmEmail!=email){
+				$('#mailMsg').css({'display':'block'});
+				setTimeout(function(){
+					$('#mailMsg').css({'display':'none'});
+				}, 2000);
+
+			}else{
+				if(confirmPassword!=password){
+					$('#passMsg').css({'display':'block'});
+					setTimeout(function(){
+						$('#passMsg').css({'display':'none'});
+					}, 2000);
+				}else{
+					$.ajax({
+							beforeSend: function(){
+							},
+							url: "../../admin/php/functions.php",
+							type: "POST",
+							data: {
+								namefunction: namefunction,
+								name: name,
+								lastname: lastname,
+								month: month,
+								day: day,
+								year: year,
+								country: country,
+								state: state,
+								email: email,
+								password: password
+							},
+							success: function(result){
+								alert('new');
+							},
+							error: function(error){
+							},
+							complete: function(){
+							},
+							timeout: 10000
+					});
+				}
+			}
 
 		});
 	</script>

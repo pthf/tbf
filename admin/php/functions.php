@@ -77,7 +77,34 @@
 			case 'getStatesUser':
 				getStatesUser($_POST['idCountry']);
 				break;
+			case 'namefunction':
+				namefunction();
+				break;
 		}
+	}
+
+	function namefunction(){
+
+		$name = $_POST['name'];
+		$lastname = $_POST['lastname'];
+		$month = $_POST['month'];
+		$day = $_POST['day'];
+		$year = $_POST['year'];
+		$country = $_POST['country'];
+		$state = $_POST['state'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+
+		$query = "INSERT INTO user (
+			registrationDate, userName, userLastName,
+		 	userBirthDate, userDescription, userProfileImage,
+			userCoverImage, userEmail, userPassword,
+			userStatus, userConnection, userExp,
+			country_id, state_id, state_id,
+			idFavoritesList, idWishList, idRanksList, idPublicMessagesList, idInbox)
+
+			"
+
 	}
 
 	function getStatesUser($id){
