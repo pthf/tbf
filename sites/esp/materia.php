@@ -1,12 +1,12 @@
 <?php
 	session_start();
+	include('../../admin/php/connect_bd.php');
+	connect_base_de_datos();
 	if(isset($_SESSION['idUser'])){
 		$query = "SELECT * FROM user WHERE idUser = ".$_SESSION['idUser'];
 		$result = mysql_query($query) or die(mysql_error());
 		$line = mysql_fetch_array($result);
 	}
-	include('../../admin/php/connect_bd.php');
-	connect_base_de_datos();
 ?>
 
 <!DOCTYPE html>
@@ -249,7 +249,7 @@
 	                            $query = "SELECT * FROM rawmaterialtype";
 	                            $resultado = mysql_query($query) or die(mysql_error());
 
-								while($row = mysql_fetch_array($resultado)) { 
+								while($row = mysql_fetch_array($resultado)) {
 		                           	if (isset($_GET['country'])) { ?>
 										<li><span><a href="?type=<?php echo $row['rawMaterialTypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['rawMaterialTypeName']; ?></a></span></li>
 								<?php } else { ?>
@@ -305,14 +305,14 @@
 				<div class="inner material">
 
 				<article>
-					<?php 
+					<?php
 						if (isset($_GET['type'])) {
-							$query_type = "SELECT * FROM beerfans.rawmaterial rm 
+							$query_type = "SELECT * FROM beerfans.rawmaterial rm
 											INNER JOIN beerfans.rawmaterial_has_rawmaterialtype mhrm
 											ON mhrm.idRawMaterial = rm.idRawMaterial
 											INNER JOIN beerfans.rawmaterialtype rmt
 											ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType WHERE rmt.rawMaterialTypeName ='".$_GET['type']."'";
-							$resultado_type = mysql_query($query_type) or die(mysql_error()); 
+							$resultado_type = mysql_query($query_type) or die(mysql_error());
 							while ($row3 = mysql_fetch_array($resultado_type)) { ?>
 								<li class="first_beer beertwo material">
 								<img src="../../images/rawMaterialProfiles/<?php echo $row3['rawMaterialProfileImage'];?>"> <br>
@@ -321,9 +321,9 @@
 								<a href="perfil_materia.php?id=<?php echo $row3['idRawMaterial'];?>"><span class="ver_mas">VER MÁS</span></a>
 								</li>
 					<?php 	}
-						} else if (isset($_GET['country'])){ 
+						} else if (isset($_GET['country'])){
 							$query2 = "SELECT * FROM rawmaterial";
-							$resultado2 = mysql_query($query2) or die(mysql_error()); 
+							$resultado2 = mysql_query($query2) or die(mysql_error());
 							while ($row2 = mysql_fetch_array($resultado2)) { ?>
 								<li class="first_beer beertwo material">
 								<img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage'];?>"> <br>
@@ -331,18 +331,18 @@
 								<span class="subtitle"><?php echo $row2['rawMaterialDescription'];?></span>
 								<a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial'];?>"><span class="ver_mas">VER MÁS</span></a>
 								</li>
-					<?php 	} 
-						} else { 
+					<?php 	}
+						} else {
 							$query2 = "SELECT * FROM rawmaterial";
-							$resultado2 = mysql_query($query2) or die(mysql_error()); 
+							$resultado2 = mysql_query($query2) or die(mysql_error());
 							while ($row2 = mysql_fetch_array($resultado2)) { ?>
 								<li class="first_beer beertwo material">
 								<img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage'];?>"> <br>
 								<span class="title"><?php echo $row2['rawMaterialName'];?></span>
 								<span class="subtitle"><?php echo $row2['rawMaterialDescription'];?></span>
 								<a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial'];?>"><span class="ver_mas">VER MÁS</span></a>
-								</li> 
-					<?php 	} 
+								</li>
+					<?php 	}
 						} ?>
 				</article>
 

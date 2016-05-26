@@ -1,12 +1,12 @@
 <?php
 	session_start();
+	include('../../admin/php/connect_bd.php');
+	connect_base_de_datos();
 	if(isset($_SESSION['idUser'])){
 		$query = "SELECT * FROM user WHERE idUser = ".$_SESSION['idUser'];
 		$result = mysql_query($query) or die(mysql_error());
 		$line = mysql_fetch_array($result);
 	}
-	include('../../admin/php/connect_bd.php');
-	connect_base_de_datos();
 ?>
 
 <!DOCTYPE html>

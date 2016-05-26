@@ -1,16 +1,18 @@
 <?php
 session_start();
+include('../../admin/php/connect_bd.php');
+connect_base_de_datos();
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
-include('../../admin/php/connect_bd.php');
-connect_base_de_datos();
 ?>
 
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,6 +45,7 @@ connect_base_de_datos();
             });
         </script>
     </head>
+
     <body>
 
         <?php if (!isset($_SESSION['idUser'])) { ?>
@@ -61,9 +64,9 @@ connect_base_de_datos();
 
                     <form action="">
                         <div class="input-boxes">
-                            <input type="text" name="name" placeholder="NOMBRE:" id="password" class="input-login">
+                            <input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
                             <br><br>
-                            <input type="password" name="name" placeholder="PASSWORD:" id="password" class="input-login">
+                            <input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
                             <br>
                         </div>
 
@@ -71,8 +74,11 @@ connect_base_de_datos();
                             <br>
                             <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
                             <br><br>
-                            <button type="button" name="button" id="send-login">ENVIAR</button>
+                            <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
                         </div>
+
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                        <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
                     </form>
                 </div>
 
@@ -169,7 +175,7 @@ connect_base_de_datos();
 
                         <input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-                        <span style="display:none;" id="mailMsg">Los email no son idénticos.</span>
+                        <span style="display:none;" id="mail">Los email no son idénticos.</span>
                         <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
 
                         <div class="send-login-content sign-up-send">
@@ -177,7 +183,7 @@ connect_base_de_datos();
                             <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
                             <input required type="checkbox" id="privacyTerms">
                             <br><br>
-                            <button type="submit" name="button" id="send-login">ENVIAR</button>
+                            <button type="submit" name="button" id="send-login">REGISTRARTE</button>
                         </div>
 
                     </form>
@@ -199,9 +205,9 @@ connect_base_de_datos();
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                         <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+                        <a href="perfil.php?idUser=<?=$line['idUser']?>"><li><span>MI PERFIL</span></li></a>
                         <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                        <a href=""><li class="no_border"><span>SALIR</span></li></a>
+                        <a href="#" class="logOut" name="<?=$line['idUser']?>"><li class="no_border"><span>SALIR</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
@@ -224,13 +230,6 @@ connect_base_de_datos();
             </div>
 
         </div>
-
-
-
-
-
-
-
 
         <div id="contenedor">
 
@@ -305,30 +304,46 @@ connect_base_de_datos();
                         <div class="cont_info_user">
 
                             <?php if (isset($_SESSION['idUser'])) { ?>
+
+                                <?php
+                                  $consulta = "SELECT * FROM message INNER JOIN chat
+                                               ON message.chat_idChat = chat.idChat
+                                               WHERE chat.inbox_idInbox = ".$line['idInbox']."
+                                               AND message.user_idUser != ".$line['idUser'];
+                                  $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
+                                ?>
+
                                 <div class="msg">
                                     <a href="mensajes.php">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
-                                        <span class="number">1</span>
+                                        <?php if(mysql_num_rows($resultadoconsulta)>0){
+                                          echo '<span class="number">'.mysql_num_rows($resultadoconsulta).'</span>';
+                                        } ?>
                                     </a>
                                 </div>
+
+
                                 <div class="profile_img">
-                                    <a href="perfil.php">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
+                                    <a href="perfil.php?idUser=<?=$line['idUser']?>">
+                                        <img src="../../images/userProfile/<?=$line['userProfileImage']?>" alt="profile image" title="profile image">
                                     </a>
                                 </div>
                             <?php } ?>
 
                             <?php
                             if (isset($_SESSION['idUser'])) {
+
                                 echo '<div class="user_name">
-											<span>' . $line["userName"] . '</span>
-										</div>';
+                                        <a href="perfil.php?idUser='.$line['idUser'].'" style="color: #FFF;">
+                  											<span>' . $line["userName"] . '</span>
+                                        </a>
+                  										</div>
+                                      ';
                             } else {
                                 echo '
-										<div class="user_name">
-											<span>INICIAR SESIÓN</span>
-										</div>
-							';
+                  										<div class="user_name">
+                  											<span>INICIAR SESIÓN</span>
+                  										</div>';
                             }
                             ?>
 
@@ -855,7 +870,7 @@ connect_base_de_datos();
                             <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                             <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                             <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+                            <a href="perfil.php?idUser=<?=$line['idUser']?>"><li><span>MI PERFIL</span></li></a>
                             <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
                             <a href="contact.php"><li><span>CONTACTO</span></li></a>
                         </ul>
@@ -942,16 +957,16 @@ connect_base_de_datos();
                 })
             });
 
-            $("#box-target")
-                    .focusout(function () {
-                        $(".search-box").css({
-                            "opacity": "0",
-                            "z-index": "-10"
-                        })
-                    });
+            $("#box-target").focusout(function () {
+                $(".search-box").css({
+                    "opacity": "0",
+                    "z-index": "-10"
+                })
+            });
         </script>
 
         <script type="text/javascript">
+
             $("#selectCountry").change(function () {
                 var idCountry = $("option:selected", this).attr('name');
                 var namefunction = 'getStatesUser';
@@ -1019,7 +1034,7 @@ connect_base_de_datos();
                                 password: password
                             },
                             success: function (result) {
-                                alert(result);
+                              location.reload();
                             },
                             error: function (error) {
                             },
@@ -1029,9 +1044,74 @@ connect_base_de_datos();
                         });
                     }
                 }
-
             });
 
+            $('.logOut').click(function(e){
+              e.preventDefault();
+              var namefunction = "logOutUser";
+              var idUser = $(this).attr('name');
+
+              $.ajax({
+                  beforeSend: function () {
+                  },
+                  url: "../../admin/php/functions.php",
+                  type: "POST",
+                  data: {
+                      namefunction: namefunction,
+                      idUser : idUser
+                  },
+                  success: function (result) {
+                    location.reload();
+                  },
+                  error: function (error) {
+                  },
+                  complete: function () {
+                  },
+                  timeout: 10000
+              });
+            });
+
+            $('.sendLoginUser').click(function(e){
+              e.preventDefault();
+              var namefunction = "loginUser";
+              var passwordLogin = $('input[name=passwordLogin]').val();
+              var emailLogin = $('input[name=emailLogin]').val();
+
+              $.ajax({
+                  beforeSend: function () {
+                  },
+                  url: "../../admin/php/functions.php",
+                  type: "POST",
+                  data: {
+                      namefunction: namefunction,
+                      passwordLogin : passwordLogin,
+                      emailLogin : emailLogin
+                  },
+                  success: function (result) {
+                    if(result==-1){
+                      $('.notEmail').css({'display' : 'block'});
+
+                      setTimeout(function () {
+                        $('.notEmail').css({'display' : 'none'});
+                      }, 2000);
+                    }else{
+                      if(result==0){
+                        $('.notPass').css({'display' : 'block'});
+                        setTimeout(function () {
+                          $('.notPass').css({'display' : 'none'});
+                        }, 2000);
+                      }else{
+                        location.reload();
+                      }
+                    }
+                  },
+                  error: function (error) {
+                  },
+                  complete: function () {
+                  },
+                  timeout: 10000
+              });
+            });
         </script>
 
         <script type="text/javascript">
@@ -1095,8 +1175,6 @@ connect_base_de_datos();
             $('#btn_submit').click(validateDoB);
 
         </script>
-
-
 
     </body>
 </html>

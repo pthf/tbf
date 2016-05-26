@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2016 a las 11:47:43
+-- Tiempo de generación: 26-05-2016 a las 16:35:07
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -24972,7 +24972,7 @@ CREATE TABLE IF NOT EXISTS `favoriteelement` (
 
 CREATE TABLE IF NOT EXISTS `favoriteslist` (
   `idFavoritesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `favoriteslist`
@@ -24991,7 +24991,14 @@ INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
 (10),
 (11),
 (12),
-(13);
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20);
 
 -- --------------------------------------------------------
 
@@ -25001,7 +25008,7 @@ INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `inbox` (
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `inbox`
@@ -25020,7 +25027,14 @@ INSERT INTO `inbox` (`idInbox`) VALUES
 (10),
 (11),
 (12),
-(13);
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20);
 
 -- --------------------------------------------------------
 
@@ -25109,7 +25123,7 @@ INSERT INTO `producertype` (`idProducerType`, `producerTypeName`) VALUES
 
 CREATE TABLE IF NOT EXISTS `publicmessageslist` (
   `idPublicMessagesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `publicmessageslist`
@@ -25128,7 +25142,14 @@ INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
 (10),
 (11),
 (12),
-(13);
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20);
 
 -- --------------------------------------------------------
 
@@ -25138,7 +25159,7 @@ INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `rankslist` (
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rankslist`
@@ -25157,7 +25178,14 @@ INSERT INTO `rankslist` (`idRanksList`) VALUES
 (10),
 (11),
 (12),
-(13);
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20);
 
 -- --------------------------------------------------------
 
@@ -29392,14 +29420,14 @@ INSERT INTO `states` (`id`, `name_s`, `country_id`) VALUES
 CREATE TABLE IF NOT EXISTS `user` (
   `idUser` int(11) NOT NULL,
   `registrationDate` date NOT NULL,
-  `userName` varchar(45) NOT NULL,
-  `userLastName` varchar(145) NOT NULL,
+  `userName` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `userLastName` varchar(145) CHARACTER SET utf8 NOT NULL,
   `userBirthDate` date NOT NULL,
-  `userDescription` varchar(45) DEFAULT NULL,
-  `userProfileImage` varchar(450) NOT NULL,
-  `userCoverImage` varchar(450) NOT NULL,
-  `userEmail` varchar(245) NOT NULL,
-  `userPassword` varchar(45) NOT NULL,
+  `userDescription` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `userProfileImage` varchar(450) CHARACTER SET utf8 NOT NULL,
+  `userCoverImage` varchar(450) CHARACTER SET utf8 NOT NULL,
+  `userEmail` varchar(245) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `userPassword` char(64) CHARACTER SET utf8 NOT NULL,
   `userStatus` tinyint(1) NOT NULL,
   `userConnection` tinyint(4) NOT NULL,
   `userExp` tinyint(4) NOT NULL,
@@ -29410,20 +29438,27 @@ CREATE TABLE IF NOT EXISTS `user` (
   `idRanksList` int(11) NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `userBirthDate`, `userDescription`, `userProfileImage`, `userCoverImage`, `userEmail`, `userPassword`, `userStatus`, `userConnection`, `userExp`, `country_id`, `state_id`, `idFavoritesList`, `idWishList`, `idRanksList`, `idPublicMessagesList`, `idInbox`) VALUES
-(4, '2016-05-26', '', 'example@example.com', '1980-02-17', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$aVls6dYXGjXNJMZWxuQ1Nenw35gMBGNJcHjDI0', 1, 0, 0, 60, 970, 7, 7, 7, 7, 7),
+(4, '2016-05-26', '', 'example@example.com', '1980-02-17', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', 'example@example.com', 1, 0, 0, 60, 970, 7, 7, 7, 7, 7),
 (5, '2016-05-26', '', 'example@example.com', '1981-02-16', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$DCKBSj/iaSi9XjDLoKF.uOcaAKNyaktW5K0wKm', 1, 0, 0, 17, 334, 8, 8, 8, 8, 8),
 (6, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$dcxJVD/sy/aiWmtgMCaqZOdR3o1vwLqlz4XUb9', 1, 0, 0, 17, 334, 9, 9, 9, 9, 9),
 (7, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$VxlIGXvuXoscIrYVhM9ID.F0/qQdcLcYxQb.8z', 1, 0, 0, 142, 2441, 10, 10, 10, 10, 10),
 (8, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$x21fHDgdg8ZdMF1AQva/m.CLG799mldFFb7On3', 1, 0, 0, 142, 2441, 11, 11, 11, 11, 11),
-(9, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$T1.yVAgjyHvDuE3XBxxEI.3yXh9GMfQBnwc9xR', 1, 0, 0, 142, 2441, 12, 12, 12, 12, 12),
-(10, '2016-05-26', 'ejemplo', 'ejemplo', '1980-02-15', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$DjBsSBVubpIt1oW/OTZQSOQBgpEgbzQ1g/ge8U', 1, 0, 0, 17, 334, 13, 13, 13, 13, 13);
+(9, '2016-05-26', 'e', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$T1.yVAgjyHvDuE3XBxxEI.3yXh9GMfQBnwc9xR', 1, 0, 0, 142, 2441, 12, 12, 12, 12, 12),
+(10, '2016-05-26', 'ejemplo', 'ejemplo', '1980-02-15', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$DjBsSBVubpIt1oW/OTZQSOQBgpEgbzQ1g/ge8U', 1, 0, 0, 17, 334, 13, 13, 13, 13, 13),
+(11, '2016-05-26', 'e', 'e', '1981-02-16', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$VEm4VJimznR5yv/nOl1tkOQu1uI2NY/rFkoInu', 1, 0, 0, 16, 326, 14, 14, 14, 14, 14),
+(12, '2016-05-26', 'Guillermo', 'Gui', '1980-04-17', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$VZT/8X3aXgssyoW.wNhBGOZYXilP7RriQumZyY', 1, 0, 0, 17, 327, 15, 15, 15, 15, 15),
+(13, '2016-05-26', 'Memo', 'Camarena', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'memo@memo.com', '$2y$10$Ble4zuXGta8oP..KFOrlR.3y7U/E2rYQl0WI3/', 1, 0, 0, 142, 2441, 16, 16, 16, 16, 16),
+(14, '2016-05-26', 'r', 'r', '1981-01-16', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$D7/hwrE0X32o5o9HxIeYouzZxOzBNXeOxW2PFI', 1, 0, 0, 17, 327, 17, 17, 17, 17, 17),
+(15, '2016-05-26', 'e', 'example@example.com', '1980-02-16', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$rsMp/czd4Xf12/Ue5NdqVucobO6TqhJx3dZ.5u', 1, 0, 0, 13, 260, 18, 18, 18, 18, 18),
+(16, '2016-05-26', 'Guillermo', 'Guillermo', '1980-03-16', '', 'profile_default.jpg', 'cover_default.png', 'Guillermo@Guillermo.Guillermo', '$2y$10$9YlR0BbaiVW2WEor/s.ihuSf.F5BNPkfMBN9CG', 1, 0, 0, 16, 325, 19, 19, 19, 19, 19),
+(17, '2016-05-26', 'example@example.com', 'example@example.com', '1981-02-17', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$wzgxPFRrvlEPX3mBmhgj7ujhWz627/os33qn4pbP7.H24MMFc2sOi', 1, 0, 0, 16, 325, 20, 20, 20, 20, 20);
 
 -- --------------------------------------------------------
 
@@ -29433,7 +29468,7 @@ INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `u
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `idWishList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `wishlist`
@@ -29452,7 +29487,14 @@ INSERT INTO `wishlist` (`idWishList`) VALUES
 (10),
 (11),
 (12),
-(13);
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20);
 
 -- --------------------------------------------------------
 
@@ -29736,12 +29778,12 @@ ALTER TABLE `favoriteelement`
 -- AUTO_INCREMENT de la tabla `favoriteslist`
 --
 ALTER TABLE `favoriteslist`
-  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `inbox`
 --
 ALTER TABLE `inbox`
-  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
@@ -29766,12 +29808,12 @@ ALTER TABLE `producertype`
 -- AUTO_INCREMENT de la tabla `publicmessageslist`
 --
 ALTER TABLE `publicmessageslist`
-  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `rankslist`
 --
 ALTER TABLE `rankslist`
-  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `rankslistelement`
 --
@@ -29796,12 +29838,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `wishlistelement`
 --
