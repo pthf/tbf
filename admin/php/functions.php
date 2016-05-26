@@ -74,7 +74,87 @@
 			case 'getStates':
 				getStates($_POST['idCountry']);
 				break;
+			case 'getStatesUser':
+				getStatesUser($_POST['idCountry']);
+				break;
+			case 'addNewUser':
+				addNewUser();
+				break;
 		}
+	}
+
+	function addNewUser(){
+
+		$registrationDate = date("Y-m-d");
+		$name = $_POST['name'];
+		$lastname = $_POST['lastname'];
+
+		$month = $_POST['month'];
+		$day = $_POST['day'];
+		$year = $_POST['year'];
+		$userBirthDate = $year."-".$month."-".$day;
+
+		$userDescription = "";
+		$userProfileImage = "profile_default.jpg";
+		$userCoverImage = "cover_default.png";
+
+		$email = $_POST['email'];
+		$password =  password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$userStatus = 1;
+		$userConnection = 0;
+		$userExp = 0.0;
+		
+		$country = $_POST['country'];
+		$state = $_POST['state'];
+
+		$query = "INSERT INTO favoriteslist (idFavoritesList) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idFavoritesList = mysql_insert_id();
+
+		$query = "INSERT INTO wishlist (idWishList) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idWishList = mysql_insert_id();
+
+		$query = "INSERT INTO rankslist (idRanksList) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idRanksList = mysql_insert_id();
+
+		$query = "INSERT INTO publicmessageslist (idPublicMessagesList) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idPublicMessagesList = mysql_insert_id();
+
+		$query = "INSERT INTO inbox (idInbox) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idInbox = mysql_insert_id();
+
+		$query = "INSERT INTO user (
+			registrationDate, userName, userLastName,
+			userBirthDate, userDescription, userProfileImage,
+			userCoverImage, userEmail, userPassword, userStatus,
+			userConnection, userExp, country_id,
+			state_id, idFavoritesList,
+			idWishList, idRanksList, idPublicMessagesList,
+			idInbox) VALUES(
+			'$registrationDate', '$name', '$lastname',
+			'$userBirthDate', '$userDescription', '$userProfileImage',
+			'$userCoverImage', '$email', '$password', $userStatus,
+			$userConnection, $userExp, $country,
+			$state, $idFavoritesList,
+			$idWishList, $idRanksList, $idPublicMessagesList,
+			$idInbox)";
+
+			$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function getStatesUser($id){
+
+		$query = "SELECT * FROM states WHERE country_id = $id ORDER BY name_s ASC";
+		$result = mysql_query($query) or die(mysql_error());
+		echo '<option disabled selected value="">Selecciona un estado &#x25BE;</option>';
+		while ($line = mysql_fetch_array($result)) {
+			echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
+		}
+
 	}
 
 	function getStates($id){

@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	if(isset($_SESSION['idUser'])){
+		include('../../admin/php/connect_bd.php');
+		connect_base_de_datos();
+	}else{
+		header("Location: inicio.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -15,7 +15,6 @@
       <th>Birth</th>
 			<th>Country</th>
   		<th>State</th>
-			<th>City</th>
       <th>E-mail</th>
   		<th>Status</th>
   		<th>Exp</th>
@@ -30,7 +29,6 @@
 				<td>{{data.userName}}</td>
 				<td>{{data.userLastName}}</td>
 				<td>{{data.userBirthDate}}</td>
-				<td>{{data.name_city}}</td>
 				<td>{{data.name_c}}</td>
 				<td>{{data.name_s}}</td>
 				<td>{{data.userEmail}}</td>

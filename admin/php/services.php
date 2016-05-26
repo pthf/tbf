@@ -279,8 +279,7 @@
 
 		$query = "SELECT * FROM user
 							INNER JOIN countries ON user.country_id = countries.id
-							INNER JOIN states ON user.state_id = states.id
-							INNER JOIN cities ON user.city_id = cities.id";
+							INNER JOIN states ON user.state_id = states.id";
 		$result = mysql_query($query) or die(mysql_error());
 		$data = array();
 
@@ -293,7 +292,6 @@
 					'userBirthDate' => $line['userBirthDate'],
 					'name_c' => $line['name_c'],
 					'name_s' => $line['name_s'],
-					'name_city' => $line['name_city'],
 					'userEmail' => $line['userEmail'],
 					'userStatus' => $line['userStatus'],
 					'userExp' => $line['userExp'],
@@ -301,5 +299,5 @@
 		}
 
 		echo json_encode($data);
-		
+
 	}

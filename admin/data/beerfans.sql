@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2016 a las 14:03:29
+-- Tiempo de generación: 26-05-2016 a las 11:47:43
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `adminuser` (
 --
 
 INSERT INTO `adminuser` (`idAdmin`, `adminName`, `adminPassword`, `adminLastConnection`) VALUES
-(3, 'admin', '$2y$10$SWMoKfH4qv5.5vTOvds4j.0t3LQx6oKj919EmDWuRzGRVdCPUZiOa', '2016-05-23 12:06:37');
+(3, 'admin', '$2y$10$SWMoKfH4qv5.5vTOvds4j.0t3LQx6oKj919EmDWuRzGRVdCPUZiOa', '2016-05-25 16:21:15');
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `bannerbeerslider` (
   `idBannerBeerSlider` int(11) NOT NULL,
   `bannerImage` varchar(450) NOT NULL,
   `idSlider` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,15 @@ CREATE TABLE IF NOT EXISTS `bannersliderhome` (
   `idBannerSliderHome` int(11) NOT NULL,
   `bannerSliderHomeImage` varchar(450) NOT NULL,
   `bannerSliderHomeUrl` varchar(450) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bannersliderhome`
+--
+
+INSERT INTO `bannersliderhome` (`idBannerSliderHome`, `bannerSliderHomeImage`, `bannerSliderHomeUrl`) VALUES
+(1, '20160526113302', 'adminuser'),
+(2, '20160526113307', 'adminuser');
 
 -- --------------------------------------------------------
 
@@ -77,7 +85,14 @@ CREATE TABLE IF NOT EXISTS `bannerslidernew` (
   `bannerSliderNewDescription` varchar(450) NOT NULL,
   `bannerSliderNewUrl` varchar(450) NOT NULL,
   `bannerSliderNewImage` varchar(450) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bannerslidernew`
+--
+
+INSERT INTO `bannerslidernew` (`idBannerSliderNew`, `bannerSliderNewTitle`, `bannerSliderNewSubtitle`, `bannerSliderNewDescription`, `bannerSliderNewUrl`, `bannerSliderNewImage`) VALUES
+(1, 'adminuser', 'adminuser', 'adminuser', 'adminuser', '20160526113315');
 
 -- --------------------------------------------------------
 
@@ -92,7 +107,15 @@ CREATE TABLE IF NOT EXISTS `bannersliderpost` (
   `bannerSliderPostDescription` varchar(450) NOT NULL,
   `bannerSliderPostUrl` varchar(450) NOT NULL,
   `bannerSliderPostImage` varchar(450) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bannersliderpost`
+--
+
+INSERT INTO `bannersliderpost` (`idBannerSliderPost`, `bannerSliderPostTitle`, `bannerSliderPostSubtitle`, `bannerSliderPostDescription`, `bannerSliderPostUrl`, `bannerSliderPostImage`) VALUES
+(1, 'adminuser', 'adminuser', 'adminuser', 'adminuser', '20160526113321'),
+(2, 'adminuser', 'adminuser', 'adminuser', 'adminuser', '20160526113327');
 
 -- --------------------------------------------------------
 
@@ -116,7 +139,14 @@ CREATE TABLE IF NOT EXISTS `beer` (
   `idProducer` int(11) NOT NULL,
   `idSlider` int(11) NOT NULL,
   `idBeerType` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `beer`
+--
+
+INSERT INTO `beer` (`idBeer`, `beerName`, `beerDescription`, `beerStrength`, `beerIBUS`, `beerProfileImage`, `beerCoverImage`, `beerBottleImage`, `beerSite`, `beerFacebook`, `beerTwitter`, `beerInstagram`, `idProducer`, `idSlider`, `idBeerType`) VALUES
+(1, 'adminuser', 'adminuser', 'adminuser', 'adminuser', '20160526113209', '20160526113209', '20160526113209', 'adminuser', '', '', '', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +156,15 @@ CREATE TABLE IF NOT EXISTS `beer` (
 
 CREATE TABLE IF NOT EXISTS `beerslider` (
   `idSlider` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `beerslider`
+--
+
+INSERT INTO `beerslider` (`idSlider`) VALUES
+(1),
+(2);
 
 -- --------------------------------------------------------
 
@@ -137,7 +175,15 @@ CREATE TABLE IF NOT EXISTS `beerslider` (
 CREATE TABLE IF NOT EXISTS `beertype` (
   `idBeerType` int(11) NOT NULL,
   `beerTypeName` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `beertype`
+--
+
+INSERT INTO `beertype` (`idBeerType`, `beerTypeName`) VALUES
+(1, 'adminuser'),
+(2, 'adminuser1');
 
 -- --------------------------------------------------------
 
@@ -149,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `idChat` int(11) NOT NULL,
   `inbox_idInbox` int(11) NOT NULL,
   `user_idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -159,15 +205,15 @@ CREATE TABLE IF NOT EXISTS `chat` (
 
 CREATE TABLE IF NOT EXISTS `cities` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
+  `name_city` varchar(150) NOT NULL,
   `state_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26069 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26069 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cities`
 --
 
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (1, 'Bombuflat', 1),
 (2, 'Garacharma', 1),
 (3, 'Port Blair', 1),
@@ -2489,7 +2535,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (2319, 'Mauganj', 21),
 (2320, 'Meghnagar', 21),
 (2321, 'Mehara Gaon', 21);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (2322, 'Mehgaon', 21),
 (2323, 'Mhaugaon', 21),
 (2324, 'Mhow', 21),
@@ -4647,7 +4693,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (4476, 'Mandamarri', 36),
 (4477, 'Manuguru', 36),
 (4478, 'Medak', 36);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (4479, 'Medchal', 36),
 (4480, 'Miryalaguda', 36),
 (4481, 'Nagar Karnul', 36),
@@ -6798,7 +6844,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (6626, 'Gladstone', 269),
 (6627, 'Gold Coast', 269),
 (6628, 'Gowrie Junction', 269);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (6629, 'Gympie', 269),
 (6630, 'Helensvale', 269),
 (6631, 'Hervey Bay', 269),
@@ -8891,7 +8937,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (8718, 'Ibicarai', 516),
 (8719, 'Ibicui', 516),
 (8720, 'Ibipeba', 516);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (8721, 'Ibirapitanga', 516),
 (8722, 'Ibirataia', 516),
 (8723, 'Ibotirama', 516),
@@ -10889,7 +10935,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (10715, 'Saint-Cesaire', 673),
 (10716, 'Saint-Cyrill-de-Wendover', 673),
 (10717, 'Saint-Damase', 673);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (10718, 'Saint-Damien-de-Buckland', 673),
 (10719, 'Saint-Denis', 673),
 (10720, 'Saint-Donat-de-Montcalm', 673),
@@ -12992,7 +13038,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (12817, 'San Mateo', 781),
 (12818, 'San Miguel de Sema', 781),
 (12819, 'San Pablo de Borbur', 781);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (12820, 'Santa Maria', 781),
 (12821, 'Santa Rosa de Viterbo', 781),
 (12822, 'Santa Sofia', 781),
@@ -15021,9 +15067,9 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (14845, 'Dubi', 936),
 (14846, 'Duchcov', 936),
 (14847, 'Jilove', 936),
-(14848, 'Jirkov', 936),
-(14849, 'Kadan', 936);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+(14848, 'Jirkov', 936);
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
+(14849, 'Kadan', 936),
 (14850, 'Klasterec nad Ohri', 936),
 (14851, 'Krupka', 936),
 (14852, 'Litomerice', 936),
@@ -17083,9 +17129,9 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (16906, 'Laukaa', 1161),
 (16907, 'Lieto', 1161),
 (16908, 'Anjalankoski', 1162),
-(16909, 'Hamina', 1162),
-(16910, 'Kotka', 1162);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+(16909, 'Hamina', 1162);
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
+(16910, 'Kotka', 1162),
 (16911, 'Kouvola', 1162),
 (16912, 'Kuusankoski', 1162),
 (16913, 'Valkeala', 1162),
@@ -18926,9 +18972,9 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (18748, 'Amerang', 1357),
 (18749, 'Ansbach', 1357),
 (18750, 'Aschaffenburg', 1357),
-(18751, 'Augsburg', 1357),
-(18752, 'Bad Aibling', 1357);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+(18751, 'Augsburg', 1357);
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
+(18752, 'Bad Aibling', 1357),
 (18753, 'Bad Kissingen', 1357),
 (18754, 'Bad Neustadt', 1357),
 (18755, 'Bad Reichenhall', 1357),
@@ -20855,10 +20901,10 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (20676, 'Upernavik', 1491),
 (20677, 'Upernavik Kujalleq', 1491),
 (20678, 'Ikerasak', 1492),
-(20679, 'Illorsuit', 1492),
+(20679, 'Illorsuit', 1492);
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (20680, 'Niaqornat', 1492),
-(20681, 'Nuugaatsiaq', 1492);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+(20681, 'Nuugaatsiaq', 1492),
 (20682, 'Qaarsut', 1492),
 (20683, 'Saattut', 1492),
 (20684, 'Ukkusissat', 1492),
@@ -22766,10 +22812,10 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (22586, 'Montebello sul Sangro', 1826),
 (22587, 'Monteferrante', 1826),
 (22588, 'Montelapiano', 1826),
-(22589, 'Montenerodomo', 1826),
+(22589, 'Montenerodomo', 1826);
+INSERT INTO `cities` (`id`, `name_city`, `state_id`) VALUES
 (22590, 'Monteodorisio', 1826),
-(22591, 'Mozzagrogna', 1826);
-INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
+(22591, 'Mozzagrogna', 1826),
 (22592, 'Orsogna', 1826),
 (22593, 'Ortona', 1826),
 (22594, 'Paglieta', 1826),
@@ -24652,7 +24698,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   `id` int(11) NOT NULL,
   `sortname` varchar(4) NOT NULL,
   `name_c` varchar(150) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `countries`
@@ -24916,7 +24962,7 @@ CREATE TABLE IF NOT EXISTS `favoriteelement` (
   `idFavoriteElement` int(11) NOT NULL,
   `idFavoritesList` int(11) NOT NULL,
   `idBeer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -24926,7 +24972,26 @@ CREATE TABLE IF NOT EXISTS `favoriteelement` (
 
 CREATE TABLE IF NOT EXISTS `favoriteslist` (
   `idFavoritesList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `favoriteslist`
+--
+
+INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13);
 
 -- --------------------------------------------------------
 
@@ -24936,7 +25001,26 @@ CREATE TABLE IF NOT EXISTS `favoriteslist` (
 
 CREATE TABLE IF NOT EXISTS `inbox` (
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `inbox`
+--
+
+INSERT INTO `inbox` (`idInbox`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13);
 
 -- --------------------------------------------------------
 
@@ -24951,7 +25035,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `messageStatus` tinyint(1) NOT NULL,
   `chat_idChat` int(11) NOT NULL,
   `user_idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -24965,7 +25049,7 @@ CREATE TABLE IF NOT EXISTS `postelement` (
   `postElementDate` datetime NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -24990,7 +25074,14 @@ CREATE TABLE IF NOT EXISTS `producer` (
   `country_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
   `idProducerType` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producer`
+--
+
+INSERT INTO `producer` (`idProducer`, `producerName`, `producerDescription`, `producerAddress`, `producerZip`, `producerPhone`, `producerEmail`, `producerProfileImage`, `producerCoverImage`, `producerSite`, `producerFacebook`, `producerTwitter`, `producerInstagram`, `country_id`, `state_id`, `idProducerType`) VALUES
+(1, 'adminuser', 'adminuser', 'example@example.com', '12', '15', 'example@example.com', '20160526113127', '20160526113127', 'adminuser', '', '', '', 19, 404, 1);
 
 -- --------------------------------------------------------
 
@@ -25001,7 +25092,14 @@ CREATE TABLE IF NOT EXISTS `producer` (
 CREATE TABLE IF NOT EXISTS `producertype` (
   `idProducerType` int(11) NOT NULL,
   `producerTypeName` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producertype`
+--
+
+INSERT INTO `producertype` (`idProducerType`, `producerTypeName`) VALUES
+(1, 'adminuser');
 
 -- --------------------------------------------------------
 
@@ -25011,7 +25109,26 @@ CREATE TABLE IF NOT EXISTS `producertype` (
 
 CREATE TABLE IF NOT EXISTS `publicmessageslist` (
   `idPublicMessagesList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `publicmessageslist`
+--
+
+INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13);
 
 -- --------------------------------------------------------
 
@@ -25021,7 +25138,26 @@ CREATE TABLE IF NOT EXISTS `publicmessageslist` (
 
 CREATE TABLE IF NOT EXISTS `rankslist` (
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rankslist`
+--
+
+INSERT INTO `rankslist` (`idRanksList`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13);
 
 -- --------------------------------------------------------
 
@@ -25034,7 +25170,7 @@ CREATE TABLE IF NOT EXISTS `rankslistelement` (
   `idBeer` int(11) NOT NULL,
   `ranksListElementRank` double NOT NULL,
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -25060,7 +25196,14 @@ CREATE TABLE IF NOT EXISTS `rawmaterial` (
   `rawMaterialFacebook` varchar(450) DEFAULT NULL,
   `rawMaterialTwitter` varchar(450) DEFAULT NULL,
   `rawMaterialInstagram` varchar(450) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rawmaterial`
+--
+
+INSERT INTO `rawmaterial` (`idRawMaterial`, `rawMaterialName`, `rawMaterialGeneralDescription`, `rawMaterialDescription`, `rawMaterialDescriptionHTML`, `rawMaterialLatitude`, `rawMaterialLongitude`, `rawMaterialAddress`, `rawMaterialZip`, `rawMaterialPhone`, `rawMaterialEmail`, `rawMaterialProfileImage`, `rawMaterialCoverImage`, `rawMaterialSite`, `rawMaterialFacebook`, `rawMaterialTwitter`, `rawMaterialInstagram`) VALUES
+(1, 'adminuser', 'adminuser', 'adminuser', 'adminuser', 'adminuser', 'adminuser', 'adminuser', 'adminuse', 'adminuser', 'example@example.com', '20160526113235', '20160526113235', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -25071,7 +25214,16 @@ CREATE TABLE IF NOT EXISTS `rawmaterial` (
 CREATE TABLE IF NOT EXISTS `rawmaterialtype` (
   `idDrawMaterialType` int(11) NOT NULL,
   `rawMaterialTypeName` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rawmaterialtype`
+--
+
+INSERT INTO `rawmaterialtype` (`idDrawMaterialType`, `rawMaterialTypeName`) VALUES
+(1, 'adminuser'),
+(2, 'adminuser1'),
+(3, 'adminuser3');
 
 -- --------------------------------------------------------
 
@@ -25082,7 +25234,16 @@ CREATE TABLE IF NOT EXISTS `rawmaterialtype` (
 CREATE TABLE IF NOT EXISTS `rawmaterial_has_rawmaterialtype` (
   `idRawMaterial` int(11) NOT NULL,
   `idDrawMaterialType` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rawmaterial_has_rawmaterialtype`
+--
+
+INSERT INTO `rawmaterial_has_rawmaterialtype` (`idRawMaterial`, `idDrawMaterialType`) VALUES
+(1, 1),
+(1, 2),
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -25094,7 +25255,7 @@ CREATE TABLE IF NOT EXISTS `states` (
   `id` int(11) NOT NULL,
   `name_s` varchar(150) NOT NULL,
   `country_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4121 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4121 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `states`
@@ -29240,17 +29401,29 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userEmail` varchar(245) NOT NULL,
   `userPassword` varchar(45) NOT NULL,
   `userStatus` tinyint(1) NOT NULL,
-  `userConnection` tinyint(1) NOT NULL,
-  `userExp` float NOT NULL,
+  `userConnection` tinyint(4) NOT NULL,
+  `userExp` tinyint(4) NOT NULL,
   `country_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL,
   `idFavoritesList` int(11) NOT NULL,
   `idWishList` int(11) NOT NULL,
   `idRanksList` int(11) NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `userBirthDate`, `userDescription`, `userProfileImage`, `userCoverImage`, `userEmail`, `userPassword`, `userStatus`, `userConnection`, `userExp`, `country_id`, `state_id`, `idFavoritesList`, `idWishList`, `idRanksList`, `idPublicMessagesList`, `idInbox`) VALUES
+(4, '2016-05-26', '', 'example@example.com', '1980-02-17', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$aVls6dYXGjXNJMZWxuQ1Nenw35gMBGNJcHjDI0', 1, 0, 0, 60, 970, 7, 7, 7, 7, 7),
+(5, '2016-05-26', '', 'example@example.com', '1981-02-16', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$DCKBSj/iaSi9XjDLoKF.uOcaAKNyaktW5K0wKm', 1, 0, 0, 17, 334, 8, 8, 8, 8, 8),
+(6, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$dcxJVD/sy/aiWmtgMCaqZOdR3o1vwLqlz4XUb9', 1, 0, 0, 17, 334, 9, 9, 9, 9, 9),
+(7, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$VxlIGXvuXoscIrYVhM9ID.F0/qQdcLcYxQb.8z', 1, 0, 0, 142, 2441, 10, 10, 10, 10, 10),
+(8, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$x21fHDgdg8ZdMF1AQva/m.CLG799mldFFb7On3', 1, 0, 0, 142, 2441, 11, 11, 11, 11, 11),
+(9, '2016-05-26', '', 'Camarena Miramontes', '1993-09-21', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$T1.yVAgjyHvDuE3XBxxEI.3yXh9GMfQBnwc9xR', 1, 0, 0, 142, 2441, 12, 12, 12, 12, 12),
+(10, '2016-05-26', 'ejemplo', 'ejemplo', '1980-02-15', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$DjBsSBVubpIt1oW/OTZQSOQBgpEgbzQ1g/ge8U', 1, 0, 0, 17, 334, 13, 13, 13, 13, 13);
 
 -- --------------------------------------------------------
 
@@ -29260,7 +29433,26 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `idWishList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `wishlist`
+--
+
+INSERT INTO `wishlist` (`idWishList`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13);
 
 -- --------------------------------------------------------
 
@@ -29272,7 +29464,7 @@ CREATE TABLE IF NOT EXISTS `wishlistelement` (
   `idWishListElement` int(11) NOT NULL,
   `idWishList` int(11) NOT NULL,
   `idBeer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -29453,9 +29645,8 @@ ALTER TABLE `states`
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`idUser`,`country_id`,`state_id`,`city_id`,`idFavoritesList`,`idWishList`,`idRanksList`,`idPublicMessagesList`,`idInbox`),
+  ADD PRIMARY KEY (`idUser`,`country_id`,`state_id`,`idFavoritesList`,`idWishList`,`idRanksList`,`idPublicMessagesList`,`idInbox`),
   ADD KEY `fk_user_countries1_idx` (`country_id`),
-  ADD KEY `fk_user_cities1_idx` (`city_id`),
   ADD KEY `fk_user_states1_idx` (`state_id`),
   ADD KEY `fk_user_favoritesList1_idx` (`idFavoritesList`),
   ADD KEY `fk_user_wishList1_idx` (`idWishList`),
@@ -29495,32 +29686,32 @@ ALTER TABLE `bannerbeerslider`
 -- AUTO_INCREMENT de la tabla `bannersliderhome`
 --
 ALTER TABLE `bannersliderhome`
-  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `bannerslidernew`
 --
 ALTER TABLE `bannerslidernew`
-  MODIFY `idBannerSliderNew` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBannerSliderNew` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `bannersliderpost`
 --
 ALTER TABLE `bannersliderpost`
-  MODIFY `idBannerSliderPost` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBannerSliderPost` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `beer`
 --
 ALTER TABLE `beer`
-  MODIFY `idBeer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBeer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `beerslider`
 --
 ALTER TABLE `beerslider`
-  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `beertype`
 --
 ALTER TABLE `beertype`
-  MODIFY `idBeerType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBeerType` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
@@ -29545,7 +29736,12 @@ ALTER TABLE `favoriteelement`
 -- AUTO_INCREMENT de la tabla `favoriteslist`
 --
 ALTER TABLE `favoriteslist`
-  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `inbox`
+--
+ALTER TABLE `inbox`
+  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
@@ -29560,17 +29756,22 @@ ALTER TABLE `postelement`
 -- AUTO_INCREMENT de la tabla `producer`
 --
 ALTER TABLE `producer`
-  MODIFY `idProducer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `producertype`
 --
 ALTER TABLE `producertype`
-  MODIFY `idProducerType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducerType` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `publicmessageslist`
+--
+ALTER TABLE `publicmessageslist`
+  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `rankslist`
 --
 ALTER TABLE `rankslist`
-  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `rankslistelement`
 --
@@ -29580,12 +29781,12 @@ ALTER TABLE `rankslistelement`
 -- AUTO_INCREMENT de la tabla `rawmaterial`
 --
 ALTER TABLE `rawmaterial`
-  MODIFY `idRawMaterial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRawMaterial` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `rawmaterialtype`
 --
 ALTER TABLE `rawmaterialtype`
-  MODIFY `idDrawMaterialType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDrawMaterialType` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `states`
 --
@@ -29595,12 +29796,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `wishlistelement`
 --
@@ -29690,7 +29891,6 @@ ALTER TABLE `states`
 -- Filtros para la tabla `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `fk_user_cities1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_countries1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_favoritesList1` FOREIGN KEY (`idFavoritesList`) REFERENCES `favoriteslist` (`idFavoritesList`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_inbox1` FOREIGN KEY (`idInbox`) REFERENCES `inbox` (`idInbox`) ON DELETE NO ACTION ON UPDATE NO ACTION,
