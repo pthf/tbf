@@ -80,7 +80,46 @@
 			case 'addNewUser':
 				addNewUser();
 				break;
+			case 'logOutUser':
+				logOutUser($_POST['idUser']);
+				break;
+			case 'loginUser':
+				loginUser();
+				break;
 		}
+	}
+
+	function loginUser(){
+
+		$passwordLogin = $_POST['passwordLogin'];
+		$emailLogin = $_POST['emailLogin'];
+
+		$query = "SELECT * FROM user WHERE userEmail = '$emailLogin'";
+		$result = mysql_query($query) or die(mysql_error());
+		if(mysql_num_rows($result)>0){
+			$find = 0;
+			while($line = mysql_fetch_array($result)){
+				if(password_verify($passwordLogin, $line['userPassword'])){
+					$find = 1;
+					$query = "UPDATE user SET userConnection = 1 WHERE idUser = ".$line['idUser'];
+					$result = mysql_query($query) or die(mysql_error());
+					session_start();
+					$_SESSION['idUser'] = $line['idUser'];
+				}
+			}
+			echo $find;
+		}else{
+			echo -1;
+		}
+
+
+
+	}
+
+	function logOutUser($idUser){
+		$query = "UPDATE user SET userConnection = 0 WHERE idUser = $idUser";
+		$result = mysql_query($query) or die(mysql_error());
+		logOut();
 	}
 
 	function addNewUser(){
@@ -101,9 +140,9 @@
 		$email = $_POST['email'];
 		$password =  password_hash($_POST['password'], PASSWORD_DEFAULT);
 		$userStatus = 1;
-		$userConnection = 0;
+		$userConnection = 1;
 		$userExp = 0.0;
-		
+
 		$country = $_POST['country'];
 		$state = $_POST['state'];
 
@@ -144,6 +183,10 @@
 			$idInbox)";
 
 			$result = mysql_query($query) or die(mysql_error());
+			$idUser = mysql_insert_id();
+
+			session_start();
+			$_SESSION['idUser'] = $idUser;
 	}
 
 	function getStatesUser($id){
@@ -172,6 +215,7 @@
 		session_start();
 		session_destroy();
 	}
+
 	///////////////////////////////////
 	function functionPrintBeerList(){
   		$query = "SELECT * FROM beer
