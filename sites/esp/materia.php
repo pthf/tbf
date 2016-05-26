@@ -243,18 +243,22 @@
 					<div class="list_options">
 						<ul class="options_li">
 							<li class="option_principal">
-								<span class="principal_text">MATERIA</span>
-								<ul class="suboptions_li oculted_block">
+								<span class="principal_text type">MATERIA</span>
+								<ul class="suboptions_li type">
 								<?php
 	                            $query = "SELECT * FROM rawmaterialtype";
 	                            $resultado = mysql_query($query) or die(mysql_error());
 
-	                            while($row = mysql_fetch_array($resultado)) { ?>
-									<li><span><a href="?type=<?php echo $row['rawMaterialTypeName']; ?>"><?php echo $row['rawMaterialTypeName']; ?></a></span></li>
-								<?php } ?>
+								while($row = mysql_fetch_array($resultado)) { 
+		                           	if (isset($_GET['country'])) { ?>
+										<li><span><a href="?type=<?php echo $row['rawMaterialTypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['rawMaterialTypeName']; ?></a></span></li>
+								<?php } else { ?>
+										<li><span><a href="?type=<?php echo $row['rawMaterialTypeName']; ?>"><?php echo $row['rawMaterialTypeName']; ?></a></span></li>
+								<?php }
+								} ?>
 								</ul>
 							</li>
-							<li class="option_principal">
+							<!--<li class="option_principal">
 								<span class="principal_text">PAÍS</span>
 								<ul class="suboptions_li">
 									<li><span>México</span></li>
@@ -271,7 +275,7 @@
 									<li><span>Inglaterra</span></li>
 									<li><span>Rusia</span></li>
 								</ul>
-							</li>
+							</li>-->
 						</ul>
 					</div>
 				</div>

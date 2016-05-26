@@ -105,50 +105,40 @@
         </div>
 
         <div class="info_config">
+        <form id="formUser" name="formUserData" enctype="multipart/form-data">
+	        <div class="name_config">
+	          <p>NOMBRE: </p> <input required type="text" name="userName"style="width:60%; border: none;">
+	        </div>
 
-        <div class="name_config">
-          <p>NOMBRE: </p> <span>JOHN WEST</span>
-        </div>
+	        <div class="edad_config">
+	          <p>EDAD: </p> <input required type="number" name="userAge" style="width:60%; border: none">
+	        </div>
 
-        <div class="edad_config">
-          <p>EDAD: </p> <span>27 años</span>
-        </div>
-
-        <div class="vivoen_config">
-          <p>VIVO EN: </p> <span>México</span>
-        </div>
+	        <div class="vivoen_config">
+	          <p>VIVO EN: </p> <input required type="text" name="userAddress" style="width:60%; border: none">
+	        </div>
 
 
 
-        <div class="email_config">
-          <p>EMAIL: </p> <span>wst9@gm.com</span>
-        </div>
+	        <div class="email_config">
+	          <p>EMAIL: </p> <input required type="email" name="userEmail" style="width:60%; border: none">
+	        </div>
 
-				<div class="pass_config">
-					<p>PASSWORD: </p> <span>*****</span>
-				</div>
+					<div class="pass_config">
+						<p>PASSWORD: </p> <input required type="password" name="userPassword" style="width:60%; border: none">
+					</div>
 
-        <h1 class="top_config" style="margin-top:12%">DESCRIPCION:</h1>
+	        <h1 class="top_config" style="margin-top:12%">DESCRIPCION:</h1>
 
-        <div class="desc_config">
+	        <div class="desc_config">
 
-          <p>"Sed ut perspiciatis unde omnis iste natus error sit
-              voluptatem accusantium doloremque laudantium, totam rem
-              aperiam, eaque ipsa quae ab illo inventore veritatis et
-              quasi architecto beatae vitae dicta sunt explicabo. Nemo
-              enim ipsam voluptatem quia voluptas sit aspernatur aut
-              odit aut fugit, sed quia consequuntur magni dolores eos
-              qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur,
-              adipisci velit, sed quia non numquam eius modi tempora
-              incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-              Ut enim ad minima veniam, quis </p>
-        </div>
-
+	          <p><textarea required row="" cols="70" style="border: none;" name="userDescription"></textarea></p>
+	        </div>
 				<div class="actualizar_info">
-					<a href="#"> <p>ACTUALIZAR</p> </a>
+					<a type="submit"> <p>ACTUALIZAR</p> </a>
 				</div>
-
+					<input type="submit" class="actualizar_info" value="ACTUALIZAR">
+		</form>
       </div>
 
 
@@ -183,5 +173,7 @@
 	</div>
 
 	</div>
+	<script src="../js/services.js"></script>
+
 </body>
 </html>

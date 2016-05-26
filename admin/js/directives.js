@@ -530,7 +530,7 @@
 					$('.msg-type').css({'display':'none'});
 					$('.msg-error').css({'display':'none'});
 					var data = $('.textNewType').val();
-					var namefunction = 'addBeerType';
+					var namefunction = 'addProducerType';
 					if(data.length!=0){
 						$.ajax({
 							beforeSend: function(){
@@ -552,7 +552,7 @@
 									setTimeout(function(){
 										$('.msg-new').css({'display':'none'});
 									}, 2000);
-									$("#beer-type").html(result);
+									$("#producer-type").html(result);
 									$('.textNewType').val("");
 								}
 							},

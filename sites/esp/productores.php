@@ -243,28 +243,35 @@
 					<div class="list_options">
 						<ul class="options_li">
 							<li class="option_principal">
-								<span class="principal_text">TIPO</span>
-								<ul class="suboptions_li oculted_block">
+								<span class="principal_text type">TIPO</span>
+								<ul class="suboptions_li type">
 								<?php
 	                            $query = "SELECT * FROM producertype";
 	                            $resultado = mysql_query($query) or die(mysql_error());
 
-	                            while($row = mysql_fetch_array($resultado)) { ?>
-									<li><span><a href="?type=<?php echo $row['producerTypeName']; ?>"><?php echo $row['producerTypeName']; ?></a></span></li>
-								<?php } ?>
+								while($row = mysql_fetch_array($resultado)) { 
+		                           	if (isset($_GET['country'])) { ?>
+										<li><span><a href="?type=<?php echo $row['producerTypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['producerTypeName']; ?></a></span></li>
+								<?php } else { ?>
+										<li><span><a href="?type=<?php echo $row['producerTypeName']; ?>"><?php echo $row['producerTypeName']; ?></a></span></li>
+								<?php }
+								} ?>
 								</ul>
 							</li>
 							<li class="option_principal">
-								<span class="principal_text">PAÍS</span>
-								<ul class="suboptions_li">
+								<span class="principal_text country">PAÍS</span>
+								<ul class="suboptions_li country">
 								<?php
-
-	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id";
+	                           	$query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
 	                            $resultado1 = mysql_query($query1) or die(mysql_error());
 
-	                            while($row1 = mysql_fetch_array($resultado1)) { ?>
+								while($row1 = mysql_fetch_array($resultado1)) { 
+	                            	if (isset($_GET['type'])) { ?>
+									<li><span><a href="?type=<?php echo $_GET['type']; ?>&country=<?php echo $row1['name_c']; ?>"><?php echo $row1['name_c']; ?></a></span></li>
+								<?php } else { ?>
 									<li><span><a href="?country=<?php echo $row1['name_c']; ?>"><?php echo $row1['name_c']; ?></a></span></li>
-								<?php } ?>
+								<?php }
+								} ?>
 								</ul>
 							</li>
 						</ul>
@@ -320,6 +327,26 @@
 												<a href="perfil_empresa.php?id=<?php echo $row4['idProducer'];?>"><span class="ver_mas">VER MÁS</span></a>
 											</li>
 								<?php 	}
+									} else if ((isset($_GET['type'])) && (isset($_GET['country']))) { 
+										$query3 = "SELECT * FROM beer b
+													INNER JOIN beertype bt
+													ON bt.idBeerType = b.idBeerType
+													INNER JOIN producer p
+													ON p.idProducer = b.idProducer
+													INNER JOIN countries c
+													ON c.id = p.country_id
+													WHERE bt.beerTypeName = '".$_GET['type']."' AND c.name_c = '".$_GET['country']."'";
+										$resultado3 = mysql_query($query3) or die(mysql_error()); 
+										while ($row3 = mysql_fetch_array($resultado3)) { ?>
+											<li class="first_beer beertwo beers">
+												<img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage'];?>"> <br>
+												<span class="title"><?php echo $row3['producerName'];?></span>
+												<span hidden><?php echo $row3['beerStrength'];?></span>
+												<span class="subtitle"><?php echo $row3['producerDescription'];?></span>
+												<a href="perfil_empresa.php?id=<?php echo $row3['idProducer'];?>"><span class="ver_mas">VER MÁS</span></a>
+											</li> 
+
+								<?php 	} 
 									} else {
 										$query2 = "SELECT * FROM producer";
 										$resultado2 = mysql_query($query2) or die(mysql_error());
