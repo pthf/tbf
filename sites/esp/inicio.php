@@ -28,20 +28,33 @@ connect_base_de_datos();
         <script type="text/javascript" src="../../js/slider.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('.buscar .users').hide();
-                $('.noresults').hide();
-                (function ($) {
-                    $('#box-target').keyup(function () {
-                        var rex = new RegExp($(this).val(), 'i');
-                        $('.buscar .users').hide();
-                        $('.buscar .users').filter(function () {
-                            return rex.test($(this).text());
-                        }).show();
-                    })
-                }(jQuery));
-            });
-        </script>
+		    $(document).ready(function () {
+		    $('.buscar .users').hide();
+		    $('.noresults').hide();
+		        (function ($) {
+		            $('#box-target').keyup(function () {
+		                if ($(this).val() == '') {
+		                    $('.buscar .users').hide();
+		                } else {
+		                    var rex = new RegExp($(this).val(), 'i');
+		                    var valores = $(this).val();
+		                    $.ajax({
+		                        url: "busqueda.php",
+		                        type: "POST",
+		                        data: { valores : valores },
+		                        success: function(result){
+		                            $('.buscar').html(result);
+		                            $('.buscar .users').show();
+		                        },
+		                        error: function(error){
+		                            alert(error);
+		                        }
+		                    })
+		                }
+		            })
+		        }(jQuery));
+		    });
+		</script>
     </head>
     <body>
 
@@ -249,56 +262,7 @@ connect_base_de_datos();
                             <input type="text" id="box-target">
 
                             <div class="search-box buscar">
-                                <div class="profile-search users">
-                                    <span class="profile-img">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-                                    </span>
-                                    <span class="profile-info">
-                                        <span class="profile-name">Jose</span> <br>
-                                        <span class="profile-city">ZAP - MX</span>
-                                    </span>
-                                </div>
-                                <div class="profile-search users">
-                                    <span class="profile-img">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-                                    </span>
-                                    <span class="profile-info">
-                                        <span class="profile-name">Pepe</span> <br>
-                                        <span class="profile-city">GDL - MX</span>
-                                    </span>
-                                </div>
-                                <div class="profile-search users">
-                                    <span class="profile-img">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-                                    </span>
-                                    <span class="profile-info">
-                                        <span class="profile-name">Vazquez</span> <br>
-                                        <span class="profile-city">TON - MX</span>
-                                    </span>
-                                </div>
-                                <div class="profile-search users">
-                                    <span class="profile-img">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-                                    </span>
-                                    <span class="profile-info">
-                                        <span class="profile-name">Hola</span> <br>
-                                        <span class="profile-city">TLA - MX</span>
-                                    </span>
-                                </div>
-                                <div class="profile-search users">
-                                    <span class="profile-img">
-                                        <img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-                                    </span>
-                                    <span class="profile-info">
-                                        <span class="profile-name">bebe</span> <br>
-                                        <span class="profile-city">ZAP - MX</span>
-                                    </span>
-                                </div>
-                                <div class="profile-search noresults">
-                                    <span class="profile-info no-results">
-                                        <span class="profile-name">NO SE HA ENCONTRADO RESULTADOS</span> <br>
-                                    </span>
-                                </div>
+
                             </div>
 
                         </div>
