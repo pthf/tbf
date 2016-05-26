@@ -111,38 +111,103 @@
       <div class="topinfo_config">
 
         <h1>ACTUALIZAR INFORMACIÓN</h1>
+        <?php 
+	        $query = "SELECT * FROM user WHERE idUser =".$_SESSION['idUser'];
+		    $resultado = mysql_query($query) or die(mysql_error());
+		    $row = mysql_fetch_array($resultado);
+		    echo "<pre>";
+		    print_r($row);
+        ?>
 
         </div>
 
         <div class="info_config">
         <form id="formUser" name="formUserData" enctype="multipart/form-data">
-	        <div class="name_config">
-	          <p>NOMBRE: </p> <input required type="text" name="userName"style="width:60%; border: none;">
+	        <div class="email_config">
+	          <p>NOMBRE: </p> <input required type="text" name="userName" style="width:60%; border: none" value="<?php echo $row['userName'];?>">
 	        </div>
 
 	        <div class="edad_config">
-	          <p>EDAD: </p> <input required type="number" name="userAge" style="width:60%; border: none">
+	          <p>APELLIDO: </p> <input required type="text" name="userName" style="width:60%; border: none" value="<?php echo $row['userLastName'];?>">
+	        </div>
+
+	        <div class="email_config">
+	          <p>EMAIL: </p> <input required type="email" name="email"  style="width:60%; border: none" value="<?php echo $row['userEmail'];?>">
 	        </div>
 
 	        <div class="vivoen_config">
-	          <p>VIVO EN: </p> <input required type="text" name="userAddress" style="width:60%; border: none">
+	          <p>FECHA NAC: </p> 
+	          	<select required id="birthday_day" name="birthday_day" class="birthday day" style="width: 18%;">
+                	<option value="">Día &#x25BE;</option>
+            	</select>
+            	<select required id="birthday_month" name="birthday_month" class="birthday month" style="width: 18%;">
+                    <option value="">Mes &#x25BE;</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+                <select required id="birthday_year" name="birthday_year" class="birthday year" style="width: 18%;">
+                    <option value="">Año &#x25BE;</option>
+                    <option value="1995">1995</option>
+                    <option value="1994">1994</option>
+                    <option value="1993">1993</option>
+                    <option value="1992">1992</option>
+                    <option value="1991">1991</option>
+                    <option value="1990">1990</option>
+                    <option value="1989">1989</option>
+                    <option value="1988">1988</option>
+                    <option value="1987">1987</option>
+                    <option value="1986">1986</option>
+                    <option value="1985">1985</option>
+                    <option value="1984">1984</option>
+                    <option value="1983">1983</option>
+                    <option value="1982">1982</option>
+                    <option value="1981">1981</option>
+                    <option value="1980">1980</option>
+                </select>
 	        </div>
 
 
 
 	        <div class="email_config">
-	          <p>EMAIL: </p> <input required type="email" name="userEmail" style="width:60%; border: none">
+	          <p>PAIS: </p> 
+	          	<select required name="country" class="" style="width:82%; border: none" id="selectCountry">
+	                <option selected disabled value="">Selecciona..</option>
+	                <?php
+	                $query = "SELECT * FROM countries ORDER BY name_c ASC";
+	                $result = mysql_query($query) or die(mysql_error());
+	                while ($line = mysql_fetch_array($result)) {
+	                	if ($line['id'] == $row['country_id']) {
+	                    	echo '<option selected value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
+	                	} else {
+	                		echo '<option value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
+	                	}
+	                }
+	                ?>
+            	</select>
 	        </div>
 
-					<div class="pass_config">
-						<p>PASSWORD: </p> <input required type="password" name="userPassword" style="width:60%; border: none">
-					</div>
+			<div class="pass_config">
+				<p>ESTADO: </p> 
+				<select required name="state" class="" style="width:70%; border: none" id="selectState">
+                    <option disabled selected value="">Selecciona..</option>
+                </select>
+			</div>
 
 	        <h1 class="top_config" style="margin-top:12%">DESCRIPCION:</h1>
 
 	        <div class="desc_config">
 
-	          <p><textarea required row="" cols="70" style="border: none;" name="userDescription"></textarea></p>
+	          <p><textarea required row="" cols="70" style="border: none;" name="userDescription"><?php echo $row['userDescription'];?></textarea></p>
 	        </div>
 				<div class="actualizar_info">
 					<a type="submit"> <p>ACTUALIZAR</p> </a>
@@ -184,6 +249,90 @@
 
 	</div>
 	<script src="../js/services.js"></script>
+	<script type="text/javascript">
+        $("#selectCountry").change(function () {
+        	var idCountry = <?php echo $row['country_id']?>;
+        	alert(idCountry);
+            //var idCountry = $("option:selected", this).attr('name');
+            var namefunction = 'getStatesUser';
+            $.ajax({
+                beforeSend: function () {},
+                url: "../../admin/php/functions.php",
+                type: "POST",
+                data: {
+                    namefunction: namefunction,
+                    idCountry: idCountry
+                },
+                success: function (result) {
+                    $('#selectState').html(result);
+                },
+                error: function () {},
+                complete: function () {},
+                timeout: 10000
+            });
+        });
+    </script>
+    <script type="text/javascript">
+
+        function isLeapYear(year) {
+            return (new Date(year, 2, 0).getDate() == 29);
+        }
+
+        function getAge(birthDate) {
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            return age;
+        }
+
+        function getDays(year, month) {
+            var days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            if (isLeapYear(year)) {
+                days[2] = 29;
+            }
+
+            return days[month];
+        }
+
+        function validateDoB() {
+            var birthday_year = $('#birthday_year');
+            var birthday_month = $('#birthday_month');
+            var birthday_day = $('#birthday_day');
+
+            return false;
+        }
+
+        $('.birthday.year, .birthday.month').change(function () {
+            var year = $('#birthday_year');
+            var month = $('#birthday_month');
+            var day = $('#birthday_day');
+
+            var selected_day = day.val();
+
+            if (year.val() == '' || month.val() == '') {
+                return false;
+            }
+
+            var days = getDays(year.val(), month.val());
+            var options = ['<option value=""></option>'];
+
+            for (var i = 1; i <= days; i++) {
+                options.push('<option value="' + i + '">' + i + '</option>');
+            }
+
+            day.html('').append(options.join("\n"));
+            day.val(Math.min(selected_day, days));
+        }).trigger('change');
+
+        $('#btn_submit').click(validateDoB);
+
+    </script>
 
 </body>
 </html>
