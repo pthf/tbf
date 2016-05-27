@@ -17,15 +17,18 @@ if (mysql_num_rows($resultado) > 0) {
 
     while ($line = mysql_fetch_array($resultado)) {
         ?>
-        <div class="profile-search users">
-            <span class="profile-img">
-                <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>" alt="profile image" title="profile image">
-            </span>
-            <span class="profile-info">
-                <span class="profile-name"><?php echo $line['userName']; ?></span> <br>
-                <span class="profile-city"><?php echo $line['name_s']; ?> - <?php echo $line['sortname']; ?></span>
-            </span>
-        </div>
+
+        <a href="perfil.php?idUser=<?=$line['idUser'];?>">
+            <div class="profile-search users">
+                <span class="profile-img">
+                    <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>" alt="profile image" title="profile image">
+                </span>
+                <span class="profile-info">
+                    <span class="profile-name"><?php echo $line['userName']; ?></span> <br>
+                    <span class="profile-city"><?php echo $line['name_s']; ?> - <?php echo $line['sortname']; ?></span>
+                </span>
+            </div>
+        </a>
         <?php
     }
 } else {
