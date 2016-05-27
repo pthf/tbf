@@ -115,8 +115,9 @@
 	        $query = "SELECT * FROM user WHERE idUser =".$_SESSION['idUser'];
 		    $resultado = mysql_query($query) or die(mysql_error());
 		    $row = mysql_fetch_array($resultado);
-		    echo "<pre>";
-		    print_r($row);
+		    //echo "<pre>";
+		    //print_r($row);
+		    //print_r($row['userBirthDate']);
         ?>
 
         </div>
@@ -124,16 +125,16 @@
         <div class="info_config">
         <form id="formUser" name="formUserData" enctype="multipart/form-data">
 	        <div class="email_config">
-	          <p>NOMBRE: </p> <input required type="text" name="userName" style="width:60%; border: none" value="<?php echo $row['userName'];?>">
+	          <p>NOMBRE: </p> <input required type="text" name="name" style="width:60%; border: none" value="<?php echo $row['userName'];?>">
 	        </div>
 
 	        <div class="edad_config">
-	          <p>APELLIDO: </p> <input required type="text" name="userName" style="width:60%; border: none" value="<?php echo $row['userLastName'];?>">
+	          <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:60%; border: none" value="<?php echo $row['userLastName'];?>">
 	        </div>
 
-	        <div class="email_config">
+	        <!--<div class="email_config">
 	          <p>EMAIL: </p> <input required type="email" name="email"  style="width:60%; border: none" value="<?php echo $row['userEmail'];?>">
-	        </div>
+	        </div>-->
 
 	        <div class="vivoen_config">
 	          <p>FECHA NAC: </p> 
@@ -200,19 +201,52 @@
 				<p>ESTADO: </p> 
 				<select required name="state" class="" style="width:70%; border: none" id="selectState">
                     <option disabled selected value="">Selecciona..</option>
+                    <?php
+	                $query1 = "SELECT * FROM states ORDER BY name_s ASC";
+	                $result1 = mysql_query($query1) or die(mysql_error());
+	                while ($line1 = mysql_fetch_array($result1)) {
+	                	if ($line1['id'] == $row['state_id']) {
+	                    	echo '<option selected value="' . $line1["id"] . '" name="' . $line1["id"] . '">' . $line1["name_s"] . '</option>';
+	                	} else {
+	                		echo '<option value="' . $line1["id"] . '" name="' . $line1["id"] . '">' . $line1["name_s"] . '</option>';
+	                	}
+	                }
+	                ?>
                 </select>
 			</div>
+
+			<span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="em">EMAIL</a></u>.</label></span>
+			<span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="pass">CONTRASEÑA</a></u>.</label></span>
+
+			<div class="email_config" style="width: 80%;">
+	          <p>ANTIGUO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+	        <div class="email_config" style="width: 80%;">
+	          <p>NUEVO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+	        <div class="email_config" style="width: 80%;">
+	          <p>CONFIRMAR EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+
+	        <div class="email_config" style="width: 80%;">
+	          <p>ANTIGUO PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+	        <div class="email_config" style="width: 80%;">
+	          <p>NUEVO PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+
+			<div class="email_config" style="width: 80%;">
+	          <p>CONFIRMAR PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail'];?>">
+	        </div>
+
 
 	        <h1 class="top_config" style="margin-top:12%">DESCRIPCION:</h1>
 
 	        <div class="desc_config">
 
-	          <p><textarea required row="" cols="70" style="border: none;" name="userDescription"><?php echo $row['userDescription'];?></textarea></p>
+	          <p><textarea required row="" cols="70" style="border: none;" name="description"><?php echo $row['userDescription'];?></textarea></p>
 	        </div>
-				<div class="actualizar_info">
-					<a type="submit"> <p>ACTUALIZAR</p> </a>
-				</div>
-					<input type="submit" class="actualizar_info" value="ACTUALIZAR">
+				<input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff;">
 		</form>
       </div>
 
@@ -248,12 +282,10 @@
 	</div>
 
 	</div>
-	<script src="../js/services.js"></script>
+	<!--<script src="../js/services.js"></script>-->
 	<script type="text/javascript">
         $("#selectCountry").change(function () {
-        	var idCountry = <?php echo $row['country_id']?>;
-        	alert(idCountry);
-            //var idCountry = $("option:selected", this).attr('name');
+            var idCountry = $("option:selected", this).attr('name');
             var namefunction = 'getStatesUser';
             $.ajax({
                 beforeSend: function () {},
