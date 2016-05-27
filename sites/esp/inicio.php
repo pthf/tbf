@@ -30,33 +30,49 @@ if (isset($_SESSION['idUser'])) {
         <script type="text/javascript" src="../../js/slider.js"></script>
 
         <script type="text/javascript">
-		    $(document).ready(function () {
-		    $('.buscar .users').hide();
-		    $('.noresults').hide();
-		        (function ($) {
-		            $('#box-target').keyup(function () {
-		                if ($(this).val() == '') {
-		                    $('.buscar .users').hide();
-		                } else {
-		                    var rex = new RegExp($(this).val(), 'i');
-		                    var valores = $(this).val();
-		                    $.ajax({
-		                        url: "busqueda.php",
-		                        type: "POST",
-		                        data: { valores : valores },
-		                        success: function(result){
-		                            $('.buscar').html(result);
-		                            $('.buscar .users').show();
-		                        },
-		                        error: function(error){
-		                            alert(error);
-		                        }
-		                    })
-		                }
-		            })
-		        }(jQuery));
-		    });
-		</script>
+            $(document).ready(function () {
+
+                (function ($) {
+                    $('#filtrar').keyup(function () {
+                        var rex = new RegExp($(this).val(), 'i');
+                        $('.buscar_beers .beers').hide();
+                        $('.buscar_beers .beers').filter(function () {
+                            return rex.test($(this).text());
+                        }).show();
+                    })
+                }(jQuery));
+            });
+        </script>
+
+				<script type="text/javascript">
+            $(document).ready(function () {
+                $('.buscar .users').hide();
+                $('.noresults').hide();
+                (function ($) {
+                    $('#box-target').keyup(function () {
+                        if ($(this).val() == '') {
+                            $('.buscar .users').hide();
+                        } else {
+                            var rex = new RegExp($(this).val(), 'i');
+                            var valores = $(this).val();
+                            $.ajax({
+                                url: "busqueda.php",
+                                type: "POST",
+                                data: {valores: valores},
+                                success: function (result) {
+                                    $('.buscar').html(result);
+                                    $('.buscar .users').show();
+                                },
+                                error: function (error) {
+                                    alert(error);
+                                }
+                            })
+                        }
+                    })
+                }(jQuery));
+            });
+        </script>
+
     </head>
 
     <body>
@@ -218,9 +234,9 @@ if (isset($_SESSION['idUser'])) {
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                         <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="perfil.php?idUser=<?=$line['idUser']?>"><li><span>MI PERFIL</span></li></a>
+                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
                         <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                        <a href="#" class="logOut" name="<?=$line['idUser']?>"><li class="no_border"><span>SALIR</span></li></a>
+                        <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
@@ -270,26 +286,28 @@ if (isset($_SESSION['idUser'])) {
                             <?php if (isset($_SESSION['idUser'])) { ?>
 
                                 <?php
-                                  $consulta = "SELECT * FROM message INNER JOIN chat
+                                $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
-                                               WHERE chat.inbox_idInbox = ".$line['idInbox']."
-                                               AND message.user_idUser != ".$line['idUser'];
-                                  $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
+                                               WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+                                               AND message.user_idUser != " . $line['idUser'];
+                                $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
                                 <div class="msg">
                                     <a href="mensajes.php">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
-                                        <?php if(mysql_num_rows($resultadoconsulta)>0){
-                                          echo '<span class="number">'.mysql_num_rows($resultadoconsulta).'</span>';
-                                        } ?>
+                                        <?php
+                                        if (mysql_num_rows($resultadoconsulta) > 0) {
+                                            echo '<span class="number">' . mysql_num_rows($resultadoconsulta) . '</span>';
+                                        }
+                                        ?>
                                     </a>
                                 </div>
 
 
                                 <div class="profile_img">
-                                    <a href="perfil.php?idUser=<?=$line['idUser']?>">
-                                        <img src="../../images/userProfile/<?=$line['userProfileImage']?>" alt="profile image" title="profile image">
+                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                        <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
                                     </a>
                                 </div>
                             <?php } ?>
@@ -298,7 +316,7 @@ if (isset($_SESSION['idUser'])) {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-                                        <a href="perfil.php?idUser='.$line['idUser'].'" style="color: #FFF;">
+                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
                   											<span>' . $line["userName"] . '</span>
                                         </a>
                   										</div>
@@ -330,6 +348,7 @@ if (isset($_SESSION['idUser'])) {
                         <img src="../../images/homebanners/The Beer Fans Banner 1.png">
                         <img src="../../images/homebanners/The Beer Fans Banner 2.png">
                         <img src="../../images/homebanners/The Beer Fans Banner 4.png">
+                        <img src="../../images/homebanners/The Beer Fans Banner 2.png">
                     </figure>
                 </div>
 
@@ -456,7 +475,7 @@ if (isset($_SESSION['idUser'])) {
                     <div class="contact_us_or_follow">
                         <img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
                         <div class="contenido_usuarios">
-                            <?php if (isset($_SESSION['idUser'])) { ?>
+<?php if (isset($_SESSION['idUser'])) { ?>
                                 <span class="user_list">USUARIOS RECOMENDADOS.</span>
                                 <span class="user_list list-sub">ENCUENTRA OTROS USUARIOS CON GUSTOS SIMILARES A LOS TUYOS.</span>
                                 <div class="Grid">
@@ -765,7 +784,7 @@ if (isset($_SESSION['idUser'])) {
                                 </div>
                             <?php } else { ?>
                                 <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<span class="user_name">INICIAR SESIÓN</span> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
-                            <?php } ?>
+<?php } ?>
                         </div>
                     </div>
 
@@ -828,17 +847,17 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
 
-                    <?php if (isset($_SESSION['idUser'])) { ?>
+<?php if (isset($_SESSION['idUser'])) { ?>
                         <ul class="nav">
                             <a href="inicio.php"><li><span>HOME</span></li></a>
                             <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                             <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                             <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="perfil.php?idUser=<?=$line['idUser']?>"><li><span>MI PERFIL</span></li></a>
+                            <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
                             <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
                             <a href="contact.php"><li><span>CONTACTO</span></li></a>
                         </ul>
-                    <?php } else { ?>
+<?php } else { ?>
                         <ul class="nav">
                             <a href="inicio.php"><li><span>HOME</span></li></a>
                             <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
@@ -847,7 +866,7 @@ if (isset($_SESSION['idUser'])) {
                             <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
                             <a href="contact.php"><li><span>CONTACTO</span></li></a>
                         </ul>
-                    <?php } ?>
+<?php } ?>
 
                     <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
 
@@ -998,7 +1017,7 @@ if (isset($_SESSION['idUser'])) {
                                 password: password
                             },
                             success: function (result) {
-                              location.reload();
+                                location.reload();
                             },
                             error: function (error) {
                             },
@@ -1010,71 +1029,71 @@ if (isset($_SESSION['idUser'])) {
                 }
             });
 
-            $('.logOut').click(function(e){
-              e.preventDefault();
-              var namefunction = "logOutUser";
-              var idUser = $(this).attr('name');
+            $('.logOut').click(function (e) {
+                e.preventDefault();
+                var namefunction = "logOutUser";
+                var idUser = $(this).attr('name');
 
-              $.ajax({
-                  beforeSend: function () {
-                  },
-                  url: "../../admin/php/functions.php",
-                  type: "POST",
-                  data: {
-                      namefunction: namefunction,
-                      idUser : idUser
-                  },
-                  success: function (result) {
-                    location.reload();
-                  },
-                  error: function (error) {
-                  },
-                  complete: function () {
-                  },
-                  timeout: 10000
-              });
+                $.ajax({
+                    beforeSend: function () {
+                    },
+                    url: "../../admin/php/functions.php",
+                    type: "POST",
+                    data: {
+                        namefunction: namefunction,
+                        idUser: idUser
+                    },
+                    success: function (result) {
+                        location.reload();
+                    },
+                    error: function (error) {
+                    },
+                    complete: function () {
+                    },
+                    timeout: 10000
+                });
             });
 
-            $('.sendLoginUser').click(function(e){
-              e.preventDefault();
-              var namefunction = "loginUser";
-              var passwordLogin = $('input[name=passwordLogin]').val();
-              var emailLogin = $('input[name=emailLogin]').val();
+            $('.sendLoginUser').click(function (e) {
+                e.preventDefault();
+                var namefunction = "loginUser";
+                var passwordLogin = $('input[name=passwordLogin]').val();
+                var emailLogin = $('input[name=emailLogin]').val();
 
-              $.ajax({
-                  beforeSend: function () {
-                  },
-                  url: "../../admin/php/functions.php",
-                  type: "POST",
-                  data: {
-                      namefunction: namefunction,
-                      passwordLogin : passwordLogin,
-                      emailLogin : emailLogin
-                  },
-                  success: function (result) {
-                    if(result==-1){
-                      $('.notEmail').css({'display' : 'block'});
+                $.ajax({
+                    beforeSend: function () {
+                    },
+                    url: "../../admin/php/functions.php",
+                    type: "POST",
+                    data: {
+                        namefunction: namefunction,
+                        passwordLogin: passwordLogin,
+                        emailLogin: emailLogin
+                    },
+                    success: function (result) {
+                        if (result == -1) {
+                            $('.notEmail').css({'display': 'block'});
 
-                      setTimeout(function () {
-                        $('.notEmail').css({'display' : 'none'});
-                      }, 2000);
-                    }else{
-                      if(result==0){
-                        $('.notPass').css({'display' : 'block'});
-                        setTimeout(function () {
-                          $('.notPass').css({'display' : 'none'});
-                        }, 2000);
-                      }else{
-                        location.reload();
-                      }
-                    }
-                  },
-                  error: function (error) {
-                  },
-                  complete: function () {
-                  },
-                  timeout: 10000
-              });
+                            setTimeout(function () {
+                                $('.notEmail').css({'display': 'none'});
+                            }, 2000);
+                        } else {
+                            if (result == 0) {
+                                $('.notPass').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.notPass').css({'display': 'none'});
+                                }, 2000);
+                            } else {
+                                location.reload();
+                            }
+                        }
+                    },
+                    error: function (error) {
+                    },
+                    complete: function () {
+                    },
+                    timeout: 10000
+                });
             });
         </script>
 
