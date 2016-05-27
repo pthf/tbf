@@ -158,5 +158,5 @@ function continuar(document){
 }
 
 function iniciar(){
-	window.location = "inicio.html"
+	window.location = "inicio.php"
 }
