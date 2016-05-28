@@ -1300,17 +1300,31 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-03.png"></li></a>
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
-                    <ul class="nav">
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-                        <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                    </ul>
-                    <span class="right_about">About Us - Política de Privacidad - FAQS</span>
-                    <span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
+
+                    <?php if (isset($_SESSION['idUser'])) { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } else { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } ?>
+
+                    <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+
+                    <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>
             </div>
 

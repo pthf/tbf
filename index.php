@@ -16,8 +16,8 @@
 	</div>
 
 	<div class="idiomas">
-		<a href="sites/esp/edad.html"><span class="lag">ESPAÑOL</span></a> <span>/</span>
-		<a href="sites/eng/age.html"><span class="lag">ENGLISH</span></a>
+		<a href="sites/esp/edad.php"><span class="lag">ESPAÑOL</span></a> <span>/</span>
+		<a href="sites/eng/age.php"><span class="lag">ENGLISH</span></a>
 	</div>
 
 </body>

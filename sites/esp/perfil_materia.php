@@ -2,6 +2,15 @@
 session_start();
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
+
+if(isset($_GET['id'])){
+    $queryMateria = "SELECT * FROM rawmaterial WHERE idRawMaterial = ".$_GET['id'];
+    $resultMateria = mysql_query($queryMateria) or die(mysql_error());
+    $lineMateria = mysql_fetch_array($resultMateria);
+}else{
+  header('Location: inicio.php');
+}
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
@@ -12,10 +21,8 @@ if (isset($_SESSION['idUser'])) {
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Cervezas | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
@@ -27,7 +34,7 @@ if (isset($_SESSION['idUser'])) {
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript" src="../../js/google_api.js"></script>
+
         <script type="text/javascript" src="../../js/popup_img.js"></script>
 
         <script type="text/javascript">
@@ -261,11 +268,10 @@ if (isset($_SESSION['idUser'])) {
 
 				</div>
 
-
         <div id="contenedor">
 
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/beerProfiles/minerva.png" />
+                <img class="profile_popup" src="../../images/rawMaterialProfiles/<?=$lineMateria['rawMaterialProfileImage']?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -346,47 +352,47 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/rawMaterialCovers/<?=$lineMateria['rawMaterialProfileImage']?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
             </div>
 
             <div class="content_profile content_profile_beer">
 
                 <div class="image_logo">
-
-                    <img src="../../images/beerProfiles/minerva.png" />
+                    <img src="../../images/rawMaterialProfiles/<?=$lineMateria['rawMaterialProfileImage']?>" />
                 </div>
 
-                <div class="name_profile">
-
-                    <p>CERVECERIA MINERVA</p>
-
+                <div class="name_profile" style="width: 70%;">
+                    <p><?=mb_strtoupper ($lineMateria['rawMaterialName']);?></p>
                 </div>
 
-                <div class="city_profile">
+                <!-- <div class="city_profile">
 
                     <p>Guadalajara, México.</p>
 
-                </div>
+                </div> -->
 
-                <div class="age_profile material_age">
-
-                    <p>Av. López Mateos #34 <br> Col. El Monte, CP. 60403 <br> T. 334433578454.</p>
-
+                <div class="age_profile material_age" style="width: 70%;">
+                    <p><?=$lineMateria['rawMaterialAddress']?>, CP. <?=$lineMateria['rawMaterialZip']?> <br> T.  <?=$lineMateria['rawMaterialPhone']?>.</p>
                 </div>
 
                 <div class="desc_profile">
 
 
-                    <a href="mailto:someone@example.com?Subject=The_Beers_Fans" target="_top" class="message_button">
-                        <div class="send_message" >
+                    <a href="mailto:<?=mb_strtoupper ($lineMateria['rawMaterialEmail']);?>?Subject=The_Beers_Fans" target="_top" class="message_button">
+                        <div class="send_message">
                             <img src="../../images/social-03.png"/>
                             <p>ENVIAR CORREO A PRODUCTOR</p>
                         </div>
                     </a>
 
-                    <div class="link_profile">
-                        <a href="http://www.cervezaminerva.mx/">www.cervezaminerva.mx</a>
+                    <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
+
+                    <div class="link_profile" style="width: 70%;">
+                        <a href="<?=$lineMateria['rawMaterialSite'];?>"><?=$lineMateria['rawMaterialSite'];?></a>
                     </div>
+
+                    <?php } ?>
+
 
                 </div>
 
@@ -403,32 +409,17 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="name_profile material_title">
-                    <p>Elaboración de Cerveza en Anillo Perimetral 2700, Col. El Milagro, Hidalgo del Parral, Chihuahua.</p>
+                    <p><?=mb_strtoupper ($lineMateria['rawMaterialGeneralDescription']);?></p>
                 </div>
 
                 <div class="city_profile material_subtitle">
-                    <p>Cervezas Cuauhtémoc Moctezuma S.A. de C.V. se encuentra en Anillo Perimetral 2700, Col. El Milagro, Hidalgo del Parral, Chihuahua. Aquí podrá encontrar la mejor calidad en Elaboración de Cerveza.</p>
+                    <p><?=$lineMateria['rawMaterialDescription'];?></p>
                 </div>
 
                 <div class="map" id="googleMap" >	</div>
 
                 <div class="profile_res">
-                    En Cervezas Cuauhtémoc Moctezuma, S.A. de C.V. somos una empresa de gran tradición en nuestro país. Nos dedicamos a la elaboración y venta de las mejores marcas de cervezas del país.
-                    Contamos con la más amplia variedad de surtido de cervezas en el mercado, ideales para disfrutar durante eventos sociales y deportivos.
-                    Algunas de las cervezas que le ofrecemos son: <br> <br>
-                    <ul>
-                        <li>Cerveza</li>
-                        <li>Carne asada</li>
-                        <li>Tecate</li>
-                        <li>Tecate ligth</li>
-                        <li>Carta blanca</li>
-                        <li>Cerveza Sol</li>
-                        <li>Cerveza XX</li>
-                        <li>Cerveza de barril</li>
-                    </ul> <br> <br>
-                    Contamos con el mobiliario necesario para amenizar sus fiestas y reuniones, así como con todo el equipo necesario para hacer de su evento el más ameno.
-                    Manejamos servicio a domicilio, podemos llevarle hasta su hogar o salón de eventos, desde un cartón hasta el volumen de cerveza que requiera.
-                    Póngase en contacto con nosotros por este medio o por correo electrónico, le daremos atención personalizada.
+                  <?=$lineMateria['rawMaterialDescriptionHTML'];?>
                 </div>
 
             </div>
@@ -447,24 +438,24 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-                            <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
                     <?php } else { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
                     <?php } ?>
 
                     <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
@@ -757,5 +748,30 @@ if (isset($_SESSION['idUser'])) {
 		        </script>
 
         </div>
+
+        <span style="display:block"  name="<?=$lineMateria['rawMaterialLatitude']?>" id="rawMaterialLatitude">
+        <span style="display:block"  name="<?=$lineMateria['rawMaterialLongitude']?>" id="rawMaterialLongitude">
+
+        <script type="text/javascript">
+
+          var rawMaterialLatitude = $('#rawMaterialLatitude').attr('name');
+          var rawMaterialLongitude = $('#rawMaterialLongitude').attr('name');
+          var myCenter=new google.maps.LatLng(rawMaterialLatitude,rawMaterialLongitude);
+          function initialize() {
+            var mapProp = {
+              center: myCenter,
+              zoom:15,
+              scrollwheel: false,
+              mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker=new google.maps.Marker({
+              position:myCenter,
+            });
+            marker.setMap(map);
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
     </body>
 </html>

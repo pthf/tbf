@@ -340,19 +340,80 @@ if (isset($_SESSION['idUser'])) {
 
             <div class="top_img home">
 
-                <!-- slider home -->
-                <div id="slider">
-                    <figure>
-                            <!-- <img> = 1 slide -->
-                        <img src="../../images/homebanners/The Beer Fans Banner 3.png">
-                        <img src="../../images/homebanners/The Beer Fans Banner 1.png">
-                        <img src="../../images/homebanners/The Beer Fans Banner 2.png">
-                        <img src="../../images/homebanners/The Beer Fans Banner 4.png">
-                        <img src="../../images/homebanners/The Beer Fans Banner 2.png">
-                    </figure>
-                </div>
 
-            </div>
+                  <!-- slider home -->
+                  <div id="slidy-container">
+                    <figure id="slidy">
+                      <?php
+                        $q = "SELECT * FROM bannerSliderHome";
+                        $r = mysql_query($q) or die(mysql_error());
+                        while($l=mysql_fetch_array($r)){
+                          echo '<img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'">';
+                        }
+                      ?>
+                    </figure>
+                  </div>
+              </div>
+
+              <style media="screen">
+              #slidy-container {
+                width: 100%; overflow: hidden; margin: 0 auto;
+              }
+
+              </style>
+
+              <script type="text/javascript">
+
+                var timeOnSlide = 3,
+                timeBetweenSlides = 1,
+                    animationstring = 'animation',
+                    animation = false,
+                    keyframeprefix = '',
+                    domPrefixes = 'Webkit Moz O Khtml'.split(' '),
+                    pfx  = '',
+                    slidy = document.getElementById("slidy");
+                if (slidy.style.animationName !== undefined) { animation = true; }
+
+                if( animation === false ) {
+                  for( var i = 0; i < domPrefixes.length; i++ ) {
+                    if( slidy.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+                      pfx = domPrefixes[ i ];
+                      animationstring = pfx + 'Animation';
+                      keyframeprefix = '-' + pfx.toLowerCase() + '-';
+                      animation = true;
+                      break;
+                    }
+                  }
+                }
+
+                if( animation === false ) {
+                } else {
+                  var images = slidy.getElementsByTagName("img"),
+                      firstImg = images[0],
+                      imgWrap = firstImg.cloneNode(false);  // copy it.
+                  slidy.appendChild(imgWrap); // add the clone to the end of the images
+                  var imgCount = images.length, // count the number of images in the slide, including the new cloned element
+                      totalTime = (timeOnSlide + timeBetweenSlides) * (imgCount - 1), // calculate the total length of the animation by multiplying the number of _actual_ images by the amount of time for both static display of each image and motion between them
+                      slideRatio = (timeOnSlide / totalTime)*100, // determine the percentage of time an induvidual image is held static during the animation
+                      moveRatio = (timeBetweenSlides / totalTime)*100, // determine the percentage of time for an individual movement
+                      basePercentage = 100/imgCount, // work out how wide each image should be in the slidy, as a percentage.
+                      position = 0, // set the initial position of the slidy element
+                      css = document.createElement("style"); // start marking a new style sheet
+                  css.type = "text/css";
+                  css.innerHTML += "#slidy { text-align: left; margin: 0; font-size: 0; position: relative; width: " + (imgCount * 100) + "%;  }\n"; // set the width for the slidy container
+                  css.innerHTML += "#slidy img { float: left; width: " + basePercentage + "%; }\n";
+                  css.innerHTML += "@"+keyframeprefix+"keyframes slidy {\n";
+                  for (i=0;i<(imgCount-1); i++) { //
+                    position+= slideRatio; // make the keyframe the position of the image
+                    css.innerHTML += position+"% { left: -"+(i * 100)+"%; }\n";
+                    position += moveRatio; // make the postion for the _next_ slide
+                    css.innerHTML += position+"% { left: -"+((i+1) * 100)+"%; }\n";
+                }
+                  css.innerHTML += "}\n";
+                  css.innerHTML += "#slidy { left: 0%; "+keyframeprefix+"transform: translate3d(0,0,0); "+keyframeprefix+"animation: "+totalTime+"s slidy infinite; }\n"; // call on the completed keyframe animation sequence
+                document.body.appendChild(css); // add the new stylesheet to the end of the document
+                }
+              </script>
 
             <div class="cont_site">
                 <div class="prin_img">
@@ -392,80 +453,43 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="slideshow">
+
                     <ul class="beers_month">
-
-                        <li data-n="1">
-
-                            <img src="../../images/newBanners/Beer Fans Banner Slider Sub 1.png" alt="tbf tarro" title="tbf tarro">
+                        <?php
+                            $q = "SELECT * FROM bannerSliderNew";
+                            $r = mysql_query($q) or die(mysql_error());
+                            $cantidad = 0;
+                            while($l = mysql_fetch_array($r)){
+                              $cantidad++;
+                        ?>
+                        <li data-n="<?=$cantidad?>">
+                            <img src="../../images/newBanners/<?=$l['bannerSliderNewImage']?>" alt="tbf tarro" title="tbf tarro">
                             <div class="aside_info_second">
                                 <div class="contenido_aside">
-                                    <span class="title">HOPFENREICH</span>
-                                    <span class="sub_title"> </span>
-                                    <p>Es un nuevo bar dedicado a la cerveza artesanal que ha abierto en el vibrante Wrangelkiez de Kreuzberg. Catorce tipos distintos de cerveza de barril y una selección embotellada que se amplía por momentos. Escogen para su carta una combinación de marcas tradicionales con novedades y tendencias procedentes de todo el mundo.</p>
-                                    <a href="http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/" target="_blank">
+                                    <span class="title"><?=$l['bannerSliderNewTitle']?></span>
+                                    <span class="sub_title"> <?=$l['bannerSliderNewSubtitle']?> </span>
+                                    <p><?=$l['bannerSliderNewDescription']?></p>
+                                    <a href="<?=$l['bannerSliderNewUrl']?>" target="_blank">
                                         <div class="boton_mas">VER MÁS</div>
                                     </a>
                                 </div>
                             </div>
-
                         </li>
-
-                        <li data-n="2">
-
-                            <img src="../../images/newBanners/Beer Fans Banner Slider Sub 2.png" alt="tbf tarro" title="tbf tarro">
-                            <div class="aside_info_second">
-                                <div class="contenido_aside">
-                                    <span class="title">10 CERVEZAS ARTESANALES QUE DISTINGUIRÁS POR SU DISEÑO</span>
-                                    <span class="sub_title"> </span>
-                                    <p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-                                    <a href="http://www.thebeerfans.com/blog/2016/03/16/10-cervezas-artesanales-que-distinguiras-por-su-diseno/" target="_blank">
-                                        <div class="boton_mas">VER MÁS</div>
-                                    </a>
-                                </div>
-                            </div>
-
-
-                        </li>
-
-                        <li data-n="3">
-                            <img src="../../images/newBanners/Beer Fans Banner Slider Sub 3.png" alt="tbf tarro" title="tbf tarro">
-                            <div class="aside_info_second">
-                                <div class="contenido_aside">
-                                    <span class="title">WHY SOME ENJOY BEER: WHAT YOU NEED TO KNOW</span>
-                                    <span class="sub_title"> </span>
-                                    <p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-                                    <a href="http://www.thebeerfans.com/blog/2016/03/16/why-some-enjoy-beer-what-you-need-to-know/" target="_blank">
-                                        <div class="boton_mas">VER MÁS</div>
-                                    </a>
-                                </div>
-                            </div>
-
-
-                        </li>
-
-                        <!-- <li data-n="4">
-
-                                <img src="../../images/photo_pthf_home-03.png" alt="tbf tarro" title="tbf tarro">
-                                <div class="aside_info_second">
-                                        <div class="contenido_aside">
-                                                <span class="title">CUARTA CERVEZA</span>
-                                                <span class="sub_title">CUARTA CERVEZA</span>
-                                                <p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-                                                <a href="perfil_beer.php">
-                                                <div class="boton_mas">VER MÁS</div>
-                                                </a>
-                                        </div>
-                                </div>
-
-                        </li> -->
-
+                        <?php
+                            }
+                        ?>
                     </ul>
 
-                    <ul class="nav_beers">
-                        <li data-cd="1"></li>
-                        <li data-cd="2"></li>
-                        <li data-cd="3"></li>
-                        <!-- <li data-cd="4"></li> -->
+                    <ul class="nav_beers cantidadElements" name="<?= $cantidad ?>">
+                      <?php
+                          $q = "SELECT * FROM bannerSliderNew";
+                          $r = mysql_query($q) or die(mysql_error());
+                          $cantidad = 0;
+                          while($l = mysql_fetch_array($r)){
+                            $cantidad++;
+                            echo '<li data-cd="'.$cantidad.'"></li>';
+                          }
+                      ?>
                     </ul>
 
                 </div>
@@ -478,307 +502,38 @@ if (isset($_SESSION['idUser'])) {
 <?php if (isset($_SESSION['idUser'])) { ?>
                                 <span class="user_list">USUARIOS RECOMENDADOS.</span>
                                 <span class="user_list list-sub">ENCUENTRA OTROS USUARIOS CON GUSTOS SIMILARES A LOS TUYOS.</span>
-                                <div class="Grid">
+                                <div class="Grid" style="overflow: auto;">
 
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
+                                <?php
+                                  $queryUser = "SELECT * FROM user
+                                                INNER JOIN states
+                                                ON states.id = user.state_id
+                                                INNER JOIN countries
+                                                ON countries.id = user.country_id
+                                                WHERE user.country_id = ".$line['country_id']." AND user.idUser != ".$line['idUser'];
+                                  $resultUser = mysql_query($queryUser) or die(mysql_error());
+                                  if(mysql_num_rows($resultUser)>0){
+                                    while($lineUser = mysql_fetch_array($resultUser)){
+                                    echo '
+                                      <li class="flex-item">
+                                          <a href="perfil.php?idUser='.$lineUser["idUser"].'"><img class="flex-item-info" src="../../images/userProfile/'.$lineUser["userProfileImage"].'"/></a>
+                                          <div class="flex-item-info">
+                                              <span>'.$lineUser["userName"].'</span>
+                                              <span>'.$lineUser["userLastName"].'</span>
+                                              <span>'.$lineUser["name_s"].' - '.$lineUser["sortname"].'</span>
+                                              <a href="perfil.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">Ver perfil</span></a>
+                                          </div>
+                                      </li>
+                                    ';
+                                    }
+                                  }else{
+                                    echo '<span class="user_list list-sub" style="display:inline-block !important; width: auto !important;">SIN USUARIOS RECOMENDADOS.</span>';
+                                  }
 
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
 
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
+                                ?>
 
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
 
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-item">
-                                        <a href=""><img class="flex-item-info" src="../../images/profile_default.jpg"/></a>
-                                        <div class="flex-item-info">
-                                            <span>JOHN WEEK</span>
-                                            <span>23 años</span>
-                                            <span>Gdl - Mx</span>
-                                            <span class="AddFriend">Agregar amigos</span>
-                                        </div>
-                                    </li>
 
 
                                 </div>
@@ -847,26 +602,26 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
 
-<?php if (isset($_SESSION['idUser'])) { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-                            <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
-<?php } else { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
-<?php } ?>
+                    <?php if (isset($_SESSION['idUser'])) { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } else { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } ?>
 
                     <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
 

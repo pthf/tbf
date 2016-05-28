@@ -637,11 +637,6 @@
 		margin-top: 0vw;
 	}
 
-	.send_message img{
-		width: 23px;
-		height: 18px;
-	}
-
 	.change_profile{
 		padding: .9vw 1vw .9vw 1vw;
 	}
@@ -691,9 +686,6 @@
 		font-size: 12px;
 	}
 
-	.send_message p{
-		font-size: 16px;
-	}
 
 	#show-panel img{
 		width: 140px;
@@ -1226,10 +1218,6 @@
 		height: 200px;
 	}
 
-	.send_message p{
-		font-size: 14px;
-	}
-
 	/* perfil beer */
 
 	.profile_beer{
@@ -1372,15 +1360,6 @@
 	.info_beer{
 		top: 33%;
 		width: 24%;
-	}
-
-	.send_message p{
-		font-size: 12px;
-	}
-
-	.send_message img{
-		width: 20px;
-		height: 16px;
 	}
 
 
@@ -1890,13 +1869,6 @@
 		padding: 3%;
 	}
 
-	.content_profile{
-		width: 20%;
-		margin-left: 25%;
-		width: 26%;
-	}
-
-
 	/* perfil beer */
 
 
@@ -1977,7 +1949,7 @@
 	.send_a_message.comments_text{
 		width: 80.5%;
 		left: 0;
-
+		margin-bottom: 2vw;
 	}
 
 	.send_button.comments_send p{
@@ -2072,7 +2044,7 @@
 	}
 
 	.favs_profile{
-		width: 95%;
+		width: 99%;
 		margin: 0 auto;
 	}
 
@@ -2111,6 +2083,75 @@
 
 	.favs_profile.favs_profile_material{
 		width: 80%;
+	}
+
+	.content_profile{
+		width: 55%;
+		margin-left: 18%;
+	}
+
+	.link_profile {
+	    width: 100%;
+	    text-align: left;
+	}
+
+	.send_message img {
+	    width: 5%;
+	    height: auto;
+	}
+
+	.desc_profile p{
+		font-size: 9px;
+	}
+
+	.desc_profile{
+		width: 100%;
+	}
+
+	.profile_res{
+		margin-bottom: 4vw;
+	}
+
+	.favs_profile.favs_profile_beer{
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 2vw;
+	}
+
+	.image_logo{
+	  width: 50%;
+	  margin: 0 auto;
+	}
+
+	.slides{
+		margin-left: 0;
+	}
+
+	.slides .overflow .inner.profile article{
+		margin-top: 3vw;
+	}
+
+	a#show-img{
+		margin-left: 0;
+	}
+
+	.content_profile{
+		width: 30%;
+    margin-left: 25%;
+	}
+
+	.social_company{
+		width: 100%;
+	}
+
+	.image_profile {
+    margin: 0 auto;
+    width: 71%;
+	}
+
+	.image_logo {
+    width: 80%;
+    margin: 0 auto;
 	}
 
 }
@@ -2460,11 +2501,6 @@
 		font-size: 2em;
 	}
 
-	.send_message img{
-		width: 18px;
-		height: 13px;
-	}
-
 	.favs_beer{
 		margin-left: 46.5%;
 	}
@@ -2515,10 +2551,6 @@
 
 	.image_top img{
 		height: 28px;
-	}
-
-	.send_message p{
-		font-size: 10px;
 	}
 
 	.profile_res{
@@ -3188,12 +3220,6 @@
 		margin-bottom: .3vw;
 	}
 
-	.send_message img{
-		width: 16px;
-		height: 13px;
-	}
-
-
 	#itemContainer h2,item i2{
 		font-size: 6px;
 	}
@@ -3242,11 +3268,7 @@
 		font-size: 8px;
 	}
 
-	.send_message p{
-		font-size: 8px;
-		margin-left: 3%;
 
-	}
 	.image_logo img{
 		width: 120px;
 		height: 140px;
@@ -3437,10 +3459,6 @@
 		height: 14px;
 	}
 
-	.content_profile{
-		width: 31%;
-	}
-
 	h1.title_slider{
 		font-size: 32px;
 		top: 1%;
@@ -3628,14 +3646,6 @@
 
 	.age_profile p{
 		font-size: 12px;
-	}
-
-	.desc_profile p{
-		font-size: 6px;
-	}
-
-	.send_message p{
-		font-size: .5em;
 	}
 
 	img.fav_button{
@@ -3850,11 +3860,6 @@
 
 	.inner li .subtitle{
 		font-size: 8px;
-	}
-
-	.content_profile{
-		width: 31%;
-		left: 3vw;
 	}
 
 	.slides{
