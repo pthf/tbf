@@ -543,14 +543,21 @@ if (isset($_SESSION['idUser'])) {
                         </div>
                     </div>
 
+
+                    <?php
+                      $q = "SELECT * FROM bannersliderpost ORDER BY RAND() LIMIT 1";
+                      $r = mysql_query($q) or die(mysql_error());
+                      $l = mysql_fetch_array($r);
+                    ?>
+
                     <div class="info_bottom">
-                        <img src="../../images/postBanners/8150090.png" alt="tbf cervezas" title="tbf cervezas">
+                        <img src="../../images/postBanners/<?=$l['bannerSliderPostImage']?>" alt="tbf cervezas" title="tbf cervezas">
                         <div class="aside_info_second first_part">
                             <div class="contenido_aside">
-                                <span class="title">CONOCE A</span>
-                                <span class="sub_title">NAIPE</span>
-                                <p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-                                <a href="perfil_beer.php">
+                                <span class="title"><?=$l['bannerSliderPostTitle']?></span>
+                                <span class="sub_title"><?=$l['bannerSliderPostSubtitle']?></span>
+                                <p><?=$l['bannerSliderPostDescription']?></p>
+                                <a href="<?=$l['bannerSliderPostUrl']?>">
                                     <div class="boton_mas">VER MÁS</div>
                                 </a>
                             </div>
@@ -559,19 +566,27 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="part_info_bottom">
+
+                    <?php
+                      $q = "SELECT * FROM bannersliderpost ORDER BY RAND() LIMIT 1";
+                      $r = mysql_query($q) or die(mysql_error());
+                      $l = mysql_fetch_array($r);
+                    ?>
+
                     <div class="info_bottom">
-                        <img src="../../images/postBanners/conoce2.png" alt="tbf cervezas" title="tbf cervezas">
-                        <div class="aside_info_second cont_part_less">
+                        <img src="../../images/postBanners/<?=$l['bannerSliderPostImage']?>" alt="tbf cervezas" title="tbf cervezas">
+                        <div class="aside_info_second first_part">
                             <div class="contenido_aside">
-                                <span class="title">CONOCE A</span>
-                                <span class="sub_title">NAIPE</span>
-                                <p>Cerveza estilo Stout, de fermentación Ale. Aroma a cacao debido a que en su elaboración se utilizan maltas cafetosas y maltas chocolate perfectamente tostadas. Su color es de un negro intenso. Cerveza Minerva Stout Imperial es el orgullo de Minerva, sin duda el estandarte de la revolución cervecera en México.</p>
-                                <a href="perfil_beer.php">
+                                <span class="title"><?=$l['bannerSliderPostTitle']?></span>
+                                <span class="sub_title"><?=$l['bannerSliderPostSubtitle']?></span>
+                                <p><?=$l['bannerSliderPostDescription']?></p>
+                                <a href="<?=$l['bannerSliderPostUrl']?>">
                                     <div class="boton_mas">VER MÁS</div>
                                 </a>
                             </div>
                         </div>
                     </div>
+
                     <div class="contact_us_or_follow">
                         <img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
                         <div class="contenido_social">

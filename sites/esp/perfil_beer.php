@@ -2,6 +2,22 @@
 session_start();
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
+
+if(isset($_GET['id'])){
+    $queryBeer = "SELECT * FROM beer
+    INNER JOIN producer ON beer.idProducer = producer.idProducer
+    INNER JOIN beertype ON beer.idBeerType = beertype.idBeerType
+    INNER JOIN countries ON producer.country_id = countries.id
+    INNER JOIN states ON producer.state_id = states.id
+    WHERE beer.idBeer = ".$_GET['id'];
+    $resultBeer = mysql_query($queryBeer) or die(mysql_error());
+    $lineBeer = mysql_fetch_array($resultBeer);
+    if(!mysql_num_rows($resultBeer)>0)
+      header('Location: inicio.php');
+}else{
+  header('Location: inicio.php');
+}
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
@@ -16,7 +32,7 @@ if (isset($_SESSION['idUser'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Perfil | The Beer Fans | Red Social</title>
+        <title>Cerveza | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -345,58 +361,46 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/beerCovers/<?= $lineBeer['beerCoverImage'] ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
             </div>
 
             <div class="content_profile content_profile_beer">
 
                 <div class="image_logo">
-                    <img src="../../images/beerProfiles/alhambra.png" />
+                    <img src="../../images/beerProfiles/<?= $lineBeer['beerProfileImage'] ?>" />
                 </div>
 
 
-                <div class="name_profile">
-
-                    <p>Alhambra</p>
-
+                <div class="name_profile" style="width: 70%;">
+                    <p><?= strtoupper($lineBeer['beerName']) ?></p>
                 </div>
 
-                <div class="city_profile">
-
-                    <p>Dorada </p>
-
+                <div class="city_profile" style="width: 70%;">
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br>
+                    <p><?=$lineBeer['name_c']?>, <?=$lineBeer['name_s']?>.</p>
                 </div>
-
-                <div class="age_profile">
-
-                    <p>Caracteristicas Generales</p>
-
-                </div>
-
+                <br>
                 <div class="desc_profile">
-
-                    <p>"Sed ut perspiciatis unde omnis iste natus
-                        error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa
-                        quae ab illo inventore veritatis et quasi
-                        ar- chitecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit
-                        aspernatur aut odit aut fugit, sed quia con-
-                        sequuntur magni dolores eos qui ratione vo-
-                        luptatem sequi nesciunt. Neque porro quis-
-                    </p>
+                    <h2>Caracteristicas Generales</h2><br>
+                    <p><?=$lineBeer['beerDescription']?></p>
                     <br><br>
-                    <span>PaÃ­s: </span> <span>ESPAÃ‘A</span> <br><br>
-                    <span>Estilo: </span> <span> Dorada </span> <br><br>
-                    <span>Grado de alcohol:</span> <span>4.6% - 6.4%</span> <br><br>
-                    <span>IBUS:</span> <span>30</span> <br>
+                    <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br><br>
+                    <span>Estilo: </span> <span> <?= strtoupper($lineBeer['beerTypeName']) ?> </span> <br><br>
+                    <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br><br>
+                    <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
                 </div>
 
                 <div class="social_company">
-                    <a href="#" class="first_contact fb"><img src="../../images/social-04.png"/></a>
-                    <a href="#" class="other_contact twt"><img src="../../images/social-02.png" /></a>
-                    <a href="#" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+                    <?php if(strlen($lineBeer['beerFacebook'])>0){?>
+                    <a target="_blank" href="<?= $lineBeer['beerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
+                    <?php } ?>
+                    <?php if(strlen($lineBeer['beerTwitter'])>0){?>
+                    <a target="_blank" href="<?= $lineBeer['beerTwitter'] ?>" class="other_contact twt"><img src="../../images/social-02.png" /></a>
+                    <?php } ?>
+                      <?php if(strlen($lineBeer['beerInstagram'])>0){?>
+                    <a target="_blank" href="<?= $lineBeer['beerInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+                    <?php } ?>
                 </div>
 
 
