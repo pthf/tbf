@@ -2,6 +2,20 @@
 session_start();
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
+
+if(isset($_GET['id'])){
+    $queryProducer = "SELECT * FROM producer
+    INNER JOIN countries ON producer.country_id = countries.id
+    INNER JOIN states ON producer.state_id = states.id
+    WHERE idProducer = ".$_GET['id'];
+    $resultProducer = mysql_query($queryProducer) or die(mysql_error());
+    $lineProducer = mysql_fetch_array($resultProducer);
+    if(!mysql_num_rows($resultProducer)>0)
+      header('Location: inicio.php');
+}else{
+  header('Location: inicio.php');
+}
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
@@ -16,7 +30,7 @@ if (isset($_SESSION['idUser'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Perfil | The Beer Fans | Red Social</title>
+        <title>Productores | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -264,7 +278,7 @@ if (isset($_SESSION['idUser'])) {
         <div id="contenedor">
 
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/beerProfiles/minerva.png" />
+                <img class="profile_popup" src="../../images/producerProfiles/<?= $lineProducer['producerProfileImage'] ?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -345,61 +359,63 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/producerCovers/<?=$lineProducer['producerCoverImage']?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
             </div>
 
             <div class="content_profile content_profile_beer">
 
                 <div class="image_logo">
 
-                    <img src="../../images/beerProfiles/minerva.png" />
+                    <img src="../../images/producerProfiles/<?=$lineProducer['producerProfileImage']?>" />
 
                 </div>
 
-                <div class="name_profile">
+                <div class="name_profile" style="width: 70%;">
 
-                    <p>CERVECERIA MINERVA</p>
-
-                </div>
-
-                <div class="city_profile">
-
-                    <p>Guadalajara, México.</p>
+                    <p><?=mb_strtoupper($lineProducer['producerName'])?></p>
 
                 </div>
 
-                <div class="age_profile">
+                <div class="city_profile" style="width: 70%;">
+                    <p><?=$lineProducer['name_c']?>, <?=$lineProducer['name_s']?>.</p>
+                </div>
 
-                    <p>Av. López Mateos #34 <br> Col. El Monte, CP. 60403 <br> T. 334433578454.</p>
-
+                <div class="age_profile material_age" style="width: 70%;">
+                    <p><?=$lineProducer['producerAddress']?>, CP. <?=$lineProducer['producerZip']?> <br> T.  <?=$lineProducer['producerPhone']?>.</p>
                 </div>
 
                 <div class="desc_profile">
 
-                    <p>"Sed ut perspiciatis unde omnis iste natus
-                        error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa
-                        quae ab illo inventore veritatis et quasi
-                        ar- chitecto beatae vitae dicta sunt explicabo.
-                        Nemo enim ipsam voluptatem quia voluptas sit
-                        aspernatur aut odit aut fugit, sed quia con-
-                        sequuntur magni dolores eos qui ratione vo-
-                        luptatem sequi nesciunt. Neque porro quis-
-                    </p>
+                    <p><?=$lineProducer['producerDescription']?></p><br><br>
 
-
-                    <a href="mailto:someone@example.com?Subject=The_Beers_Fans" target="_top" class="message_button">
+                    <a href="mailto:<?=$lineProducer['producerEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
                         <div class="send_message" >
                             <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO</p>
+                            <p>ENVIAR CORREO.</p>
                         </div>
                     </a>
 
-                    <div class="link_profile">
-                        <a href="http://www.cervezaminerva.mx/">www.cervezaminerva.mx</a>
+                    <?php if(isset($lineProducer['producerSite'])){ ?>
+                    <div class="link_profile" style="width: 70%;">
+                        <a href="<?=$lineProducer['producerSite'];?>"><?=$lineProducer['producerSite'];?></a>
                     </div>
+                    <?php } ?>
+
 
                 </div>
+
+                <div class="social_company">
+                    <?php if(strlen($lineProducer['producerFacebook'])>0){?>
+                    <a target="_blank" href="<?= $lineProducer['producerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
+                    <?php } ?>
+                    <?php if(strlen($lineProducer['producerTwitter'])>0){?>
+                    <a target="_blank" href="<?= $lineProducer['producerTwitter'] ?>" class="other_contact twt"><img src="../../images/social-02.png" /></a>
+                    <?php } ?>
+                      <?php if(strlen($lineProducer['producerInstagram'])>0){?>
+                    <a target="_blank" href="<?= $lineProducer['producerInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+                    <?php } ?>
+                </div>
+
 
 
             </div>

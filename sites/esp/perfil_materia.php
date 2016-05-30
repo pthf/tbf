@@ -7,6 +7,8 @@ if(isset($_GET['id'])){
     $queryMateria = "SELECT * FROM rawmaterial WHERE idRawMaterial = ".$_GET['id'];
     $resultMateria = mysql_query($queryMateria) or die(mysql_error());
     $lineMateria = mysql_fetch_array($resultMateria);
+    if(!mysql_num_rows($resultMateria)>0)
+      header('Location: inicio.php');
 }else{
   header('Location: inicio.php');
 }
@@ -23,7 +25,7 @@ if (isset($_SESSION['idUser'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cervezas | The Beer Fans | Red Social</title>
+        <title>Materia Prima | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -352,7 +354,7 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/rawMaterialCovers/<?=$lineMateria['rawMaterialProfileImage']?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/rawMaterialCovers/<?=$lineMateria['rawMaterialCoverImage']?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
             </div>
 
             <div class="content_profile content_profile_beer">
@@ -378,10 +380,10 @@ if (isset($_SESSION['idUser'])) {
                 <div class="desc_profile">
 
 
-                    <a href="mailto:<?=mb_strtoupper ($lineMateria['rawMaterialEmail']);?>?Subject=The_Beers_Fans" target="_top" class="message_button">
+                    <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
                         <div class="send_message">
                             <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO A PRODUCTOR</p>
+                            <p>ENVIAR CORREO.</p>
                         </div>
                     </a>
 
