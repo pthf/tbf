@@ -32,14 +32,14 @@ if (isset($_SESSION['idUser'])) {
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
 
-				<script type="text/javascript">
+		<script type="text/javascript">
             $(document).ready(function () {
 
                 (function ($) {
-                    $('#filtrar').keyup(function () {
+                    $('#filtrar_user').keyup(function () {
                         var rex = new RegExp($(this).val(), 'i');
-                        $('.buscar_beers .beers').hide();
-                        $('.buscar_beers .beers').filter(function () {
+                        $('.user_message .chat_user').hide();
+                        $('.user_message .chat_user').filter(function () {
                             return rex.test($(this).text());
                         }).show();
                     })
@@ -47,7 +47,7 @@ if (isset($_SESSION['idUser'])) {
             });
         </script>
 
-				<script type="text/javascript">
+		<script type="text/javascript">
             $(document).ready(function () {
                 $('.buscar .users').hide();
                 $('.noresults').hide();
@@ -353,7 +353,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="search_">
                     <div class="circle_search">
                         <img src="../../images/icon-01.png"/>
-                        <input name="message" type="text"/>
+                        <input name="message" type="text" id="filtrar_user"/>
                     </div>
                 </div>
 
@@ -370,544 +370,35 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
             <!-- BOTTOM -->
-            <div class="content_messages_bottom">
-
+            <div class="content_messages_bottom user_message">
+            	
                 <!--box bottom left -->
                 <div id="contact_list">
-
-                    <div class="contactProfile">
+                	<?php 
+	            	$query = "SELECT * FROM chat ch INNER JOIN user us ON us.idUser = ch.user_idUser GROUP BY us.userName";
+	            	$resultado = mysql_query($query) or die (mysql_error());
+	            	while ($row = mysql_fetch_array($resultado)) {
+	            	?>
+                    <a href="?idUserChat=<?php echo $row['user_idUser']; ?>" id="chats_inbox"><div class="contactProfile chat_user">
 
                         <div class="contact_left">
 
                             <img src="../../images/green_icon.png" alt="" />
 
-                            <p>CONTACTO </p>
+                            <p><?php echo $row['userName'];?> </p>
 
                         </div>
 
                         <div class="contact_image">
 
                             <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
+                                <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
                             </div>
 
                         </div>
 
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="contactProfile">
-
-                        <div class="contact_left">
-
-                            <img src="../../images/green_icon.png" alt="" />
-                            <p>CONTACTO </p>
-
-                        </div>
-
-                        <div class="contact_image">
-
-                            <div class="img_pro">
-                                <img src="../../images/profile_default.jpg"/>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                    </div></a>
+                	<?php } ?>
                 </div>
 
                 <!--box bottom right -->
@@ -916,24 +407,27 @@ if (isset($_SESSION['idUser'])) {
 
                 <div id="inbox_content">
                     <div class="msn_content">
-
+                    	<?php 
+                    	$chat = $_GET['idUserChat'];
+		            	$query1 = "SELECT * FROM message m INNER JOIN user us ON us.idUser = m.user_idUser WHERE m.user_idUser = '".$chat."'";
+		            	$resultado1 = mysql_query($query1) or die (mysql_error());
+		            	while ($row1 = mysql_fetch_array($resultado1)) {
+		            	?>
                         <!-- message received -->
                         <div id="itemContainer">
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
+                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
                                 </div>
 
                                 <div class="item i2">
-                                    <p>CONTACTO</p>
+                                    <p><?php echo $row1['userName'];?></p>
                                 </div>
 
                                 <div class="item i3">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
+                                    	<?php echo $row1['messageText'];?>
                                     </p>
 
                                 </div>
@@ -943,333 +437,30 @@ if (isset($_SESSION['idUser'])) {
 
                             <h2>Miércoles 18 de Junio 2015</h2>
                         </div>
-
-                        <!-- message sent -->
+                        <?php } ?>
                         <div id="itemContainer">
                             <div id="itemContainerInner">
 
                                 <div class="item i1 sent_">
-                                    <img src="../../images/profile_default.jpg"/>
+                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
                                 </div>
 
                                 <div class="item i2 sent_">
-                                    <p>CONTACTO</p>
+                                    <p>Hola</p>
                                 </div>
 
                                 <div class="item i3 sent_">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-                                    </p>
-                                </div>
-
-                                <div class="date_sent">
-                                    <h2>Miércoles 18 de Junio 2015</h2>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
+                                    	Ejemplo
                                     </p>
 
                                 </div>
 
 
                             </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-                                    </p>
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message sent -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1 sent_">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2 sent_">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3 sent_">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-                                    </p>
-                                </div>
-
-                                <div class="date_sent">
-                                    <h2>Miércoles 18 de Junio 2015</h2>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-                                    </p>
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
+                            <div class="date_sent">
+                            	<h2>Miércoles 18 de Junio 2015</h2>
+                        	</div>
                         </div>
 
                     </div>

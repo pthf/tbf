@@ -425,7 +425,16 @@ if (isset($_GET['type'])) {
                                             <li class="first_beer beertwo producer">
                                                 <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row3['producerName']; ?></span>
-                                                <span class="subtitle"><?php echo $row3['producerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                	<?php 
+	                                            	$length = 40;
+	                                            	$stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
+	                                            	if (strlen(strip_tags($row3['producerDescription'])) > $length) {
+	                                            		$stringDisplay .= '...';
+	                                            	}
+	                                            	echo $stringDisplay;
+	                                            	?>
+                                                </span>
                                                 <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
                                         <?php
@@ -440,7 +449,16 @@ if (isset($_GET['type'])) {
                                             <li class="first_beer beertwo producer">
                                                 <img src="../../images/producerProfiles/<?php echo $row4['producerProfileImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row4['producerName']; ?></span>
-                                                <span class="subtitle"><?php echo $row4['producerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                	<?php 
+	                                            	$length = 40;
+	                                            	$stringDisplay = substr(strip_tags($row4['producerDescription']), 0, $length);
+	                                            	if (strlen(strip_tags($row4['producerDescription'])) > $length) {
+	                                            		$stringDisplay .= '...';
+	                                            	}
+	                                            	echo $stringDisplay;
+	                                            	?>
+                                                </span>
                                                 <a href="perfil_empresa.php?id=<?php echo $row4['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
                                         <?php
@@ -461,7 +479,16 @@ if (isset($_GET['type'])) {
                                                 <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row3['producerName']; ?></span>
                                                 <span hidden><?php echo $row3['beerStrength']; ?></span>
-                                                <span class="subtitle"><?php echo $row3['producerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                	<?php 
+	                                            	$length = 40;
+	                                            	$stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
+	                                            	if (strlen(strip_tags($row3['producerDescription'])) > $length) {
+	                                            		$stringDisplay .= '...';
+	                                            	}
+	                                            	echo $stringDisplay;
+	                                            	?>
+                                                </span>
                                                 <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
 
@@ -475,73 +502,22 @@ if (isset($_GET['type'])) {
                                             <li class="first_beer beertwo producer">
                                                 <img src="../../images/producerProfiles/<?php echo $row2['producerProfileImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row2['producerName']; ?></span>
-                                                <span class="subtitle"><?php echo $row2['producerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                	<?php 
+	                                            	$length = 40;
+	                                            	$stringDisplay = substr(strip_tags($row2['producerDescription']), 0, $length);
+	                                            	if (strlen(strip_tags($row2['producerDescription'])) > $length) {
+	                                            		$stringDisplay .= '...';
+	                                            	}
+	                                            	echo $stringDisplay;
+	                                            	?>
+                                                </span>
                                                 <a href="perfil_empresa.php?id=<?php echo $row2['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
     <?php }
 }
 ?>
                                 </article>
-
-                                <!-- <article>
-                                                <li class="first_beer">
-                                                <img src="../../images/beerProfiles/brahma.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/alhambra.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/mahou.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/minerva.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="first_beer">
-                                                <img src="../../images/beerProfiles/poker.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/quilmes.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/shiner.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                                <li class="other_beer">
-                                                <img src="../../images/beerProfiles/brahma.png"> <br>
-                                                <span class="title">Nombre Cerveza</span>
-                                                <span class="subtitle">Brief description of the beer </span>
-                                                <a href="perfil_empresa.php"><span class="ver_mas">VER MÁS</span></a>
-                                                </li>
-
-                                        </article> -->
-
 
                             </div>
                         </div>

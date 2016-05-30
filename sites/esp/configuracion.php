@@ -74,9 +74,24 @@ if (isset($_SESSION['idUser'])) {
                         }
                     })
                 }(jQuery));
+				$('.changeemail').hide();
+	        	$('.changepass').hide();
+				$("#em").on( "click", function() {
+					$('.changeemail').show(); 
+					$('.changepass').hide();
+				});
+				$("#pass").on( "click", function() {
+					$('.changepass').show(); 
+					$('.changeemail').hide(); 
+				});
+				$("#cancelemail").on( "click", function() {
+					$('.changeemail').hide(); 
+				});
+				$("#cancelpass").on( "click", function() {
+					$('.changepass').hide(); 
+				});
             });
         </script>
-
 
     </head>
     <body>
@@ -361,13 +376,11 @@ if (isset($_SESSION['idUser'])) {
                     $query = "SELECT * FROM user WHERE idUser =" . $_SESSION['idUser'];
                     $resultado = mysql_query($query) or die(mysql_error());
                     $row = mysql_fetch_array($resultado);
-                    //echo "<pre>";
-                    //print_r($row);
-                    //print_r($row['userBirthDate']);
                     ?>
                 </div>
                 <div class="info_config">
-                    <form id="formUser" name="formUserData" enctype="multipart/form-data">
+                    <form id="formUser" name="formUserData" >
+                    	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
                         <div class="email_config">
                             <p>NOMBRE: </p> <input required type="text" name="name" style="width:60%; border: none" value="<?php echo $row['userName']; ?>">
                         </div>
@@ -458,40 +471,60 @@ if (isset($_SESSION['idUser'])) {
                                 ?>
                             </select>
                         </div>
+                        <script type="text/javascript">
+				        </script>
 
-                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="em">EMAIL</a></u>.</label></span>
-                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="pass">CONTRASEÑA</a></u>.</label></span>
-
-                        <div class="email_config" style="width: 80%;">
-                            <p>ANTIGUO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-                        <div class="email_config" style="width: 80%;">
-                            <p>NUEVO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-                        <div class="email_config" style="width: 80%;">
-                            <p>CONFIRMAR EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-
-                        <div class="email_config" style="width: 80%;">
-                            <p>ANTIGUO PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-                        <div class="email_config" style="width: 80%;">
-                            <p>NUEVO PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-
-                        <div class="email_config" style="width: 80%;">
-                            <p>CONFIRMAR PASSWORD: </p> <input required type="password" name="email" style="width:50%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>
-
-
-                        <h1 class="top_config" style="margin-top:12%">DESCRIPCION:</h1>
+                        <h1 class="top_config" style="margin-top:5%">DESCRIPCION:</h1>
 
                         <div class="desc_config">
 
                             <p><textarea required row="" cols="70" style="border: none;" name="description"><?php echo $row['userDescription']; ?></textarea></p>
                         </div>
                         <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff;">
+                        <div class="resultado"></div>
                     </form>
+
+                    	<div class="top_config" style="">
+                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="em">EMAIL</a></u>.</label></span>
+                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="pass">CONTRASEÑA</a></u>.</label></span>
+                    	</div>
+                        
+                        <form id="formChangeEmail" name="formEmailData" enctype="multipart/form-data">
+                        	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
+	                        <div class="changeemail" style="margin-top:5%">
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>ANTIGUO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="">
+		                        </div>
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>NUEVO EMAIL: </p> <input required type="email" name="newemail" style="width:50%; border: none" value="">
+		                        </div>
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>CONFIRMAR EMAIL: </p> <input required type="email" name="confirmemail" style="width:50%; border: none" value="">
+		                        </div>
+		                        <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
+		                        <input type="button" id="cancelemail" class="actualizar_info" value="REGRESAR" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
+		                        <div class="resultado_email"></div>
+		                    </div>
+	                	</form>
+
+	                	<form id="formChangePass" name="formPassData" enctype="multipart/form-data">
+	                		<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
+		                    <div class="changepass" style="margin-top:5%">
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>ANTIGUO PASSWORD: </p> <input required type="password" name="password" style="width:50%; border: none" value="">
+		                        </div>
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>NUEVO PASSWORD: </p> <input required type="password" name="newpass" style="width:50%; border: none" value="">
+		                        </div>
+
+		                        <div class="email_config" style="width: 80%;">
+		                            <p>CONFIRMAR PASSWORD: </p> <input required type="password" name="confirpass" style="width:50%; border: none" value="">
+		                        </div>
+		                        <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
+		                        <input type="button" id="cancelpass" class="actualizar_info" value="REGRESAR" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
+		                        <div class="resultado_pass"></div>
+		                    </div>
+		                </form>
                 </div>
 
             </div>
@@ -523,7 +556,7 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
         </div>
-        <!--<script src="../js/services.js"></script>-->
+        <script src="../../js/services.js"></script>
         <script type="text/javascript">
             $("#selectCountry").change(function () {
                 var idCountry = $("option:selected", this).attr('name');

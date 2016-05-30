@@ -427,8 +427,16 @@ if (isset($_GET['type'])) {
                                             <li class="first_beer beertwo beers">
                                                 <img src="../../images/beerBottles/<?php echo $row3['beerBottleImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row3['beerName']; ?></span>
-                                                <span hidden>Hola bebe</span>
-                                                <span class="subtitle"><?php echo $row3['beerDescription']; ?></span>
+                                                <span class="subtitle">
+                                            	<?php 
+                                            	$length = 40;
+                                            	$stringDisplay = substr(strip_tags($row3['beerDescription']), 0, $length);
+                                            	if (strlen(strip_tags($row3['beerDescription'])) > $length) {
+                                            		$stringDisplay .= '...';
+                                            	}
+                                            	echo $stringDisplay;
+                                            	?>
+                                                </span>
                                                 <a href="perfil_beer.php?id=<?php echo $row3['idBeer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
                                         <?php
@@ -440,12 +448,20 @@ if (isset($_GET['type'])) {
 											INNER JOIN beerfans.countries co
 											ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
                                         $resultado_country = mysql_query($query_country) or die(mysql_error());
-                                        while ($row4 = mysql_fetch_array($resultado_country)) {
-                                            ?>
+                                        while ($row4 = mysql_fetch_array($resultado_country)) { ?>
                                             <li class="first_beer beertwo beers">
                                                 <img src="../../images/beerBottles/<?php echo $row4['beerBottleImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row4['beerName']; ?></span>
-                                                <span class="subtitle"><?php echo $row4['beerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                	<?php 
+                                                	$length = 40;
+                                                	$stringDisplay = substr(strip_tags($row4['beerDescription']), 0, $length);
+                                                	if (strlen(strip_tags($row4['beerDescription'])) > $length) {
+	                                            		$stringDisplay .= '...';
+	                                            	}
+                                                	echo $stringDisplay;
+                                                	?>
+                                                </span>
                                                 <a href="perfil_beer.php?id=<?php echo $row4['idBeer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
                                         <?php
@@ -460,13 +476,21 @@ if (isset($_GET['type'])) {
 										ON c.id = p.country_id
 										WHERE bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
                                         $resultado3 = mysql_query($query3) or die(mysql_error());
-                                        while ($row3 = mysql_fetch_array($resultado3)) {
-                                            ?>
+                                        while ($row3 = mysql_fetch_array($resultado3)) { ?>
                                             <li class="first_beer beertwo beers">
                                                 <img src="../../images/beerBottles/<?php echo $row3['beerBottleImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row3['beerName']; ?></span>
                                                 <span hidden><?php echo $row3['beerStrength']; ?></span>
-                                                <span class="subtitle"><?php echo $row3['beerDescription']; ?></span>
+                                                <span class="subtitle">
+                                            	<?php 
+                                            	$length = 40;
+                                            	$stringDisplay = substr(strip_tags($row3['beerDescription']), 0, $length);
+                                            	if (strlen(strip_tags($row3['beerDescription'])) > $length) {
+                                            		$stringDisplay .= '...';
+                                            	}
+                                            	echo $stringDisplay;
+                                            	?>
+                                                </span>
                                                 <a href="perfil_beer.php?id=<?php echo $row3['idBeer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
 
@@ -475,13 +499,21 @@ if (isset($_GET['type'])) {
                                     } else {
                                         $query2 = "SELECT * FROM beer";
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
-                                        while ($row2 = mysql_fetch_array($resultado2)) {
-                                            ?>
+                                        while ($row2 = mysql_fetch_array($resultado2)) { ?>
                                             <li class="first_beer beertwo beers">
                                                 <img src="../../images/beerBottles/<?php echo $row2['beerBottleImage']; ?>"> <br>
                                                 <span class="title"><?php echo $row2['beerName']; ?></span>
                                                 <span hidden><?php echo $row2['beerStrength']; ?></span>
-                                                <span class="subtitle"><?php echo $row2['beerDescription']; ?></span>
+                                                <span class="subtitle">
+                                                <?php 
+                                            	$length = 40;
+                                            	$stringDisplay = substr(strip_tags($row2['beerDescription']), 0, $length);
+                                            	if (strlen(strip_tags($row2['beerDescription'])) > $length) {
+                                            		$stringDisplay .= '...';
+                                            	}
+                                            	echo $stringDisplay;
+                                            	?>
+                                                </span>
                                                 <a href="perfil_beer.php?id=<?php echo $row2['idBeer']; ?>"><span class="ver_mas">VER MÁS</span></a>
                                             </li>
     <?php }

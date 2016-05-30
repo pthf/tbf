@@ -403,10 +403,14 @@ if (isset($_SESSION['idUser'])) {
                         <p class="toptext-light"> ENVIAR MENSAJE </p>
 
                         <div class="msn_form">
-                            <p class="subject_form">ASUNTO:<input style="border:none" type="text" name="name"></p>
-                            <p class="text_form">MENSAJE: <textarea  name="name" rows="8" cols="40"></textarea> </p>
-                            <br>
-                            <input type="submit" value="ENVIAR">
+                        	<form id="formNewMessage">
+                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
+                        		<input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
+	                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->	
+	                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
+	                            <br>
+	                            <input type="submit" value="ENVIAR">
+	                        </form>
                         </div>
                     </div>
                 </div>
@@ -1860,7 +1864,7 @@ if (isset($_SESSION['idUser'])) {
                     <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>
             </div>
-
+            <script src="../../js/services.js"></script>
             <script type="text/javascript">
                 $(document).on("ready", function () {
 
