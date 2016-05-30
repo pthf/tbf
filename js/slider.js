@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var $visibleSlide, getDataSlide, sliderInterval, getDataNextSlide, getDataPrevSlide, getDataNavDot;
   var fadeDuration = 500;
-  var pause = 3500;
+  var pause = 3000;
 
   //show first slide
   $('.beers_month li:first-child').css('display','block');
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
    $('.nav_beers li').removeClass('active-cd');
 
-   if (getDataSlide < 3) {
+   if (getDataSlide < $('.cantidadElements').attr('name')) {
       $visibleSlide.fadeOut(fadeDuration);
       $visibleSlide.next().fadeIn(fadeDuration);
       $('.nav_beers li[data-cd='+getDataNextSlide+']').addClass('active-cd');
