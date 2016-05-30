@@ -18,6 +18,12 @@ if(isset($_POST['namefunction'])){
 		case 'newMessage':
 			newMessage();
 		break;
+		case 'changeImageBanner':
+			changeImageBanner();
+		break;
+		case 'changeImagePerfil':
+			changeImagePerfil();
+		break;
 	}
 }
 
@@ -124,5 +130,45 @@ function newMessage() {
     $idChatReceptor = mysql_insert_id();
 	$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
 	$resultado5 = mysql_query($query5) or die (mysql_error());
+
+}
+
+function changeImageBanner () {
+
+	parse_str($_POST['action'], $formData);
+	$fileNames = []; //imgProfile, imgCover, imgBottle
+	$indice = 0;
+	foreach ($_FILES['beerBannerImage']["error"]  as $key => $value) {
+		$fileName = $_FILES["beerBannerImage"]["name"][$key];
+		$fileName = date("YmdHis").pathinfo($_FILES["beerBannerImage"]["type"][$key], PATHINFO_EXTENSION);
+		array_push($fileNames, $fileName);
+		$fileType = $_FILES["beerBannerImage"]["type"][$key];
+		$fileTemp = $_FILES["beerBannerImage"]["tmp_name"][$key];
+		if($indice==0)
+			//move_uploaded_file($fileTemp, "../images/userProfile/".$fileName);
+		$indice++;
+	}
+	/*$query = "UPDATE user SET userProfileImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
+	$result = mysql_query($query) or die(mysql_error());*/
+
+}
+
+function changeImagePerfil () {
+
+	parse_str($_POST['action'], $formData);
+	$fileNames = [];
+	$indice = 0;
+	foreach ($_FILES['beerProfileImage']["error"]  as $key => $value) {
+		$fileName = $_FILES["beerProfileImage"]["name"][$key];
+		$fileName = date("YmdHis").pathinfo($_FILES["beerProfileImage"]["type"][$key], PATHINFO_EXTENSION);
+		array_push($fileNames, $fileName);
+		$fileType = $_FILES["beerProfileImage"]["type"][$key];
+		$fileTemp = $_FILES["beerProfileImage"]["tmp_name"][$key];
+		if($indice==0)
+			move_uploaded_file($fileTemp, "../images/userProfile/".$fileName);
+		$indice++;
+	}
+	$query = "UPDATE user SET userProfileImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
+	$result = mysql_query($query) or die(mysql_error());
 
 }

@@ -97,3 +97,63 @@ $("#formNewMessage").submit(function(e){
 	 	}
     })
 });
+
+$("#formChangeImagePerfil").submit(function(e){
+
+	e.preventDefault();
+
+	var ajaxData = new FormData();
+	ajaxData.append("action", $(this).serialize());
+	ajaxData.append("namefunction", "changeImagePerfil");
+
+	$.each($("input[type=file]"), function(i, obj) {
+		$.each(obj.files, function(j,file) {
+			ajaxData.append('beerProfileImage['+i+']', file);
+		})
+	});
+
+	$.ajax({
+		url: "../../php/functions.php",
+		type: "POST",
+		data: ajaxData,
+		processData: false,
+		contentType: false,
+		success: function(result){
+			//alert(result);
+			$('#formChangeImagePerfil')[0].reset();
+			location.reload();
+		},
+		error: function(error){
+			alert(error);
+		}
+	})
+});
+
+$("#formChangeImageBanner").submit(function(e){
+
+	e.preventDefault();
+
+	var ajaxData = new FormData();
+	ajaxData.append("action", $(this).serialize());
+	ajaxData.append("namefunction", "changeImageBanner");
+
+	$.each($("input[type=file]"), function(i, obj) {
+		$.each(obj.files, function(j,file) {
+			ajaxData.append('beerBannerImage['+i+']', file);
+		})
+	});
+
+	$.ajax({
+		url: "../../php/functions.php",
+		type: "POST",
+		data: ajaxData,
+		processData: false,
+		contentType: false,
+		success: function(result){
+			alert(result);
+		},
+		error: function(error){
+			alert(error);
+		}
+	})
+});

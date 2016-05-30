@@ -28,9 +28,9 @@ if (isset($_SESSION['idUser'])) {
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
-        <script type="text/javascript" src="../../js/image_click.js"></script>
+        <!--<script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/image_click0.js"></script>
-        <script type="text/javascript" src="../../js/popup_img.js"></script>
+        <script type="text/javascript" src="../../js/popup_img.js"></script>-->
 
 				<script type="text/javascript">
             $(document).ready(function () {
@@ -345,63 +345,128 @@ if (isset($_SESSION['idUser'])) {
                 </div>
             </div>
 
+            
+            <?php 
+            $query1 = "SELECT * FROM user us
+						INNER JOIN countries co
+						ON co.id = us.country_id
+						INNER JOIN states st
+						ON st.id = us.state_id
+            			WHERE us.idUser = '".$_GET['idUser']."'";
+            $resultado = mysql_query($query1) or die (mysql_error());
+            $row = mysql_fetch_array($resultado);
+
+            $fechanacimiento = ('1991-12-12');
+            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+			$ano_diferencia  = date("Y") - $ano;
+			$mes_diferencia = date("m") - $mes;
+			$dia_diferencia   = date("d") - $dia;
+			if ($dia_diferencia < 0 || $mes_diferencia < 0)
+				$ano_diferencia--;
+            ?>
+
             <div class="top_img">
                 <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                    <a href="#"><span class="change_banner">CAMBIAR FOTO</span></a>
+                    <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
             </div>
+            <div class="login-modal banner_change">
+				<div class="login-modal-wrapper">
+					<div class="close-icon">
+							<img src="../../images/img_galeria-02_close.png" >
+					</div>
+					<div class="login-title">
+							<span class="login-title-text">CAMBIAR IMAGEN BANNER</span>
+					</div>
+
+					<form id="formChangeImageBanner">
+						<div class="input-boxes">
+								<br>
+								<div class="col-sm-12">
+									<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
+									<input required type="file" class="form-control" name="beerBannerImage[]" value=""></input>
+								</div>
+						</div>
+
+						<div class="send-login-content">
+								<br>
+								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+						</div>
+					</form>
+				</div>
+			</div>
 
             <div class="content_profile">
 
                 <div class="image_profile">
-                    <img src="../../images/images.jpeg" />
+                    <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>" />
                     <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                        <a href="#"><span class="change_profile">CAMBIAR FOTO</span></a>
+                        <a href="#" class="image_perfil_click"><span class="change_profile">CAMBIAR FOTO</span></a>
                     <?php } ?>
                 </div>
+                <div class="login-modal perfil_change">
+					<div class="login-modal-wrapper">
+						<div class="close-icon">
+								<img src="../../images/img_galeria-02_close.png" >
+						</div>
+						<div class="login-title">
+								<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+						</div>
 
+						<form id="formChangeImagePerfil">
+							<div class="input-boxes">
+									<br>
+									<div class="col-sm-12">
+										<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
+										<input required type="file" class="form-control" name="beerProfileImage[]" value=""></input>
+									</div>
+							</div>
+
+							<div class="send-login-content">
+									<br>
+									<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
                 <div class="name_profile">
-                    <p>JOHN WEST</p>
+                    <p><?php echo $row['userName']; ?></p>
                 </div>
 
                 <div class="city_profile">
-                    <p>Ciudad de México, México.</p>
+                    <p><?php echo $row['name_s'].', '.$row['name_c']?>.</p>
                 </div>
 
                 <div class="age_profile">
-                    <p>27 AÑOS.</p>
+                    <p><?php echo $ano_diferencia; ?> años.</p>
                 </div>
 
                 <div class="profile_res">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
+                    <p><?php echo $row['userDescription']; ?>.</p>
                 </div>
 
                 <!-- Send message popup -->
+
+                <?php if (isset($_SESSION['idUser']) == $_GET['idUser']) { ?>
+                <a id="show-img" href="#" style="display: none">
+                    <img src="../../images/social-03.png" />
+                    <p class="send_txt"> ENVIAR MENSAJE	</p>
+                </a>
+                <?php } else { ?>
                 <a id="show-img" href="#">
                     <img src="../../images/social-03.png" />
                     <p class="send_txt"> ENVIAR MENSAJE	</p>
                 </a>
+                <?php } ?>
                 <div id="lightbox-panel">
                     <div class="lightbox-content">
                         <a id="close-panel" class="msn_box" href="#">
                             <img src="../../images/img_galeria-02_close.png" alt="" />
                         </a>
-                        <p class="toptext-light"> ENVIAR MENSAJE </p>
-
+                        
+                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
                         <div class="msn_form">
                         	<form id="formNewMessage">
                         		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
@@ -1839,24 +1904,24 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
-                                            <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                                            </ul>
+                        <ul class="nav">
+                            <a href="inicio.php"><li><span>HOME</span></li></a>
+                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                            <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+                            <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                        </ul>
                     <?php } else { ?>
-                                            <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                                            </ul>
+                        <ul class="nav">
+                            <a href="inicio.php"><li><span>HOME</span></li></a>
+                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                            <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                        </ul>
                     <?php } ?>
 
                     <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
@@ -1865,33 +1930,6 @@ if (isset($_SESSION['idUser'])) {
                 </div>
             </div>
             <script src="../../js/services.js"></script>
-            <script type="text/javascript">
-                $(document).on("ready", function () {
-
-                    $(document).on('click', '.user_name, .user_name_click', function () {
-                        $(".login-modal").css({
-                            "opacity": "1",
-                            "z-index": "10",
-                        }),
-                                $(".background-filter").css({
-                            "opacity": "1",
-                            "z-index": "10",
-                        })
-                    });
-
-                    $(".close-icon,.background-filter").on("click", function () {
-                        $(".login-modal").css({
-                            "opacity": "0",
-                            "z-index": "-1",
-                        }),
-                                $(".background-filter").css({
-                            "opacity": "0",
-                            "z-index": "-1",
-                        })
-                    });
-
-                });
-            </script>
 
             <script type="text/javascript">
                 $(document).on("ready", function () {
@@ -1956,57 +1994,113 @@ if (isset($_SESSION['idUser'])) {
         <?php } ?>
 
 				<script type="text/javascript">
-						$(document).on("ready", function () {
+					$(document).on("ready", function () {
 
-								$(document).on('click', '.user_name, .user_name_click', function () {
-										$(".login-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
-
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".login-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
-
+						$(document).on('click', '.user_name, .user_name_click', function () {
+							$(".login-modal").css({
+								"opacity": "1",
+								"z-index": "10",
+							}),
+							$(".background-filter").css({
+								"opacity": "1",
+								"z-index": "10",
+							})
 						});
+
+						$(".close-icon,.background-filter").on("click", function () {
+							$(".login-modal").css({
+								"opacity": "0",
+								"z-index": "-1",
+							}),
+							$(".background-filter").css({
+								"opacity": "0",
+								"z-index": "-1",
+							})
+						});
+
+					});
+				</script>
+
+				<script type="text/javascript">
+					$(document).on("ready", function () {
+
+						$(document).on('click', '.image_perfil_click', function () {
+							$(".perfil_change").css({
+								"opacity": "1",
+								"z-index": "10",
+							}),
+							$(".background-filter").css({
+								"opacity": "1",
+								"z-index": "10",
+							})
+						});
+
+						$(".close-icon,.background-filter").on("click", function () {
+							$(".perfil_change").css({
+									"opacity": "0",
+									"z-index": "-1",
+							}),
+							$(".background-filter").css({
+								"opacity": "0",
+								"z-index": "-1",
+							})
+						});
+
+					});
+				</script>
+
+				<script type="text/javascript">
+					$(document).on("ready", function () {
+
+						$(document).on('click', '.image_banner_click', function () {
+							$(".banner_change").css({
+								"opacity": "1",
+								"z-index": "10",
+							}),
+							$(".background-filter").css({
+								"opacity": "1",
+								"z-index": "10",
+							})
+						});
+
+						$(".close-icon,.background-filter").on("click", function () {
+							$(".banner_change").css({
+									"opacity": "0",
+									"z-index": "-1",
+							}),
+							$(".background-filter").css({
+								"opacity": "0",
+								"z-index": "-1",
+							})
+						});
+
+					});
 				</script>
 
 				<script type="text/javascript">
 						$(document).on("ready", function () {
 
-								$(".not-user").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
+							$(".not-user").on("click", function () {
+								$(".signup-modal").css({
+									"opacity": "1",
+									"z-index": "10",
+								}),
+								$(".background-filter").css({
+									"opacity": "1",
+									"z-index": "10",
+								})
+							});
 
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
+							$(".close-icon,.background-filter").on("click", function () {
+								$(".signup-modal").css({
+									"opacity": "0",
+									"z-index": "-1",
+								}),
+								$(".background-filter").css({
+									"opacity": "0",
+									"z-index": "-1",
+								})
+							});
 
 						});
 				</script>
