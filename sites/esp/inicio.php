@@ -348,7 +348,7 @@ if (isset($_SESSION['idUser'])) {
                         $q = "SELECT * FROM bannersliderhome";
                         $r = mysql_query($q) or die(mysql_error());
                         while($l=mysql_fetch_array($r)){
-                          echo '<img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'">';
+                          echo '<a style="opacity:1" target="_BLANK" href="'.$l["bannerSliderHomeUrl"].'" ><img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'" styles="cursor: pointer"></a>';
                         }
                       ?>
                     </figure>
@@ -548,6 +548,7 @@ if (isset($_SESSION['idUser'])) {
                       $q = "SELECT * FROM bannersliderpost ORDER BY RAND() LIMIT 1";
                       $r = mysql_query($q) or die(mysql_error());
                       $l = mysql_fetch_array($r);
+                      $listpreview = $l['idBannerSliderPost'];
                     ?>
 
                     <div class="info_bottom">
@@ -568,7 +569,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="part_info_bottom">
 
                     <?php
-                      $q = "SELECT * FROM bannersliderpost ORDER BY RAND() LIMIT 1";
+                      $q = "SELECT * FROM bannersliderpost WHERE idBannerSliderPost != $listpreview ORDER BY RAND() LIMIT 1";
                       $r = mysql_query($q) or die(mysql_error());
                       $l = mysql_fetch_array($r);
                     ?>
