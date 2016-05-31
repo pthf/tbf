@@ -405,130 +405,147 @@ if (isset($_SESSION['idUser'])) {
                         </a>
                     </div>
 
-                    <input type="radio" id="slide1" name="slider" checked>
-                    <input type="radio" id="slide2" name="slider">
-                    <input type="radio" id="slide3" name="slider">
-                    <input type="radio" id="slide4" name="slider">
-                    <input type="radio" id="slide5" name="slider">
-
                     <div class="slides">
-
                         <div class="overflow">
-                            <div class="inner material">
-                                <article>
-<?php
-if (isset($_GET['type'])) {
-    $query_type = "SELECT * FROM producer pro INNER JOIN producertype pt ON pt.idProducerType = pro.idProducerType WHERE pt.producerTypeName ='" . $_GET['type'] . "'";
-    $resultado_type = mysql_query($query_type) or die(mysql_error());
-    while ($row3 = mysql_fetch_array($resultado_type)) {
-        ?>
-                                            <li class="first_beer beertwo producer">
-                                                <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row3['producerName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row3['producerDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-                                        <?php
-                                        }
-                                    } else if (isset($_GET['country'])) {
-                                        $query_country = "SELECT * FROM producer pro
-														INNER JOIN countries co
-														ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
-                                        $resultado_country = mysql_query($query_country) or die(mysql_error());
-                                        while ($row4 = mysql_fetch_array($resultado_country)) {
-                                            ?>
-                                            <li class="first_beer beertwo producer">
-                                                <img src="../../images/producerProfiles/<?php echo $row4['producerProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row4['producerName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row4['producerDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row4['producerDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_empresa.php?id=<?php echo $row4['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-                                        <?php
-                                        }
-                                    } else if ((isset($_GET['type'])) && (isset($_GET['country']))) {
-                                        $query3 = "SELECT * FROM beer b
-													INNER JOIN beertype bt
-													ON bt.idBeerType = b.idBeerType
-													INNER JOIN producer p
-													ON p.idProducer = b.idProducer
-													INNER JOIN countries c
-													ON c.id = p.country_id
-													WHERE bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
-                                        $resultado3 = mysql_query($query3) or die(mysql_error());
-                                        while ($row3 = mysql_fetch_array($resultado3)) {
-                                            ?>
-                                            <li class="first_beer beertwo beers">
-                                                <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row3['producerName']; ?></span>
-                                                <span hidden><?php echo $row3['beerStrength']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row3['producerDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
+                            <div class="inner material favoritos-slider">
 
-                                        <?php
-                                        }
-                                    } else {
-                                        $query2 = "SELECT * FROM producer";
-                                        $resultado2 = mysql_query($query2) or die(mysql_error());
-                                        while ($row2 = mysql_fetch_array($resultado2)) {
-                                            ?>
-                                            <li class="first_beer beertwo producer">
-                                                <img src="../../images/producerProfiles/<?php echo $row2['producerProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row2['producerName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row2['producerDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row2['producerDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_empresa.php?id=<?php echo $row2['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-    <?php }
-}
-?>
-                                </article>
+                              <article class="favoritos-slideItems">
+                                  <?php
+                                  if (isset($_GET['type'])) {
+                                      $query_type = "SELECT * FROM producer pro INNER JOIN producertype pt ON pt.idProducerType = pro.idProducerType WHERE pt.producerTypeName ='" . $_GET['type'] . "'";
+                                      $resultado_type = mysql_query($query_type) or die(mysql_error());
+                                      while ($row3 = mysql_fetch_array($resultado_type)) {
+                                          ?>
+                                                                              <li class="first_beer beertwo producer">
+                                                                                  <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
+                                                                                  <span class="title"><?php echo $row3['producerName']; ?></span>
+                                                                                  <span class="subtitle">
+                                                                                    <?php
+                                                                                  $length = 40;
+                                                                                  $stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
+                                                                                  if (strlen(strip_tags($row3['producerDescription'])) > $length) {
+                                                                                    $stringDisplay .= '...';
+                                                                                  }
+                                                                                  echo $stringDisplay;
+                                                                                  ?>
+                                                                                  </span>
+                                                                                  <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                              </li>
+                                                                          <?php
+                                                                          }
+                                                                      } else if (isset($_GET['country'])) {
+                                                                          $query_country = "SELECT * FROM producer pro
+                                                              INNER JOIN countries co
+                                                              ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
+                                                                          $resultado_country = mysql_query($query_country) or die(mysql_error());
+                                                                          while ($row4 = mysql_fetch_array($resultado_country)) {
+                                                                              ?>
+                                                                              <li class="first_beer beertwo producer">
+                                                                                  <img src="../../images/producerProfiles/<?php echo $row4['producerProfileImage']; ?>"> <br>
+                                                                                  <span class="title"><?php echo $row4['producerName']; ?></span>
+                                                                                  <span class="subtitle">
+                                                                                    <?php
+                                                                                  $length = 40;
+                                                                                  $stringDisplay = substr(strip_tags($row4['producerDescription']), 0, $length);
+                                                                                  if (strlen(strip_tags($row4['producerDescription'])) > $length) {
+                                                                                    $stringDisplay .= '...';
+                                                                                  }
+                                                                                  echo $stringDisplay;
+                                                                                  ?>
+                                                                                  </span>
+                                                                                  <a href="perfil_empresa.php?id=<?php echo $row4['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                              </li>
+                                                                          <?php
+                                                                          }
+                                                                      } else if ((isset($_GET['type'])) && (isset($_GET['country']))) {
+                                                                          $query3 = "SELECT * FROM beer b
+                                                            INNER JOIN beertype bt
+                                                            ON bt.idBeerType = b.idBeerType
+                                                            INNER JOIN producer p
+                                                            ON p.idProducer = b.idProducer
+                                                            INNER JOIN countries c
+                                                            ON c.id = p.country_id
+                                                            WHERE bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
+                                                                          $resultado3 = mysql_query($query3) or die(mysql_error());
+                                                                          while ($row3 = mysql_fetch_array($resultado3)) {
+                                                                              ?>
+                                                                              <li class="first_beer beertwo beers">
+                                                                                  <img src="../../images/producerProfiles/<?php echo $row3['producerProfileImage']; ?>"> <br>
+                                                                                  <span class="title"><?php echo $row3['producerName']; ?></span>
+                                                                                  <span hidden><?php echo $row3['beerStrength']; ?></span>
+                                                                                  <span class="subtitle">
+                                                                                    <?php
+                                                                                  $length = 40;
+                                                                                  $stringDisplay = substr(strip_tags($row3['producerDescription']), 0, $length);
+                                                                                  if (strlen(strip_tags($row3['producerDescription'])) > $length) {
+                                                                                    $stringDisplay .= '...';
+                                                                                  }
+                                                                                  echo $stringDisplay;
+                                                                                  ?>
+                                                                                  </span>
+                                                                                  <a href="perfil_empresa.php?id=<?php echo $row3['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                              </li>
+
+                                                                          <?php
+                                                                          }
+                                                                      } else {
+                                                                          $query2 = "SELECT * FROM producer";
+                                                                          $resultado2 = mysql_query($query2) or die(mysql_error());
+                                                                          while ($row2 = mysql_fetch_array($resultado2)) {
+                                                                              ?>
+                                                                              <li class="first_beer beertwo producer">
+                                                                                  <img src="../../images/producerProfiles/<?php echo $row2['producerProfileImage']; ?>"> <br>
+                                                                                  <span class="title"><?php echo $row2['producerName']; ?></span>
+                                                                                  <span class="subtitle">
+                                                                                    <?php
+                                                                                  $length = 40;
+                                                                                  $stringDisplay = substr(strip_tags($row2['producerDescription']), 0, $length);
+                                                                                  if (strlen(strip_tags($row2['producerDescription'])) > $length) {
+                                                                                    $stringDisplay .= '...';
+                                                                                  }
+                                                                                  echo $stringDisplay;
+                                                                                  ?>
+                                                                                  </span>
+                                                                                  <a href="perfil_empresa.php?id=<?php echo $row2['idProducer']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                              </li>
+                                      <?php }
+                                  }
+                                  ?>
+                              </article>
 
                             </div>
                         </div>
                     </div>
-                    <div class="controls">
-                        <label for="slide1"></label>
-                        <label for="slide2"></label>
-                        <label for="slide3"></label>
-                        <label for="slide4"></label>
-                        <label for="slide5"></label>
+                    <div class="controls labelsfavorites">
+                        <!-- <label for="slide1" ></label> -->
                     </div>
+
+                    <!-- check beer lenght ( CERVEZAS ) -->
+                    <script type="text/javascript">
+                      var beerSlideCounter = $('.favoritos-slider article.favoritos-slideItems').length;
+                      var beerSlideWidth = 100/beerSlideCounter;
+                      $('.favoritos-slider article.favoritos-slideItems').css({ width: beerSlideWidth + '%' });
+                      $('.favoritos-slider').css({ width: beerSlideCounter*100 + '%' });
+
+                      var labels = "";
+                      $('.favoritos-slider article.favoritos-slideItems').each(function(index){
+                        labels = labels+"<label name="+(index+1)+" for='slide"+(index+1)+"'></label>";
+                      });
+                      $('.labelsfavorites').html(labels);
+                    </script>
+
+                    <!-- slider beers animation (CERVEZAS ) -->
+                    <script type="text/javascript">
+                      $(document).on('click', '.labelsfavorites label', function(){
+                        var position = $(this).attr('name'); position--;
+                        var margin = position*100; margin = margin * -1;
+                        $('.favoritos-slider').css({ "margin-left":  margin+"%" });
+                        $('.labelsfavorites label').css({ "background": "#aaa" });
+                        $(this).css({ "background": "#333" });
+                      });
+                    </script>
+
+
                 </div>
 
                 <!--- fin slider beers -->
