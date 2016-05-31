@@ -760,7 +760,7 @@ span.user_list.list-sub{
   display: inline-flex;
   width: 25.5%;
   margin-bottom: 2%;
-  padding-right: 6%;
+  margin-right: 6%;
 }
 
 span.AddFriend{
@@ -777,7 +777,8 @@ span.AddFriend:hover{
 }
 
 img.flex-item-info{
-  width: 105%
+  width: 60px;
+  height: 60px;
 }
 
 span.ver-perfil-button{
@@ -797,9 +798,9 @@ span.ver-perfil-button{
 }
 
 .flex-item-info span:first-child{
-  margin-top: .5vw;
   font-size: 10px;
   text-align: center;
+  padding: .3vw;
 }
 
 .flex-item-info span:nth-child(2){
