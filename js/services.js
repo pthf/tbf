@@ -195,10 +195,8 @@ $("#SendComment").submit(function(e){
         url : '../../php/functions.php', 
         data : data,
         success: function(result){
-        	alert(result);
-        	/*alert("Mensaje enviado");
 			$('#SendComment')[0].reset();
-			location.reload();*/
+			location.reload();
 	 	},
 	 	error: function(error){
 	 		alert(error);

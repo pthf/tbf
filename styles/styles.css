@@ -2723,6 +2723,10 @@ input.slider-dot{
     width: 15px;
   }
 
+  label[for="slide1"] {
+      background: #333;
+  }
+
 
   .inner.material article li img{
     width: 80%;
