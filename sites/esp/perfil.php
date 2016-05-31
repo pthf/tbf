@@ -1304,8 +1304,13 @@ if (isset($_SESSION['idUser'])) {
                 <!--box foot right -->
 
                 <?php if (isset($_SESSION['idUser'])) { ?>
-                    <div class="send_a_message comments_text">
-                        <input type="text" name="message" placeholder="Escribe un comentario...">
+                    <div class="send_a_message comments_text profile-comments">
+                      <textarea name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+                      <style media="screen">
+                        ::-webkit-input-placeholder{
+                          padding: 1.5% 0 0 1.5%;
+                        }
+                      </style>
                         <div class="send_button comments_send">
                             <a href="#"> <p>COMENTAR</p></a>
                         </div>
