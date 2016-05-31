@@ -408,60 +408,92 @@ if (isset($_SESSION['idUser'])) {
                 <div id="inbox_content">
                     <div class="msn_content">
                     	<?php 
+                    	if (isset($_GET['idUserChat'])) {
                     	$chat = $_GET['idUserChat'];
 		            	$query1 = "SELECT * FROM message m INNER JOIN user us ON us.idUser = m.user_idUser WHERE m.user_idUser = '".$chat."'";
 		            	$resultado1 = mysql_query($query1) or die (mysql_error());
-		            	while ($row1 = mysql_fetch_array($resultado1)) {
-		            	?>
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
+			            	while ($row1 = mysql_fetch_array($resultado1)) {
+			            	?>
+	                        <!-- message received -->
+	                        <div id="itemContainer">
+	                            <div id="itemContainerInner">
 
-                                <div class="item i1">
-                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
-                                </div>
+	                                <div class="item i1 sent_">
+	                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+	                                </div>
 
-                                <div class="item i2">
-                                    <p><?php echo $row1['userName'];?></p>
-                                </div>
+	                                <div class="item i2 sent_">
+	                                    <p><?php echo $row1['userName'];?></p>
+	                                </div>
 
-                                <div class="item i3">
-                                    <p>
-                                    	<?php echo $row1['messageText'];?>
-                                    </p>
+	                                <div class="item i3 sent_">
+	                                    <p>
+	                                    	<?php echo $row1['messageText'];?>
+	                                    </p>
 
-                                </div>
+	                                </div>
 
 
-                            </div>
+	                            </div>
+	                            <div class="date_sent">
+	                            	<h2>Miércoles 18 de Junio 2015</h2>
+	                            </div>
+	                        </div>
+	                        <!-- message send -->
+	                        <!--<div id="itemContainer">
+	                            <div id="itemContainerInner">
 
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
+	                                <div class="item i1 sent_">
+	                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+	                                </div>
+
+	                                <div class="item i2 sent_">
+	                                    <p>Hola</p>
+	                                </div>
+
+	                                <div class="item i3 sent_">
+	                                    <p>
+	                                    	Ejemplo
+	                                    </p>
+
+	                                </div>
+
+
+	                            </div>
+	                            <div class="date_sent">
+	                            	<h2>Miércoles 18 de Junio 2015</h2>
+	                        	</div>
+	                        </div>-->
+						<?php }
+                        } else { ?>
+
+                        <!-- message send -->
+	                        <div id="itemContainer">
+	                            <div id="itemContainerInner">
+
+	                                <div class="item i1 sent_">
+	                                    
+	                                </div>
+
+	                                <div class="item i2">
+	                                    <p>BANDEJA DE ENTRADA</p>
+	                                </div>
+
+	                                <div class="item i3 sent_">
+	                                    <p>
+	                                    	
+	                                    </p>
+
+	                                </div>
+
+
+	                            </div>
+	                            <div class="date_sent">
+	                            	<h2></h2>
+	                        	</div>
+	                        </div>
+
                         <?php } ?>
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1 sent_">
-                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
-                                </div>
-
-                                <div class="item i2 sent_">
-                                    <p>Hola</p>
-                                </div>
-
-                                <div class="item i3 sent_">
-                                    <p>
-                                    	Ejemplo
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-                            <div class="date_sent">
-                            	<h2>Miércoles 18 de Junio 2015</h2>
-                        	</div>
-                        </div>
 
                     </div>
                 </div>
@@ -469,7 +501,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="send_a_message">
                 	<form id="SendRequestChat">
                 		<input type="text" hidden name="idUserChat" value="<?php echo $_GET['idUserChat']; ?>">
-	                    <input type="text" name="message" placeholder="Escribe una respuesta...">
+	                    <input type="text" required name="message" placeholder="Escribe una respuesta...">
 	                    <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
 	                </form>
                 </div>

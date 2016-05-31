@@ -263,9 +263,26 @@ if (isset($_SESSION['idUser'])) {
 				</div>
 
         <div id="contenedor">
+            <?php 
+            $query1 = "SELECT * FROM user us
+						INNER JOIN countries co
+						ON co.id = us.country_id
+						INNER JOIN states st
+						ON st.id = us.state_id
+            			WHERE us.idUser = '".$_GET['idUser']."'";
+            $resultado = mysql_query($query1) or die (mysql_error());
+            $row = mysql_fetch_array($resultado);
 
+            $fechanacimiento = ($row['userBirthDate']);
+            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+			$ano_diferencia  = date("Y") - $ano;
+			$mes_diferencia = date("m") - $mes;
+			$dia_diferencia   = date("d") - $dia;
+			if ($dia_diferencia < 0 || $mes_diferencia < 0)
+				$ano_diferencia--;
+            ?>
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/images.jpeg" />
+                <img class="profile_popup" src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -344,31 +361,13 @@ if (isset($_SESSION['idUser'])) {
                     </div>
                 </div>
             </div>
-            <?php 
-            $query1 = "SELECT * FROM user us
-						INNER JOIN countries co
-						ON co.id = us.country_id
-						INNER JOIN states st
-						ON st.id = us.state_id
-            			WHERE us.idUser = '".$_GET['idUser']."'";
-            $resultado = mysql_query($query1) or die (mysql_error());
-            $row = mysql_fetch_array($resultado);
-
-            $fechanacimiento = ($row['userBirthDate']);
-            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-			$ano_diferencia  = date("Y") - $ano;
-			$mes_diferencia = date("m") - $mes;
-			$dia_diferencia   = date("d") - $dia;
-			if ($dia_diferencia < 0 || $mes_diferencia < 0)
-				$ano_diferencia--;
-            ?>
             <div class="top_img">
                 <img src="../../images/beerBanners/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
                     <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
             </div>
-            <div class="login-modal banner_change">
+            <div class="banner_change">
 				<div class="login-modal-wrapper">
 					<div class="close-icon">
 							<img src="../../images/img_galeria-02_close.png" >
@@ -394,6 +393,33 @@ if (isset($_SESSION['idUser'])) {
 				</div>
 			</div>
 
+		 	<div class="perfil_change">
+				<div class="login-modal-wrapper">
+					<div class="close-icon">
+							<img src="../../images/img_galeria-02_close.png" >
+					</div>
+					<div class="login-title">
+							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+					</div>
+
+					<form id="formChangeImagePerfil">
+						<div class="input-boxes">
+								<br>
+								<div class="col-sm-12">
+									<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
+									<input required type="file" class="form-control" name="beerProfileImage[]" value=""></input>
+								</div>
+						</div>
+
+						<div class="send-login-content">
+								<br>
+								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
             <div class="content_profile">
 
                 <div class="image_profile">
@@ -402,31 +428,6 @@ if (isset($_SESSION['idUser'])) {
                         <a href="#" class="image_perfil_click"><span class="change_profile">CAMBIAR FOTO</span></a>
                     <?php } ?>
                 </div>
-                <div class="login-modal perfil_change">
-					<div class="login-modal-wrapper">
-						<div class="close-icon">
-								<img src="../../images/img_galeria-02_close.png" >
-						</div>
-						<div class="login-title">
-								<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
-						</div>
-
-						<form id="formChangeImagePerfil">
-							<div class="input-boxes">
-									<br>
-									<div class="col-sm-12">
-										<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
-										<input required type="file" class="form-control" name="beerProfileImage[]" value=""></input>
-									</div>
-							</div>
-
-							<div class="send-login-content">
-									<br>
-									<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
-							</div>
-						</form>
-					</div>
-				</div>
 
 
                 <div class="name_profile">
@@ -1915,143 +1916,6 @@ if (isset($_SESSION['idUser'])) {
                             <h2>Miércoles 18 de Junio 2015</h2>
                         </div>
 
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
                     </div>
                 </div>
 
@@ -2059,10 +1923,12 @@ if (isset($_SESSION['idUser'])) {
 
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <div class="send_a_message comments_text">
-                        <input type="text" name="message" placeholder="Escribe un comentario...">
-                        <div class="send_button comments_send">
-                            <a href="#"> <p>COMENTAR</p></a>
-                        </div>
+                    	<form id="SendComment">
+                    		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
+                    		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
+	                        <input required name="message" placeholder="Escribe un comentario...">
+	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                    </form>
                     </div>
                 <?php } ?>
 
@@ -2119,14 +1985,14 @@ if (isset($_SESSION['idUser'])) {
                         }),
                                 $(".background-filter").css({
                             "opacity": "1",
-                            "z-index": "10",
+                            "z-index": "9",
                         })
                     });
 
                     $(".close-icon,.background-filter").on("click", function () {
                         $(".login-modal").css({
                             "opacity": "0",
-                            "z-index": "-1",
+                            "z-index": "-10",
                         }),
                                 $(".background-filter").css({
                             "opacity": "0",
@@ -2258,55 +2124,27 @@ if (isset($_SESSION['idUser'])) {
 				<script type="text/javascript">
 						$(document).on("ready", function () {
 
-								$(document).on('click', '.user_name, .user_name_click', function () {
-										$(".login-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
+							$(".not-user").on("click", function () {
+									$(".signup-modal").css({
+											"opacity": "1",
+											"z-index": "10",
+									}),
+													$(".background-filter").css({
+											"opacity": "1",
+											"z-index": "10",
+									})
+							});
 
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".login-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
-
-						});
-				</script>
-
-				<script type="text/javascript">
-						$(document).on("ready", function () {
-
-								$(".not-user").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
-
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
+							$(".close-icon,.background-filter").on("click", function () {
+									$(".signup-modal").css({
+											"opacity": "0",
+											"z-index": "-1",
+									}),
+													$(".background-filter").css({
+											"opacity": "0",
+											"z-index": "-1",
+									})
+							});
 
 						});
 				</script>

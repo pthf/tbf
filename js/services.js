@@ -182,3 +182,28 @@ $("#SendRequestChat").submit(function(e){
 	 	}
     })
 });
+
+$("#SendComment").submit(function(e){
+
+	e.preventDefault();
+
+	var data = $(this).serializeArray();
+	data.push({ name: "namefunction", value: "SendCommentMessage" });
+
+	$.ajax({
+        type : 'POST', 
+        url : '../../php/functions.php', 
+        data : data,
+        success: function(result){
+        	alert(result);
+        	/*alert("Mensaje enviado");
+			$('#SendComment')[0].reset();
+			location.reload();*/
+	 	},
+	 	error: function(error){
+	 		alert(error);
+	 	}
+    })
+});
+
+

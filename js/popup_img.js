@@ -1,7 +1,7 @@
 $(document).on("ready",function(){
 
   //$(".image_profile,.image_logo").on("click", function(){
-  $(".image_profile,.image_logo").on("click", function(){
+  $(".image_profile img,.image_logo").on("click", function(){
     $(".popup_img").css({
       "opacity" : "1",
       "z-index" : "10",
