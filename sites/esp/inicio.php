@@ -456,7 +456,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <ul class="beers_month">
                         <?php
-                            $q = "SELECT * FROM bannerSliderNew";
+                            $q = "SELECT * FROM bannerslidernew";
                             $r = mysql_query($q) or die(mysql_error());
                             $cantidad = 0;
                             while($l = mysql_fetch_array($r)){
@@ -482,7 +482,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <ul class="nav_beers cantidadElements" name="<?= $cantidad ?>">
                       <?php
-                          $q = "SELECT * FROM bannerSliderNew";
+                          $q = "SELECT * FROM bannerslidernew";
                           $r = mysql_query($q) or die(mysql_error());
                           $cantidad = 0;
                           while($l = mysql_fetch_array($r)){
