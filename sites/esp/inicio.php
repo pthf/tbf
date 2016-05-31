@@ -345,7 +345,7 @@ if (isset($_SESSION['idUser'])) {
                   <div id="slidy-container">
                     <figure id="slidy">
                       <?php
-                        $q = "SELECT * FROM bannerSliderHome";
+                        $q = "SELECT * FROM bannersliderhome";
                         $r = mysql_query($q) or die(mysql_error());
                         while($l=mysql_fetch_array($r)){
                           echo '<img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'">';
