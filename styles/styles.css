@@ -370,6 +370,11 @@ span.text_prin span{
   margin-right: 8%;
 }
 
+.profile_img a img {
+    width: 25px;
+    height: 25px;
+}
+
 .cont_info_user div img{
   width: 100%;
   height: auto;
@@ -760,7 +765,7 @@ span.user_list.list-sub{
   display: inline-flex;
   width: 25.5%;
   margin-bottom: 2%;
-  padding-right: 6%;
+  margin-right: 6%;
 }
 
 span.AddFriend{
@@ -777,7 +782,8 @@ span.AddFriend:hover{
 }
 
 img.flex-item-info{
-  width: 105%
+  width: 60px;
+  height: 60px;
 }
 
 span.ver-perfil-button{
@@ -797,9 +803,9 @@ span.ver-perfil-button{
 }
 
 .flex-item-info span:first-child{
-  margin-top: .5vw;
   font-size: 10px;
   text-align: center;
+  padding: .3vw;
 }
 
 .flex-item-info span:nth-child(2){
@@ -1299,7 +1305,7 @@ span.ver-perfil-button{
 }
 
 .topinfo_config{
-  width: 80%;
+  width: 100%;
   margin-top: 5%;
   padding-bottom: 1%;
   border-bottom: 2px solid #2E2E2E;
@@ -1312,7 +1318,7 @@ span.ver-perfil-button{
 }
 
 .info_config{
-  width: 60%;
+  width: 80%;
   font-size: 36px;
   color: #2E2E2E;
   padding-bottom: 5vw;
@@ -1574,11 +1580,15 @@ span.ver-perfil-button{
 }
 
 textarea{
-  width:100%;
+  width:97.5%;
   height: 8vw;
-  border: 2px solid rgba(0,0,0,.2);
   outline: none;
   resize: none;
+  padding: 0.5vw;
+  padding-top: 1vw;
+  background-image:linear-gradient(to bottom, white 0%, white 100%), linear-gradient(to bottom, rgba(0,0,0,.2) 0%, 2px solid rgba(0,0,0,.2) 100%);
+  background-clip: content-box, padding-box;
+  background-color: #fff;
 }
 
 .input_contact input[type="submit"]{
@@ -1997,12 +2007,14 @@ input.slider-dot{
   .rankstars{
     text-align: center;
     font-size: 2em;
+    cursor: default;
   }
 
   #rank_beer{
     text-align: center;
     display: block;
     margin-top:5%;
+    margin-bottom: 4vw;
   }
 
   .send_message{
@@ -2207,7 +2219,7 @@ input.slider-dot{
   }
 
   img.wishlist_icon:hover{
-    transform: rotate(45deg);
+    transform: rotate(90deg);
     transition: .5s ease;
     -moz-transition:.5s ease; /* Firefox */
     -webkit-transition:.5s ease; /* Chrome - Safari */
@@ -2583,10 +2595,14 @@ input.slider-dot{
     background-color: white;
   }
 
+  .send_a_message.comments_text.profile-comments{
+    height: 15vw;
+  }
+
   .send_button{
     width: 10%;
     padding: 1%;
-    margin-right: 4.4%;
+    margin-right: 4.2%;
     margin-top: 2%;
     right: 1%;
     float: right;
@@ -2609,6 +2625,10 @@ input.slider-dot{
     cursor: pointer;
     opacity: .5;
     filter: alpha(opacity=50);
+  }
+
+  .send_button.comments_send {
+      margin-right: 1.4%;
   }
 
   /* comments */
@@ -2721,6 +2741,10 @@ input.slider-dot{
     margin: 0 5px;
     height: 15px;
     width: 15px;
+  }
+
+  label[for="slide1"] {
+      background: #333;
   }
 
 
@@ -3064,11 +3088,11 @@ input.slider-dot{
   }
   .prev {
     left: 0;
-    margin-right: 1vw;
+    margin-left: 1vw;
   }
   .next {
     right: 0;
-    margin-left: 1vw;
+    margin-right: 1vw;
   }
 
 
@@ -3298,7 +3322,7 @@ input.slider-dot{
   }
 
   .login-modal,.signup-modal{
-    position: fixed;
+    position: absolute;
     width: 40%;
     height: auto;
     top: 0;
@@ -3306,7 +3330,7 @@ input.slider-dot{
     transform: translateX(-50%);
     background-color: white;
     margin-top: 5vw;
-    z-index: -1;
+    z-index: -10;
     opacity: 0;
     border: solid 2px black;
     padding: 5vw 0 5vw 0;
