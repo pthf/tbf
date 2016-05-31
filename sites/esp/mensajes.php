@@ -371,10 +371,10 @@ if (isset($_SESSION['idUser'])) {
 
             <!-- BOTTOM -->
             <div class="content_messages_bottom user_message">
-            	
+
                 <!--box bottom left -->
                 <div id="contact_list">
-                	<?php 
+                	<?php
 	            	$query = "SELECT * FROM chat ch INNER JOIN user us ON us.idUser = ch.user_idUser GROUP BY us.userName";
 	            	$resultado = mysql_query($query) or die (mysql_error());
 	            	while ($row = mysql_fetch_array($resultado)) {
@@ -409,6 +409,7 @@ if (isset($_SESSION['idUser'])) {
                     <div class="msn_content">
                     	<?php 
                     	if (isset($_GET['idUserChat'])) {
+
                     	$chat = $_GET['idUserChat'];
 		            	$query1 = "SELECT * FROM message m INNER JOIN user us ON us.idUser = m.user_idUser WHERE m.user_idUser = '".$chat."'";
 		            	$resultado1 = mysql_query($query1) or die (mysql_error());

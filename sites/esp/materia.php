@@ -405,105 +405,119 @@ if (isset($_SESSION['idUser'])) {
                         </a>
                     </div>
 
-                    <input type="radio" id="slide1" name="slider" checked>
-                    <input type="radio" id="slide2" name="slider">
-                    <input type="radio" id="slide3" name="slider">
-                    <input type="radio" id="slide4" name="slider">
-                    <input type="radio" id="slide5" name="slider">
-                    <input type="radio" id="slide6" name="slider">
+                      <div class="slides">
+                          <div class="overflow">
+                              <div class="inner profile favoritos-slider">
 
-                    <div class="slides">
-
-                        <div class="overflow">
-                            <div class="inner material">
-
-                                <article>
-                                    <?php
-                                    if (isset($_GET['type'])) {
-                                        $query_type = "SELECT * FROM beerfans.rawmaterial rm
-											INNER JOIN beerfans.rawmaterial_has_rawmaterialtype mhrm
-											ON mhrm.idRawMaterial = rm.idRawMaterial
-											INNER JOIN beerfans.rawmaterialtype rmt
-											ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType WHERE rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";
-                                        $resultado_type = mysql_query($query_type) or die(mysql_error());
-                                        while ($row3 = mysql_fetch_array($resultado_type)) {
-                                            ?>
-                                            <li class="first_beer beertwo material">
-                                                <img src="../../images/rawMaterialProfiles/<?php echo $row3['rawMaterialProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row3['rawMaterialName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row3['rawMaterialDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row3['rawMaterialDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_materia.php?id=<?php echo $row3['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-    <?php
-    }
-} else if (isset($_GET['country'])) {
-    $query2 = "SELECT * FROM rawmaterial";
-    $resultado2 = mysql_query($query2) or die(mysql_error());
-    while ($row2 = mysql_fetch_array($resultado2)) {
-        ?>
-                                            <li class="first_beer beertwo material">
-                                                <img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row2['rawMaterialName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row2['rawMaterialDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row2['rawMaterialDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-    <?php
-    }
-} else {
-    $query2 = "SELECT * FROM rawmaterial";
-    $resultado2 = mysql_query($query2) or die(mysql_error());
-    while ($row2 = mysql_fetch_array($resultado2)) {
-        ?>
-                                            <li class="first_beer beertwo material">
-                                                <img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage']; ?>"> <br>
-                                                <span class="title"><?php echo $row2['rawMaterialName']; ?></span>
-                                                <span class="subtitle">
-                                                	<?php 
-	                                            	$length = 40;
-	                                            	$stringDisplay = substr(strip_tags($row2['rawMaterialDescription']), 0, $length);
-	                                            	if (strlen(strip_tags($row2['rawMaterialDescription'])) > $length) {
-	                                            		$stringDisplay .= '...';
-	                                            	}
-	                                            	echo $stringDisplay;
-	                                            	?>
-                                                </span>
-                                                <a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
-                                            </li>
-    <?php }
-}
-?>
+                                <article class="favoritos-slideItems">
+                                                                          <?php
+                                                                          if (isset($_GET['type'])) {
+                                                                              $query_type = "SELECT * FROM beerfans.rawmaterial rm
+                                      											INNER JOIN beerfans.rawmaterial_has_rawmaterialtype mhrm
+                                      											ON mhrm.idRawMaterial = rm.idRawMaterial
+                                      											INNER JOIN beerfans.rawmaterialtype rmt
+                                      											ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType WHERE rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";
+                                                                              $resultado_type = mysql_query($query_type) or die(mysql_error());
+                                                                              while ($row3 = mysql_fetch_array($resultado_type)) {
+                                                                                  ?>
+                                                                                  <li class="first_beer beertwo material">
+                                                                                      <img src="../../images/rawMaterialProfiles/<?php echo $row3['rawMaterialProfileImage']; ?>"> <br>
+                                                                                      <span class="title"><?php echo $row3['rawMaterialName']; ?></span>
+                                                                                      <span class="subtitle">
+                                                                                      	<?php
+                                      	                                            	$length = 40;
+                                      	                                            	$stringDisplay = substr(strip_tags($row3['rawMaterialDescription']), 0, $length);
+                                      	                                            	if (strlen(strip_tags($row3['rawMaterialDescription'])) > $length) {
+                                      	                                            		$stringDisplay .= '...';
+                                      	                                            	}
+                                      	                                            	echo $stringDisplay;
+                                      	                                            	?>
+                                                                                      </span>
+                                                                                      <a href="perfil_materia.php?id=<?php echo $row3['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                                  </li>
+                                          <?php
+                                          }
+                                      } else if (isset($_GET['country'])) {
+                                          $query2 = "SELECT * FROM rawmaterial";
+                                          $resultado2 = mysql_query($query2) or die(mysql_error());
+                                          while ($row2 = mysql_fetch_array($resultado2)) {
+                                              ?>
+                                                                                  <li class="first_beer beertwo material">
+                                                                                      <img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage']; ?>"> <br>
+                                                                                      <span class="title"><?php echo $row2['rawMaterialName']; ?></span>
+                                                                                      <span class="subtitle">
+                                                                                      	<?php
+                                      	                                            	$length = 40;
+                                      	                                            	$stringDisplay = substr(strip_tags($row2['rawMaterialDescription']), 0, $length);
+                                      	                                            	if (strlen(strip_tags($row2['rawMaterialDescription'])) > $length) {
+                                      	                                            		$stringDisplay .= '...';
+                                      	                                            	}
+                                      	                                            	echo $stringDisplay;
+                                      	                                            	?>
+                                                                                      </span>
+                                                                                      <a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                                  </li>
+                                          <?php
+                                          }
+                                      } else {
+                                          $query2 = "SELECT * FROM rawmaterial";
+                                          $resultado2 = mysql_query($query2) or die(mysql_error());
+                                          while ($row2 = mysql_fetch_array($resultado2)) {
+                                              ?>
+                                                                                  <li class="first_beer beertwo material">
+                                                                                      <img src="../../images/rawMaterialProfiles/<?php echo $row2['rawMaterialProfileImage']; ?>"> <br>
+                                                                                      <span class="title"><?php echo $row2['rawMaterialName']; ?></span>
+                                                                                      <span class="subtitle">
+                                                                                      	<?php
+                                      	                                            	$length = 40;
+                                      	                                            	$stringDisplay = substr(strip_tags($row2['rawMaterialDescription']), 0, $length);
+                                      	                                            	if (strlen(strip_tags($row2['rawMaterialDescription'])) > $length) {
+                                      	                                            		$stringDisplay .= '...';
+                                      	                                            	}
+                                      	                                            	echo $stringDisplay;
+                                      	                                            	?>
+                                                                                      </span>
+                                                                                      <a href="perfil_materia.php?id=<?php echo $row2['idRawMaterial']; ?>"><span class="ver_mas">VER MÁS</span></a>
+                                                                                  </li>
+                                          <?php }
+                                      }
+                                      ?>
                                 </article>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="controls">
-                        <label for="slide1"></label>
-                        <label for="slide2"></label>
-                        <label for="slide3"></label>
-                        <label for="slide4"></label>
-                        <label for="slide5"></label>
-                        <label for="slide6"></label>
-                    </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="controls labelsfavorites">
+                          <!-- <label for="slide1" ></label> -->
+                      </div>
+
+                      <!-- check beer lenght ( CERVEZAS ) -->
+                      <script type="text/javascript">
+                        var beerSlideCounter = $('.favoritos-slider article.favoritos-slideItems').length;
+                        var beerSlideWidth = 100/beerSlideCounter;
+                        $('.favoritos-slider article.favoritos-slideItems').css({ width: beerSlideWidth + '%' });
+                        $('.favoritos-slider').css({ width: beerSlideCounter*100 + '%' });
+
+                        var labels = "";
+                        $('.favoritos-slider article.favoritos-slideItems').each(function(index){
+                          labels = labels+"<label name="+(index+1)+" for='slide"+(index+1)+"'></label>";
+                        });
+                        $('.labelsfavorites').html(labels);
+                      </script>
+
+                      <!-- slider beers animation (CERVEZAS ) -->
+                      <script type="text/javascript">
+                        $(document).on('click', '.labelsfavorites label', function(){
+                          var position = $(this).attr('name'); position--;
+                          var margin = position*100; margin = margin * -1;
+                          $('.favoritos-slider').css({ "margin-left":  margin+"%" });
+                          $('.labelsfavorites label').css({ "background": "#aaa" });
+                          $(this).css({ "background": "#333" });
+                        });
+                      </script>
+
                 </div>
+
 
                 <!--- fin slider beers -->
 

@@ -471,7 +471,7 @@ if (isset($_SESSION['idUser'])) {
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
                     <h1 class="ranklevel">4</h1>
-                    <h2 class="rankstars">â˜…â˜…â˜…â˜…â˜†</h2>
+                    <h2 class="rankstars">&#x2605; 	&#x2605; 	&#x2605; 	&#x2605; 	&#9734;</h2>
 
                     <div class="fav_box">
                         <a class="user_icons" href="#">
@@ -488,6 +488,194 @@ if (isset($_SESSION['idUser'])) {
                     </div>
 
                 </div>
+
+                <!-- comments -->
+                <div id="comments_box">
+                    <div class="msn_content">
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam.
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit, sed do eiusmod tempor incididunt ut labore
+                                        et dolore magna aliqua. Ut enim ad minim veniam.
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                        <!-- message received -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/profile_default.jpg"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p>CONTACTO</p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                        dolor sit amet, consectetur adipiscing
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+                            <h2>Miércoles 18 de Junio 2015</h2>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--box foot right -->
+
+                <?php if (isset($_SESSION['idUser'])) { ?>
+                    <div class="send_a_message comments_text">
+                        <textarea name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+                        <style media="screen">
+                          ::-webkit-input-placeholder{
+                            padding: 1.5% 0 0 1.5%;
+                          }
+                        </style>
+                        <div class="send_button comments_send">
+                            <a href="#"> <p>COMENTAR</p></a>
+                        </div>
+                    </div>
+                <?php } ?>
+
 
             </div>
 
@@ -566,7 +754,7 @@ if (isset($_SESSION['idUser'])) {
 		                        "opacity": "1",
 		                        "z-index": "10",
 		                    }),
-		                            $(".background-filter").css({
+		                    $(".background-filter").css({
 		                        "opacity": "1",
 		                        "z-index": "10",
 		                    })
@@ -577,7 +765,7 @@ if (isset($_SESSION['idUser'])) {
 		                        "opacity": "0",
 		                        "z-index": "-1",
 		                    }),
-		                            $(".background-filter").css({
+		                    $(".background-filter").css({
 		                        "opacity": "0",
 		                        "z-index": "-1",
 		                    })
@@ -812,6 +1000,29 @@ if (isset($_SESSION['idUser'])) {
 		            $('#btn_submit').click(validateDoB);
 
 		        </script>
+
+          <script type="text/javascript">
+            $( ".fav_box" )
+              .mouseenter(function() {
+                $( '#fav_button' ).css(  "content" , "url('../../images/fav2.svg')" );
+              })
+              .mouseleave(function() {
+                $( '#fav_button' ).css(  "content" , "url('../../images/fav1.svg')" );
+              });
+          </script>
+
+          <script type="text/javascript">
+            $( ".wishlist_box" )
+              .mouseenter(function() {
+                $( 'img.wishlist_icon' ).css(  "transition" , ".5s ease" );
+                $( 'img.wishlist_icon' ).css(  "transform" , "rotate(90deg)");
+              })
+              .mouseleave(function() {
+                $( 'img.wishlist_icon' ).css(  "transition" , ".5s ease");
+                $( 'img.wishlist_icon' ).css(  "transform" , "rotate(0deg)");
+
+              });
+          </script>
 
         </div>
     </body>

@@ -1071,7 +1071,7 @@
 	}
 
 	.info_config{
-		width: 60%;
+		width: 90%;
 		font-size: 32px;
 		color: #2E2E2E;
 	}
@@ -1702,7 +1702,7 @@
 	}
 
 	.info_config{
-		width: 60%;
+		width: 90%;
 		font-size: 24px;
 		color: #2E2E2E;
 	}
@@ -2152,6 +2152,10 @@
 	.image_logo {
     width: 80%;
     margin: 0 auto;
+	}
+
+	.cont_config{
+		width: 100%;
 	}
 
 }
@@ -2609,7 +2613,7 @@
 	}
 
 	.info_config{
-		width: 70%;
+		width: 90%;
 	}
 
 	.name_config p{
@@ -3597,6 +3601,10 @@
 	    padding: .5vw 0 .5vw .5vw;
 	    width: 42.5%;
 	    margin-left: 0%;
+	}
+
+	.info_config{
+			width: 90%;
 	}
 
 
