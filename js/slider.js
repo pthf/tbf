@@ -23,7 +23,7 @@ $(document).ready(function() {
 
    $('.nav_beers li').removeClass('active-cd');
 
-   if (getDataSlide < $('.cantidadElements').attr('name')) {
+   if (getDataSlide < 4) {
       $visibleSlide.fadeOut(fadeDuration);
       $visibleSlide.next().fadeIn(fadeDuration);
       $('.nav_beers li[data-cd='+getDataNextSlide+']').addClass('active-cd');
@@ -59,15 +59,15 @@ $(document).ready(function() {
   $('.prev').on('click', showPrevSlide);
 
 
-  //autoplay
-  function startSlider() {
-   sliderInterval = setInterval( showNextSlide, pause)
-  }
-  startSlider();
-   $('.slideshow').mouseenter(function() {
-      clearInterval(sliderInterval);
-   });
-    $('.slideshow').mouseleave(startSlider);
+  // //autoplay
+  // function startSlider() {
+  //  sliderInterval = setInterval( showNextSlide, pause)
+  // }
+  // startSlider();
+  // //  $('.slideshow').mouseenter(function() {
+  // //     clearInterval(sliderInterval);
+  // //  });
+  // //   $('.slideshow').mouseleave(startSlider);
 
   //control dots clicks
   $('.nav_beers li').on('click', function() {

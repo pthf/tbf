@@ -452,7 +452,7 @@ if (isset($_SESSION['idUser'])) {
 
                             </ul>
 
-                            <ul class="nav_beers popup_beers">
+                            <ul class="nav_beers cantidadElements popup_beers">
                                 <li data-cd="1"></li>
                                 <li data-cd="2"></li>
                                 <li data-cd="3"></li>
