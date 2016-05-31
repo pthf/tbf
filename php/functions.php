@@ -24,6 +24,9 @@ if(isset($_POST['namefunction'])){
 		case 'changeImagePerfil':
 			changeImagePerfil();
 		break;
+		case 'requestMessage':
+			requestMessage();
+		break;
 	}
 }
 
@@ -130,7 +133,24 @@ function newMessage() {
     $idChatReceptor = mysql_insert_id();
 	$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
 	$resultado5 = mysql_query($query5) or die (mysql_error());
+	echo " <span class='not-user' style='color:black;'><label for='privacyTerms'>Mensaje enviado.</label></span> ";
 
+}
+
+function requestMessage () {
+
+	parse_str($_POST['data'], $formData);
+
+	var_dump($formData);
+
+	//Consulta del Usuario Emisor
+	$query = "SELECT * FROM user WHERE idUser = '".$formData['idEmisor']."'";
+	$resultado = mysql_query($query) or die (mysql_error());
+	$row = mysql_fetch_array($resultado);
+	//Insertar chat del Emisor
+	$query2 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idEmisor']."')";
+	$resultado2 = mysql_query($query2) or die (mysql_error());
+	
 }
 
 function changeImageBanner () {
@@ -145,11 +165,11 @@ function changeImageBanner () {
 		$fileType = $_FILES["beerBannerImage"]["type"][$key];
 		$fileTemp = $_FILES["beerBannerImage"]["tmp_name"][$key];
 		if($indice==0)
-			//move_uploaded_file($fileTemp, "../images/userProfile/".$fileName);
+			move_uploaded_file($fileTemp, "../images/beerBanners/".$fileName);
 		$indice++;
 	}
-	/*$query = "UPDATE user SET userProfileImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
-	$result = mysql_query($query) or die(mysql_error());*/
+	$query = "UPDATE user SET userCoverImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
+	$result = mysql_query($query) or die(mysql_error());
 
 }
 

@@ -87,10 +87,9 @@ $("#formNewMessage").submit(function(e){
         	namefunction : "newMessage",
         },
         success: function(result){
-        	alert(result);
-			/*$('.resultado_pass').html(result);
-			$('.resultado_pass').hide(3000);
-			$('#formChangePass')[0].reset();*/
+        	alert("Mensaje enviado");
+			$('#formNewMessage')[0].reset();
+			location.reload();
 	 	},
 	 	error: function(error){
 	 		alert(error);
@@ -119,7 +118,6 @@ $("#formChangeImagePerfil").submit(function(e){
 		processData: false,
 		contentType: false,
 		success: function(result){
-			//alert(result);
 			$('#formChangeImagePerfil')[0].reset();
 			location.reload();
 		},
@@ -150,10 +148,37 @@ $("#formChangeImageBanner").submit(function(e){
 		processData: false,
 		contentType: false,
 		success: function(result){
-			alert(result);
+			$('#formChangeImageBanner')[0].reset();
+			location.reload();
 		},
 		error: function(error){
 			alert(error);
 		}
 	})
+});
+
+$("#SendRequestChat").submit(function(e){
+
+	e.preventDefault();
+
+	var data = $(this).serialize();
+	var namefunction = "requestMessage";
+
+	$.ajax({
+        type : 'POST', 
+        url : '../../php/functions.php', 
+        data : {
+        	data : data, 
+        	namefunction : "requestMessage",
+        },
+        success: function(result){
+        	alert(result);
+        	/*alert("Mensaje enviado");
+			$('#SendRequestChat')[0].reset();
+			location.reload();*/
+	 	},
+	 	error: function(error){
+	 		alert(error);
+	 	}
+    })
 });

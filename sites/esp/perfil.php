@@ -28,9 +28,9 @@ if (isset($_SESSION['idUser'])) {
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
-        <!--<script type="text/javascript" src="../../js/image_click.js"></script>
+        <script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/image_click0.js"></script>
-        <script type="text/javascript" src="../../js/popup_img.js"></script>-->
+        <script type="text/javascript" src="../../js/popup_img.js"></script>
 
 				<script type="text/javascript">
             $(document).ready(function () {
@@ -344,8 +344,6 @@ if (isset($_SESSION['idUser'])) {
                     </div>
                 </div>
             </div>
-
-            
             <?php 
             $query1 = "SELECT * FROM user us
 						INNER JOIN countries co
@@ -356,7 +354,7 @@ if (isset($_SESSION['idUser'])) {
             $resultado = mysql_query($query1) or die (mysql_error());
             $row = mysql_fetch_array($resultado);
 
-            $fechanacimiento = ('1991-12-12');
+            $fechanacimiento = ($row['userBirthDate']);
             list($ano,$mes,$dia) = explode("-",$fechanacimiento);
 			$ano_diferencia  = date("Y") - $ano;
 			$mes_diferencia = date("m") - $mes;
@@ -364,9 +362,8 @@ if (isset($_SESSION['idUser'])) {
 			if ($dia_diferencia < 0 || $mes_diferencia < 0)
 				$ano_diferencia--;
             ?>
-
             <div class="top_img">
-                <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/beerBanners/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
                     <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
@@ -431,6 +428,7 @@ if (isset($_SESSION['idUser'])) {
 					</div>
 				</div>
 
+
                 <div class="name_profile">
                     <p><?php echo $row['userName']; ?></p>
                 </div>
@@ -444,17 +442,11 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="profile_res">
-                    <p><?php echo $row['userDescription']; ?>.</p>
+                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'No description.' ?></p>
                 </div>
 
                 <!-- Send message popup -->
-
-                <?php if (isset($_SESSION['idUser']) == $_GET['idUser']) { ?>
-                <a id="show-img" href="#" style="display: none">
-                    <img src="../../images/social-03.png" />
-                    <p class="send_txt"> ENVIAR MENSAJE	</p>
-                </a>
-                <?php } else { ?>
+                <?php if(isset($_SESSION['idUser']) != $_GET['idUser']) { ?>
                 <a id="show-img" href="#">
                     <img src="../../images/social-03.png" />
                     <p class="send_txt"> ENVIAR MENSAJE	</p>
@@ -475,6 +467,7 @@ if (isset($_SESSION['idUser'])) {
 	                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
 	                            <br>
 	                            <input type="submit" value="ENVIAR">
+	                            <div class="resultado"></div>
 	                        </form>
                         </div>
                     </div>
@@ -486,1221 +479,1407 @@ if (isset($_SESSION['idUser'])) {
             </div> <!-- end content profile -->
 
             <div class="favs_profile">
-
-                <div class="back_ profile_back">
-                    <a href="cervezas.php">
-                        <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">VOLVER A CERVEZAS</p>
-                    </a>
-                </div>
-
                 <!-- slider favoritos -->
+ 								<span id="favoritos-slider">
+	                <div class="back_ profile_back">
+	                    <a href="cervezas.php">
+	                        <img src="../../images/flecha-izq_negro.png" />
+	                        <p class="back_text">VOLVER A CERVEZAS</p>
+	                    </a>
+	                </div>
+	                <!-- <input type="radio" id="slide1" class="slider-dot" name="slider"checked>
+	                <input type="radio" id="slide2" class="slider-dot" name="slider">
+	                <input type="radio" id="slide3" class="slider-dot" name="slider">
+	                <input type="radio" id="slide4" class="slider-dot" name="slider">
+	                <input type="radio" id="slide5" class="slider-dot" name="slider">
+	                <input type="radio" id="slide6" class="slider-dot" name="slider"> -->
+	                <div class="slides">
+	                    <div class="toptext_slider"><span>FAVORITOS</span></div>
+	                    <div class="overflow">
+	                        <div class="inner profile">
 
-                <input type="radio" id="slide1" name="slider" checked>
-                <input type="radio" id="slide2" name="slider">
-                <input type="radio" id="slide3" name="slider">
-                <input type="radio" id="slide4" name="slider">
-                <input type="radio" id="slide5" name="slider">
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                <div class="slides">
-                    <div class="toptext_slider"><span>FAVORITOS</span></div>
-                    <div class="overflow">
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                        <div class="inner profile">
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-
-                            </article>
-
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
 
-                            </article>
+	                            </article>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-
-                            </article>
-
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
 
-                            </article>
+	                            </article>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                    </div>
-                                </li>
-
-
-                            </article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
 
 
-                        </div>
-                    </div>
-                </div>
-                <div class="controls">
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                </div>
+	                            </article>
 
-                <!--- fin slider beers -->
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+
+	                            </article>
+
+                              <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+
+	                            </article>
+
+                              <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+
+	                            </article>
+
+                              <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="heart-status">
+	                                        <span name="1" class="heart-icon 1">&#9829;</span>
+	                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
+	                                    </div>
+	                                </li>
+
+
+	                            </article>
+
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="controls">
+	                    <!-- <label for="slide1" ></label> -->
+	                </div>
+								</span>
+                <!--- fin slider favoritos -->
+
+                <script type="text/javascript">
+                  var beerSlideCounter = $('.slides .overflow .inner.profile article').length;
+                  var beerSlideWidth = 100/beerSlideCounter;
+                  $('.slides .overflow .inner article').css({ width: beerSlideWidth + '%' });
+                  $('.slides .overflow .inner').css({ width: beerSlideCounter*100 + '%' });
+
+                  var labels = "";
+                  $('.slides .overflow .inner.profile article').each(function(index){
+                    labels = labels+"<label for='slide"+(index+1)+"'></label>";
+                  });
+                  $('.controls').html(labels);
+
+
+                  $( "label" ).click(function() {
+                    // sacar attributo
+                    $('.inner.profile').css({ "margin-left": "-100%" });
+                    $('label[for=slide2]').css({ "background": "#333" });
+                  });
+
+                </script>
+
 
                 <!-- slider wishlist -->
-                <input type="radio" id="slide1" name="slider" checked>
-                <input type="radio" id="slide2" name="slider">
-                <input type="radio" id="slide3" name="slider">
-                <input type="radio" id="slide4" name="slider">
-                <input type="radio" id="slide5" name="slider">
+								<span id="wishlist-slider">
+                  <input type="radio" id="slide1" class="slider-dot" name="slider"checked>
+	                <input type="radio" id="slide2" class="slider-dot" name="slider">
+	                <input type="radio" id="slide3" class="slider-dot" name="slider">
+	                <input type="radio" id="slide4" class="slider-dot" name="slider">
+	                <input type="radio" id="slide5" class="slider-dot" name="slider">
 
-                <div class="slides">
-                    <span class="toptext_slider">WISHLIST</span>
-                    <div class="overflow">
-                        <div class="inner profile">
+	                <div class="slides">
+	                    <span class="toptext_slider">WISHLIST</span>
+	                    <div class="overflow">
+	                        <div class="inner profile">
 
-                            <article>
+	                            <article>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
-                                </li>
-                            </article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
 
 
-                        </div>
-                    </div>
-                </div>
-                <div class="controls">
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                </div>
-                <!--- fin slider beers -->
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="delete-opt">Eliminar</span><span> - </span><span class="mod-opt">Modificar</span>
+	                                </li>
+	                            </article>
+
+
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="controls">
+	                    <label for="slide1"></label>
+	                    <label for="slide2"></label>
+	                    <label for="slide3"></label>
+	                    <label for="slide4"></label>
+	                    <label for="slide5"></label>
+	                </div>
+								</span>
+                <!--- fin slider wishlist -->
 
                 <!-- slider beer ranks -->
-                <input type="radio" id="slide1" name="slider" checked>
-                <input type="radio" id="slide2" name="slider">
-                <input type="radio" id="slide3" name="slider">
-                <input type="radio" id="slide4" name="slider">
-                <input type="radio" id="slide5" name="slider">
-
-                <div class="slides">
-                    <span class="toptext_slider">RANKS</span>
-                    <div class="overflow">
-                        <div class="inner profile">
-
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating" name='puto'>
-                                        <div name="p">
-                                            <input type="radio" name="rating" id="r1">
-                                            <label for="r1" name='1'></label>
-                                        </div>
-                                        <div name="u">
-                                            <input type="radio" name="rating" id="r2">
-                                            <label for="r2" name='2'></label>
-                                        </div>
-                                        <div name="t">
-                                            <input type="radio" name="rating" id="r3">
-                                            <label for="r3" name='3'></label>
-                                        </div>
-                                        <div name="o">
-                                            <input type="radio" name="rating" id="r4">
-                                            <label for="r4" name='4'></label>
-                                        </div>
-                                        <div name="s">
-                                            <input type="radio" name="rating" id="r5">
-                                            <label for="r5" name='5'></label>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-                                        <input type="radio" name="rating" id="r1">
-                                        <label for="r1" class="first-star"></label>
-
-                                        <input type="radio" name="rating" id="r2">
-                                        <label for="r2"></label>
-
-                                        <input type="radio" name="rating" id="r3">
-                                        <label for="r3"></label>
-
-                                        <input type="radio" name="rating" id="r4">
-                                        <label for="r4"></label>
-
-                                        <input type="radio" name="rating" id="r5">
-                                        <label for="r5"></label>
-                                    </div>
-                                </li>
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <div class="rating">
-
-                                        <div>
-                                            <input type="radio" name="rating" id="r1">
-                                            <label for="r1" name='1'></label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="rating" id="r2">
-                                            <label for="r2" name='2'></label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="rating" id="r3">
-                                            <label for="r3" name='3'></label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="rating" id="r4">
-                                            <label for="r4" name='4'></label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="rating" id="r5">
-                                            <label for="r5" name='5'></label>
-                                        </div>
-
-
-
-                                    </div>
-
-                                </li>
-
-                            </article>
-
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
-
-                                </li>
+								<span id="ranks">
+                  <input type="radio" id="slide1" class="slider-dot" name="slider"checked>
+	                <input type="radio" id="slide2" class="slider-dot" name="slider">
+	                <input type="radio" id="slide3" class="slider-dot" name="slider">
+	                <input type="radio" id="slide4" class="slider-dot" name="slider">
+	                <input type="radio" id="slide5" class="slider-dot" name="slider">
+
+	                <div class="slides">
+	                    <span class="toptext_slider">RANKS</span>
+	                    <div class="overflow">
+	                        <div class="inner profile">
+
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating" name='puto'>
+	                                        <div name="p">
+	                                            <input type="radio" name="rating" id="r1">
+	                                            <label for="r1" name='1'></label>
+	                                        </div>
+	                                        <div name="u">
+	                                            <input type="radio" name="rating" id="r2">
+	                                            <label for="r2" name='2'></label>
+	                                        </div>
+	                                        <div name="t">
+	                                            <input type="radio" name="rating" id="r3">
+	                                            <label for="r3" name='3'></label>
+	                                        </div>
+	                                        <div name="o">
+	                                            <input type="radio" name="rating" id="r4">
+	                                            <label for="r4" name='4'></label>
+	                                        </div>
+	                                        <div name="s">
+	                                            <input type="radio" name="rating" id="r5">
+	                                            <label for="r5" name='5'></label>
+	                                        </div>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+	                                        <input type="radio" name="rating" id="r1">
+	                                        <label for="r1" class="first-star"></label>
+
+	                                        <input type="radio" name="rating" id="r2">
+	                                        <label for="r2"></label>
+
+	                                        <input type="radio" name="rating" id="r3">
+	                                        <label for="r3"></label>
+
+	                                        <input type="radio" name="rating" id="r4">
+	                                        <label for="r4"></label>
+
+	                                        <input type="radio" name="rating" id="r5">
+	                                        <label for="r5"></label>
+	                                    </div>
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <div class="rating">
+
+	                                        <div>
+	                                            <input type="radio" name="rating" id="r1">
+	                                            <label for="r1" name='1'></label>
+	                                        </div>
+	                                        <div>
+	                                            <input type="radio" name="rating" id="r2">
+	                                            <label for="r2" name='2'></label>
+	                                        </div>
+	                                        <div>
+	                                            <input type="radio" name="rating" id="r3">
+	                                            <label for="r3" name='3'></label>
+	                                        </div>
+	                                        <div>
+	                                            <input type="radio" name="rating" id="r4">
+	                                            <label for="r4" name='4'></label>
+	                                        </div>
+	                                        <div>
+	                                            <input type="radio" name="rating" id="r5">
+	                                            <label for="r5" name='5'></label>
+	                                        </div>
+
+
+
+	                                    </div>
+
+	                                </li>
+
+	                            </article>
+
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
+
+	                                </li>
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
+
+	                                </li>
+
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
+
+	                                </li>
+
+
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
+
+	                                </li>
+
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
-
-                                </li>
-
-
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
-
-                                </li>
-
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
+
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
-
-                                </li>
-
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
-
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
-
 
-                                </li>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
+
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                            </article>
 
-                                </li>
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                            </article>
+	                                </li>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                                </li>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                            </article>
 
-                                </li>
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                            </article>
+	                                </li>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                                </li>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                            </article>
 
-                                </li>
+	                            <article>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                            </article>
+	                                </li>
 
-                            <article>
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
 
-                                </li>
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                                <li class="first_beer">
+	                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
+	                                    <span class="title">Nombre Cerveza</span>
+	                                    <span class="subtitle">Brief description of the beer </span> <br>
+	                                    <span class="rank-stars-opt" value="1">★</span>
+	                                    <span class="rank-stars-opt" value="2">☆</span>
+	                                    <span class="rank-stars-opt" value="3">☆</span>
+	                                    <span class="rank-stars-opt" value="4">☆</span>
+	                                    <span class="rank-stars-opt" value="5">☆</span>
 
-                                </li>
 
+	                                </li>
 
-                                <li class="first_beer">
-                                    <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                    <span class="title">Nombre Cerveza</span>
-                                    <span class="subtitle">Brief description of the beer </span> <br>
-                                    <span class="rank-stars-opt" value="1">★</span>
-                                    <span class="rank-stars-opt" value="2">☆</span>
-                                    <span class="rank-stars-opt" value="3">☆</span>
-                                    <span class="rank-stars-opt" value="4">☆</span>
-                                    <span class="rank-stars-opt" value="5">☆</span>
 
+	                            </article>
 
-                                </li>
-
-
-                            </article>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="controls">
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
-                </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="controls">
+	                    <label for="slide1"></label>
+	                    <label for="slide2"></label>
+	                    <label for="slide3"></label>
+	                    <label for="slide4"></label>
+	                    <label for="slide5"></label>
+	                </div>
+								</span>
                 <!--- fin slider beers -->
 
 
@@ -1930,6 +2109,89 @@ if (isset($_SESSION['idUser'])) {
                 </div>
             </div>
             <script src="../../js/services.js"></script>
+            <script type="text/javascript">
+                $(document).on("ready", function () {
+
+                    $(document).on('click', '.user_name, .user_name_click', function () {
+                        $(".login-modal").css({
+                            "opacity": "1",
+                            "z-index": "10",
+                        }),
+                                $(".background-filter").css({
+                            "opacity": "1",
+                            "z-index": "10",
+                        })
+                    });
+
+                    $(".close-icon,.background-filter").on("click", function () {
+                        $(".login-modal").css({
+                            "opacity": "0",
+                            "z-index": "-1",
+                        }),
+                                $(".background-filter").css({
+                            "opacity": "0",
+                            "z-index": "-1",
+                        })
+                    });
+
+                });
+            </script>
+
+            <script type="text/javascript">
+				$(document).on("ready", function () {
+
+					$(document).on('click', '.image_perfil_click', function () {
+						$(".perfil_change").css({
+							"opacity": "1",
+							"z-index": "10",
+						}),
+						$(".background-filter").css({
+							"opacity": "1",
+							"z-index": "10",
+						})
+					});
+
+					$(".close-icon,.background-filter").on("click", function () {
+						$(".perfil_change").css({
+								"opacity": "0",
+								"z-index": "-1",
+						}),
+						$(".background-filter").css({
+							"opacity": "0",
+							"z-index": "-1",
+						})
+					});
+
+				});
+			</script>
+
+			<script type="text/javascript">
+				$(document).on("ready", function () {
+
+					$(document).on('click', '.image_banner_click', function () {
+						$(".banner_change").css({
+							"opacity": "1",
+							"z-index": "10",
+						}),
+						$(".background-filter").css({
+							"opacity": "1",
+							"z-index": "10",
+						})
+					});
+
+					$(".close-icon,.background-filter").on("click", function () {
+						$(".banner_change").css({
+								"opacity": "0",
+								"z-index": "-1",
+						}),
+						$(".background-filter").css({
+							"opacity": "0",
+							"z-index": "-1",
+						})
+					});
+
+				});
+			</script>
 
             <script type="text/javascript">
                 $(document).on("ready", function () {
@@ -1994,113 +2256,57 @@ if (isset($_SESSION['idUser'])) {
         <?php } ?>
 
 				<script type="text/javascript">
-					$(document).on("ready", function () {
+						$(document).on("ready", function () {
 
-						$(document).on('click', '.user_name, .user_name_click', function () {
-							$(".login-modal").css({
-								"opacity": "1",
-								"z-index": "10",
-							}),
-							$(".background-filter").css({
-								"opacity": "1",
-								"z-index": "10",
-							})
+								$(document).on('click', '.user_name, .user_name_click', function () {
+										$(".login-modal").css({
+												"opacity": "1",
+												"z-index": "10",
+										}),
+														$(".background-filter").css({
+												"opacity": "1",
+												"z-index": "10",
+										})
+								});
+
+								$(".close-icon,.background-filter").on("click", function () {
+										$(".login-modal").css({
+												"opacity": "0",
+												"z-index": "-1",
+										}),
+														$(".background-filter").css({
+												"opacity": "0",
+												"z-index": "-1",
+										})
+								});
+
 						});
-
-						$(".close-icon,.background-filter").on("click", function () {
-							$(".login-modal").css({
-								"opacity": "0",
-								"z-index": "-1",
-							}),
-							$(".background-filter").css({
-								"opacity": "0",
-								"z-index": "-1",
-							})
-						});
-
-					});
-				</script>
-
-				<script type="text/javascript">
-					$(document).on("ready", function () {
-
-						$(document).on('click', '.image_perfil_click', function () {
-							$(".perfil_change").css({
-								"opacity": "1",
-								"z-index": "10",
-							}),
-							$(".background-filter").css({
-								"opacity": "1",
-								"z-index": "10",
-							})
-						});
-
-						$(".close-icon,.background-filter").on("click", function () {
-							$(".perfil_change").css({
-									"opacity": "0",
-									"z-index": "-1",
-							}),
-							$(".background-filter").css({
-								"opacity": "0",
-								"z-index": "-1",
-							})
-						});
-
-					});
-				</script>
-
-				<script type="text/javascript">
-					$(document).on("ready", function () {
-
-						$(document).on('click', '.image_banner_click', function () {
-							$(".banner_change").css({
-								"opacity": "1",
-								"z-index": "10",
-							}),
-							$(".background-filter").css({
-								"opacity": "1",
-								"z-index": "10",
-							})
-						});
-
-						$(".close-icon,.background-filter").on("click", function () {
-							$(".banner_change").css({
-									"opacity": "0",
-									"z-index": "-1",
-							}),
-							$(".background-filter").css({
-								"opacity": "0",
-								"z-index": "-1",
-							})
-						});
-
-					});
 				</script>
 
 				<script type="text/javascript">
 						$(document).on("ready", function () {
 
-							$(".not-user").on("click", function () {
-								$(".signup-modal").css({
-									"opacity": "1",
-									"z-index": "10",
-								}),
-								$(".background-filter").css({
-									"opacity": "1",
-									"z-index": "10",
-								})
-							});
+								$(".not-user").on("click", function () {
+										$(".signup-modal").css({
+												"opacity": "1",
+												"z-index": "10",
+										}),
+														$(".background-filter").css({
+												"opacity": "1",
+												"z-index": "10",
+										})
+								});
 
-							$(".close-icon,.background-filter").on("click", function () {
-								$(".signup-modal").css({
-									"opacity": "0",
-									"z-index": "-1",
-								}),
-								$(".background-filter").css({
-									"opacity": "0",
-									"z-index": "-1",
-								})
-							});
+								$(".close-icon,.background-filter").on("click", function () {
+										$(".signup-modal").css({
+												"opacity": "0",
+												"z-index": "-1",
+										}),
+														$(".background-filter").css({
+												"opacity": "0",
+												"z-index": "-1",
+										})
+								});
 
 						});
 				</script>

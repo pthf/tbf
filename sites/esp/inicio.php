@@ -294,7 +294,7 @@ if (isset($_SESSION['idUser'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php">
+                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
