@@ -467,10 +467,11 @@ if (isset($_SESSION['idUser'])) {
                 </div>
                 <!--box foot right -->
                 <div class="send_a_message">
-                    <input type="text" name="message" placeholder="Escribe una respuesta...">
-                    <div class="send_button">
-                        <a href="#"> <p>ENVIAR</p></a>
-                    </div>
+                	<form id="SendRequestChat">
+                		<input type="text" hidden name="idUserChat" value="<?php echo $_GET['idUserChat']; ?>">
+	                    <input type="text" name="message" placeholder="Escribe una respuesta...">
+	                    <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
+	                </form>
                 </div>
 
             </div>
@@ -520,7 +521,7 @@ if (isset($_SESSION['idUser'])) {
             </div>
 
         </div>
-
+        		<script src="../../js/services.js"></script>
 				<script type="text/javascript">
 						$(document).on("ready", function () {
 
