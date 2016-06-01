@@ -37,10 +37,8 @@ if (isset($_SESSION['idUser'])) {
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-
+        <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/image_click.js"></script>
@@ -470,8 +468,26 @@ if (isset($_SESSION['idUser'])) {
 
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
-                    <h1 class="ranklevel">4</h1>
-                    <h2 class="rankstars">&#x2605; 	&#x2605; 	&#x2605; 	&#x2605; 	&#9734;</h2>
+
+                      <div class='rating-stars text-center'>
+                        <ul id='stars'>
+                          <li class='star' data-value='1'>
+                            <i class='fa fa-star fa-fw'></i>
+                          </li>
+                          <li class='star' data-value='2'>
+                            <i class='fa fa-star fa-fw'></i>
+                          </li>
+                          <li class='star' data-value='3'>
+                            <i class='fa fa-star fa-fw'></i>
+                          </li>
+                          <li class='star' data-value='4'>
+                            <i class='fa fa-star fa-fw'></i>
+                          </li>
+                          <li class='star' data-value='5'>
+                            <i class='fa fa-star fa-fw'></i>
+                          </li>
+                        </ul>
+                      </div>
 
                     <div class="fav_box">
                         <a class="user_icons" href="#">
@@ -1023,7 +1039,7 @@ if (isset($_SESSION['idUser'])) {
 
               });
           </script>
-
+          <script type="text/javascript" src="../../js/rating.js"></script>
         </div>
     </body>
 </html>

@@ -1999,23 +1999,45 @@ input.slider-dot{
     font-size: 3em;
   }
 
-  .ranklevel{
-    text-align: center;
-    font-size: 3em;
-  }
-
-  .rankstars{
-    text-align: center;
-    font-size: 2em;
-    cursor: default;
-  }
-
   #rank_beer{
     text-align: center;
     display: block;
     margin-top:5%;
     margin-bottom: 4vw;
   }
+
+  .rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+  }
+
+  .rating-stars ul > li.star {
+    display:inline-block;
+  }
+
+  /* Idle State of the stars */
+  .rating-stars ul > li.star > i.fa {
+    font-size:2em; /* Tamaño de estrellas */
+    color:#ccc; /* Color en estado de espera */
+  }
+
+  /* Hover en las estrellas */
+  .rating-stars ul > li.star.hover > i.fa {
+    color:black;
+  }
+
+  /* Rango de las estrellas seleccionadas  */
+  .rating-stars ul > li.star.selected > i.fa {
+    color:black;
+  }
+
+  ul#stars{
+    cursor: pointer;
+    padding: 1vw 0 1vw 0;
+  }
+
 
   .send_message{
     position: relative;
