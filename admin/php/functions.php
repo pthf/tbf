@@ -86,7 +86,64 @@
 			case 'loginUser':
 				loginUser();
 				break;
+			case 'deleteFavorites':
+				deleteFavorites($_POST['dataUser'], $_POST['dataBeer']);
+				break;
+			case 'addFavorites':
+				addFavorites($_POST['dataUser'], $_POST['dataBeer']);
+				break;
+			case 'deleteWishList':
+				deleteWishList($_POST['dataUser'], $_POST['dataBeer']);
+				break;
+			case 'addWishList':
+				addWishList($_POST['dataUser'], $_POST['dataBeer']);
+				break;
+
 		}
+	}
+
+	function deleteWishList($dataUser, $dataBeer){
+		$query = "SELECT idWishList FROM  user WHERE idUser = $dataUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$idWishList = $line['idWishList'];
+
+		$query = "DELETE FROM wishlistelement WHERE idWishList = $idWishList AND idBeer = $dataBeer";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function addWishList($dataUser, $dataBeer){
+		$query = "SELECT idWishList FROM  user WHERE idUser = $dataUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$idWishList = $line['idWishList'];
+
+		$query = "INSERT INTO wishlistelement (idWishList, idBeer ) VALUES ($idWishList, $dataBeer)";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+
+
+
+
+
+
+	function deleteFavorites($dataUser, $dataBeer){
+		$query = "SELECT idFavoritesList FROM  user WHERE idUser = $dataUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$idFavoritesList = $line['idFavoritesList'];
+		$query = "DELETE FROM favoriteelement WHERE idFavoritesList = $idFavoritesList AND idBeer = $dataBeer";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function addFavorites($dataUser, $dataBeer){
+		$query = "SELECT idFavoritesList FROM  user WHERE idUser = $dataUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$idFavoritesList = $line['idFavoritesList'];
+		$query = "INSERT INTO favoriteelement (idFavoritesList, idBeer ) VALUES ($idFavoritesList, $dataBeer)";
+		$result = mysql_query($query) or die(mysql_error());
 	}
 
 	function loginUser(){

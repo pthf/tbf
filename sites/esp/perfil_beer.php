@@ -280,7 +280,7 @@ if (isset($_SESSION['idUser'])) {
         <div id="contenedor">
 
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/beerProfiles/alhambra.png" />
+                <img class="profile_popup" src="../../images/beerProfiles/<?= $lineBeer['beerProfileImage'] ?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -391,7 +391,11 @@ if (isset($_SESSION['idUser'])) {
 
                 </div>
 
+
                 <div class="social_company">
+                    <?php if(strlen($lineBeer['beerSite'])>0){?>
+                    <a target="_blank" href="<?= $lineBeer['beerSite'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                    <?php } ?>
                     <?php if(strlen($lineBeer['beerFacebook'])>0){?>
                     <a target="_blank" href="<?= $lineBeer['beerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
                     <?php } ?>
@@ -402,6 +406,7 @@ if (isset($_SESSION['idUser'])) {
                     <a target="_blank" href="<?= $lineBeer['beerInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
                     <?php } ?>
                 </div>
+
 
 
             </div>
@@ -420,7 +425,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="image_beer">
 
                     <a id="show-panel" href="#">
-                        <img src="../../images/beerBottles/beers-01.png" alt="" />
+                        <img src="../../images/beerBottles/<?= $lineBeer['beerBottleImage'] ?>" alt="" />
                     </a>
 
                     <div id="lightbox-panel">
@@ -473,19 +478,113 @@ if (isset($_SESSION['idUser'])) {
                     <h1 class="ranklevel">4</h1>
                     <h2 class="rankstars">&#x2605; 	&#x2605; 	&#x2605; 	&#x2605; 	&#9734;</h2>
 
+
                     <div class="fav_box">
-                        <a class="user_icons" href="#">
-                            <img class="fav_button" id="fav_button" src="../../images/fav1.svg">
-                            <p class="add_fav">AGREGAR A FAVORITOS</p>
+                        <a class="user_icons add_favorites" href="#">
+                            <img class="fav_button" id="fav_button" src="../../images/fav1.svg"> <?php
+                            if(isset($_SESSION['idUser'])){
+                              $q = "SELECT idFavoritesList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                              $r = mysql_query($q) or die(mysql_error());
+                              $l = mysql_fetch_array($r);
+                              $listaUser = $l['idFavoritesList'];
+
+                              $q = "SELECT idFavoriteElement FROM favoriteelement WHERE $listaUser = idFavoritesList AND ".$_GET['id']." = idBeer";
+                              $r = mysql_query($q) or die(mysql_error());
+
+                              if(mysql_num_rows($r)>0){?>
+                                <p class="add_fav loginacepfavorites" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE FAVORITOS</p> <?php
+                              }else{ ?>
+                                  <p class="add_fav loginacepfavorites" data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A FAVORITOS</p><?php
+                              }
+                            }else{ ?>
+                              <p class="add_fav logintoadd">AGREGAR A FAVORITOS</p> <?php
+                            } ?>
                         </a>
                     </div>
 
                     <div class="wishlist_box">
                         <a class="user_icons" href="#">
-                            <img class="wishlist_icon" src="../../images/wishlist.svg">
-                            <p class="add_wishlist">AGREGAR A WISHLIST</p>
+                            <img class="wishlist_icon" src="../../images/wishlist.svg"><?php
+                            // <p class="add_wishlist">AGREGAR A WISHLIST</p>
+
+
+                            if(isset($_SESSION['idUser'])){
+                              $q = "SELECT idWishList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                              $r = mysql_query($q) or die(mysql_error());
+                              $l = mysql_fetch_array($r);
+                              $listaUser = $l['idWishList'];
+
+                              $q = "SELECT idWishListElement FROM wishlistelement WHERE $listaUser = idWishList AND ".$_GET['id']." = idBeer";
+                              $r = mysql_query($q) or die(mysql_error());
+
+                              if(mysql_num_rows($r)>0){?>
+                                <p class="add_fav loginacepwishlist" data-function="deleteWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE WISHLIST</p> <?php
+                              }else{ ?>
+                                  <p class="add_fav loginacepwishlist" data-function="addWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A WISHLIST</p><?php
+                              }
+                            }else{ ?>
+                              <p class="add_fav logintoadd">AGREGAR A WISHLIST</p> <?php
+                            } ?>
+
+
+
+
                         </a>
                     </div>
+
+                    <script>
+                      $('.loginacepwishlist').click(function(e){
+                        e.preventDefault();
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                dataUser : dataUser,
+                                dataBeer : dataBeer
+                            },
+                            success: function (result) {
+                                location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
+                      $('.loginacepfavorites').click(function(e){
+                        e.preventDefault();
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+    		                    beforeSend: function () {
+    		                    },
+    		                    url: "../../admin/php/functions.php",
+    		                    type: "POST",
+    		                    data: {
+    		                        namefunction : namefunction,
+    		                        dataUser : dataUser,
+                                dataBeer : dataBeer
+    		                    },
+    		                    success: function (result) {
+    		                        location.reload();
+    		                    },
+    		                    error: function (error) {
+    		                    },
+    		                    complete: function () {
+    		                    },
+    		                    timeout: 10000
+    		                });
+                      });
+                    </script>
 
                 </div>
 
@@ -721,7 +820,7 @@ if (isset($_SESSION['idUser'])) {
 						<script type="text/javascript">
 		            $(document).on("ready", function () {
 
-		                $(document).on('click', '.user_name, .user_name_click', function () {
+		                $(document).on('click', '.user_name, .user_name_click, .logintoadd', function () {
 		                    $(".login-modal").css({
 		                        "opacity": "1",
 		                        "z-index": "10",
