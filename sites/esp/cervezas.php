@@ -30,7 +30,11 @@ if (isset($_SESSION['idUser'])) {
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/slidedown.js"></script>
-
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
         <script type="text/javascript">
             $(document).ready(function () {
 

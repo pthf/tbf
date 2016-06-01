@@ -44,7 +44,6 @@ if (isset($_SESSION['idUser'])) {
         <script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/popup_img.js"></script>
-
 				<script type="text/javascript">
 						$(document).ready(function () {
 
@@ -59,6 +58,11 @@ if (isset($_SESSION['idUser'])) {
 								}(jQuery));
 						});
 				</script>
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
 
 				<script type="text/javascript">
 						$(document).ready(function () {
@@ -474,7 +478,28 @@ if (isset($_SESSION['idUser'])) {
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
                     <h1 class="ranklevel">4</h1>
+                    <div class='rating-stars text-center'>
+                      <ul id='stars' class="stars-profile-view">
+                        <li class='star star-small-profile' data-value='1'>
+                          <i class='fa fa-star fa-fw star-small gold-star'></i>
+                        </li>
+                        <li class='star star-small-profile' data-value='2'>
+                          <i class='fa fa-star fa-fw star-small gold-star'></i>
+                        </li>
+                        <li class='star star-small-profile' data-value='3'>
+                          <i class='fa fa-star fa-fw star-small gold-star'></i>
+                        </li>
+                        <li class='star star-small-profile' data-value='4'>
+                          <i class='fa fa-star fa-fw star-small gold-star'></i>
+                        </li>
+                        <li class='star star-small-profile' data-value='5'>
+                          <i class='fa fa-star fa-fw star-small gold-star'></i>
+                        </li>
+                      </ul>
+                    </div>
 
+
+                    <p class="ranktitle-2">TÚ RANKING</p>
                       <div class='rating-stars text-center'>
                         <ul id='stars' class="stars-profile-view">
                           <li class='star' data-value='1'>

@@ -42,7 +42,11 @@ if (isset($_SESSION['idUser'])) {
         <script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/image_click0.js"></script>
         <script type="text/javascript" src="../../js/popup_img.js"></script>
-
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
 				<script type="text/javascript">
             $(document).ready(function () {
 
