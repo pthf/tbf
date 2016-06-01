@@ -478,39 +478,64 @@ if (isset($_SESSION['idUser'])) {
                     </div>
                     <?php
 
-                    $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
-                		$result = mysql_query($query) or die(mysql_error());
-                		$line = mysql_fetch_array($result);
-                		$idRanksList = $line['idRanksList'];
+                    if(isset($_SESSION['idUser'])){
+                      $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                  		$result = mysql_query($query) or die(mysql_error());
+                  		$line = mysql_fetch_array($result);
+                  		$idRanksList = $line['idRanksList'];
 
-                		$query = "SELECT * FROM rankslistelement WHERE idBeer = ".$_GET['id']." AND idRanksList = $idRanksList";
-                		$result = mysql_query($query) or die(mysql_error());
-                		if(mysql_num_rows($result)>0){
-                        echo '<span class="deleteRank" data-beer="'.$_GET['id'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
-                		}else{
+                  		$query = "SELECT * FROM rankslistelement WHERE idBeer = ".$_GET['id']." AND idRanksList = $idRanksList";
+                  		$result = mysql_query($query) or die(mysql_error());
+                  		if(mysql_num_rows($result)>0){
+                          echo '<span class="deleteRank" data-beer="'.$_GET['id'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                  		}else{
+                        echo "
+                          <div class='rating-stars text-center'>
+                            <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
+                              <li class='star' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                            </ul>
+                          </div>
+                        ";
+                  		}
+                    }else{
                       echo "
                         <div class='rating-stars text-center'>
-                          <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
-                            <li class='star' data-value='1'>
-                              <i class='fa fa-star fa-fw'></i>
-                            </li>
-                            <li class='star' data-value='2'>
-                              <i class='fa fa-star fa-fw'></i>
-                            </li>
-                            <li class='star' data-value='3'>
-                              <i class='fa fa-star fa-fw'></i>
-                            </li>
-                            <li class='star' data-value='4'>
-                              <i class='fa fa-star fa-fw'></i>
-                            </li>
-                            <li class='star' data-value='5'>
-                              <i class='fa fa-star fa-fw'></i>
-                            </li>
-                          </ul>
+                          <a href='#'>
+                            <ul id='stars' class='stars-profile-view logintoadd'>
+                              <li class='star' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                            </ul>
+                          </a>
                         </div>
                       ";
-                		}
-
+                    }
                     ?>
 
                     <div class="fav_box">
