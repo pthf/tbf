@@ -2,12 +2,22 @@
 session_start();
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
+
+if(isset($_GET['idUser'])){
+  
+}else{
+  header('Location: inicio.php');
+}
+
+
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -263,9 +273,26 @@ if (isset($_SESSION['idUser'])) {
 				</div>
 
         <div id="contenedor">
+            <?php 
+            $query1 = "SELECT * FROM user us
+						INNER JOIN countries co
+						ON co.id = us.country_id
+						INNER JOIN states st
+						ON st.id = us.state_id
+            			WHERE us.idUser = '".$_GET['idUser']."'";
+            $resultado = mysql_query($query1) or die (mysql_error());
+            $row = mysql_fetch_array($resultado);
 
+            $fechanacimiento = ($row['userBirthDate']);
+            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+			$ano_diferencia  = date("Y") - $ano;
+			$mes_diferencia = date("m") - $mes;
+			$dia_diferencia   = date("d") - $dia;
+			if ($dia_diferencia < 0 || $mes_diferencia < 0)
+				$ano_diferencia--;
+            ?>
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/images.jpeg" />
+                <img class="profile_popup" src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -344,31 +371,14 @@ if (isset($_SESSION['idUser'])) {
                     </div>
                 </div>
             </div>
-            <?php
-            $query1 = "SELECT * FROM user us
-						INNER JOIN countries co
-						ON co.id = us.country_id
-						INNER JOIN states st
-						ON st.id = us.state_id
-            			WHERE us.idUser = '".$_GET['idUser']."'";
-            $resultado = mysql_query($query1) or die (mysql_error());
-            $row = mysql_fetch_array($resultado);
 
-            $fechanacimiento = ($row['userBirthDate']);
-            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-			$ano_diferencia  = date("Y") - $ano;
-			$mes_diferencia = date("m") - $mes;
-			$dia_diferencia   = date("d") - $dia;
-			if ($dia_diferencia < 0 || $mes_diferencia < 0)
-				$ano_diferencia--;
-            ?>
             <div class="top_img">
                 <img src="../../images/beerBanners/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
                     <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
             </div>
-            <div class="login-modal banner_change">
+            <div class="banner_change">
 				<div class="login-modal-wrapper">
 					<div class="close-icon">
 							<img src="../../images/img_galeria-02_close.png" >
@@ -394,6 +404,33 @@ if (isset($_SESSION['idUser'])) {
 				</div>
 			</div>
 
+		 	<div class="perfil_change">
+				<div class="login-modal-wrapper">
+					<div class="close-icon">
+							<img src="../../images/img_galeria-02_close.png" >
+					</div>
+					<div class="login-title">
+							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+					</div>
+
+					<form id="formChangeImagePerfil">
+						<div class="input-boxes">
+								<br>
+								<div class="col-sm-12">
+									<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
+									<input required type="file" class="form-control" name="beerProfileImage[]" value=""></input>
+								</div>
+						</div>
+
+						<div class="send-login-content">
+								<br>
+								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
             <div class="content_profile">
 
                 <div class="image_profile">
@@ -402,31 +439,6 @@ if (isset($_SESSION['idUser'])) {
                         <a href="#" class="image_perfil_click"><span class="change_profile">CAMBIAR FOTO</span></a>
                     <?php } ?>
                 </div>
-                <div class="login-modal perfil_change">
-					<div class="login-modal-wrapper">
-						<div class="close-icon">
-								<img src="../../images/img_galeria-02_close.png" >
-						</div>
-						<div class="login-title">
-								<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
-						</div>
-
-						<form id="formChangeImagePerfil">
-							<div class="input-boxes">
-									<br>
-									<div class="col-sm-12">
-										<input type="text" hidden name="idUser" value="<?php echo $_SESSION['idUser']; ?>">
-										<input required type="file" class="form-control" name="beerProfileImage[]" value=""></input>
-									</div>
-							</div>
-
-							<div class="send-login-content">
-									<br>
-									<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
-							</div>
-						</form>
-					</div>
-				</div>
 
 
                 <div class="name_profile">
@@ -446,32 +458,35 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <!-- Send message popup -->
-                <?php if(isset($_SESSION['idUser']) != $_GET['idUser']) { ?>
-                <a id="show-img" href="#">
-                    <img src="../../images/social-03.png" />
-                    <p class="send_txt"> ENVIAR MENSAJE	</p>
-                </a>
-                <?php } ?>
-                <div id="lightbox-panel">
-                    <div class="lightbox-content">
-                        <a id="close-panel" class="msn_box" href="#">
-                            <img src="../../images/img_galeria-02_close.png" alt="" />
-                        </a>
+                <?php 
+                if (isset($_SESSION['idUser'])) {
+                	if(($_SESSION['idUser']) != $_GET['idUser']) { ?>
+	                <a id="show-img" href="#">
+	                    <img src="../../images/social-03.png" />
+	                    <p class="send_txt"> ENVIAR MENSAJE	</p>
+	                </a>
+	                <div id="lightbox-panel">
+	                    <div class="lightbox-content">
+	                        <a id="close-panel" class="msn_box" href="#">
+	                            <img src="../../images/img_galeria-02_close.png" alt="" />
+	                        </a>
 
-                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
-                        <div class="msn_form">
-                        	<form id="formNewMessage">
-                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
-                        		<input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
-	                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
-	                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
-	                            <br>
-	                            <input type="submit" value="ENVIAR">
-	                            <div class="resultado"></div>
-	                        </form>
-                        </div>
-                    </div>
-                </div>
+	                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
+	                        <div class="msn_form">
+	                        	<form id="formNewMessage">
+	                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
+	                        		<input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
+		                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
+		                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
+		                            <br>
+		                            <input type="submit" value="ENVIAR">
+		                            <div class="resultado"></div>
+		                        </form>
+	                        </div>
+	                    </div>
+	                </div>
+	            <?php } 
+	        	} ?>
                 <!-- /lightbox-panel -->
                 <div id="lightbox"></div>
                 <!-- /lightbox -->
@@ -1133,171 +1148,91 @@ if (isset($_SESSION['idUser'])) {
                 <span class="toptext_slider comments_title">COMENTARIOS</span>
                 <div id="comments_box">
                     <div class="msn_content">
-
                         <!-- message received -->
+                        <?php 
+                        $query2 = "SELECT * FROM postelement po
+									INNER JOIN user us
+									ON us.idUser = po.idUser
+									WHERE po.idPublicMessagesList =".$row['idPublicMessagesList']; 
+                        $resultado2 = mysql_query($query2) or die(mysql_error());
+                        while ($rows2 = mysql_fetch_array($resultado2)) {
+                        ?>
                         <div id="itemContainer">
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
+                                    <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
                                 </div>
 
                                 <div class="item i2">
-                                    <p>CONTACTO</p>
+                                    <p><?php echo $rows2['userName']; ?></p>
                                 </div>
 
                                 <div class="item i3">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
+                                    	<?php echo $rows2['postElementComment']; ?>
                                     </p>
 
                                 </div>
 
 
                             </div>
+                            <?php 
+						    $fecha = $rows2['postElementDate'];
+						    $fechafinal = explode('-', $fecha);
+						    $dia = explode(' ', $fechafinal[2]);
+							$fechats = strtotime($fecha); 
 
-                            <h2>Miércoles 18 de Junio 2015</h2>
+							switch (date('w', $fechats)){ 
+							    case 0: $nameDia[] = "Domingo";
+						    	break;
+						    	case 1: $nameDia[] = "Lunes";
+						    	break;
+						    	case 2: $nameDia[] = "Martes";
+						    	break;
+						    	case 3: $nameDia[] = "Miércoles";
+						    	break;
+						    	case 4: $nameDia[] = "Jueves";
+						    	break;
+						    	case 5: $nameDia[] = 'Viernes';
+						    	break;
+						    	case 6: $nameDia[] = 'Sábado';
+						    	break;
+							}  
+
+							switch (date('n', $fechats)){ 
+							    case 1: $nameMes[] = "Enero";
+						    	break;
+						    	case 2: $nameMes[] = "Febrero";
+						    	break;
+						    	case 3: $nameMes[] = "Marzo";
+						    	break;
+						    	case 4: $nameMes[] = "Abril";
+						    	break;
+						    	case 5: $nameMes[] = 'Mayo';
+						    	break;
+						    	case 6: $nameMes[] = "Junio";
+						    	break;
+						    	case 7: $nameMes[] = "Julio";
+						    	break;
+						    	case 8: $nameMes[] = "Agosto";
+						    	break;
+						    	case 9: $nameMes[] = "Septiembre";
+						    	break;
+						    	case 10: $nameMes[] = "Octube";
+						    	break;
+						    	case 11: $nameMes[] = "Noviembre";
+						    	break;
+						    	case 12: $nameMes[] = "Diciembre";
+						    	break;
+							}  
+						    ?>
+
+                            <h2>
+                            	<?php echo $nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                            </h2>
                         </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -1305,15 +1240,17 @@ if (isset($_SESSION['idUser'])) {
 
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <div class="send_a_message comments_text profile-comments">
-                      <textarea name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
-                      <style media="screen">
-                        ::-webkit-input-placeholder{
-                          padding: 1.5% 0 0 1.5%;
-                        }
-                      </style>
-                        <div class="send_button comments_send">
-                            <a href="#"> <p>COMENTAR</p></a>
-                        </div>
+                    	<form id="SendComment">
+                    		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
+                    		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <style media="screen">
+		                        ::-webkit-input-placeholder{
+		                          padding: 1.5% 0 0 1.5%;
+		                        }
+		                    </style>
+	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                    </form>
                     </div>
                 <?php } ?>
 
@@ -1370,14 +1307,14 @@ if (isset($_SESSION['idUser'])) {
                         }),
                                 $(".background-filter").css({
                             "opacity": "1",
-                            "z-index": "10",
+                            "z-index": "9",
                         })
                     });
 
                     $(".close-icon,.background-filter").on("click", function () {
                         $(".login-modal").css({
                             "opacity": "0",
-                            "z-index": "-1",
+                            "z-index": "-10",
                         }),
                                 $(".background-filter").css({
                             "opacity": "0",
@@ -1509,55 +1446,27 @@ if (isset($_SESSION['idUser'])) {
 				<script type="text/javascript">
 						$(document).on("ready", function () {
 
-								$(document).on('click', '.user_name, .user_name_click', function () {
-										$(".login-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
+							$(".not-user").on("click", function () {
+									$(".signup-modal").css({
+											"opacity": "1",
+											"z-index": "10",
+									}),
+													$(".background-filter").css({
+											"opacity": "1",
+											"z-index": "10",
+									})
+							});
 
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".login-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
-
-						});
-				</script>
-
-				<script type="text/javascript">
-						$(document).on("ready", function () {
-
-								$(".not-user").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
-
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
+							$(".close-icon,.background-filter").on("click", function () {
+									$(".signup-modal").css({
+											"opacity": "0",
+											"z-index": "-1",
+									}),
+													$(".background-filter").css({
+											"opacity": "0",
+											"z-index": "-1",
+									})
+							});
 
 						});
 				</script>

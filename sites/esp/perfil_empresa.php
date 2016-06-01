@@ -393,18 +393,16 @@ if (isset($_SESSION['idUser'])) {
                             <img src="../../images/social-03.png"/>
                             <p>ENVIAR CORREO.</p>
                         </div>
-                    </a>
+                    </a><br>
 
-                    <?php if(isset($lineProducer['producerSite'])){ ?>
-                    <div class="link_profile" style="width: 70%;">
-                        <a href="<?=$lineProducer['producerSite'];?>"><?=$lineProducer['producerSite'];?></a>
-                    </div>
-                    <?php } ?>
-
+                    <p><?=$lineProducer['producerEmail'];?></p>
 
                 </div>
 
                 <div class="social_company">
+                    <?php if(strlen($lineProducer['producerSite'])>0){?>
+                    <a target="_blank" href="<?= $lineProducer['producerSite'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                    <?php } ?>
                     <?php if(strlen($lineProducer['producerFacebook'])>0){?>
                     <a target="_blank" href="<?= $lineProducer['producerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
                     <?php } ?>
@@ -434,301 +432,34 @@ if (isset($_SESSION['idUser'])) {
                     <div class="overflow">
                         <div class="inner profile favoritos-slider">
 
-                            <article class="favoritos-slideItems">
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
+                          <?php
+                              $q = "SELECT * FROM beer WHERE idProducer = ".$_GET['id'];
+                              $r = mysql_query($q) or die(mysql_error());
+                              $contador = 0;
+                              while($l = mysql_fetch_array($r)){
+                                if($contador==0)
+                                  echo '<article class="favoritos-slideItems">';
+                                $contador++;
 
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-
-                            </article>
-                            <article class="favoritos-slideItems">
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-
-                            </article>
-                            <article class="favoritos-slideItems">
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-
-                            </article>
-                            <article class="favoritos-slideItems">
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-
-                            </article>
-                            <article class="favoritos-slideItems">
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-                              <li class="first_beer">
-                                        <img src="../../images/beerBottles/beers-01.png"> <br>
-                                        <span class="title">Nombre Cerveza</span>
-                                        <span class="subtitle">Brief description of the beer </span>
-                                        <a href="perfil_beer.php"><span class="ver_mas">VER MÁS</span></a>
-                              </li>
-
-
-                            </article>
+                                $length = 40;
+                                $descriptionText = substr($l['beerDescription'], 0, $length);
+                                if(strlen($l['beerDescription'])>$length){
+                                  $descriptionText .= "...";
+                                }
+                                echo '
+                                    <li class="first_beer">
+                                      <img src="../../images/beerBottles/'.$l["beerBottleImage"].'"> <br>
+                                      <span class="title">'.$l["beerName"].'</span>
+                                      <span class="subtitle">'.$descriptionText.'</span>
+                                      <a href="perfil_beer.php?id='.$l["idBeer"].'"><span class="ver_mas">VER MÁS</span></a>
+                                    </li>
+                                ';
+                                if($contador==8){
+                                  echo '</article>';
+                                  $contador=0;
+                                }
+                              }
+                          ?>
 
                         </div>
                     </div>
