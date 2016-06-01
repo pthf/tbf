@@ -4,7 +4,7 @@ if (isset($_SESSION['idUser'])) {
     include('../../admin/php/connect_bd.php');
     connect_base_de_datos();
 
-		$query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
+	$query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 
@@ -371,33 +371,37 @@ if (isset($_SESSION['idUser'])) {
 
             <!-- BOTTOM -->
             <div class="content_messages_bottom user_message">
-
                 <!--box bottom left -->
                 <div id="contact_list">
                 	<?php
-	            	$query = "SELECT * FROM chat ch INNER JOIN user us ON us.idUser = ch.user_idUser GROUP BY us.userName";
+	            	$query = "SELECT ch.user_idUser,ch.inbox_idInbox,us.idInbox,us.userName,us.userProfileImage FROM chat ch 
+								INNER JOIN user us
+								ON us.idUser = ch.user_idUser
+								WHERE ch.user_idUser != '".$_SESSION['idUser']."' AND ch.inbox_idInbox = '".$line['idInbox']."'";
 	            	$resultado = mysql_query($query) or die (mysql_error());
 	            	while ($row = mysql_fetch_array($resultado)) {
 	            	?>
-                    <a href="?idUserChat=<?php echo $row['user_idUser']; ?>" id="chats_inbox"><div class="contactProfile chat_user">
+                    <a href="?idUserChat=<?php echo $row['user_idUser'];?>&idChat=<?php echo $row['inbox_idInbox'];?>" id="chats_inbox">
+                    	<div class="contactProfile chat_user">
 
-                        <div class="contact_left">
+	                        <div class="contact_left">
 
-                            <img src="../../images/green_icon.png" alt="" />
+	                            <img src="../../images/green_icon.png" alt="" />
 
-                            <p><?php echo $row['userName'];?> </p>
+	                            <p><?php echo $row['userName'];?> </p>
 
-                        </div>
+	                        </div>
 
-                        <div class="contact_image">
+	                        <div class="contact_image">
 
-                            <div class="img_pro">
-                                <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
-                            </div>
+	                            <div class="img_pro">
+	                                <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
+	                            </div>
 
-                        </div>
+	                        </div>
 
-                    </div></a>
+                    	</div>
+                	</a>
                 	<?php } ?>
                 </div>
 
@@ -410,61 +414,175 @@ if (isset($_SESSION['idUser'])) {
                     	<?php 
                     	if (isset($_GET['idUserChat'])) {
 
-                    	$chat = $_GET['idUserChat'];
-		            	$query1 = "SELECT * FROM message m INNER JOIN user us ON us.idUser = m.user_idUser WHERE m.user_idUser = '".$chat."'";
-		            	$resultado1 = mysql_query($query1) or die (mysql_error());
-			            	while ($row1 = mysql_fetch_array($resultado1)) {
-			            	?>
-	                        <!-- message received -->
-	                        <div id="itemContainer">
-	                            <div id="itemContainerInner">
+	                    	$userChat = $_GET['idUserChat'];
+	                    	$idChat = $_GET['idChat'];
+			            	$query1 = "SELECT * FROM message m
+										INNER JOIN user us
+										ON us.idUser = m.user_idUser
+										INNER JOIN chat c
+										ON c.idChat = m.chat_idChat 
+										WHERE m.user_idUser = '".$userChat."' AND c.inbox_idInbox = '".$idChat."'";
+			            	$resultado1 = mysql_query($query1) or die (mysql_error());
+			            	while ($row1 = mysql_fetch_array($resultado1)) { 
+			            		if ($row1['messageStatus'] == 1) { ?>
+			                        <!-- message send -->
+			                        <div id="itemContainer">
+			                            <div id="itemContainerInner">
 
-	                                <div class="item i1 sent_">
-	                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
-	                                </div>
+			                                <div class="item i1 sent_">
+			                                    <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
+			                                </div>
 
-	                                <div class="item i2 sent_">
-	                                    <p><?php echo $row1['userName'];?></p>
-	                                </div>
+			                                <div class="item i2 sent_">
+			                                    <p><?php echo $line['userName'];?></p>
+			                                </div>
 
-	                                <div class="item i3 sent_">
-	                                    <p>
-	                                    	<?php echo $row1['messageText'];?>
-	                                    </p>
+			                                <div class="item i3 sent_">
+			                                    <p>
+			                                    	<?php echo $row1['messageText'];?>
+			                                    </p>
 
-	                                </div>
-
-
-	                            </div>
-	                            <div class="date_sent">
-	                            	<h2>Miércoles 18 de Junio 2015</h2>
-	                            </div>
-	                        </div>
-	                        <!-- message send -->
-	                        <!--<div id="itemContainer">
-	                            <div id="itemContainerInner">
-
-	                                <div class="item i1 sent_">
-	                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
-	                                </div>
-
-	                                <div class="item i2 sent_">
-	                                    <p>Hola</p>
-	                                </div>
-
-	                                <div class="item i3 sent_">
-	                                    <p>
-	                                    	Ejemplo
-	                                    </p>
-
-	                                </div>
+			                                </div>
 
 
-	                            </div>
-	                            <div class="date_sent">
-	                            	<h2>Miércoles 18 de Junio 2015</h2>
-	                        	</div>
-	                        </div>-->
+			                            </div>
+			                            <?php 
+									    $fecha = $row1['messageDate'];
+									    $fechafinal = explode('-', $fecha);
+									    $dia = explode(' ', $fechafinal[2]);
+										$fechats = strtotime($fecha); 
+
+										switch (date('w', $fechats)){ 
+										    case 0: $nameDia[] = "Domingo";
+									    	break;
+									    	case 1: $nameDia[] = "Lunes";
+									    	break;
+									    	case 2: $nameDia[] = "Martes";
+									    	break;
+									    	case 3: $nameDia[] = "Miércoles";
+									    	break;
+									    	case 4: $nameDia[] = "Jueves";
+									    	break;
+									    	case 5: $nameDia[] = 'Viernes';
+									    	break;
+									    	case 6: $nameDia[] = 'Sábado';
+									    	break;
+										}  
+
+										switch (date('n', $fechats)){ 
+										    case 1: $nameMes[] = "Enero";
+									    	break;
+									    	case 2: $nameMes[] = "Febrero";
+									    	break;
+									    	case 3: $nameMes[] = "Marzo";
+									    	break;
+									    	case 4: $nameMes[] = "Abril";
+									    	break;
+									    	case 5: $nameMes[] = 'Mayo';
+									    	break;
+									    	case 6: $nameMes[] = "Junio";
+									    	break;
+									    	case 7: $nameMes[] = "Julio";
+									    	break;
+									    	case 8: $nameMes[] = "Agosto";
+									    	break;
+									    	case 9: $nameMes[] = "Septiembre";
+									    	break;
+									    	case 10: $nameMes[] = "Octube";
+									    	break;
+									    	case 11: $nameMes[] = "Noviembre";
+									    	break;
+									    	case 12: $nameMes[] = "Diciembre";
+									    	break;
+										}  
+									    ?>
+
+			                            <div class="date_sent">
+			                            	<h2>
+			                            		<?php echo 'Enviado: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+			                            	</h2>
+			                            </div>
+			                        </div>
+			              <?php } else { ?>
+			              			<!-- message recibed -->
+			                        <div id="itemContainer">
+			                            <div id="itemContainerInner">
+
+			                                <div class="item i1">
+			                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+			                                </div>
+
+			                                <div class="item i2">
+			                                    <p><?php echo $row1['userName'];?></p>
+			                                </div>
+
+			                                <div class="item i3">
+			                                    <p>
+			                                    	<?php echo $row1['messageText'];?>
+			                                    </p>
+
+			                                </div>
+
+
+			                            </div>
+			                            <?php 
+									    $fecha = $row1['messageDate'];
+									    $fechafinal = explode('-', $fecha);
+									    $dia = explode(' ', $fechafinal[2]);
+										$fechats = strtotime($fecha); 
+
+										switch (date('w', $fechats)){ 
+										    case 0: $nameDia[] = "Domingo";
+									    	break;
+									    	case 1: $nameDia[] = "Lunes";
+									    	break;
+									    	case 2: $nameDia[] = "Martes";
+									    	break;
+									    	case 3: $nameDia[] = "Miércoles";
+									    	break;
+									    	case 4: $nameDia[] = "Jueves";
+									    	break;
+									    	case 5: $nameDia[] = 'Viernes';
+									    	break;
+									    	case 6: $nameDia[] = 'Sábado';
+									    	break;
+										}  
+
+										switch (date('n', $fechats)){ 
+										    case 1: $nameMes[] = "Enero";
+									    	break;
+									    	case 2: $nameMes[] = "Febrero";
+									    	break;
+									    	case 3: $nameMes[] = "Marzo";
+									    	break;
+									    	case 4: $nameMes[] = "Abril";
+									    	break;
+									    	case 5: $nameMes[] = 'Mayo';
+									    	break;
+									    	case 6: $nameMes[] = "Junio";
+									    	break;
+									    	case 7: $nameMes[] = "Julio";
+									    	break;
+									    	case 8: $nameMes[] = "Agosto";
+									    	break;
+									    	case 9: $nameMes[] = "Septiembre";
+									    	break;
+									    	case 10: $nameMes[] = "Octube";
+									    	break;
+									    	case 11: $nameMes[] = "Noviembre";
+									    	break;
+									    	case 12: $nameMes[] = "Diciembre";
+									    	break;
+										}  
+									    ?>
+
+			                            <div class="date_sent" style="text-align: left;">
+			                            	<h2>
+			                            		<?php echo 'Recibido: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+			                            	</h2>
+			                            </div>
+			                        </div>
+			              <?php } ?>
 						<?php }
                         } else { ?>
 
@@ -501,7 +619,10 @@ if (isset($_SESSION['idUser'])) {
                 <!--box foot right -->
                 <div class="send_a_message">
                 	<form id="SendRequestChat">
-                		<input type="text" hidden name="idUserChat" value="<?php echo $_GET['idUserChat']; ?>">
+                		<!--<input type="text" hidden name="idUserChat" value="<?php //echo $_GET['idUserChat']; ?>">
+                		<input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
+                		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
+	                    <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
 	                    <input type="text" required name="message" placeholder="Escribe una respuesta...">
 	                    <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
 	                </form>

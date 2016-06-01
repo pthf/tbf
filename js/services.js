@@ -87,7 +87,6 @@ $("#formNewMessage").submit(function(e){
         	namefunction : "newMessage",
         },
         success: function(result){
-        	alert("Mensaje enviado");
 			$('#formNewMessage')[0].reset();
 			location.reload();
 	 	},
@@ -172,10 +171,8 @@ $("#SendRequestChat").submit(function(e){
         	namefunction : "requestMessage",
         },
         success: function(result){
-        	alert(result);
-        	/*alert("Mensaje enviado");
 			$('#SendRequestChat')[0].reset();
-			location.reload();*/
+			location.reload();
 	 	},
 	 	error: function(error){
 	 		alert(error);

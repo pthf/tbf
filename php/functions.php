@@ -106,55 +106,168 @@ function newMessage() {
 
 	parse_str($_POST['data'], $formData);
 
-	//var_dump($formData);
-
-	//Consulta del Usuario Emisor
-	$query = "SELECT * FROM user WHERE idUser = '".$formData['idEmisor']."'";
+	//Consulta del Usuario Emisor para obtener el idInbox
+	/*$query = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser = '".$formData['idEmisor']."'";
 	$resultado = mysql_query($query) or die (mysql_error());
-	$row = mysql_fetch_array($resultado);
-	//Insertar chat del Emisor
-	$query2 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idEmisor']."')";
-	$resultado2 = mysql_query($query2) or die (mysql_error());
-	//Inserta mensaje del Emisor
-	date_default_timezone_set('UTC');
-    date_default_timezone_set("America/Mexico_City");
-    $datatime = date("Y-m-d H:i:s");
-    $idChatEmisor = mysql_insert_id();
-	$query4 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$idChatEmisor."','".$formData['idEmisor']."')";
-	$resultado4 = mysql_query($query4) or die (mysql_error());
+	$row = mysql_fetch_array($resultado);*/
 
 	//Consulta del Usuario Receptor
-	$query1 = "SELECT * FROM user WHERE idUser = '".$formData['idReceptor']."'";
+	$query1 = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser =  '".$formData['idReceptor']."'";
 	$resultado1 = mysql_query($query1) or die (mysql_error());
 	$row1 = mysql_fetch_array($resultado1);
-	//Insertar chat al Receptor
-	$query3 = "INSERT INTO chat VALUES (null,'".$row1['idInbox']."','".$formData['idReceptor']."')";
-	$resultado3 = mysql_query($query3) or die (mysql_error());
-	//Insertar mensaje al Receptor
-	date_default_timezone_set('UTC');
-    date_default_timezone_set("America/Mexico_City");
-    $datatime = date("Y-m-d H:i:s");
-    $idChatReceptor = mysql_insert_id();
-	$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
-	$resultado5 = mysql_query($query5) or die (mysql_error());
-	echo " <span class='not-user' style='color:black;'><label for='privacyTerms'>Mensaje enviado.</label></span> ";
 
+	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
+	$sql = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
+	$res = mysql_query($sql) or die (mysql_error());
+	$row2 = mysql_num_rows($res);
+	if ($row2 == 0) {
+
+		//Insertar chat con el idInbox del usuario logueado
+		$query2 = "INSERT INTO chat VALUES (null,'".$row1['idInbox']."','".$formData['idEmisor']."')";
+		$resultado2 = mysql_query($query2) or die (mysql_error());
+
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+	    $idChatEmisor = mysql_insert_id();
+		$query4 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$idChatEmisor."','".$formData['idEmisor']."')";
+		$resultado4 = mysql_query($query4) or die (mysql_error());
+
+	} else if ($row2 > 0) {
+		
+		$sql2 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
+		$res2 = mysql_query($sql2) or die (mysql_error());
+		$row4 = mysql_fetch_array($res2);
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+		$query6 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$row4['idChat']."','".$formData['idEmisor']."')";
+		$resultado6 = mysql_query($query6) or die (mysql_error());
+
+	}
+
+	//Consulta del Usuario Emisor para obtener el idInbox
+	$query = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser = '".$formData['idEmisor']."'";
+	$resultado = mysql_query($query) or die (mysql_error());
+	$row = mysql_fetch_array($resultado);
+
+	//Consulta del Usuario Receptor
+	/*$query1 = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser =  '".$formData['idReceptor']."'";
+	$resultado1 = mysql_query($query1) or die (mysql_error());
+	$row1 = mysql_fetch_array($resultado1);*/
+
+	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
+	$sql1 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
+	$res1 = mysql_query($sql1) or die (mysql_error());
+	$row3 = mysql_num_rows($res1);
+	if ($row3 == 0) {
+
+		//Insertar chat al Receptor
+		$query3 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idReceptor']."')";
+		$resultado3 = mysql_query($query3) or die (mysql_error());
+
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+	    $idChatReceptor = mysql_insert_id();
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
+		$resultado4 = mysql_query($query5) or die (mysql_error());
+
+	} else if ($row3 > 0) {
+
+		$sql3 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
+		$res3 = mysql_query($sql3) or die (mysql_error());
+		$row5 = mysql_fetch_array($res3);
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idReceptor']."')";
+		$resultado4 = mysql_query($query5) or die (mysql_error());
+
+	}
 }
 
 function requestMessage () {
 
 	parse_str($_POST['data'], $formData);
 
-	//var_dump($formData);
+	//Consulta del Usuario Receptor
+	$query1 = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser =  '".$formData['idReceptor']."'";
+	$resultado1 = mysql_query($query1) or die (mysql_error());
+	$row1 = mysql_fetch_array($resultado1);
 
-	//Consulta del Usuario Emisor
-	/*$query = "SELECT * FROM user WHERE idUser = '".$formData['idEmisor']."'";
+	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
+	$sql = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
+	$res = mysql_query($sql) or die (mysql_error());
+	$row2 = mysql_num_rows($res);
+	if ($row2 == 0) {
+
+		//Insertar chat con el idInbox del usuario logueado
+		$query2 = "INSERT INTO chat VALUES (null,'".$row1['idInbox']."','".$formData['idEmisor']."')";
+		$resultado2 = mysql_query($query2) or die (mysql_error());
+
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+	    $idChatEmisor = mysql_insert_id();
+		$query4 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$idChatEmisor."','".$formData['idEmisor']."')";
+		$resultado4 = mysql_query($query4) or die (mysql_error());
+
+	} else if ($row2 > 0) {
+		
+		$sql2 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
+		$res2 = mysql_query($sql2) or die (mysql_error());
+		$row4 = mysql_fetch_array($res2);
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+		$query6 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$row4['idChat']."','".$formData['idEmisor']."')";
+		$resultado6 = mysql_query($query6) or die (mysql_error());
+
+	}
+
+	//Consulta del Usuario Emisor para obtener el idInbox
+	$query = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser = '".$formData['idEmisor']."'";
 	$resultado = mysql_query($query) or die (mysql_error());
 	$row = mysql_fetch_array($resultado);
-	//Insertar chat del Emisor
-	$query2 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idEmisor']."')";
-	$resultado2 = mysql_query($query2) or die (mysql_error());*/
-	
+
+	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
+	$sql1 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
+	$res1 = mysql_query($sql1) or die (mysql_error());
+	$row3 = mysql_num_rows($res1);
+	if ($row3 == 0) {
+
+		//Insertar chat al Receptor
+		$query3 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idReceptor']."')";
+		$resultado3 = mysql_query($query3) or die (mysql_error());
+
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+	    $idChatReceptor = mysql_insert_id();
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
+		$resultado4 = mysql_query($query5) or die (mysql_error());
+
+	} else if ($row3 > 0) {
+
+		$sql3 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
+		$res3 = mysql_query($sql3) or die (mysql_error());
+		$row5 = mysql_fetch_array($res3);
+		//Inserta mensaje del Emisor
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idReceptor']."')";
+		$resultado4 = mysql_query($query5) or die (mysql_error());
+
+	}
 }
 
 function changeImageBanner () {
