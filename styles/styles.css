@@ -2006,6 +2006,11 @@ input.slider-dot{
     margin-bottom: 4vw;
   }
 
+  li.star {
+      width: 10% !important;
+      margin-right: 9px;
+  }
+
   .rating-stars ul {
     list-style-type:none;
     padding:0;
@@ -2021,6 +2026,10 @@ input.slider-dot{
   .rating-stars ul > li.star > i.fa {
     font-size:2em; /* Tamaño de estrellas */
     color:#ccc; /* Color en estado de espera */
+  }
+
+  .star-small{
+    font-size: 1.5em !important;
   }
 
   /* Hover en las estrellas */
