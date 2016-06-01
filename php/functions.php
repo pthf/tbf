@@ -27,6 +27,10 @@ if(isset($_POST['namefunction'])){
 		case 'requestMessage':
 			requestMessage();
 		break;
+		case 'SendCommentMessage':
+			SendCommentMessage();
+		break;
+		
 	}
 }
 
@@ -141,15 +145,15 @@ function requestMessage () {
 
 	parse_str($_POST['data'], $formData);
 
-	var_dump($formData);
+	//var_dump($formData);
 
 	//Consulta del Usuario Emisor
-	$query = "SELECT * FROM user WHERE idUser = '".$formData['idEmisor']."'";
+	/*$query = "SELECT * FROM user WHERE idUser = '".$formData['idEmisor']."'";
 	$resultado = mysql_query($query) or die (mysql_error());
 	$row = mysql_fetch_array($resultado);
 	//Insertar chat del Emisor
 	$query2 = "INSERT INTO chat VALUES (null,'".$row['idInbox']."','".$formData['idEmisor']."')";
-	$resultado2 = mysql_query($query2) or die (mysql_error());
+	$resultado2 = mysql_query($query2) or die (mysql_error());*/
 	
 }
 
@@ -190,5 +194,19 @@ function changeImagePerfil () {
 	}
 	$query = "UPDATE user SET userProfileImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
 	$result = mysql_query($query) or die(mysql_error());
+
+}
+
+function SendCommentMessage () {
+
+	date_default_timezone_set('UTC');
+    date_default_timezone_set("America/Mexico_City");
+    $datatime = date("Y-m-d H:i:s");
+	$query = "SELECT * FROM user WHERE idUser = '".$_POST['idUser']."'";
+	$resultado = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($resultado);
+
+	$query1 = "INSERT INTO postelement VALUES (null,'".$_POST['message']."','".$datatime."','".$row['idPublicMessagesList']."','".$_POST['idSession']."')";
+	$resultado = mysql_query($query1) or die(mysql_error());
 
 }
