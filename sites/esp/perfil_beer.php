@@ -37,16 +37,13 @@ if (isset($_SESSION['idUser'])) {
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-
+        <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/popup_img.js"></script>
-
 				<script type="text/javascript">
 						$(document).ready(function () {
 
@@ -61,6 +58,11 @@ if (isset($_SESSION['idUser'])) {
 								}(jQuery));
 						});
 				</script>
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
 
 				<script type="text/javascript">
 						$(document).ready(function () {
@@ -277,10 +279,10 @@ if (isset($_SESSION['idUser'])) {
 
 				</div>
 
-        <div id="contenedor">
+        <div id="contenedor" id-beer-element="<?=$_GET['id']?>" >
 
             <div class="popup_img">
-                <img class="profile_popup" src="../../images/beerProfiles/alhambra.png" />
+                <img class="profile_popup" src="../../images/beerProfiles/<?= $lineBeer['beerProfileImage'] ?>" />
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
@@ -391,7 +393,11 @@ if (isset($_SESSION['idUser'])) {
 
                 </div>
 
+
                 <div class="social_company">
+                    <?php if(strlen($lineBeer['beerSite'])>0){?>
+                    <a target="_blank" href="<?= $lineBeer['beerSite'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                    <?php } ?>
                     <?php if(strlen($lineBeer['beerFacebook'])>0){?>
                     <a target="_blank" href="<?= $lineBeer['beerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
                     <?php } ?>
@@ -404,6 +410,7 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
 
+
             </div>
 
             <div class="favs_profile favs_profile_beer">
@@ -414,78 +421,313 @@ if (isset($_SESSION['idUser'])) {
                         <p class="back_text">VOLVER A CERVEZAS</p>
                     </a>
                 </div>
-
-
                 <!-- Beer rank -->
                 <div class="image_beer">
-
                     <a id="show-panel" href="#">
-                        <img src="../../images/beerBottles/beers-01.png" alt="" />
+                        <img src="../../images/beerBottles/<?= $lineBeer['beerBottleImage'] ?>" alt="" />
                     </a>
-
                     <div id="lightbox-panel">
-
                         <a id="close-panel" href="#">
                             <img src="../../images/close_image-01.png" alt="" />
                         </a>
-
                         <div class="slideshow slide_pop">
                             <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
                             <div class="next"> <img src="../../images/flecha-der.png"> </div>
 
                             <ul class="beers_month">
-                                <li data-n="1">
-                                    <img src="../../images/beerBanners/tarro_b-01.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
-
-                                <li data-n="2">
-                                    <img src="../../images/postBanners/8150090.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
-
-                                <li data-n="3">
-                                    <img src="../../images/beerBanners/bg_1.jpg" alt="tbf tarro" title="tbf tarro">
-                                </li>
-
-                                <li data-n="4">
-                                    <img src="../../images/beerBanners/photo_pthf_home-03.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
-
+                              <?php
+                                $q = "SELECT * FROM bannerbeerslider INNER JOIN beer ON bannerbeerslider.idSlider = beer.idSlider WHERE beer.idBeer = ".$_GET['id'];
+                                $r = mysql_query($q) or die(mysql_error());
+                                $c = 0;
+                                while($l = mysql_fetch_array($r)){
+                                  $c++;
+                                  echo '
+                                    <li data-n="'.$c.'">
+                                        <img src="../../images/beerBanners/'.$l['bannerImage'].'" alt="tbf tarro" title="tbf tarro">
+                                    </li>
+                                  ';
+                                }
+                              ?>
                             </ul>
-
-                            <ul class="nav_beers popup_beers">
-                                <li data-cd="1"></li>
-                                <li data-cd="2"></li>
-                                <li data-cd="3"></li>
-                                <li data-cd="4"></li>
+                            <ul class="nav_beers cantidadElements popup_beers">
+                              <?php
+                                $q = "SELECT * FROM bannerbeerslider INNER JOIN beer ON bannerbeerslider.idSlider = beer.idSlider WHERE beer.idBeer = ".$_GET['id'];
+                                $r = mysql_query($q) or die(mysql_error());
+                                $c = 0;
+                                while($l = mysql_fetch_array($r)){
+                                  $c++;
+                                  echo '
+                                    <li data-cd="'.$c.'"></li>
+                                  ';
+                                }
+                              ?>
                             </ul>
-
                         </div>
-
                     </div>
-
-                    <!-- /lightbox-panel -->
-                    <!-- /lightbox -->
                 </div>
 
 
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
-                    <h1 class="ranklevel">4</h1>
-                    <h2 class="rankstars">&#x2605; 	&#x2605; 	&#x2605; 	&#x2605; 	&#9734;</h2>
+
+                    <h1 class="ranklevel"></h1>
+                    <div class='rating-stars text-center'>
+                      <ul id='stars' class="stars-profile-view appendGold">
+
+                      </ul>
+                    </div>
+                    <?php
+
+                    if(isset($_SESSION['idUser'])){
+                      $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                  		$result = mysql_query($query) or die(mysql_error());
+                  		$line = mysql_fetch_array($result);
+                  		$idRanksList = $line['idRanksList'];
+
+                  		$query = "SELECT * FROM rankslistelement WHERE idBeer = ".$_GET['id']." AND idRanksList = $idRanksList";
+                  		$result = mysql_query($query) or die(mysql_error());
+                  		if(mysql_num_rows($result)>0){
+                          echo '<span class="deleteRank" data-beer="'.$_GET['id'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                  		}else{
+                        echo "
+                          <div class='rating-stars text-center'>
+                            <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
+                              <li class='star' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                            </ul>
+                          </div>
+                        ";
+                  		}
+                    }else{
+                      echo "
+                        <div class='rating-stars text-center'>
+                          <a href='#'>
+                            <ul id='stars' class='stars-profile-view logintoadd'>
+                              <li class='star' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                            </ul>
+                          </a>
+                        </div>
+                      ";
+                    }
+                    ?>
 
                     <div class="fav_box">
-                        <a class="user_icons" href="#">
-                            <img class="fav_button" id="fav_button" src="../../images/fav1.svg">
-                            <p class="add_fav">AGREGAR A FAVORITOS</p>
+                        <a class="user_icons add_favorites" href="#"> <?php
+                            if(isset($_SESSION['idUser'])){
+                              $q = "SELECT idFavoritesList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                              $r = mysql_query($q) or die(mysql_error());
+                              $l = mysql_fetch_array($r);
+                              $listaUser = $l['idFavoritesList'];
+
+                              $q = "SELECT idFavoriteElement FROM favoriteelement WHERE $listaUser = idFavoritesList AND ".$_GET['id']." = idBeer";
+                              $r = mysql_query($q) or die(mysql_error());
+
+                              if(mysql_num_rows($r)>0){?>
+                                <img class="fav_button fav-selected" id="fav_button" src="../../images/fav1.svg">
+                                <p class="add_fav loginacepfavorites elim-opt" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE FAVORITOS</p> <?php
+                              }else{ ?>
+                                  <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
+                                  <p class="add_fav loginacepfavorites fav-opt " data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A FAVORITOS</p><?php
+                              }
+                            }else{ ?>
+                              <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
+                              <p class="add_fav logintoadd">AGREGAR A FAVORITOS</p> <?php
+                            } ?>
                         </a>
                     </div>
+
+                    <script>
+
+                      $('.deleteRank').click(function(){
+                        var idBeer = $(this).attr('data-beer');
+                        var idList = $(this).attr('data-list');
+                        var namefunction = "deleteRank";
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                idList : idList,
+                                idBeer : idBeer
+                            },
+                            success: function (result) {
+                              location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
+                      $('.changeRank li').click(function(){
+                        var valuenew = $(this).attr('data-value');
+                        var namefunction = "rankUser";
+                        var idBeer = $('#contenedor').attr('id-beer-element');
+                        var idUser = $(this).parent().attr('data-user');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                valuenew : valuenew,
+                                idBeer : idBeer,
+                                idUser : idUser
+                            },
+                            success: function (result) {
+                              $('.ranklevel').html(result);
+                              var stars = "";
+                              for(var i = 1; i<=5; i++){
+                          		  if(result>= i)
+                          		      stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                          		}
+                              $('.appendGold').html(stars);
+                              location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
+                      var namefunction = "prinnfRank";
+                      var idBeer = $('#contenedor').attr('id-beer-element');
+                      $.ajax({
+                          beforeSend: function () {
+                          },
+                          url: "../../admin/php/functions.php",
+                          type: "POST",
+                          data: {
+                              namefunction : namefunction,
+                              idBeer : idBeer
+                          },
+                          success: function (result) {
+                            $('.ranklevel').html(result);
+                            var stars = "";
+                            for(var i = 1; i<=5; i++){
+                        		  if(result>= i)
+                        		      stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                        		}
+                            $('.appendGold').html(stars);
+                          },
+                          error: function (error) {
+                          },
+                          complete: function () {
+                          },
+                          timeout: 10000
+                      });
+                    </script>
 
                     <div class="wishlist_box">
                         <a class="user_icons" href="#">
-                            <img class="wishlist_icon" src="../../images/wishlist.svg">
-                            <p class="add_wishlist">AGREGAR A WISHLIST</p>
+                            <img class="wishlist_icon" src="../../images/wishlist.svg"><?php
+                            if(isset($_SESSION['idUser'])){
+                              $q = "SELECT idWishList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                              $r = mysql_query($q) or die(mysql_error());
+                              $l = mysql_fetch_array($r);
+                              $listaUser = $l['idWishList'];
+
+                              $q = "SELECT idWishListElement FROM wishlistelement WHERE $listaUser = idWishList AND ".$_GET['id']." = idBeer";
+                              $r = mysql_query($q) or die(mysql_error());
+
+                              if(mysql_num_rows($r)>0){?>
+                                <p class="add_fav loginacepwishlist" data-function="deleteWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE WISHLIST</p> <?php
+                              }else{ ?>
+                                  <p class="add_fav loginacepwishlist" data-function="addWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A WISHLIST</p><?php
+                              }
+                            }else{ ?>
+                              <p class="add_fav logintoadd">AGREGAR A WISHLIST</p> <?php
+                            } ?>
                         </a>
                     </div>
+
+                    <script>
+                      $('.loginacepwishlist').click(function(e){
+                        e.preventDefault();
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                dataUser : dataUser,
+                                dataBeer : dataBeer
+                            },
+                            success: function (result) {
+                                location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
+                      $('.loginacepfavorites').click(function(e){
+                        e.preventDefault();
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+    		                    beforeSend: function () {
+    		                    },
+    		                    url: "../../admin/php/functions.php",
+    		                    type: "POST",
+    		                    data: {
+    		                        namefunction : namefunction,
+    		                        dataUser : dataUser,
+                                dataBeer : dataBeer
+    		                    },
+    		                    success: function (result) {
+    		                        location.reload();
+    		                    },
+    		                    error: function (error) {
+    		                    },
+    		                    complete: function () {
+    		                    },
+    		                    timeout: 10000
+    		                });
+                      });
+                    </script>
 
                 </div>
 
@@ -721,7 +963,7 @@ if (isset($_SESSION['idUser'])) {
 						<script type="text/javascript">
 		            $(document).on("ready", function () {
 
-		                $(document).on('click', '.user_name, .user_name_click', function () {
+		                $(document).on('click', '.user_name, .user_name_click, .logintoadd', function () {
 		                    $(".login-modal").css({
 		                        "opacity": "1",
 		                        "z-index": "10",
@@ -1002,12 +1244,27 @@ if (isset($_SESSION['idUser'])) {
 		        </script>
 
           <script type="text/javascript">
-            $( ".fav_box" )
+            $( "p.add_fav.loginacepfavorites.fav-opt" )
               .mouseenter(function() {
-                $( '#fav_button' ).css(  "content" , "url('../../images/fav2.svg')" );
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-selected');
               })
               .mouseleave(function() {
-                $( '#fav_button' ).css(  "content" , "url('../../images/fav1.svg')" );
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-unselected');
+              });
+          </script>
+
+          <script type="text/javascript">
+            $( "p.add_fav.loginacepfavorites.elim-opt" )
+              .mouseenter(function() {
+                $( '#fav_button' ).removeClass('fav-selected');
+                $( '#fav_button' ).addClass('fav-unselected');
+              })
+              .mouseleave(function() {
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-selected');
+
               });
           </script>
 
@@ -1023,7 +1280,7 @@ if (isset($_SESSION['idUser'])) {
 
               });
           </script>
-
+          <script type="text/javascript" src="../../js/rating.js"></script>
         </div>
     </body>
 </html>
