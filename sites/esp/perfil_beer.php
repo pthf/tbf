@@ -476,7 +476,7 @@ if (isset($_SESSION['idUser'])) {
                     <h1 class="ranklevel">4</h1>
 
                       <div class='rating-stars text-center'>
-                        <ul id='stars'>
+                        <ul id='stars' class="stars-profile-view">
                           <li class='star' data-value='1'>
                             <i class='fa fa-star fa-fw'></i>
                           </li>

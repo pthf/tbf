@@ -1909,6 +1909,7 @@ input.slider-dot{
 .image_logo img {
     padding: 1vw;
     background: white;
+    cursor: pointer;
 }
 
 .image_profile img{
@@ -2045,6 +2046,11 @@ input.slider-dot{
   ul#stars{
     cursor: pointer;
     padding: 1vw 0 1vw 0;
+  }
+
+  ul#stars.stars-profile-view{
+    width: 40%;
+    margin: 0 auto;
   }
 
   .fav-selected{
@@ -2810,7 +2816,7 @@ input.slider-dot{
     margin-right: 3%;
   }
   .inner article li img{
-    width: 30%;
+    width: 60px;
     height: auto;
     margin: 0 auto;
     display: inline-block;
@@ -3022,7 +3028,7 @@ input.slider-dot{
     height: 40vw;
     position: relative;
     background: none;
-    z-index: 10 !important;
+    z-index: 0 !important;
   }
 
   .slideshow.slide_pop{
@@ -3041,6 +3047,10 @@ input.slider-dot{
     height: 100%;
     position: relative;
     z-index: 10 !important;
+  }
+
+  .top-slider{
+    margin-top: 0 !important;
   }
   .beers_month li {
     width: 100%;
