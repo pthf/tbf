@@ -499,7 +499,6 @@ if (isset($_SESSION['idUser'])) {
                     </div>
 
 
-                    <p class="ranktitle-2">TÚ RANKING</p>
                       <div class='rating-stars text-center'>
                         <ul id='stars' class="stars-profile-view">
                           <li class='star' data-value='1'>

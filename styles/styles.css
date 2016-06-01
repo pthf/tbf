@@ -2023,7 +2023,7 @@ input.slider-dot{
   }
 
   li.star.star-small-profile {
-      width: 4% !important;
+      width: 0% !important;
   }
 
 
@@ -2045,7 +2045,7 @@ input.slider-dot{
   }
 
   .star-small{
-    font-size: 1.5em !important;
+    font-size: 1em !important;
   }
 
   .star-small-profile{
@@ -2063,13 +2063,20 @@ input.slider-dot{
   }
 
   ul#stars{
-    cursor: pointer;
     padding: 1vw 0 1vw 0;
   }
 
   ul#stars.stars-profile-view{
     width: 40%;
     margin: 0 auto;
+  }
+
+  i.fa.fa-star.fa-fw{
+    cursor: pointer;
+  }
+
+  i.fa.fa-star.fa-fw.star-small.gold-star{
+    cursor: default;
   }
 
   .fav-selected{
