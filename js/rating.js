@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-  /* 1. Click en estella hover */
-  $('#stars li').on('mouseover', function(){
+  /* 1. Click en90 estella hover */
+  $(document).on('mouseover', '#stars li', function(){
     var onStar = parseInt($(this).data('value'), 10); // Hover en una estrella
 
     // Resaltar estrellas que estan antes de la seleccionada
@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 
   /* 2. Selecciona estrella con un click*/
-  $('#stars li').on('click', function(){
+  $(document).on('click', '#stars li', function(){
     var onStar = parseInt($(this).data('value'), 10); // Estrella actualmente seleccionada
     var stars = $(this).parent().children('li.star');
 

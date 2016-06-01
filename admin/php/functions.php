@@ -5,6 +5,9 @@
 		connect_base_de_datos();
 		$namefunction = $_POST['namefunction'];
 		switch ($namefunction) {
+			case 'prinnfRank':
+				prinnfRank($_POST['idBeer']);
+			break;
 			case 'addBeerType':
 				addBeerType($_POST['data']);
 				break;
@@ -98,8 +101,43 @@
 			case 'addWishList':
 				addWishList($_POST['dataUser'], $_POST['dataBeer']);
 				break;
-
 		}
+	}
+
+	function prinnfRank($idBeer){
+
+		$query = "SELECT ranksListElementRank FROM rankslistelement WHERE idBeer = $idBeer";
+		$result = mysql_query($query) or die(mysql_error());
+		$sumatoria=0;
+		$contador=0;
+		while($line=mysql_fetch_array($result)){
+			$sumatoria = $line['ranksListElementRank'] + $sumatoria;
+			$contador++;
+		}
+
+		$sumatoria =+ 3;
+		$contador++;
+		$promedio = $sumatoria/$contador;
+		$promedio = round($promedio);
+
+		echo $promedio;
+		// echo "
+		// <h1 class='ranklevel'>".$promedio."</h1>
+		// <div class='rating-stars text-center'>
+		// 	<ul id='stars'>
+		// ";
+		//
+		// for($i=1; $i<=5; $i++){
+		// 	if($promedio>=$i){
+		// 		echo "<li class='star selected' data-value='".$i."' > <i class='fa fa-star fa-fw'></i> </li>";
+		// 	}else{
+		// 		echo "<li class='star' data-value='".$i."' > <i class='fa fa-star fa-fw'></i> </li>";
+		// 	}
+		// }
+		// echo "
+		// 	</ul>
+		// </div>
+		// ";
 	}
 
 	function deleteWishList($dataUser, $dataBeer){
@@ -121,12 +159,6 @@
 		$query = "INSERT INTO wishlistelement (idWishList, idBeer ) VALUES ($idWishList, $dataBeer)";
 		$result = mysql_query($query) or die(mysql_error());
 	}
-
-
-
-
-
-
 
 	function deleteFavorites($dataUser, $dataBeer){
 		$query = "SELECT idFavoritesList FROM  user WHERE idUser = $dataUser";

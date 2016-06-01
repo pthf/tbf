@@ -275,7 +275,7 @@ if (isset($_SESSION['idUser'])) {
 
 				</div>
 
-        <div id="contenedor">
+        <div id="contenedor" id-beer-element="<?=$_GET['id']?>" >
 
             <div class="popup_img">
                 <img class="profile_popup" src="../../images/beerProfiles/<?= $lineBeer['beerProfileImage'] ?>" />
@@ -417,83 +417,54 @@ if (isset($_SESSION['idUser'])) {
                         <p class="back_text">VOLVER A CERVEZAS</p>
                     </a>
                 </div>
-
-
                 <!-- Beer rank -->
                 <div class="image_beer">
-
                     <a id="show-panel" href="#">
                         <img src="../../images/beerBottles/<?= $lineBeer['beerBottleImage'] ?>" alt="" />
                     </a>
-
                     <div id="lightbox-panel">
-
                         <a id="close-panel" href="#">
                             <img src="../../images/close_image-01.png" alt="" />
                         </a>
-
                         <div class="slideshow slide_pop">
                             <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
                             <div class="next"> <img src="../../images/flecha-der.png"> </div>
-
                             <ul class="beers_month">
                                 <li data-n="1">
                                     <img src="../../images/beerBanners/tarro_b-01.png" alt="tbf tarro" title="tbf tarro">
                                 </li>
-
                                 <li data-n="2">
                                     <img src="../../images/postBanners/8150090.png" alt="tbf tarro" title="tbf tarro">
                                 </li>
-
                                 <li data-n="3">
                                     <img src="../../images/beerBanners/bg_1.jpg" alt="tbf tarro" title="tbf tarro">
                                 </li>
-
                                 <li data-n="4">
                                     <img src="../../images/beerBanners/photo_pthf_home-03.png" alt="tbf tarro" title="tbf tarro">
                                 </li>
-
                             </ul>
-
                             <ul class="nav_beers cantidadElements popup_beers">
                                 <li data-cd="1"></li>
                                 <li data-cd="2"></li>
                                 <li data-cd="3"></li>
                                 <li data-cd="4"></li>
                             </ul>
-
                         </div>
-
                     </div>
-
-                    <!-- /lightbox-panel -->
-                    <!-- /lightbox -->
                 </div>
 
 
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
+
                     <h1 class="ranklevel">4</h1>
 
                       <div class='rating-stars text-center'>
-                        <ul id='stars'>
-                          <li class='star' data-value='1'>
-                            <i class='fa fa-star fa-fw'></i>
-                          </li>
-                          <li class='star' data-value='2'>
-                            <i class='fa fa-star fa-fw'></i>
-                          </li>
-                          <li class='star' data-value='3'>
-                            <i class='fa fa-star fa-fw'></i>
-                          </li>
-                          <li class='star' data-value='4'>
-                            <i class='fa fa-star fa-fw'></i>
-                          </li>
-                          <li class='star' data-value='5'>
-                            <i class='fa fa-star fa-fw'></i>
-                          </li>
+                        <ul id='stars' class="stars-profile-view">
+
                         </ul>
                       </div>
+
 
 
                     <div class="fav_box">
@@ -521,12 +492,41 @@ if (isset($_SESSION['idUser'])) {
                         </a>
                     </div>
 
+                    <script>
+                      var namefunction = "prinnfRank";
+                      var idBeer = $('#contenedor').attr('id-beer-element');
+                      $.ajax({
+                          beforeSend: function () {
+                          },
+                          url: "../../admin/php/functions.php",
+                          type: "POST",
+                          data: {
+                              namefunction : namefunction,
+                              idBeer : idBeer
+                          },
+                          success: function (result) {
+                            $('.ranklevel').html(result);
+                            var stars = "";
+                            for(var i = 1; i<=5; i++){
+                        		    if(result>= i){
+                        		        stars = stars + "<li class='star ' data-value='"+i+"' > <i class='fa fa-star fa-fw'></i> </li>";
+                        		    }else{
+                            		 		stars = stars + "<li class='star' data-value='"+i+"' > <i class='fa fa-star fa-fw'></i> </li>";
+                        		  }
+                        		}
+                            $('.stars-profile-view').html(stars);
+                          },
+                          error: function (error) {
+                          },
+                          complete: function () {
+                          },
+                          timeout: 10000
+                      });
+                    </script>
+
                     <div class="wishlist_box">
                         <a class="user_icons" href="#">
                             <img class="wishlist_icon" src="../../images/wishlist.svg"><?php
-                            // <p class="add_wishlist">AGREGAR A WISHLIST</p>
-
-
                             if(isset($_SESSION['idUser'])){
                               $q = "SELECT idWishList FROM user WHERE idUser = ".$_SESSION['idUser'];
                               $r = mysql_query($q) or die(mysql_error());
@@ -544,10 +544,6 @@ if (isset($_SESSION['idUser'])) {
                             }else{ ?>
                               <p class="add_fav logintoadd">AGREGAR A WISHLIST</p> <?php
                             } ?>
-
-
-
-
                         </a>
                     </div>
 
