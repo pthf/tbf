@@ -473,6 +473,7 @@ if (isset($_SESSION['idUser'])) {
 
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
+                    <h1 class="ranklevel">4</h1>
 
                       <div class='rating-stars text-center'>
                         <ul id='stars'>
@@ -496,8 +497,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                     <div class="fav_box">
-                        <a class="user_icons add_favorites" href="#">
-                            <img class="fav_button" id="fav_button" src="../../images/fav1.svg"> <?php
+                        <a class="user_icons add_favorites" href="#"> <?php
                             if(isset($_SESSION['idUser'])){
                               $q = "SELECT idFavoritesList FROM user WHERE idUser = ".$_SESSION['idUser'];
                               $r = mysql_query($q) or die(mysql_error());
@@ -508,11 +508,14 @@ if (isset($_SESSION['idUser'])) {
                               $r = mysql_query($q) or die(mysql_error());
 
                               if(mysql_num_rows($r)>0){?>
-                                <p class="add_fav loginacepfavorites" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE FAVORITOS</p> <?php
+                                <img class="fav_button fav-selected" id="fav_button" src="../../images/fav1.svg">
+                                <p class="add_fav loginacepfavorites elim-opt" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE FAVORITOS</p> <?php
                               }else{ ?>
-                                  <p class="add_fav loginacepfavorites" data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A FAVORITOS</p><?php
+                                  <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
+                                  <p class="add_fav loginacepfavorites fav-opt " data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A FAVORITOS</p><?php
                               }
                             }else{ ?>
+                              <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
                               <p class="add_fav logintoadd">AGREGAR A FAVORITOS</p> <?php
                             } ?>
                         </a>
@@ -1117,12 +1120,27 @@ if (isset($_SESSION['idUser'])) {
 		        </script>
 
           <script type="text/javascript">
-            $( ".fav_box" )
+            $( "p.add_fav.loginacepfavorites.fav-opt" )
               .mouseenter(function() {
-                $( '#fav_button' ).css(  "content" , "url('../../images/fav2.svg')" );
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-selected');
               })
               .mouseleave(function() {
-                $( '#fav_button' ).css(  "content" , "url('../../images/fav1.svg')" );
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-unselected');
+              });
+          </script>
+
+          <script type="text/javascript">
+            $( "p.add_fav.loginacepfavorites.elim-opt" )
+              .mouseenter(function() {
+                $( '#fav_button' ).removeClass('fav-selected');
+                $( '#fav_button' ).addClass('fav-unselected');
+              })
+              .mouseleave(function() {
+                $( '#fav_button' ).removeClass('fav-unselected');
+                $( '#fav_button' ).addClass('fav-selected');
+
               });
           </script>
 

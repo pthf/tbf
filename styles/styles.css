@@ -2038,6 +2038,14 @@ input.slider-dot{
     padding: 1vw 0 1vw 0;
   }
 
+  .fav-selected{
+    content: url("../images/fav2.svg");
+  }
+
+  .fav-unselected{
+    content: url("../images/fav1.svg");
+  }
+
 
   .send_message{
     position: relative;
