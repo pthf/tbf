@@ -21,15 +21,17 @@ if (isset($_SESSION['idUser'])) {
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/slidedown.js"></script>
-
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
 				<script type="text/javascript">
             $(document).ready(function () {
 

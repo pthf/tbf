@@ -44,7 +44,6 @@ if (isset($_SESSION['idUser'])) {
         <script type="text/javascript" src="../../js/image_click.js"></script>
         <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/popup_img.js"></script>
-
 				<script type="text/javascript">
 						$(document).ready(function () {
 
@@ -59,6 +58,11 @@ if (isset($_SESSION['idUser'])) {
 								}(jQuery));
 						});
 				</script>
+        <script type="text/javascript">
+          setTimeout(function(){
+               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
+          }, 1000);
+        </script>
 
 				<script type="text/javascript">
 						$(document).ready(function () {
@@ -429,25 +433,34 @@ if (isset($_SESSION['idUser'])) {
                         <div class="slideshow slide_pop">
                             <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
                             <div class="next"> <img src="../../images/flecha-der.png"> </div>
+
                             <ul class="beers_month">
-                                <li data-n="1">
-                                    <img src="../../images/beerBanners/tarro_b-01.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
-                                <li data-n="2">
-                                    <img src="../../images/postBanners/8150090.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
-                                <li data-n="3">
-                                    <img src="../../images/beerBanners/bg_1.jpg" alt="tbf tarro" title="tbf tarro">
-                                </li>
-                                <li data-n="4">
-                                    <img src="../../images/beerBanners/photo_pthf_home-03.png" alt="tbf tarro" title="tbf tarro">
-                                </li>
+                              <?php
+                                $q = "SELECT * FROM bannerbeerslider INNER JOIN beer ON bannerbeerslider.idSlider = beer.idSlider WHERE beer.idBeer = ".$_GET['id'];
+                                $r = mysql_query($q) or die(mysql_error());
+                                $c = 0;
+                                while($l = mysql_fetch_array($r)){
+                                  $c++;
+                                  echo '
+                                    <li data-n="'.$c.'">
+                                        <img src="../../images/beerBanners/'.$l['bannerImage'].'" alt="tbf tarro" title="tbf tarro">
+                                    </li>
+                                  ';
+                                }
+                              ?>
                             </ul>
                             <ul class="nav_beers cantidadElements popup_beers">
-                                <li data-cd="1"></li>
-                                <li data-cd="2"></li>
-                                <li data-cd="3"></li>
-                                <li data-cd="4"></li>
+                              <?php
+                                $q = "SELECT * FROM bannerbeerslider INNER JOIN beer ON bannerbeerslider.idSlider = beer.idSlider WHERE beer.idBeer = ".$_GET['id'];
+                                $r = mysql_query($q) or die(mysql_error());
+                                $c = 0;
+                                while($l = mysql_fetch_array($r)){
+                                  $c++;
+                                  echo '
+                                    <li data-cd="'.$c.'"></li>
+                                  ';
+                                }
+                              ?>
                             </ul>
                         </div>
                     </div>
@@ -457,15 +470,48 @@ if (isset($_SESSION['idUser'])) {
                 <div id="rank_beer">
                     <p class="ranktitle">RANKING</p>
 
-                    <h1 class="ranklevel">4</h1>
+                    <h1 class="ranklevel"></h1>
+                    <div class='rating-stars text-center'>
+                      <ul id='stars' class="stars-profile-view appendGold">
 
-                      <div class='rating-stars text-center'>
-                        <ul id='stars' class="stars-profile-view">
+                      </ul>
+                    </div>
+                    <?php
 
-                        </ul>
-                      </div>
+                    $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                		$result = mysql_query($query) or die(mysql_error());
+                		$line = mysql_fetch_array($result);
+                		$idRanksList = $line['idRanksList'];
 
+                		$query = "SELECT * FROM rankslistelement WHERE idBeer = ".$_GET['id']." AND idRanksList = $idRanksList";
+                		$result = mysql_query($query) or die(mysql_error());
+                		if(mysql_num_rows($result)>0){
+                        echo '<span class="deleteRank" data-beer="'.$_GET['id'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                		}else{
+                      echo "
+                        <div class='rating-stars text-center'>
+                          <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
+                            <li class='star' data-value='1'>
+                              <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' data-value='2'>
+                              <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' data-value='3'>
+                              <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' data-value='4'>
+                              <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' data-value='5'>
+                              <i class='fa fa-star fa-fw'></i>
+                            </li>
+                          </ul>
+                        </div>
+                      ";
+                		}
 
+                    ?>
 
                     <div class="fav_box">
                         <a class="user_icons add_favorites" href="#"> <?php
@@ -493,6 +539,66 @@ if (isset($_SESSION['idUser'])) {
                     </div>
 
                     <script>
+
+                      $('.deleteRank').click(function(){
+                        var idBeer = $(this).attr('data-beer');
+                        var idList = $(this).attr('data-list');
+                        var namefunction = "deleteRank";
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                idList : idList,
+                                idBeer : idBeer
+                            },
+                            success: function (result) {
+                              location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
+                      $('.changeRank li').click(function(){
+                        var valuenew = $(this).attr('data-value');
+                        var namefunction = "rankUser";
+                        var idBeer = $('#contenedor').attr('id-beer-element');
+                        var idUser = $(this).parent().attr('data-user');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../admin/php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                valuenew : valuenew,
+                                idBeer : idBeer,
+                                idUser : idUser
+                            },
+                            success: function (result) {
+                              $('.ranklevel').html(result);
+                              var stars = "";
+                              for(var i = 1; i<=5; i++){
+                          		  if(result>= i)
+                          		      stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                          		}
+                              $('.appendGold').html(stars);
+                              location.reload();
+                            },
+                            error: function (error) {
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
+                      });
+
                       var namefunction = "prinnfRank";
                       var idBeer = $('#contenedor').attr('id-beer-element');
                       $.ajax({
@@ -508,13 +614,10 @@ if (isset($_SESSION['idUser'])) {
                             $('.ranklevel').html(result);
                             var stars = "";
                             for(var i = 1; i<=5; i++){
-                        		    if(result>= i){
-                        		        stars = stars + "<li class='star ' data-value='"+i+"' > <i class='fa fa-star fa-fw'></i> </li>";
-                        		    }else{
-                            		 		stars = stars + "<li class='star' data-value='"+i+"' > <i class='fa fa-star fa-fw'></i> </li>";
-                        		  }
+                        		  if(result>= i)
+                        		      stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
                         		}
-                            $('.stars-profile-view').html(stars);
+                            $('.appendGold').html(stars);
                           },
                           error: function (error) {
                           },

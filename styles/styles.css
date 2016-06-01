@@ -1776,7 +1776,7 @@ textarea{
   font-size: 60px;
   text-align: center;
   margin-top: 5%;
-  margin-bottom: 2%;
+  margin-bottom: -2%;
 }
 
 .content_profile{
@@ -1909,6 +1909,7 @@ input.slider-dot{
 .image_logo img {
     padding: 1vw;
     background: white;
+    cursor: pointer;
 }
 
 .image_profile img{
@@ -1999,12 +2000,32 @@ input.slider-dot{
     font-size: 3em;
   }
 
+  .ranktitle-2{
+    font-size: 2.5em;
+    margin-top: 2.5vw;
+    margin-bottom: 1.5vw;
+  }
+
   #rank_beer{
     text-align: center;
     display: block;
     margin-top:5%;
     margin-bottom: 4vw;
   }
+
+  li.star {
+      width: 10% !important;
+      margin-right: 9px;
+  }
+
+  .gold-star{
+    color: gold !important;
+  }
+
+  li.star.star-small-profile {
+      width: 0% !important;
+  }
+
 
   .rating-stars ul {
     list-style-type:none;
@@ -2023,6 +2044,14 @@ input.slider-dot{
     color:#ccc; /* Color en estado de espera */
   }
 
+  .star-small{
+    font-size: 1em !important;
+  }
+
+  .star-small-profile{
+    width: 3% !important;
+  }
+
   /* Hover en las estrellas */
   .rating-stars ul > li.star.hover > i.fa {
     color:black;
@@ -2034,8 +2063,20 @@ input.slider-dot{
   }
 
   ul#stars{
-    cursor: pointer;
     padding: 1vw 0 1vw 0;
+  }
+
+  ul#stars.stars-profile-view{
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  i.fa.fa-star.fa-fw{
+    cursor: pointer;
+  }
+
+  i.fa.fa-star.fa-fw.star-small.gold-star{
+    cursor: default;
   }
 
   .fav-selected{
@@ -2725,8 +2766,6 @@ input.slider-dot{
     margin-left: 10%;
     width: 100%;
     height: auto;
-    -webkit-transition: all 0.5s linear 0s;
-    transition: all 0.5s linear 0s;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -2742,9 +2781,9 @@ input.slider-dot{
   }
 
   .slides .overflow .inner {
-    width: 500%;
-    -webkit-transition: all 0.5s linear 0s;
-    transition: all 0.5s linear 0s;
+    /*width: 500%;*/
+    /*-webkit-transition: all 0.5s linear 0s;
+    transition: all 0.5s linear 0s;*/
     background: red;
   }
   .slides .overflow .inner article {
@@ -2801,7 +2840,7 @@ input.slider-dot{
     margin-right: 3%;
   }
   .inner article li img{
-    width: 30%;
+    width: 60px;
     height: auto;
     margin: 0 auto;
     display: inline-block;
@@ -3013,7 +3052,7 @@ input.slider-dot{
     height: 40vw;
     position: relative;
     background: none;
-    z-index: 10 !important;
+    z-index: 0 !important;
   }
 
   .slideshow.slide_pop{
@@ -3032,6 +3071,10 @@ input.slider-dot{
     height: 100%;
     position: relative;
     z-index: 10 !important;
+  }
+
+  .top-slider{
+    margin-top: 0 !important;
   }
   .beers_month li {
     width: 100%;

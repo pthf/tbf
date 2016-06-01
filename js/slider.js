@@ -60,14 +60,14 @@ $(document).ready(function() {
 
 
   // //autoplay
-  // function startSlider() {
-  //  sliderInterval = setInterval( showNextSlide, pause)
-  // }
-  // startSlider();
-  // //  $('.slideshow').mouseenter(function() {
-  // //     clearInterval(sliderInterval);
-  // //  });
-  // //   $('.slideshow').mouseleave(startSlider);
+  function startSlider() {
+   sliderInterval = setInterval( showNextSlide, pause)
+  }
+  startSlider();
+  //  $('.slideshow').mouseenter(function() {
+  //     clearInterval(sliderInterval);
+  //  });
+  //   $('.slideshow').mouseleave(startSlider);
 
   //control dots clicks
   $('.nav_beers li').on('click', function() {

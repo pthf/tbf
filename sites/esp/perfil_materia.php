@@ -383,7 +383,8 @@ if (isset($_SESSION['idUser'])) {
                     <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
                         <div class="send_message">
                             <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO.</p>
+                            <p>ENVIAR CORREO:</p> <br><br>
+                            <span> correo_de_ejemplo@ejemplo.com</span>
                         </div>
                     </a>
 

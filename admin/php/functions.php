@@ -8,6 +8,9 @@
 			case 'prinnfRank':
 				prinnfRank($_POST['idBeer']);
 			break;
+			case 'rankUser':
+				rankUser($_POST['valuenew'], $_POST['idBeer'], $_POST['idUser']);
+			break;
 			case 'addBeerType':
 				addBeerType($_POST['data']);
 				break;
@@ -101,7 +104,37 @@
 			case 'addWishList':
 				addWishList($_POST['dataUser'], $_POST['dataBeer']);
 				break;
+			case 'deleteRank':
+				deleteRank($_POST['idBeer'], $_POST['idList']);
+				break;
 		}
+	}
+
+	function deleteRank($idBeer, $idList){
+		$query = "DELETE FROM rankslistelement WHERE idBeer = $idBeer AND idRanksList = $idList";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function rankUser($value, $idBeer, $idUser){
+		$query = "SELECT idRanksList FROM user WHERE idUser = $idUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$idRanksList = $line['idRanksList'];
+
+		$query = "SELECT * FROM rankslistelement WHERE idBeer = $idBeer AND idRanksList = $idRanksList";
+		$result = mysql_query($query) or die(mysql_error());
+		if(mysql_num_rows($result)>0){
+			$line = mysql_fetch_array($result);
+			$idRanksListElement = $line['idRanksListElement'];
+			$query = "UPDATE rankslistelement SET ranksListElementRank = $value WHERE idRanksListElement =  $idRanksListElement";
+			$result = mysql_query($query) or die(mysql_error());
+		}else{
+			$query = "INSERT INTO rankslistelement (idBeer, ranksListElementRank, idRanksList) VALUES ($idBeer, $value, $idRanksList)";
+			$result = mysql_query($query) or die(mysql_error());
+		}
+
+		prinnfRank($idBeer);
+
 	}
 
 	function prinnfRank($idBeer){
@@ -115,29 +148,12 @@
 			$contador++;
 		}
 
-		$sumatoria =+ 3;
+		$sumatoria = $sumatoria + 4;
 		$contador++;
 		$promedio = $sumatoria/$contador;
 		$promedio = round($promedio);
 
 		echo $promedio;
-		// echo "
-		// <h1 class='ranklevel'>".$promedio."</h1>
-		// <div class='rating-stars text-center'>
-		// 	<ul id='stars'>
-		// ";
-		//
-		// for($i=1; $i<=5; $i++){
-		// 	if($promedio>=$i){
-		// 		echo "<li class='star selected' data-value='".$i."' > <i class='fa fa-star fa-fw'></i> </li>";
-		// 	}else{
-		// 		echo "<li class='star' data-value='".$i."' > <i class='fa fa-star fa-fw'></i> </li>";
-		// 	}
-		// }
-		// echo "
-		// 	</ul>
-		// </div>
-		// ";
 	}
 
 	function deleteWishList($dataUser, $dataBeer){
