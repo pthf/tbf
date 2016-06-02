@@ -170,6 +170,8 @@
 			var ajaxData = new FormData();
 			ajaxData.append("namefunction","addHomeBannerImage");
 			ajaxData.append("urlBanner", $('#banner-url').val());
+			ajaxData.append("language", $('#banner-language option:selected').attr('name'));
+			alert($('#banner-language option:selected').attr('name'));
 			$.each($("#insertBannerImage input[type=file]"), function(i,obj){
 				$.each(obj.files, function(j, file){
 					ajaxData.append('bannerImage['+i+']', file);
@@ -236,6 +238,7 @@
 			var ajaxData = new FormData();
 			ajaxData.append("namefunction","addNewBannerImage");
 			ajaxData.append("action", $('#insertBannerImage').serialize());
+			ajaxData.append("language", $('#banner-language option:selected').attr('name'));
 			$.each($("#insertBannerImage input[type=file]"), function(i,obj){
 				$.each(obj.files, function(j, file){
 					ajaxData.append('bannerImage['+i+']', file);
@@ -302,6 +305,7 @@
 			var ajaxData = new FormData();
 			ajaxData.append("namefunction","addPostBannerImage");
 			ajaxData.append("action", $('#insertBannerImage').serialize());
+			ajaxData.append("language", $('#banner-language option:selected').attr('name'));
 			$.each($("#insertBannerImage input[type=file]"), function(i,obj){
 				$.each(obj.files, function(j, file){
 					ajaxData.append('bannerImage['+j+']', file);

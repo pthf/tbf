@@ -57,6 +57,46 @@
 				</div>
 				<br><br><br>
 
+
+
+				<div class="form-group">
+					<label for="producer-country" class="col-sm-4 control-label">Country *</label>
+					<div class="col-sm-8">
+						<select required class="form-control" id="producer-country" name="country">
+							<option disabled selected value="">Select a producer country</option>
+							<?php
+								$query = "SELECT * FROM countries ORDER BY name_c ASC";
+								$result = mysql_query($query) or die(mysql_error());
+								while ($line = mysql_fetch_array($result)) {
+									echo '<option value="'.$line["id"].'" name="'.$line["id"].'" ng-selected="dataRawMaterial[0].country_id == '.$line["id"].'">'.$line["name_c"].'</option>';
+								}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="producer-state" class="col-sm-4 control-label">State *</label>
+					<div class="col-sm-8">
+						<select required class="form-control" id="producer-state" name="state">
+							<option disabled selected value="">Select a producer state</option>
+							<?php
+								$query = "SELECT * FROM states ORDER BY name_s ASC";
+								$result = mysql_query($query) or die(mysql_error());
+								while ($line = mysql_fetch_array($result)) {
+									echo '<option value="'.$line["id"].'" name="'.$line["id"].'" ng-selected="dataRawMaterial[0].state_id == '.$line["id"].'">'.$line["name_s"].'</option>';
+								}
+							?>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="raw-material-city" class="col-sm-4 control-label">City *</label>
+					<div class="col-sm-8">
+						<input required type="text" class="form-control" id="raw-material-city" placeholder="Insert raw material city" name="city" value="{{dataRawMaterial[0].city}}"></input>
+					</div>
+				</div>
+
 				<div class="form-group">
 					<label for="raw-material-general-description" class="col-sm-4 control-label">General description *</label>
 					<div class="col-sm-8">

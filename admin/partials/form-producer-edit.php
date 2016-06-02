@@ -94,6 +94,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="producer-city" class="col-sm-4 control-label">City *</label>
+					<div class="col-sm-8">
+						<input required type="text" class="form-control" id="producer-city" placeholder="Insert producer city" name="city" value="{{dataProducer[0].city}}"></input>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="producer-address" class="col-sm-4 control-label">Address *</label>
 					<div class="col-sm-8">
 						<input required type="text" class="form-control" id="producer-address" placeholder="Insert producer address" name="address" value="{{dataProducer[0].producerAddress}}"></input>

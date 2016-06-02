@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2016 a las 12:37:39
+-- Tiempo de generación: 02-06-2016 a las 18:04:28
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -30,15 +30,16 @@ CREATE TABLE IF NOT EXISTS `adminuser` (
   `idAdmin` int(11) NOT NULL,
   `adminName` char(64) NOT NULL,
   `adminPassword` char(64) NOT NULL,
-  `adminLastConnection` datetime NOT NULL
+  `adminLastConnection` datetime NOT NULL,
+  `userPrivileges` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `adminuser`
 --
 
-INSERT INTO `adminuser` (`idAdmin`, `adminName`, `adminPassword`, `adminLastConnection`) VALUES
-(3, 'admin', '$2y$10$SWMoKfH4qv5.5vTOvds4j.0t3LQx6oKj919EmDWuRzGRVdCPUZiOa', '2016-05-30 17:22:16');
+INSERT INTO `adminuser` (`idAdmin`, `adminName`, `adminPassword`, `adminLastConnection`, `userPrivileges`) VALUES
+(3, 'admin', '$2y$10$SWMoKfH4qv5.5vTOvds4j.0t3LQx6oKj919EmDWuRzGRVdCPUZiOa', '2016-06-02 12:45:29', 1);
 
 -- --------------------------------------------------------
 
@@ -50,16 +51,7 @@ CREATE TABLE IF NOT EXISTS `bannerbeerslider` (
   `idBannerBeerSlider` int(11) NOT NULL,
   `bannerImage` varchar(450) NOT NULL,
   `idSlider` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `bannerbeerslider`
---
-
-INSERT INTO `bannerbeerslider` (`idBannerBeerSlider`, `bannerImage`, `idSlider`) VALUES
-(2, '20160530174819', 2),
-(3, '20160530174823', 2),
-(4, '20160530174839', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,17 +62,17 @@ INSERT INTO `bannerbeerslider` (`idBannerBeerSlider`, `bannerImage`, `idSlider`)
 CREATE TABLE IF NOT EXISTS `bannersliderhome` (
   `idBannerSliderHome` int(11) NOT NULL,
   `bannerSliderHomeImage` varchar(450) NOT NULL,
-  `bannerSliderHomeUrl` varchar(450) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `bannerSliderHomeUrl` varchar(450) DEFAULT NULL,
+  `language` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bannersliderhome`
 --
 
-INSERT INTO `bannersliderhome` (`idBannerSliderHome`, `bannerSliderHomeImage`, `bannerSliderHomeUrl`) VALUES
-(1, '20160530165633', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/'),
-(2, '20160530165850', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	'),
-(3, '20160530165854', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	');
+INSERT INTO `bannersliderhome` (`idBannerSliderHome`, `bannerSliderHomeImage`, `bannerSliderHomeUrl`, `language`) VALUES
+(1, '20160602140056', 'Banner ', 1),
+(2, '20160602140112', 'Banner ', 0);
 
 -- --------------------------------------------------------
 
@@ -94,16 +86,17 @@ CREATE TABLE IF NOT EXISTS `bannerslidernew` (
   `bannerSliderNewSubtitle` varchar(45) NOT NULL,
   `bannerSliderNewDescription` varchar(450) NOT NULL,
   `bannerSliderNewUrl` varchar(450) NOT NULL,
-  `bannerSliderNewImage` varchar(450) NOT NULL
+  `bannerSliderNewImage` varchar(450) NOT NULL,
+  `language` tinyint(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bannerslidernew`
 --
 
-INSERT INTO `bannerslidernew` (`idBannerSliderNew`, `bannerSliderNewTitle`, `bannerSliderNewSubtitle`, `bannerSliderNewDescription`, `bannerSliderNewUrl`, `bannerSliderNewImage`) VALUES
-(1, 'Conoce A', 'The Beer Fans', 'The Beer FansThe Beer FansThe Beer FansThe Beer Fans The Beer Fans The Beer FansThe Beer Fans The Beer Fans The Beer Fans The Beer Fans', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', '20160530170213'),
-(2, 'Conoce A	', 'The Beer Fans	', 'The Beer FansThe Beer FansThe Beer FansThe Beer Fans The Beer Fans The Beer FansThe Beer Fans The Beer Fans The Beer Fans The Beer Fans	', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	', '20160530170254');
+INSERT INTO `bannerslidernew` (`idBannerSliderNew`, `bannerSliderNewTitle`, `bannerSliderNewSubtitle`, `bannerSliderNewDescription`, `bannerSliderNewUrl`, `bannerSliderNewImage`, `language`) VALUES
+(1, 'language', 'language', 'language', 'language', '20160602140434', 0),
+(2, 'language', 'language', 'language', 'language', '20160602140449', 1);
 
 -- --------------------------------------------------------
 
@@ -117,17 +110,17 @@ CREATE TABLE IF NOT EXISTS `bannersliderpost` (
   `bannerSliderPostSubtitle` varchar(45) NOT NULL,
   `bannerSliderPostDescription` varchar(450) NOT NULL,
   `bannerSliderPostUrl` varchar(450) NOT NULL,
-  `bannerSliderPostImage` varchar(450) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `bannerSliderPostImage` varchar(450) NOT NULL,
+  `language` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bannersliderpost`
 --
 
-INSERT INTO `bannersliderpost` (`idBannerSliderPost`, `bannerSliderPostTitle`, `bannerSliderPostSubtitle`, `bannerSliderPostDescription`, `bannerSliderPostUrl`, `bannerSliderPostImage`) VALUES
-(2, 'Detacados', 'Entrada', 'texto de ejemplo etc. texto de ejemplo etc. texto de ejemplo etc.texto de ejemplo etc.	', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	', '20160530170800'),
-(3, 'Detacados 2', 'Entrada', 'texto de ejemplo etc. texto de ejemplo etc. texto de ejemplo etc.texto de ejemplo etc.	', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	', '20160530170900'),
-(4, 'Detacados 3', 'Detacados 3', 'texto de ejemplo etc. texto de ejemplo etc. texto de ejemplo etc.texto de ejemplo etc.	', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/	', '20160530170917');
+INSERT INTO `bannersliderpost` (`idBannerSliderPost`, `bannerSliderPostTitle`, `bannerSliderPostSubtitle`, `bannerSliderPostDescription`, `bannerSliderPostUrl`, `bannerSliderPostImage`, `language`) VALUES
+(1, 'example', 'example', 'example', 'example', '20160602141758', 1),
+(2, 'example', 'example', 'example', 'example', '20160602141824', 0);
 
 -- --------------------------------------------------------
 
@@ -150,15 +143,19 @@ CREATE TABLE IF NOT EXISTS `beer` (
   `beerInstagram` varchar(450) DEFAULT NULL,
   `idProducer` int(11) NOT NULL,
   `idSlider` int(11) NOT NULL,
-  `idBeerType` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `idBeerType` int(11) NOT NULL,
+  `language` tinyint(1) NOT NULL,
+  `idPublicMessagesList` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `beer`
 --
 
-INSERT INTO `beer` (`idBeer`, `beerName`, `beerDescription`, `beerStrength`, `beerIBUS`, `beerProfileImage`, `beerCoverImage`, `beerBottleImage`, `beerSite`, `beerFacebook`, `beerTwitter`, `beerInstagram`, `idProducer`, `idSlider`, `idBeerType`) VALUES
-(1, 'Ejemplo', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt, blogero especializado y miembro de esta academia recomienda siete lugares imprescindibles. Si vas a hacer la r', '6% ', '30', '20160530174731', '20160530174731', '20160530174731', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', '', '', 1, 2, 1);
+INSERT INTO `beer` (`idBeer`, `beerName`, `beerDescription`, `beerStrength`, `beerIBUS`, `beerProfileImage`, `beerCoverImage`, `beerBottleImage`, `beerSite`, `beerFacebook`, `beerTwitter`, `beerInstagram`, `idProducer`, `idSlider`, `idBeerType`, `language`, `idPublicMessagesList`) VALUES
+(1, 'ejemploe', 'Ejemplo', 'Ejemplo', 'ejemplo', '20160602132557', '20160602132557', '20160602132557', 'Ejemplo', '', '', '', 1, 2, 1, 1, 0),
+(2, 'Ejemplo', 'Ejemplo', 'Ejemplo', 'Ejemplo', '20160602133154', '20160602133154', '20160602133154', 'Ejemplo', '', '', '', 1, 3, 1, 0, 0),
+(3, 'ejemplo 2', 'ejemplo 2', 'ejemplo 2', 'ejemplo 2', '20160602143122', '20160602143122', '20160602143122', 'ejemplo 2', 'ejemplo 2', 'ejemplo 2', '', 1, 4, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +165,7 @@ INSERT INTO `beer` (`idBeer`, `beerName`, `beerDescription`, `beerStrength`, `be
 
 CREATE TABLE IF NOT EXISTS `beerslider` (
   `idSlider` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `beerslider`
@@ -176,7 +173,10 @@ CREATE TABLE IF NOT EXISTS `beerslider` (
 
 INSERT INTO `beerslider` (`idSlider`) VALUES
 (1),
-(2);
+(2),
+(3),
+(4),
+(5);
 
 -- --------------------------------------------------------
 
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `beertype` (
 --
 
 INSERT INTO `beertype` (`idBeerType`, `beerTypeName`) VALUES
-(1, 'clara');
+(1, 'ejemplo');
 
 -- --------------------------------------------------------
 
@@ -24983,16 +24983,7 @@ CREATE TABLE IF NOT EXISTS `favoriteelement` (
 
 CREATE TABLE IF NOT EXISTS `favoriteslist` (
   `idFavoritesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `favoriteslist`
---
-
-INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
-(1),
-(2),
-(3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -25002,16 +24993,7 @@ INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `inbox` (
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `inbox`
---
-
-INSERT INTO `inbox` (`idInbox`) VALUES
-(1),
-(2),
-(3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -25064,15 +25046,18 @@ CREATE TABLE IF NOT EXISTS `producer` (
   `producerInstagram` varchar(450) DEFAULT NULL,
   `country_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
-  `idProducerType` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `city` varchar(45) NOT NULL,
+  `idProducerType` int(11) NOT NULL,
+  `language` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producer`
 --
 
-INSERT INTO `producer` (`idProducer`, `producerName`, `producerDescription`, `producerAddress`, `producerZip`, `producerPhone`, `producerEmail`, `producerProfileImage`, `producerCoverImage`, `producerSite`, `producerFacebook`, `producerTwitter`, `producerInstagram`, `country_id`, `state_id`, `idProducerType`) VALUES
-(1, 'Cerveza Minerva ', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt, blogero especializado y miembro de esta academia recomienda siete lugares imprescindibles. Si vas a hacer la r', 'Puerta de Hierro 223 ', '44722', '21293833', 'example@example.com', '20160530173508', '20160530173342', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', '', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 142, 2441, 1);
+INSERT INTO `producer` (`idProducer`, `producerName`, `producerDescription`, `producerAddress`, `producerZip`, `producerPhone`, `producerEmail`, `producerProfileImage`, `producerCoverImage`, `producerSite`, `producerFacebook`, `producerTwitter`, `producerInstagram`, `country_id`, `state_id`, `city`, `idProducerType`, `language`) VALUES
+(1, 'Ejemplo', 'Ejemplo', 'Ejemplo', '13', '13', 'example@example.com', '20160602131613', '20160602131613', 'Ejemplo', 'Ejemplo', '', '', 215, 3502, '', 1, 1),
+(2, 'example@example.com', 'example@example.com', 'example@example.com', '44720', '3315721466', 'example@example.com', '20160602163100', '20160602163100', 'example@example.com', '', '', '', 142, 2441, 'Zapopan', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -25090,7 +25075,7 @@ CREATE TABLE IF NOT EXISTS `producertype` (
 --
 
 INSERT INTO `producertype` (`idProducerType`, `producerTypeName`) VALUES
-(1, 'comercial');
+(1, 'ejemplo');
 
 -- --------------------------------------------------------
 
@@ -25100,16 +25085,14 @@ INSERT INTO `producertype` (`idProducerType`, `producerTypeName`) VALUES
 
 CREATE TABLE IF NOT EXISTS `publicmessageslist` (
   `idPublicMessagesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `publicmessageslist`
 --
 
 INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
-(1),
-(2),
-(3);
+(1);
 
 -- --------------------------------------------------------
 
@@ -25119,16 +25102,7 @@ INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `rankslist` (
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `rankslist`
---
-
-INSERT INTO `rankslist` (`idRanksList`) VALUES
-(1),
-(2),
-(3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -25166,15 +25140,21 @@ CREATE TABLE IF NOT EXISTS `rawmaterial` (
   `rawMaterialSite` varchar(450) DEFAULT NULL,
   `rawMaterialFacebook` varchar(450) DEFAULT NULL,
   `rawMaterialTwitter` varchar(450) DEFAULT NULL,
-  `rawMaterialInstagram` varchar(450) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `rawMaterialInstagram` varchar(450) DEFAULT NULL,
+  `language` tinyint(1) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `state_id` int(11) NOT NULL,
+  `city` varchar(45) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rawmaterial`
 --
 
-INSERT INTO `rawmaterial` (`idRawMaterial`, `rawMaterialName`, `rawMaterialGeneralDescription`, `rawMaterialDescription`, `rawMaterialDescriptionHTML`, `rawMaterialLatitude`, `rawMaterialLongitude`, `rawMaterialAddress`, `rawMaterialZip`, `rawMaterialPhone`, `rawMaterialEmail`, `rawMaterialProfileImage`, `rawMaterialCoverImage`, `rawMaterialSite`, `rawMaterialFacebook`, `rawMaterialTwitter`, `rawMaterialInstagram`) VALUES
-(1, 'Productor 1', 'Es un nuevo bar dedicado a la cerveza artesanal que ha abierto en el vibrante Wrangelkiez de Kreuzberg. ', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt, blogero especializado y miembro de esta academia recomienda siete lugares imprescindibles. Si vas a hacer la r', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt, blogero especializado y miembro de esta academia recomienda siete lugares imprescindibles. Si vas a hacer la ruta completa, por favor, comed algo entre medias.\r\n\r\n<br><br>\r\n\r\n<ul>\r\n<li>Elementos 1</li>\r\n<li>Elementos 2</li>\r\n<li>Elementos 3</li>\r\n<li>Elementos 4</li>\r\n<li>Elementos 5</li>\r\n</ul>', '20.7100465', '-103.414375', 'Av. LoÌpez Mateos #34 Col. El Monte', '44720', '12039472', 'example@example.com', '20160530180444', '20160530180444', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/', 'http://www.thebeerfans.com/blog/2016/03/16/la-guia-definitiva-de-las-mejores-cervecerias-de-berlin/');
+INSERT INTO `rawmaterial` (`idRawMaterial`, `rawMaterialName`, `rawMaterialGeneralDescription`, `rawMaterialDescription`, `rawMaterialDescriptionHTML`, `rawMaterialLatitude`, `rawMaterialLongitude`, `rawMaterialAddress`, `rawMaterialZip`, `rawMaterialPhone`, `rawMaterialEmail`, `rawMaterialProfileImage`, `rawMaterialCoverImage`, `rawMaterialSite`, `rawMaterialFacebook`, `rawMaterialTwitter`, `rawMaterialInstagram`, `language`, `country_id`, `state_id`, `city`) VALUES
+(1, 'language', 'language', 'language', 'language', 'language', 'language', 'language', 'language', 'language', 'example@example.com', '20160602134351', '20160602134351', '', '', '', '', 0, 0, 0, ''),
+(2, 'example@example.com', 'example@example.com', 'example@example.com', 'example@example.com', 'example@example.com', 'example@example.com', 'example@example.com11111111', 'example@', 'example@example.com', 'example@example.com', '20160602160033', '20160602160033', '', '', '', '', 1, 142, 2441, ''),
+(3, 'Materials', 'Materials', 'Materials', 'Materials', '1', '1', 'Materials', '1', '1', 'example@example.com', '20160602163915', '20160602163915', '', '', '', '', 1, 142, 2441, 'Tepatitlan');
 
 -- --------------------------------------------------------
 
@@ -25185,16 +25165,14 @@ INSERT INTO `rawmaterial` (`idRawMaterial`, `rawMaterialName`, `rawMaterialGener
 CREATE TABLE IF NOT EXISTS `rawmaterialtype` (
   `idDrawMaterialType` int(11) NOT NULL,
   `rawMaterialTypeName` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rawmaterialtype`
 --
 
 INSERT INTO `rawmaterialtype` (`idDrawMaterialType`, `rawMaterialTypeName`) VALUES
-(1, 'botellas'),
-(2, 'corcholatas'),
-(3, 'ejemplo ');
+(1, 'language');
 
 -- --------------------------------------------------------
 
@@ -25213,7 +25191,8 @@ CREATE TABLE IF NOT EXISTS `rawmaterial_has_rawmaterialtype` (
 
 INSERT INTO `rawmaterial_has_rawmaterialtype` (`idRawMaterial`, `idDrawMaterialType`) VALUES
 (1, 1),
-(1, 2);
+(2, 1),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -29380,16 +29359,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `idRanksList` int(11) NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `userBirthDate`, `userDescription`, `userProfileImage`, `userCoverImage`, `userEmail`, `userPassword`, `userStatus`, `userConnection`, `userExp`, `country_id`, `state_id`, `idFavoritesList`, `idWishList`, `idRanksList`, `idPublicMessagesList`, `idInbox`) VALUES
-(1, '2016-05-30', 'Guillermo', 'Camarena', '1993-09-16', '', '20160530171949', 'cover_default.png', 'example@example.com', '$2y$10$sQOMC5w6X4u1AWas3u46zua.iVNF2xtyXKihzCnkKxP42cW.QRWr2', 0, 0, 0, 231, 3956, 1, 1, 1, 1, 1),
-(2, '2016-05-30', 'Guillermo 2', 'Camarena', '1981-01-17', '', '20160530171859', 'cover_default.png', 'example2@example.com', '$2y$10$WWXK6TMz47apq69bsxnfr.gHBN7vfFYNPq0iTmUNCMAVR1xTRsAmK', 1, 0, 0, 231, 3922, 2, 2, 2, 2, 2),
-(3, '2016-05-31', 'Juan Pablo', 'Sanchez', '1992-05-11', ' Hola soy de mexico, pero vivo en Arizona. Ho', '20160531104418', '20160531104425', 'example@example.com', '$2y$10$TJympDxNcPttoY9q.zyHLOrZQ.9Z/AFPVEE4B7jpMV7oxaxkm3O5e', 1, 1, 0, 231, 3921, 3, 3, 3, 3, 3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -29399,16 +29369,7 @@ INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `u
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `idWishList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `wishlist`
---
-
-INSERT INTO `wishlist` (`idWishList`) VALUES
-(1),
-(2),
-(3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -29461,10 +29422,11 @@ ALTER TABLE `bannersliderpost`
 -- Indices de la tabla `beer`
 --
 ALTER TABLE `beer`
-  ADD PRIMARY KEY (`idBeer`,`idProducer`,`idSlider`,`idBeerType`),
+  ADD PRIMARY KEY (`idBeer`,`idProducer`,`idSlider`,`idBeerType`,`idPublicMessagesList`),
   ADD KEY `fk_beer_producer_idx` (`idProducer`),
   ADD KEY `fk_beer_beerSlider1_idx` (`idSlider`),
-  ADD KEY `fk_beer_beerType1_idx` (`idBeerType`);
+  ADD KEY `fk_beer_beerType1_idx` (`idBeerType`),
+  ADD KEY `fk_beer_publicmessagebeer_idx` (`idPublicMessagesList`);
 
 --
 -- Indices de la tabla `beerslider`
@@ -29637,12 +29599,12 @@ ALTER TABLE `adminuser`
 -- AUTO_INCREMENT de la tabla `bannerbeerslider`
 --
 ALTER TABLE `bannerbeerslider`
-  MODIFY `idBannerBeerSlider` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `idBannerBeerSlider` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `bannersliderhome`
 --
 ALTER TABLE `bannersliderhome`
-  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `bannerslidernew`
 --
@@ -29652,17 +29614,17 @@ ALTER TABLE `bannerslidernew`
 -- AUTO_INCREMENT de la tabla `bannersliderpost`
 --
 ALTER TABLE `bannersliderpost`
-  MODIFY `idBannerSliderPost` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `idBannerSliderPost` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `beer`
 --
 ALTER TABLE `beer`
-  MODIFY `idBeer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idBeer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `beerslider`
 --
 ALTER TABLE `beerslider`
-  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `beertype`
 --
@@ -29692,12 +29654,12 @@ ALTER TABLE `favoriteelement`
 -- AUTO_INCREMENT de la tabla `favoriteslist`
 --
 ALTER TABLE `favoriteslist`
-  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `inbox`
 --
 ALTER TABLE `inbox`
-  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
@@ -29712,7 +29674,7 @@ ALTER TABLE `postelement`
 -- AUTO_INCREMENT de la tabla `producer`
 --
 ALTER TABLE `producer`
-  MODIFY `idProducer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idProducer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `producertype`
 --
@@ -29722,12 +29684,12 @@ ALTER TABLE `producertype`
 -- AUTO_INCREMENT de la tabla `publicmessageslist`
 --
 ALTER TABLE `publicmessageslist`
-  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `rankslist`
 --
 ALTER TABLE `rankslist`
-  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `rankslistelement`
 --
@@ -29737,12 +29699,12 @@ ALTER TABLE `rankslistelement`
 -- AUTO_INCREMENT de la tabla `rawmaterial`
 --
 ALTER TABLE `rawmaterial`
-  MODIFY `idRawMaterial` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idRawMaterial` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `rawmaterialtype`
 --
 ALTER TABLE `rawmaterialtype`
-  MODIFY `idDrawMaterialType` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idDrawMaterialType` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `states`
 --
@@ -29752,12 +29714,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `wishlistelement`
 --
