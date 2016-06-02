@@ -362,7 +362,7 @@ if (isset($_SESSION['idUser'])) {
                     <p>CONTACTO</p>
                     <div class="image_top">
                         <a href="#">
-                            <img src="../../images/trashcan.svg"/>
+                            <img src="../../images/social-03.png"/>
                         </a>
                     </div>
                 </div>
