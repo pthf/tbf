@@ -383,10 +383,17 @@ if (isset($_SESSION['idUser'])) {
                     <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
                         <div class="send_message">
                             <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO:</p> <br><br>
-                            <span> correo_de_ejemplo@ejemplo.com</span>
+                            <p>ENVIAR CORREO:</p>
                         </div>
                     </a>
+                    <br><br>
+                    <span> correo_de_ejemplo@ejemplo.com</span>
+
+                    <div class="social_company social-no-padding">
+            					<a href="#" class="first_contact fb"><img src="../../images/social-04.png"/></a>
+            					<a href="#" class="other_contact twt"><img src="../../images/social-02.png" /></a>
+            					<a href="#" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+            				</div>
 
                     <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
 

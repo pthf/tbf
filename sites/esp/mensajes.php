@@ -362,7 +362,7 @@ if (isset($_SESSION['idUser'])) {
                     <p>CONTACTO</p>
                     <div class="image_top">
                         <a href="#">
-                            <img src="../../images/social-03.png"/>
+                            <img src="../../images/trashcan.svg"/>
                         </a>
                     </div>
                 </div>
@@ -374,7 +374,7 @@ if (isset($_SESSION['idUser'])) {
                 <!--box bottom left -->
                 <div id="contact_list">
                 	<?php
-	            	$query = "SELECT ch.user_idUser,ch.inbox_idInbox,us.idInbox,us.userName,us.userProfileImage FROM chat ch 
+	            	$query = "SELECT ch.user_idUser,ch.inbox_idInbox,us.idInbox,us.userName,us.userProfileImage FROM chat ch
 								INNER JOIN user us
 								ON us.idUser = ch.user_idUser
 								WHERE ch.user_idUser != '".$_SESSION['idUser']."' AND ch.inbox_idInbox = '".$line['idInbox']."'";
@@ -411,7 +411,7 @@ if (isset($_SESSION['idUser'])) {
 
                 <div id="inbox_content">
                     <div class="msn_content">
-                    	<?php 
+                    	<?php
                     	if (isset($_GET['idUserChat'])) {
 
 	                    	$userChat = $_GET['idUserChat'];
@@ -420,10 +420,10 @@ if (isset($_SESSION['idUser'])) {
 										INNER JOIN user us
 										ON us.idUser = m.user_idUser
 										INNER JOIN chat c
-										ON c.idChat = m.chat_idChat 
+										ON c.idChat = m.chat_idChat
 										WHERE m.user_idUser = '".$userChat."' AND c.inbox_idInbox = '".$idChat."'";
 			            	$resultado1 = mysql_query($query1) or die (mysql_error());
-			            	while ($row1 = mysql_fetch_array($resultado1)) { 
+			            	while ($row1 = mysql_fetch_array($resultado1)) {
 			            		if ($row1['messageStatus'] == 1) { ?>
 			                        <!-- message send -->
 			                        <div id="itemContainer">
@@ -446,13 +446,13 @@ if (isset($_SESSION['idUser'])) {
 
 
 			                            </div>
-			                            <?php 
+			                            <?php
 									    $fecha = $row1['messageDate'];
 									    $fechafinal = explode('-', $fecha);
 									    $dia = explode(' ', $fechafinal[2]);
-										$fechats = strtotime($fecha); 
+										$fechats = strtotime($fecha);
 
-										switch (date('w', $fechats)){ 
+										switch (date('w', $fechats)){
 										    case 0: $nameDia[] = "Domingo";
 									    	break;
 									    	case 1: $nameDia[] = "Lunes";
@@ -467,9 +467,9 @@ if (isset($_SESSION['idUser'])) {
 									    	break;
 									    	case 6: $nameDia[] = 'Sábado';
 									    	break;
-										}  
+										}
 
-										switch (date('n', $fechats)){ 
+										switch (date('n', $fechats)){
 										    case 1: $nameMes[] = "Enero";
 									    	break;
 									    	case 2: $nameMes[] = "Febrero";
@@ -494,7 +494,7 @@ if (isset($_SESSION['idUser'])) {
 									    	break;
 									    	case 12: $nameMes[] = "Diciembre";
 									    	break;
-										}  
+										}
 									    ?>
 
 			                            <div class="date_sent">
@@ -525,13 +525,13 @@ if (isset($_SESSION['idUser'])) {
 
 
 			                            </div>
-			                            <?php 
+			                            <?php
 									    $fecha = $row1['messageDate'];
 									    $fechafinal = explode('-', $fecha);
 									    $dia = explode(' ', $fechafinal[2]);
-										$fechats = strtotime($fecha); 
+										$fechats = strtotime($fecha);
 
-										switch (date('w', $fechats)){ 
+										switch (date('w', $fechats)){
 										    case 0: $nameDia[] = "Domingo";
 									    	break;
 									    	case 1: $nameDia[] = "Lunes";
@@ -546,9 +546,9 @@ if (isset($_SESSION['idUser'])) {
 									    	break;
 									    	case 6: $nameDia[] = 'Sábado';
 									    	break;
-										}  
+										}
 
-										switch (date('n', $fechats)){ 
+										switch (date('n', $fechats)){
 										    case 1: $nameMes[] = "Enero";
 									    	break;
 									    	case 2: $nameMes[] = "Febrero";
@@ -573,7 +573,7 @@ if (isset($_SESSION['idUser'])) {
 									    	break;
 									    	case 12: $nameMes[] = "Diciembre";
 									    	break;
-										}  
+										}
 									    ?>
 
 			                            <div class="date_sent" style="text-align: left;">
@@ -591,7 +591,7 @@ if (isset($_SESSION['idUser'])) {
 	                            <div id="itemContainerInner">
 
 	                                <div class="item i1 sent_">
-	                                    
+
 	                                </div>
 
 	                                <div class="item i2">
@@ -600,7 +600,7 @@ if (isset($_SESSION['idUser'])) {
 
 	                                <div class="item i3 sent_">
 	                                    <p>
-	                                    	
+
 	                                    </p>
 
 	                                </div>
