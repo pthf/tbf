@@ -42,7 +42,6 @@ if (isset($_SESSION['idUser'])) {
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/image_click.js"></script>
-        <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/popup_img.js"></script>
 				<script type="text/javascript">
 						$(document).ready(function () {
@@ -431,8 +430,8 @@ if (isset($_SESSION['idUser'])) {
                             <img src="../../images/close_image-01.png" alt="" />
                         </a>
                         <div class="slideshow slide_pop">
-                            <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
-                            <div class="next"> <img src="../../images/flecha-der.png"> </div>
+                            <!-- <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
+                            <div class="next"> <img src="../../images/flecha-der.png"> </div> -->
 
                             <ul class="beers_month">
                               <?php
@@ -442,7 +441,7 @@ if (isset($_SESSION['idUser'])) {
                                 while($l = mysql_fetch_array($r)){
                                   $c++;
                                   echo '
-                                    <li data-n="'.$c.'">
+                                    <li class="news-slider" data-n="'.$c.'">
                                         <img src="../../images/beerBanners/'.$l['bannerImage'].'" alt="tbf tarro" title="tbf tarro">
                                     </li>
                                   ';
@@ -1281,6 +1280,7 @@ if (isset($_SESSION['idUser'])) {
               });
           </script>
           <script type="text/javascript" src="../../js/rating.js"></script>
+          <script type="text/javascript" src="../../js/slider.js"></script>
         </div>
     </body>
 </html>
