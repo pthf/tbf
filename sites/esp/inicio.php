@@ -271,6 +271,15 @@ if (isset($_SESSION['idUser'])) {
 
                     <div class="perfil_tbf">
 
+                        <div class="search-filter">
+                          <select>
+                            <option value="usuario">Usuarios</option>
+                            <option value="cervezas">Cervezas</option>
+                            <option value="productores">Productores</option>
+                            <option value="Materia Prima">Materia Prima</option>
+                          </select>
+
+                        </div>
                         <div class="search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
                             <input type="text" id="box-target">
