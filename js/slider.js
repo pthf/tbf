@@ -1,7 +1,9 @@
+var sliderCounter = $('.beers_month li.news-slider').length;
+var minSlider = sliderCounter - sliderCounter + 1;
 $(document).ready(function() {
   var $visibleSlide, getDataSlide, sliderInterval, getDataNextSlide, getDataPrevSlide, getDataNavDot;
-  var fadeDuration = 500;
-  var pause = 3000;
+  var fadeDuration = 600;
+  var pause = 2000;
 
   //show first slide
   $('.beers_month li:first-child').css('display','block');
@@ -23,7 +25,7 @@ $(document).ready(function() {
 
    $('.nav_beers li').removeClass('active-cd');
 
-   if (getDataSlide < 4) {
+   if (getDataSlide < sliderCounter) {
       $visibleSlide.fadeOut(fadeDuration);
       $visibleSlide.next().fadeIn(fadeDuration);
       $('.nav_beers li[data-cd='+getDataNextSlide+']').addClass('active-cd');
@@ -40,7 +42,7 @@ $(document).ready(function() {
 
      $('.nav_beers li').removeClass('active-cd');
 
-   if (getDataSlide > 1) {
+   if (getDataSlide > minSlider ) {
       $visibleSlide.fadeOut(fadeDuration);
       $visibleSlide.prev().fadeIn(fadeDuration);
       $('.nav_beers li[data-cd='+getDataPrevSlide+']').addClass('active-cd');
@@ -54,9 +56,9 @@ $(document).ready(function() {
   }// end showPrevSlide
 
 
-  // controls
-  $('.next').on('click', showNextSlide);
-  $('.prev').on('click', showPrevSlide);
+  // // controls
+  // $('.next').on('click', showNextSlide);
+  // $('.prev').on('click', showPrevSlide);
 
 
   // //autoplay
@@ -68,6 +70,7 @@ $(document).ready(function() {
   //     clearInterval(sliderInterval);
   //  });
   //   $('.slideshow').mouseleave(startSlider);
+
 
   //control dots clicks
   $('.nav_beers li').on('click', function() {

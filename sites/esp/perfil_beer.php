@@ -431,8 +431,8 @@ if (isset($_SESSION['idUser'])) {
                             <img src="../../images/close_image-01.png" alt="" />
                         </a>
                         <div class="slideshow slide_pop">
-                            <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
-                            <div class="next"> <img src="../../images/flecha-der.png"> </div>
+                            <!-- <div class="prev"> <img src="../../images/flecha-izq.png"> </div>
+                            <div class="next"> <img src="../../images/flecha-der.png"> </div> -->
 
                             <ul class="beers_month">
                               <?php

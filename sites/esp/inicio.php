@@ -27,7 +27,6 @@ if (isset($_SESSION['idUser'])) {
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/check.js"></script>
-        <script type="text/javascript" src="../../js/slider.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -351,7 +350,7 @@ if (isset($_SESSION['idUser'])) {
                             $cantidad++;
                       ?>
                       <li class="top-slider" data-n="<?=$cantidad?>">
-                          <img src="../../images/newBanners/<?=$l['bannerSliderNewImage']?>" alt="tbf tarro" title="tbf tarro">
+                          <img src="../../images/newBanners/<?=$l['bannerSliderNewImage']?>">
                       </li>
                       <?php
                           }
@@ -495,7 +494,7 @@ if (isset($_SESSION['idUser'])) {
                             while($l = mysql_fetch_array($r)){
                               $cantidad++;
                         ?>
-                        <li data-n="<?=$cantidad?>">
+                        <li class="news-slider" data-n="<?=$cantidad?>">
                             <img src="../../images/newBanners/<?=$l['bannerSliderNewImage']?>" alt="tbf tarro" title="tbf tarro">
                             <div class="aside_info_second">
                                 <div class="contenido_aside">
@@ -962,6 +961,10 @@ if (isset($_SESSION['idUser'])) {
             $('#btn_submit').click(validateDoB);
 
         </script>
+
+        <script type="text/javascript" src="../../js/slider.js"></script>
+        <script type="text/javascript" src="../../js/homeSlider.js"></script>
+
 
     </body>
 </html>
