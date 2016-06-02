@@ -3,7 +3,7 @@ var minSlider = sliderCounter - sliderCounter + 1;
 $(document).ready(function() {
   var $visibleSlide, getDataSlide, sliderInterval, getDataNextSlide, getDataPrevSlide, getDataNavDot;
   var fadeDuration = 600;
-  var pause = 2000;
+  var pause = 4300;
 
   //show first slide
   $('.beers_month li:first-child').css('display','block');

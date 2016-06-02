@@ -3,7 +3,7 @@ var HomeMinSlider = HomeSliderCounter - HomeSliderCounter + 1;
 $(document).ready(function() {
   var Home$visibleSlide, HomegetDataSlide, HomesliderInterval, HomegetDataNextSlide, HomegetDataPrevSlide, HomegetDataNavDot;
   var HomefadeDuration = 600;
-  var Homepause = 1000;
+  var Homepause = 4200;
 
   //show first slide
   $('.beers_month li:first-child').css('display','block');
