@@ -244,7 +244,7 @@ span.text_prin span{
 .perfil_tbf{
   position: absolute;
   right: 2vw;
-  width: 45%;
+  width: 30%;
   height: 3vw;
   text-align: right;
 
@@ -304,6 +304,11 @@ span.text_prin span{
 
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
+}
+
+.search {
+    margin-left: 1vw;
+    width: 22% !important;
 }
 
 .search img{
@@ -3050,7 +3055,7 @@ input.slider-dot{
     transform: translate(-50%, -50%);
   }
 
-  /* popup slider */
+    /* popup slider */
 
   .slideshow {
     margin-top: 0vw;

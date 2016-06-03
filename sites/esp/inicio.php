@@ -272,7 +272,7 @@ if (isset($_SESSION['idUser'])) {
                     <div class="perfil_tbf">
 
                         <div class="search-filter">
-                          <select>
+                          <select class="filter-opt">
                             <option value="usuario">Usuarios</option>
                             <option value="cervezas">Cervezas</option>
                             <option value="productores">Productores</option>
