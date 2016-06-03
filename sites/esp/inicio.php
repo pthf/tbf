@@ -87,7 +87,7 @@ if (isset($_SESSION['idUser'])) {
                         <img src="../../images/img_galeria-02_close.png" >
                     </div>
                     <div class="login-title">
-                        <span class="login-title-text">INICIAR SESIÓN</span>
+                        <a href="#"><span class="login-title-text">INICIAR SESIÓN</span></a>
                     </div>
 
                     <form action="">
@@ -332,7 +332,7 @@ if (isset($_SESSION['idUser'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<span>INICIAR SESIÓN</span>
+                  											<a href="#"><span>INICIAR SESIÓN</span></a>
                   										</div>';
                             }
                             ?>
@@ -579,7 +579,7 @@ if (isset($_SESSION['idUser'])) {
 
                                 </div>
                             <?php } else { ?>
-                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<span class="user_name">INICIAR SESIÓN</span> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
+                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><span class="user_name">INICIAR SESIÓN</span></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
 <?php } ?>
                         </div>
                     </div>

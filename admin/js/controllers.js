@@ -171,7 +171,6 @@
 			ajaxData.append("namefunction","addHomeBannerImage");
 			ajaxData.append("urlBanner", $('#banner-url').val());
 			ajaxData.append("language", $('#banner-language option:selected').attr('name'));
-			alert($('#banner-language option:selected').attr('name'));
 			$.each($("#insertBannerImage input[type=file]"), function(i,obj){
 				$.each(obj.files, function(j, file){
 					ajaxData.append('bannerImage['+i+']', file);
