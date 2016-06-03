@@ -243,7 +243,7 @@ span.text_prin span{
 .perfil_tbf{
   position: absolute;
   right: -5vw;
-  width: 45%;
+  width: 55%;
   height: 3vw;
   text-align: right;
 
@@ -2230,7 +2230,7 @@ input.slider-dot{
   }
 
   .social_company{
-    width: 100%;
+    width: 80%;
     text-align: center;
     padding-bottom: 3%;
     margin-bottom: 8%;
@@ -2636,6 +2636,7 @@ input.slider-dot{
   .item.i1 img{
     width: 60px;
     height: 60px;
+    margin: 0px 0px 10px 10px;
   }
 
   .item.i2 {

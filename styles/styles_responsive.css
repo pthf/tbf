@@ -74,7 +74,7 @@
 	}
 
 	.perfil_tbf{
-		width: 45%;
+		width: 65%;
 		height: 4vw;
 	}
 
@@ -436,7 +436,7 @@
 	}
 
 	.perfil_tbf{
-		width: 50%;
+		width: 65%;
 		height: 5vw;
 	}
 
@@ -873,7 +873,7 @@
 	}
 
 	.perfil_tbf{
-		width: 55%;
+		width: 65%;
 		height: 6vw;
 	}
 
@@ -1439,8 +1439,9 @@
 	}
 
 	.perfil_tbf{
-		width: 70%;
+		width: 100%;
 		height: 7vw;
+		right: -15vw;
 	}
 
 	.contenido_social span{
@@ -2301,6 +2302,20 @@
 		width: 10%;
 	}
 
+	.perfil_tbf {
+	    right: -2vw;
+	}
+
+	.profile_img a img {
+    width: 25px !important;
+    height: auto !important;
+	}
+
+	.msg a img {
+    width: 25px !important;
+    height: auto !important;
+	}
+
 	.menu_buttom{
 		width: 8%;
 	}
@@ -2974,8 +2989,9 @@
 		height: 14px;
 	}
 
-	select.filter-opt{
-		height: 14px;
+	select.filter-opt {
+    height: 14px;
+    width: 100%;
 	}
 
 	.search img{
@@ -3615,6 +3631,10 @@
 			width: 90%;
 	}
 
+	.search-filter {
+	    height: 22px;
+	}
+
 
 }
 
@@ -3993,6 +4013,54 @@
 
 	.Grid{
 		height: 64vw;
+	}
+
+	select.filter-opt {
+	    height: 10px;
+	    width: 100%;
+	}
+
+	.search-filter {
+	    height: 18px;
+	}
+
+	.perfil_tbf .search {
+	    padding: 0;
+	    margin: 0;
+	    width: 30%;
+	    height: 10px;
+	}
+
+	.search-filter {
+	    height: 24px;
+	    width: 15%;
+	}
+
+	select.filter-opt{
+		font-size: 6px;
+	}
+
+	.msg a img {
+	    width: 15px !important;
+	    height: auto !important;
+	}
+
+	.profile_img a img {
+	    width: 15px !important;
+	    height: auto !important;
+	}
+
+	.perfil_tbf .search {
+	    padding: 0;
+	    margin: 0;
+	    width: 25%;
+	    height: 10px;
+	}
+
+	span.number {
+	    width: 10px;
+	    line-height: 12px;
+	    font-size: 7px;
 	}
 
 }

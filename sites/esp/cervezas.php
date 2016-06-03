@@ -142,45 +142,45 @@ if (isset($_SESSION['idUser'])) {
 
 														<div class="date-input-wrapper">
 
-																<select required id="birthday_day" name="birthday_day" class="birthday day" >
-																		<option value="">Día &#x25BE;</option>
-																</select>
+                              <select required id="birthday_year" name="birthday_year" class="birthday year" >
+                                  <option value="">Año &#x25BE;</option>
+                                  <option value="1995">1995</option>
+                                  <option value="1994">1994</option>
+                                  <option value="1993">1993</option>
+                                  <option value="1992">1992</option>
+                                  <option value="1991">1991</option>
+                                  <option value="1990">1990</option>
+                                  <option value="1989">1989</option>
+                                  <option value="1988">1988</option>
+                                  <option value="1987">1987</option>
+                                  <option value="1986">1986</option>
+                                  <option value="1985">1985</option>
+                                  <option value="1984">1984</option>
+                                  <option value="1983">1983</option>
+                                  <option value="1982">1982</option>
+                                  <option value="1981">1981</option>
+                                  <option value="1980">1980</option>
+                              </select>
 
-																<select required id="birthday_month" name="birthday_month" class="birthday month" >
-																		<option value="">Mes &#x25BE;</option>
-																		<option value="1">Enero</option>
-																		<option value="2">Febrero</option>
-																		<option value="3">Marzo</option>
-																		<option value="4">Abril</option>
-																		<option value="5">Mayo</option>
-																		<option value="6">Junio</option>
-																		<option value="7">Julio</option>
-																		<option value="8">Agosto</option>
-																		<option value="9">Septiembre</option>
-																		<option value="10">Octubre</option>
-																		<option value="11">Noviembre</option>
-																		<option value="12">Diciembre</option>
-																</select>
+                              <select required id="birthday_month" name="birthday_month" class="birthday month" >
+                                  <option value="">Mes &#x25BE;</option>
+                                  <option value="1">Enero</option>
+                                  <option value="2">Febrero</option>
+                                  <option value="3">Marzo</option>
+                                  <option value="4">Abril</option>
+                                  <option value="5">Mayo</option>
+                                  <option value="6">Junio</option>
+                                  <option value="7">Julio</option>
+                                  <option value="8">Agosto</option>
+                                  <option value="9">Septiembre</option>
+                                  <option value="10">Octubre</option>
+                                  <option value="11">Noviembre</option>
+                                  <option value="12">Diciembre</option>
+                              </select>
 
-																<select required id="birthday_year" name="birthday_year" class="birthday year" >
-																		<option value="">Año &#x25BE;</option>
-																		<option value="1995">1995</option>
-																		<option value="1994">1994</option>
-																		<option value="1993">1993</option>
-																		<option value="1992">1992</option>
-																		<option value="1991">1991</option>
-																		<option value="1990">1990</option>
-																		<option value="1989">1989</option>
-																		<option value="1988">1988</option>
-																		<option value="1987">1987</option>
-																		<option value="1986">1986</option>
-																		<option value="1985">1985</option>
-																		<option value="1984">1984</option>
-																		<option value="1983">1983</option>
-																		<option value="1982">1982</option>
-																		<option value="1981">1981</option>
-																		<option value="1980">1980</option>
-																</select>
+                              <select required id="birthday_day" name="birthday_day" class="birthday day" >
+                                  <option value="">Día &#x25BE;</option>
+                              </select>
 
 														</div>
 
@@ -267,81 +267,90 @@ if (isset($_SESSION['idUser'])) {
 
         <div id="contenedor">
 
-						<div class="top_info">
-								<div class="contenedo_info">
-										<a href="inicio.php">
-												<div class="logo_tbf">
-														<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
-												</div>
-										</a>
+            <div class="top_info">
+                <div class="contenedo_info">
+                    <a href="inicio.php">
+                        <div class="logo_tbf">
+                            <img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
+                        </div>
+                    </a>
 
-										<div class="perfil_tbf">
+                    <div class="perfil_tbf">
 
-												<div class="search">
-														<img src="../../images/icon-01.png" alt="search icon" title="search icon">
-														<input type="text" id="box-target">
+                        <div class="search-filter">
+                          <select class="filter-opt">
+                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+                            <option value="cervezas">Cervezas</option>
+                            <option value="productores">Productores</option>
+                            <option value="Materia Prima">Materia Prima</option>
+                          </select>
 
-														<div class="search-box buscar">
+                        </div>
+                        <div class="search main-search">
+                            <img src="../../images/icon-01.png" alt="search icon" title="search icon">
+                            <input type="text" id="box-target">
 
-														</div>
+                            <div class="search-box buscar">
 
-												</div>
-												<div class="cont_info_user">
+                            </div>
 
-														<?php if (isset($_SESSION['idUser'])) { ?>
+                        </div>
+                        <div class="cont_info_user">
 
-																<?php
-																$consulta = "SELECT * FROM message INNER JOIN chat
-																							 ON message.chat_idChat = chat.idChat
-																							 WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-																							 AND message.user_idUser != " . $line['idUser'];
-																$resultadoconsulta = mysql_query($consulta) or die(mysql_error());
-																?>
+                            <?php if (isset($_SESSION['idUser'])) { ?>
 
-																<div class="msg">
-																		<a href="mensajes.php">
-																				<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
-																				<?php
-																				if (mysql_num_rows($resultadoconsulta) > 0) {
-																						echo '<span class="number">' . mysql_num_rows($resultadoconsulta) . '</span>';
-																				}
-																				?>
-																		</a>
-																</div>
+                                <?php
+                                $consulta = "SELECT * FROM message INNER JOIN chat
+                                               ON message.chat_idChat = chat.idChat
+                                               WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+                                               AND message.user_idUser != " . $line['idUser'];
+                                $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
+                                ?>
+
+                                <div class="msg">
+                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                        <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
+                                        <?php
+                                        if (mysql_num_rows($resultadoconsulta) > 0) {
+                                            echo '<span class="number">' . mysql_num_rows($resultadoconsulta) . '</span>';
+                                        }
+                                        ?>
+                                    </a>
+                                </div>
 
 
-																<div class="profile_img">
-																		<a href="perfil.php?idUser=<?= $line['idUser'] ?>">
-																				<img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
-																		</a>
-																</div>
-														<?php } ?>
+                                <div class="profile_img">
+                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                        <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
+                                    </a>
+                                </div>
+                            <?php } ?>
 
-														<?php
-														if (isset($_SESSION['idUser'])) {
+                            <?php
+                            if (isset($_SESSION['idUser'])) {
 
-																echo '<div class="user_name">
-																				<a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
-																				<span>' . $line["userName"] . '</span>
-																				</a>
-																			</div>
-																			';
-														} else {
-																echo '
-																			<div class="user_name">
-																				<span>INICIAR SESIÓN</span>
-																			</div>';
-														}
-														?>
+                                echo '<div class="user_name">
+                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <span>' . $line["userName"] . '</span>
+                                        </a>
+                                      </div>
+                                      ';
+                            } else {
+                                echo '
+                                      <div class="user_name">
+                                        <a href="#"><span>INICIAR SESIÓN</span></a>
+                                      </div>';
+                            }
+                            ?>
 
-														<div class="menu_buttom">
-																<img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
-														</div>
+                            <div class="menu_buttom">
+                                <img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
+                            </div>
 
-												</div>
-										</div>
-								</div>
-						</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="top_img">
                 <img src="../../images/beerBanners/beer_page-02.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
@@ -474,7 +483,7 @@ if (isset($_SESSION['idUser'])) {
 			                              $contador=0;
 			                            }
 	                          		}
-	                          	} else if ((isset($_GET['type'])) && (isset($_GET['country']))) { 
+	                          	} else if ((isset($_GET['type'])) && (isset($_GET['country']))) {
 	                          		$query3 = "SELECT * FROM beer b
 								                  INNER JOIN beertype bt
 								                  ON bt.idBeerType = b.idBeerType
@@ -508,7 +517,7 @@ if (isset($_SESSION['idUser'])) {
 			                              $contador=0;
 			                            }
 			                        }
-	                          	} else { 
+	                          	} else {
 	                          		$query2 = "SELECT * FROM beer";
                                     $resultado2 = mysql_query($query2) or die(mysql_error());
                                     $contador = 0;
