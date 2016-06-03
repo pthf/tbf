@@ -1087,6 +1087,77 @@
 		}
 	})
 
+	.directive('formSendMessages', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './../partials/form-send-messages.php',
+			controller: function($document){
+
+				$('#buttonSave').click(function(){
+					var message = $('#message').val();
+					var namefunction = "sendMessageAllUsers";
+
+					$.ajax({
+						beforeSend: function(){
+						},
+						url: "../php/functions.php",
+						type: "POST",
+						data: {
+							message : message,
+							namefunction : namefunction
+						},
+						success: function(result){
+							$('.msg-newbeer').css({'display': 'block'});
+							setTimeout(function(){
+								location.reload();
+							},2000);
+						},
+						error: function(error){
+						},
+						complete: function(){
+						},
+						timeout: 10000
+					});
+
+
+
+				});
+
+				$("#formBeer").submit(function(e){
+					e.preventDefault();
+					var confirmPass = $('input[name=password]').val();
+					var password = $('input[name=confirmPassword]').val();
+					if(confirmPass != password ){
+						$('.msg-match').css({'display': 'block'});
+						setTimeout(function(){
+							$('.msg-match').css({'display': 'none'});
+						},2000);
+					}else{
+						var data = $(this).serializeArray();
+						data.push({name: 'namefunction', value: 'addNewAdminUser'});
+						$.ajax({
+							beforeSend: function(){
+							},
+							url: "../php/functions.php",
+							type: "POST",
+							data: data,
+							success: function(result){
+								$('.msg-newbeer').css({'display': 'block'});
+								setTimeout(function(){
+									location.reload();
+								},2000);
+							},
+							error: function(error){
+							},
+							complete: function(){
+							},
+							timeout: 10000
+						});
+					}
+				});
+			}
+		}
+	})
 
 
 })();

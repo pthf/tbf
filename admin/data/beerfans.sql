@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2016 a las 10:53:27
+-- Tiempo de generación: 03-06-2016 a las 17:57:32
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -29,17 +29,22 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `adminuser` (
   `idAdmin` int(11) NOT NULL,
   `adminName` char(64) NOT NULL,
+  `adminLastName` varchar(68) NOT NULL,
   `adminPassword` char(64) NOT NULL,
+  `adminUserEmail` varchar(45) NOT NULL,
   `adminLastConnection` datetime NOT NULL,
   `userPrivileges` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `adminuser`
 --
 
-INSERT INTO `adminuser` (`idAdmin`, `adminName`, `adminPassword`, `adminLastConnection`, `userPrivileges`) VALUES
-(3, 'admin', '$2y$10$SWMoKfH4qv5.5vTOvds4j.0t3LQx6oKj919EmDWuRzGRVdCPUZiOa', '2016-06-03 10:46:17', 1);
+INSERT INTO `adminuser` (`idAdmin`, `adminName`, `adminLastName`, `adminPassword`, `adminUserEmail`, `adminLastConnection`, `userPrivileges`) VALUES
+(3, 'General', 'Admin', '$2y$10$SScLlZpPFpNkr3atWQA7Oe.Jc2183i42QsHpcBG2dyMZYSbqpUC/a', 'memo.9321@gmail.com', '2016-06-03 17:55:24', 1),
+(5, 'Broadcast', 'Broadcast', '$2y$10$Wc51XRdxdY3n0mFaHSFa2eOK4NvrsEBNByCGX0up3kFZxQMTM5bv2', 'Broadcast@Broadcast.Broadcast', '2016-06-03 16:40:45', 4),
+(6, 'Productos', 'Productos', '$2y$10$r663Rc/H2AMKbuoRPQt/3.VSyw7zDVg4xgkIictyw.nVSL2aEy3pO', 'Productos@Productos.Productos', '2016-06-03 16:10:16', 2),
+(7, 'Banners', 'Banners', '$2y$10$Z..kanxClaGf2/nNKLk4E.pTFhRUjvGVXmgdJV1SwDk4cg52F1rCq', 'Banners@Banners.Banners', '0000-00-00 00:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -64,16 +69,17 @@ CREATE TABLE IF NOT EXISTS `bannersliderhome` (
   `bannerSliderHomeImage` varchar(450) NOT NULL,
   `bannerSliderHomeUrl` varchar(450) DEFAULT NULL,
   `language` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `bannersliderhome`
 --
 
 INSERT INTO `bannersliderhome` (`idBannerSliderHome`, `bannerSliderHomeImage`, `bannerSliderHomeUrl`, `language`) VALUES
-(3, '20160603102300', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php', 1),
-(4, '20160603102442', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php', 0),
-(5, '20160603102447', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php', 1);
+(6, '20160603160111', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php	', 1),
+(7, '20160603160135', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php	', 1),
+(8, '20160603160328', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php	', 1),
+(9, '20160603160333', 'http://localhost/www/thebeerfans/tbf/sites/esp/inicio.php	', 1);
 
 -- --------------------------------------------------------
 
@@ -155,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `beer` (
 --
 
 INSERT INTO `beer` (`idBeer`, `beerName`, `beerDescription`, `beerStrength`, `beerIBUS`, `beerProfileImage`, `beerCoverImage`, `beerBottleImage`, `beerSite`, `beerFacebook`, `beerTwitter`, `beerInstagram`, `idProducer`, `idSlider`, `idBeerType`, `language`, `idPublicMessagesList`) VALUES
-(4, 'CERVECERÃAS DE BERLÃN', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt,', 'A la hora de ponernos a hacer un', 'A la hora de ponernos a hacer un', '20160603104807', '20160603104807', '20160603104807', 'www.cervezaminerva.mx', '', '', '', 3, 7, 1, 1, 3);
+(4, 'CERVECERÃAS DE BERLÃN', 'A la hora de ponernos a hacer una guÃ­a de los mejores lugares donde tomarla en BerlÃ­n hemos recurrido a unos expertos en la materia, los de la Berlin Beer Academy. Este centro de estudios situado en la Claire-Waldoff-Strasse 4, frente al famoso teatro de variedades Friedrichstadtpalast del centro de la ciudad, estÃ¡ fundado desde hace apenas medio aÃ±o por una de las sumilleres de cerveza mÃ¡s respetadas del mundo, Sylvia Kopp. Felix vom Endt,', 'A la hora de ponernos a hacer un', 'A la hora de ponernos a hacer un', '20160603104807', '20160603104807', '20160603104807', 'www.cervezaminerva.mx', 'wwww.cervezaminerva.mxEje.', 'www.cervezaminerva.mxEje.', 'www.cervezaminerva.mxEje.', 3, 7, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -205,7 +211,16 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `idChat` int(11) NOT NULL,
   `inbox_idInbox` int(11) NOT NULL,
   `user_idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `chat`
+--
+
+INSERT INTO `chat` (`idChat`, `inbox_idInbox`, `user_idUser`) VALUES
+(7, 1, 1),
+(8, 2, 1),
+(9, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -24982,14 +24997,16 @@ CREATE TABLE IF NOT EXISTS `favoriteelement` (
 
 CREATE TABLE IF NOT EXISTS `favoriteslist` (
   `idFavoritesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `favoriteslist`
 --
 
 INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
-(1);
+(1),
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -24999,14 +25016,16 @@ INSERT INTO `favoriteslist` (`idFavoritesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `inbox` (
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `inbox`
 --
 
 INSERT INTO `inbox` (`idInbox`) VALUES
-(1);
+(1),
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -25021,7 +25040,19 @@ CREATE TABLE IF NOT EXISTS `message` (
   `messageStatus` tinyint(1) NOT NULL,
   `chat_idChat` int(11) NOT NULL,
   `user_idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `message`
+--
+
+INSERT INTO `message` (`idMessage`, `messageText`, `messageDate`, `messageStatus`, `chat_idChat`, `user_idUser`) VALUES
+(7, 'Arriba las Chivas PUTOOOS!', '2016-06-03 17:55:34', 1, 7, 1),
+(8, 'Arriba las Chivas PUTOOOS!', '2016-06-03 17:55:34', 1, 8, 1),
+(9, 'Arriba las Chivas PUTOOOS!', '2016-06-03 17:55:34', 1, 9, 1),
+(10, 'ahuevooo!', '2016-06-03 17:55:44', 1, 7, 1),
+(11, 'ahuevooo!', '2016-06-03 17:55:44', 1, 8, 1),
+(12, 'ahuevooo!', '2016-06-03 17:55:44', 1, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -25035,7 +25066,14 @@ CREATE TABLE IF NOT EXISTS `postelement` (
   `postElementDate` datetime NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idUser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `postelement`
+--
+
+INSERT INTO `postelement` (`idPostElement`, `postElementComment`, `postElementDate`, `idPublicMessagesList`, `idUser`) VALUES
+(1, 'wwwww', '2016-06-03 15:51:39', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -25097,7 +25135,7 @@ INSERT INTO `producertype` (`idProducerType`, `producerTypeName`) VALUES
 
 CREATE TABLE IF NOT EXISTS `publicmessageslist` (
   `idPublicMessagesList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `publicmessageslist`
@@ -25106,7 +25144,9 @@ CREATE TABLE IF NOT EXISTS `publicmessageslist` (
 INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
 (1),
 (2),
-(3);
+(3),
+(4),
+(5);
 
 -- --------------------------------------------------------
 
@@ -25116,14 +25156,16 @@ INSERT INTO `publicmessageslist` (`idPublicMessagesList`) VALUES
 
 CREATE TABLE IF NOT EXISTS `rankslist` (
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rankslist`
 --
 
 INSERT INTO `rankslist` (`idRanksList`) VALUES
-(1);
+(1),
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -25136,7 +25178,7 @@ CREATE TABLE IF NOT EXISTS `rankslistelement` (
   `idBeer` int(11) NOT NULL,
   `ranksListElementRank` double NOT NULL,
   `idRanksList` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -29376,14 +29418,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `idRanksList` int(11) NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL,
   `idInbox` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `userBirthDate`, `userDescription`, `userProfileImage`, `userCoverImage`, `userEmail`, `userPassword`, `userStatus`, `userConnection`, `userExp`, `country_id`, `state_id`, `idFavoritesList`, `idWishList`, `idRanksList`, `idPublicMessagesList`, `idInbox`) VALUES
-(1, '2016-06-02', 'example@example.com', 'example@example.com', '1995-03-05', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$7vxOPwUohXPL1T6TcinA3OM7pOi3Lf.G3rpdQt92zjSQk//cqZtui', 1, 0, 0, 2, 76, 1, 1, 1, 2, 1);
+(1, '2016-06-02', 'example@example.com', 'example@example.com', '1995-03-05', '', 'profile_default.jpg', 'cover_default.png', 'example@example.com', '$2y$10$7vxOPwUohXPL1T6TcinA3OM7pOi3Lf.G3rpdQt92zjSQk//cqZtui', 1, 0, 0, 2, 76, 1, 1, 1, 2, 1),
+(2, '2016-06-03', 'Guillermo', 'Camarena Miramontes', '1986-05-04', '', '20160603155119', '20160603155114', 'memo@memo.com', '$2y$10$fiHog1pSRiCP9WIWERSDYeLNyK3GvRRfJ94StLdpNAjeugg/e5m16', 1, 0, 0, 142, 2441, 2, 2, 2, 4, 2),
+(3, '2016-06-03', 'Francisco Javier', 'Cortez', '1993-03-06', '', '20160603155615', '20160603155552', 'memo.9321@gmail.com', '$2y$10$y1F7El3LTzTMvuhjkBTf4eaMUMU8VoNjYQ8a/Sbi8kipEN4q0.i7e', 1, 0, 0, 142, 2441, 3, 3, 3, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -29393,14 +29437,16 @@ INSERT INTO `user` (`idUser`, `registrationDate`, `userName`, `userLastName`, `u
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `idWishList` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `wishlist`
 --
 
 INSERT INTO `wishlist` (`idWishList`) VALUES
-(1);
+(1),
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -29625,7 +29671,7 @@ ALTER TABLE `wishlistelement`
 -- AUTO_INCREMENT de la tabla `adminuser`
 --
 ALTER TABLE `adminuser`
-  MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `bannerbeerslider`
 --
@@ -29635,7 +29681,7 @@ ALTER TABLE `bannerbeerslider`
 -- AUTO_INCREMENT de la tabla `bannersliderhome`
 --
 ALTER TABLE `bannersliderhome`
-  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `idBannerSliderHome` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `bannerslidernew`
 --
@@ -29665,7 +29711,7 @@ ALTER TABLE `beertype`
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `cities`
 --
@@ -29685,22 +29731,22 @@ ALTER TABLE `favoriteelement`
 -- AUTO_INCREMENT de la tabla `favoriteslist`
 --
 ALTER TABLE `favoriteslist`
-  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idFavoritesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `inbox`
 --
 ALTER TABLE `inbox`
-  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idInbox` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
-  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `postelement`
 --
 ALTER TABLE `postelement`
-  MODIFY `idPostElement` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPostElement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `producer`
 --
@@ -29715,17 +29761,17 @@ ALTER TABLE `producertype`
 -- AUTO_INCREMENT de la tabla `publicmessageslist`
 --
 ALTER TABLE `publicmessageslist`
-  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idPublicMessagesList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `rankslist`
 --
 ALTER TABLE `rankslist`
-  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idRanksList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `rankslistelement`
 --
 ALTER TABLE `rankslistelement`
-  MODIFY `idRanksListElement` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRanksListElement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `rawmaterial`
 --
@@ -29745,12 +29791,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idWishList` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `wishlistelement`
 --
