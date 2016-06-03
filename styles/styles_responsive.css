@@ -182,12 +182,12 @@
 	}
 
 	.first_contact{
-		margin-left: 8%;
-		margin-right: 7%;
+		margin-left: 3%;
+		margin-right: 0%;
 	}
 
 	.other_contact{
-		margin-right: 7%;
+		margin-right: -3%;
 	}
 
 	/* mensajes.php */

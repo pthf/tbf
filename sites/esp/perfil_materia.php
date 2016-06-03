@@ -383,7 +383,7 @@ if (isset($_SESSION['idUser'])) {
                     <p><?=$lineMateria['rawMaterialAddress']?>, CP. <?=$lineMateria['rawMaterialZip']?> <br> T.  <?=$lineMateria['rawMaterialPhone']?>.</p>
                 </div>
 
-                <div class="desc_profile">
+                <div class="desc_profile material-profile">
 
 
                     <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
@@ -395,7 +395,14 @@ if (isset($_SESSION['idUser'])) {
                     <br>
                     <span> correo_de_ejemplo@ejemplo.com</span>
 
-                    <div class="social_company">
+
+                    <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
+
+                    <div class="link_profile" style="width: 70%;">
+                        <a href="<?=$lineMateria['rawMaterialSite'];?>"><?=$lineMateria['rawMaterialSite'];?></a>
+                    </div>
+
+                    <div class="social_company materia-width">
                         <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
                         <?php } ?>
@@ -408,12 +415,6 @@ if (isset($_SESSION['idUser'])) {
                           <?php if(strlen($lineMateria['rawMaterialInstagram'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['rawMaterialInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
                         <?php } ?>
-                    </div>
-
-                    <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
-
-                    <div class="link_profile" style="width: 70%;">
-                        <a href="<?=$lineMateria['rawMaterialSite'];?>"><?=$lineMateria['rawMaterialSite'];?></a>
                     </div>
 
                     <?php } ?>

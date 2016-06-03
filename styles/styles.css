@@ -1754,6 +1754,16 @@ textarea{
   -webkit-flex-wrap: wrap;
 }
 
+.materia-width{
+  width: 100% !important;
+  margin-top: 6%;
+  border-top: 2px solid rgba(0,0,0,.2);
+}
+
+.material-profile{
+  border-bottom: none !important;
+}
+
 .social_contact img{
   transform: scale(0.6, 0.6);
   -ms-transform: scale(0.6, 0.6);
