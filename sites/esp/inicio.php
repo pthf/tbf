@@ -367,9 +367,13 @@ if (isset($_SESSION['idUser'])) {
 
                 <!-- Slideshow 2 -->
                 <ul class="rslides" id="slider2">
-                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 1.png" alt=""></a></li>
-                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 2.png" alt=""></a></li>
-                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 3.png" alt=""></a></li>
+                <?php
+                  $q = "SELECT * FROM bannersliderhome";
+                  $r = mysql_query($q) or die(mysql_error());
+                  while($l = mysql_fetch_array($r)){
+                    echo '<li><a target="_BLANK" href="'.$l["bannerSliderHomeUrl"].'" class="no-opacity"><img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'" alt=""></a></li>';
+                  }
+                ?>
                 </ul>
 
               </div>
