@@ -1036,8 +1036,6 @@ select.filter-opt {
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
     border-radius: 25px;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
     text-indent: 15%;
     outline: none;
     border: 0px solid rgba(255, 255, 255, .8) !important;
@@ -1047,8 +1045,7 @@ select.filter-opt {
 
 .search.main-search {
     width: 24%;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    margin-left: 1%;
 }
 
 .search.main-search img {
