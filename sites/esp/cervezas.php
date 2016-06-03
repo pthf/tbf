@@ -142,45 +142,45 @@ if (isset($_SESSION['idUser'])) {
 
 														<div class="date-input-wrapper">
 
-																<select required id="birthday_day" name="birthday_day" class="birthday day" >
-																		<option value="">Día &#x25BE;</option>
-																</select>
+                              <select required id="birthday_year" name="birthday_year" class="birthday year" >
+                                  <option value="">Año &#x25BE;</option>
+                                  <option value="1995">1995</option>
+                                  <option value="1994">1994</option>
+                                  <option value="1993">1993</option>
+                                  <option value="1992">1992</option>
+                                  <option value="1991">1991</option>
+                                  <option value="1990">1990</option>
+                                  <option value="1989">1989</option>
+                                  <option value="1988">1988</option>
+                                  <option value="1987">1987</option>
+                                  <option value="1986">1986</option>
+                                  <option value="1985">1985</option>
+                                  <option value="1984">1984</option>
+                                  <option value="1983">1983</option>
+                                  <option value="1982">1982</option>
+                                  <option value="1981">1981</option>
+                                  <option value="1980">1980</option>
+                              </select>
 
-																<select required id="birthday_month" name="birthday_month" class="birthday month" >
-																		<option value="">Mes &#x25BE;</option>
-																		<option value="1">Enero</option>
-																		<option value="2">Febrero</option>
-																		<option value="3">Marzo</option>
-																		<option value="4">Abril</option>
-																		<option value="5">Mayo</option>
-																		<option value="6">Junio</option>
-																		<option value="7">Julio</option>
-																		<option value="8">Agosto</option>
-																		<option value="9">Septiembre</option>
-																		<option value="10">Octubre</option>
-																		<option value="11">Noviembre</option>
-																		<option value="12">Diciembre</option>
-																</select>
+                              <select required id="birthday_month" name="birthday_month" class="birthday month" >
+                                  <option value="">Mes &#x25BE;</option>
+                                  <option value="1">Enero</option>
+                                  <option value="2">Febrero</option>
+                                  <option value="3">Marzo</option>
+                                  <option value="4">Abril</option>
+                                  <option value="5">Mayo</option>
+                                  <option value="6">Junio</option>
+                                  <option value="7">Julio</option>
+                                  <option value="8">Agosto</option>
+                                  <option value="9">Septiembre</option>
+                                  <option value="10">Octubre</option>
+                                  <option value="11">Noviembre</option>
+                                  <option value="12">Diciembre</option>
+                              </select>
 
-																<select required id="birthday_year" name="birthday_year" class="birthday year" >
-																		<option value="">Año &#x25BE;</option>
-																		<option value="1995">1995</option>
-																		<option value="1994">1994</option>
-																		<option value="1993">1993</option>
-																		<option value="1992">1992</option>
-																		<option value="1991">1991</option>
-																		<option value="1990">1990</option>
-																		<option value="1989">1989</option>
-																		<option value="1988">1988</option>
-																		<option value="1987">1987</option>
-																		<option value="1986">1986</option>
-																		<option value="1985">1985</option>
-																		<option value="1984">1984</option>
-																		<option value="1983">1983</option>
-																		<option value="1982">1982</option>
-																		<option value="1981">1981</option>
-																		<option value="1980">1980</option>
-																</select>
+                              <select required id="birthday_day" name="birthday_day" class="birthday day" >
+                                  <option value="">Día &#x25BE;</option>
+                              </select>
 
 														</div>
 

@@ -190,7 +190,6 @@ if (isset($_SESSION['idUser'])) {
                                   <option value="">Día &#x25BE;</option>
                               </select>
 
-
                             </div>
 
                         </div>
