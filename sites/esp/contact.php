@@ -49,37 +49,88 @@
 
 
 		<div class="top_info">
-			<div class="contenedo_info">
-				<a href="inicio.php">
-				<div class="logo_tbf">
-					<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
+				<div class="contenedo_info">
+						<a href="inicio.php">
+								<div class="logo_tbf">
+										<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
+								</div>
+						</a>
+
+						<div class="perfil_tbf">
+
+								<div class="search-filter">
+									<select class="filter-opt">
+										<option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+										<option value="cervezas">Cervezas</option>
+										<option value="productores">Productores</option>
+										<option value="Materia Prima">Materia Prima</option>
+									</select>
+
+								</div>
+								<div class="search main-search">
+										<img src="../../images/icon-01.png" alt="search icon" title="search icon">
+										<input type="text" id="box-target">
+
+										<div class="search-box buscar">
+
+										</div>
+
+								</div>
+								<div class="cont_info_user">
+
+										<?php if (isset($_SESSION['idUser'])) { ?>
+
+												<?php
+												$consulta = "SELECT * FROM message INNER JOIN chat
+																			 ON message.chat_idChat = chat.idChat
+																			 WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+																			 AND message.user_idUser != " . $line['idUser'];
+												$resultadoconsulta = mysql_query($consulta) or die(mysql_error());
+												?>
+
+												<div class="msg">
+														<a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+																<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
+																<?php
+																if (mysql_num_rows($resultadoconsulta) > 0) {
+																		echo '<span class="number">' . mysql_num_rows($resultadoconsulta) . '</span>';
+																}
+																?>
+														</a>
+												</div>
+
+
+												<div class="profile_img">
+														<a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+																<img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
+														</a>
+												</div>
+										<?php } ?>
+
+										<?php
+										if (isset($_SESSION['idUser'])) {
+
+												echo '<div class="user_name">
+																<a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+																<span>' . $line["userName"] . '</span>
+																</a>
+															</div>
+															';
+										} else {
+												echo '
+															<div class="user_name">
+																<a href="#"><span>INICIAR SESIÓN</span></a>
+															</div>';
+										}
+										?>
+
+										<div class="menu_buttom">
+												<img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
+										</div>
+
+								</div>
+						</div>
 				</div>
-				</a>
-	<!--			<div class="perfil_tbf">
-					<div class="search">
-						<img src="../../images/icon-01.png" alt="search icon" title="search icon">
-						<input type="text">
-					</div>
-					<div class="cont_info_user">
-						<div class="msg">
-							<a href="mensajes.php">
-							<img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
-							</a>
-						</div>
-						<div class="profile_img">
-							<a href="perfil.php">
-							<img src="../../images/profile_default.jpg" alt="profile image" title="profile image">
-							</a>
-						</div>
-						<div class="user_name">
-							<span>USER NAME</span>
-						</div>
-						<div class="menu_buttom">
-							<img src="../../images/menu_options-04.png" alt="menu image" title="menu image">
-						</div>
-					</div>
-				</div> -->
-			</div>
 		</div>
 
 		<div class="top_img">

@@ -282,7 +282,7 @@ if (isset($_SESSION['idUser'])) {
                 <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
             </div>
 
-						<div class="top_info">
+            <div class="top_info">
                 <div class="contenedo_info">
                     <a href="inicio.php">
                         <div class="logo_tbf">
@@ -292,7 +292,16 @@ if (isset($_SESSION['idUser'])) {
 
                     <div class="perfil_tbf">
 
-                        <div class="search">
+                        <div class="search-filter">
+                          <select class="filter-opt">
+                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+                            <option value="cervezas">Cervezas</option>
+                            <option value="productores">Productores</option>
+                            <option value="Materia Prima">Materia Prima</option>
+                          </select>
+
+                        </div>
+                        <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
                             <input type="text" id="box-target">
 
@@ -314,7 +323,7 @@ if (isset($_SESSION['idUser'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php">
+                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -344,7 +353,7 @@ if (isset($_SESSION['idUser'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<span>INICIAR SESIÓN</span>
+                  											<a href="#"><span>INICIAR SESIÓN</span></a>
                   										</div>';
                             }
                             ?>

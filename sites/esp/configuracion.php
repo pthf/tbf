@@ -77,18 +77,18 @@ if (isset($_SESSION['idUser'])) {
 				$('.changeemail').hide();
 	        	$('.changepass').hide();
 				$("#em").on( "click", function() {
-					$('.changeemail').show(); 
+					$('.changeemail').show();
 					$('.changepass').hide();
 				});
 				$("#pass").on( "click", function() {
-					$('.changepass').show(); 
-					$('.changeemail').hide(); 
+					$('.changepass').show();
+					$('.changeemail').hide();
 				});
 				$("#cancelemail").on( "click", function() {
-					$('.changeemail').hide(); 
+					$('.changeemail').hide();
 				});
 				$("#cancelpass").on( "click", function() {
-					$('.changepass').hide(); 
+					$('.changepass').hide();
 				});
             });
         </script>
@@ -291,7 +291,16 @@ if (isset($_SESSION['idUser'])) {
 
                     <div class="perfil_tbf">
 
-                        <div class="search">
+                        <div class="search-filter">
+                          <select class="filter-opt">
+                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+                            <option value="cervezas">Cervezas</option>
+                            <option value="productores">Productores</option>
+                            <option value="Materia Prima">Materia Prima</option>
+                          </select>
+
+                        </div>
+                        <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
                             <input type="text" id="box-target">
 
@@ -306,14 +315,14 @@ if (isset($_SESSION['idUser'])) {
 
                                 <?php
                                 $consulta = "SELECT * FROM message INNER JOIN chat
-																							 ON message.chat_idChat = chat.idChat
-																							 WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-																							 AND message.user_idUser != " . $line['idUser'];
+                                               ON message.chat_idChat = chat.idChat
+                                               WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+                                               AND message.user_idUser != " . $line['idUser'];
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php">
+                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -335,16 +344,16 @@ if (isset($_SESSION['idUser'])) {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-																				<a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
-																				<span>' . $line["userName"] . '</span>
-																				</a>
-																			</div>
-																			';
+                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <span>' . $line["userName"] . '</span>
+                                        </a>
+                                      </div>
+                                      ';
                             } else {
                                 echo '
-																			<div class="user_name">
-																				<span>INICIAR SESIÓN</span>
-																			</div>';
+                                      <div class="user_name">
+                                        <a href="#"><span>INICIAR SESIÓN</span></a>
+                                      </div>';
                             }
                             ?>
 
@@ -394,7 +403,7 @@ if (isset($_SESSION['idUser'])) {
                         </div>-->
 
                         <div class="vivoen_config">
-                            <p>FECHA NAC: </p> 
+                            <p>FECHA NAC: </p>
                             <select required id="birthday_day" name="birthday_day" class="birthday day" style="width: 18%;">
                                 <option value="">Día &#x25BE;</option>
                             </select>
@@ -437,7 +446,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                         <div class="email_config">
-                            <p>PAIS: </p> 
+                            <p>PAIS: </p>
                             <select required name="country" class="" style="width:82%; border: none" id="selectCountry">
                                 <option selected disabled value="">Selecciona..</option>
                                 <?php
@@ -455,7 +464,7 @@ if (isset($_SESSION['idUser'])) {
                         </div>
 
                         <div class="pass_config">
-                            <p>ESTADO: </p> 
+                            <p>ESTADO: </p>
                             <select required name="state" class="" style="width:70%; border: none" id="selectState">
                                 <option disabled selected value="">Selecciona..</option>
                                 <?php
@@ -488,7 +497,7 @@ if (isset($_SESSION['idUser'])) {
                         <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="em">EMAIL</a></u>.</label></span>
                         <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="pass">CONTRASEÑA</a></u>.</label></span>
                     	</div>
-                        
+
                         <form id="formChangeEmail" name="formEmailData" enctype="multipart/form-data">
                         	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
 	                        <div class="changeemail" style="margin-top:5%">
