@@ -30,10 +30,8 @@ if (isset($_SESSION['idUser'])) {
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js"></script>
 
@@ -386,14 +384,23 @@ if (isset($_SESSION['idUser'])) {
                             <p>ENVIAR CORREO:</p>
                         </div>
                     </a>
-                    <br><br>
+                    <br>
                     <span> correo_de_ejemplo@ejemplo.com</span>
 
-                    <div class="social_company social-no-padding">
-            					<a href="#" class="first_contact fb"><img src="../../images/social-04.png"/></a>
-            					<a href="#" class="other_contact twt"><img src="../../images/social-02.png" /></a>
-            					<a href="#" class="other_contact ig"><img src="../../images/social-01.png" /></a>
-            				</div>
+                    <div class="social_company">
+                        <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                        <?php } ?>
+                        <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
+                        <?php } ?>
+                        <?php if(strlen($lineMateria['rawMaterialTwitter'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialTwitter'] ?>" class="other_contact twt"><img src="../../images/social-02.png" /></a>
+                        <?php } ?>
+                          <?php if(strlen($lineMateria['rawMaterialInstagram'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+                        <?php } ?>
+                    </div>
 
                     <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
 

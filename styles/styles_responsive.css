@@ -2279,6 +2279,10 @@
 		height: 20px;
 	}
 
+	select.filter-opt{
+		height: 20px;
+	}
+
 	.search img{
 		height: 60%;
 		margin-left: 5%;
@@ -2967,6 +2971,10 @@
 		padding: 0;
 		margin: 0;
 		width: 30%;
+		height: 14px;
+	}
+
+	select.filter-opt{
 		height: 14px;
 	}
 
