@@ -27,6 +27,21 @@ if (isset($_SESSION['idUser'])) {
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
         <script type="text/javascript" src="../../js/check.js"></script>
+        <script type="text/javascript" src="../../js/responsiveslides.js"></script>
+        <script>
+          // You can also use "$(window).load(function() {"
+          $(function () {
+
+
+            // Slideshow 2
+            $("#slider2").responsiveSlides({
+              auto: true,
+              speed: 200,
+              pager: true,
+            });
+
+          });
+        </script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -135,46 +150,46 @@ if (isset($_SESSION['idUser'])) {
                             <span class="title-date">Fecha de nacimiento</span>
 
                             <div class="date-input-wrapper">
+                              <select required id="birthday_year" name="birthday_year" class="birthday year" >
+                                  <option value="">Año &#x25BE;</option>
+                                  <option value="1995">1995</option>
+                                  <option value="1994">1994</option>
+                                  <option value="1993">1993</option>
+                                  <option value="1992">1992</option>
+                                  <option value="1991">1991</option>
+                                  <option value="1990">1990</option>
+                                  <option value="1989">1989</option>
+                                  <option value="1988">1988</option>
+                                  <option value="1987">1987</option>
+                                  <option value="1986">1986</option>
+                                  <option value="1985">1985</option>
+                                  <option value="1984">1984</option>
+                                  <option value="1983">1983</option>
+                                  <option value="1982">1982</option>
+                                  <option value="1981">1981</option>
+                                  <option value="1980">1980</option>
+                              </select>
 
-                                <select required id="birthday_day" name="birthday_day" class="birthday day" >
-                                    <option value="">Día &#x25BE;</option>
-                                </select>
+                              <select required id="birthday_month" name="birthday_month" class="birthday month" >
+                                  <option value="">Mes &#x25BE;</option>
+                                  <option value="1">Enero</option>
+                                  <option value="2">Febrero</option>
+                                  <option value="3">Marzo</option>
+                                  <option value="4">Abril</option>
+                                  <option value="5">Mayo</option>
+                                  <option value="6">Junio</option>
+                                  <option value="7">Julio</option>
+                                  <option value="8">Agosto</option>
+                                  <option value="9">Septiembre</option>
+                                  <option value="10">Octubre</option>
+                                  <option value="11">Noviembre</option>
+                                  <option value="12">Diciembre</option>
+                              </select>
 
-                                <select required id="birthday_month" name="birthday_month" class="birthday month" >
-                                    <option value="">Mes &#x25BE;</option>
-                                    <option value="1">Enero</option>
-                                    <option value="2">Febrero</option>
-                                    <option value="3">Marzo</option>
-                                    <option value="4">Abril</option>
-                                    <option value="5">Mayo</option>
-                                    <option value="6">Junio</option>
-                                    <option value="7">Julio</option>
-                                    <option value="8">Agosto</option>
-                                    <option value="9">Septiembre</option>
-                                    <option value="10">Octubre</option>
-                                    <option value="11">Noviembre</option>
-                                    <option value="12">Diciembre</option>
-                                </select>
+                              <select required id="birthday_day" name="birthday_day" class="birthday day" >
+                                  <option value="">Día &#x25BE;</option>
+                              </select>
 
-                                <select required id="birthday_year" name="birthday_year" class="birthday year" >
-                                    <option value="">Año &#x25BE;</option>
-                                    <option value="1995">1995</option>
-                                    <option value="1994">1994</option>
-                                    <option value="1993">1993</option>
-                                    <option value="1992">1992</option>
-                                    <option value="1991">1991</option>
-                                    <option value="1990">1990</option>
-                                    <option value="1989">1989</option>
-                                    <option value="1988">1988</option>
-                                    <option value="1987">1987</option>
-                                    <option value="1986">1986</option>
-                                    <option value="1985">1985</option>
-                                    <option value="1984">1984</option>
-                                    <option value="1983">1983</option>
-                                    <option value="1982">1982</option>
-                                    <option value="1981">1981</option>
-                                    <option value="1980">1980</option>
-                                </select>
 
                             </div>
 
@@ -273,14 +288,14 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="search-filter">
                           <select class="filter-opt">
-                            <option value="usuario">Usuarios</option>
+                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
                             <option value="cervezas">Cervezas</option>
                             <option value="productores">Productores</option>
                             <option value="Materia Prima">Materia Prima</option>
                           </select>
 
                         </div>
-                        <div class="search">
+                        <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
                             <input type="text" id="box-target">
 
@@ -348,111 +363,19 @@ if (isset($_SESSION['idUser'])) {
 
             <div class="top_img home">
 
-              <div class="slideshow">
+              <div id="wrapper-slider">
 
-                  <ul class="beers_month">
-                      <?php
-                          $q = "SELECT * FROM bannerslidernew";
-                          $r = mysql_query($q) or die(mysql_error());
-                          $cantidad = 0;
-                          while($l = mysql_fetch_array($r)){
-                            $cantidad++;
-                      ?>
-                      <li class="top-slider" data-n="<?=$cantidad?>">
-                          <img src="../../images/newBanners/<?=$l['bannerSliderNewImage']?>">
-                      </li>
-                      <?php
-                          }
-                      ?>
-                  </ul>
-
-                  <ul class="nav_beers cantidadElements" name="<?= $cantidad ?>">
-                    <?php
-                        $q = "SELECT * FROM bannerslidernew";
-                        $r = mysql_query($q) or die(mysql_error());
-                        $cantidad = 0;
-                        while($l = mysql_fetch_array($r)){
-                          $cantidad++;
-                          echo '<li data-cd="'.$cantidad.'"></li>';
-                        }
-                    ?>
-                  </ul>
+                <!-- Slideshow 2 -->
+                <ul class="rslides" id="slider2">
+                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 1.png" alt=""></a></li>
+                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 2.png" alt=""></a></li>
+                  <li><a href="#" class="no-opacity"><img src="../../images/homeBanners/The Beer Fans Banner 3.png" alt=""></a></li>
+                </ul>
 
               </div>
 
-                  <!-- OLD slider -->
-                  <!-- <div id="slidy-container">
-                    <figure id="slidy">
-                      <?php
-                        $q = "SELECT * FROM bannersliderhome";
-                        $r = mysql_query($q) or die(mysql_error());
-                        while($l=mysql_fetch_array($r)){
-                          echo '<a style="opacity:1" target="_BLANK" href="'.$l["bannerSliderHomeUrl"].'" ><img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'" styles="cursor: pointer"></a>';
-                        }
-                      ?>
-                    </figure>
 
-                    <style media="screen">
-                    #slidy-container {
-                      width: 100%; overflow: hidden; margin: 0 auto;
-                    }
-
-                    </style>
-
-                    <script type="text/javascript">
-
-                      var timeOnSlide = 3,
-                      timeBetweenSlides = 1,
-                          animationstring = 'animation',
-                          animation = false,
-                          keyframeprefix = '',
-                          domPrefixes = 'Webkit Moz O Khtml'.split(' '),
-                          pfx  = '',
-                          slidy = document.getElementById("slidy");
-                      if (slidy.style.animationName !== undefined) { animation = true; }
-
-                      if( animation === false ) {
-                        for( var i = 0; i < domPrefixes.length; i++ ) {
-                          if( slidy.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
-                            pfx = domPrefixes[ i ];
-                            animationstring = pfx + 'Animation';
-                            keyframeprefix = '-' + pfx.toLowerCase() + '-';
-                            animation = true;
-                            break;
-                          }
-                        }
-                      }
-
-                      if( animation === false ) {
-                      } else {
-                        var images = slidy.getElementsByTagName("img"),
-                            firstImg = images[0],
-                            imgWrap = firstImg.cloneNode(false);  // copy it.
-                        slidy.appendChild(imgWrap); // add the clone to the end of the images
-                        var imgCount = images.length, // count the number of images in the slide, including the new cloned element
-                            totalTime = (timeOnSlide + timeBetweenSlides) * (imgCount - 1), // calculate the total length of the animation by multiplying the number of _actual_ images by the amount of time for both static display of each image and motion between them
-                            slideRatio = (timeOnSlide / totalTime)*100, // determine the percentage of time an induvidual image is held static during the animation
-                            moveRatio = (timeBetweenSlides / totalTime)*100, // determine the percentage of time for an individual movement
-                            basePercentage = 100/imgCount, // work out how wide each image should be in the slidy, as a percentage.
-                            position = 0, // set the initial position of the slidy element
-                            css = document.createElement("style"); // start marking a new style sheet
-                        css.type = "text/css";
-                        css.innerHTML += "#slidy { text-align: left; margin: 0; font-size: 0; position: relative; width: " + (imgCount * 100) + "%;  }\n"; // set the width for the slidy container
-                        css.innerHTML += "#slidy img { float: left; width: " + basePercentage + "%; }\n";
-                        css.innerHTML += "@"+keyframeprefix+"keyframes slidy {\n";
-                        for (i=0;i<(imgCount-1); i++) { //
-                          position+= slideRatio; // make the keyframe the position of the image
-                          css.innerHTML += position+"% { left: -"+(i * 100)+"%; }\n";
-                          position += moveRatio; // make the postion for the _next_ slide
-                          css.innerHTML += position+"% { left: -"+((i+1) * 100)+"%; }\n";
-                      }
-                        css.innerHTML += "}\n";
-                        css.innerHTML += "#slidy { left: 0%; "+keyframeprefix+"transform: translate3d(0,0,0); "+keyframeprefix+"animation: "+totalTime+"s slidy infinite; }\n"; // call on the completed keyframe animation sequence
-                      document.body.appendChild(css); // add the new stylesheet to the end of the document
-                      }
-                    </script> -->
-                  </div>
-              </div>
+            </div>
 
 
 
