@@ -1,6 +1,18 @@
 <?php
 	include("../php/connect_bd.php");
 	connect_base_de_datos();
+
+	// session_start();
+	// $query = "SELECT userPrivileges FROM adminuser WHERE idAdmin = ".$_SESSION['idAdmin'];
+  // $result = mysql_query($query) or die(mysql_error());
+  // $line = mysql_fetch_array($result);
+	// $userPrivileges = $line['userPrivileges'];
+	// if($userPrivileges == 1 || userPrivileges == 2 ){
+	//
+	// }else{
+	//
+	// }
+
 ?>
 
 <div class="row" ng-controller="beerListController" ng-show="show" >

@@ -50,8 +50,16 @@
 				templateUrl: './../views/users.php',
 				controller: 'beerNavController'
 			})
+			.when('/broadcast', {
+				templateUrl: './../views/broadcast.php',
+				controller: 'beerNavController'
+			})
+			.when('/adminusers', {
+				templateUrl: './../views/adminusers.php',
+				controller: 'beerNavController'
+			})
 			.otherwise({
-				redirectTo: '/beers'
+				redirectTo: '/redirect'
 			});
 	}]);
 

@@ -12,6 +12,8 @@
 			case '/newslider': $scope.selected = 5;  break;
 			case '/postslider': $scope.selected = 6;  break;
 			case '/users': $scope.selected = 7;  break;
+			case '/broadcast': $scope.selected = 8;  break;
+			case '/adminusers': $scope.selected = 9;  break;
 		}
 		$scope.changeNav = function(item){
 			$scope.selected = item;
@@ -387,5 +389,13 @@
 
 	}])
 
+	.controller('adminPass', ['$scope', function($scope){
+		$scope.showPass = false;
+
+		$scope.changeShow = function(){
+				$scope.showPass = !$scope.showPass;
+		};
+
+	}])
 
 })();

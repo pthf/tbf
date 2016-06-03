@@ -107,6 +107,18 @@
 			case 'deleteRank':
 				deleteRank($_POST['idBeer'], $_POST['idList']);
 				break;
+			case 'functionPrintUserAdminList':
+				functionPrintUserAdminList();
+				break;
+			case 'addNewAdminUser':
+				addNewAdminUser();
+				break;
+			case 'changePassword':
+				changePassword();
+				break;
+			case 'deleteAdmin':
+				deleteAdmin();
+				break;
 		}
 	}
 
@@ -322,6 +334,75 @@
 	}
 
 	///////////////////////////////////
+	function functionPrintUserAdminList(){
+			$query = "SELECT * FROM adminuser";
+			$result = mysql_query($query) or die(mysql_error());
+			while ($line = mysql_fetch_array($result)) {
+			echo '
+				<tr>
+					<th scope="row">'.$line["idAdmin"].'</th>
+					<td>'.$line["adminName"].'</td>
+					<td>'.$line["adminLastName"].'</td>
+					<td>'.$line["adminUserEmail"].'</td>
+					<td>'.$line["adminLastConnection"].'</td>
+					<td>
+			';
+
+			if($line["userPrivileges"]==1)
+				echo "General";
+			if($line["userPrivileges"]==2)
+				echo "Productos";
+			if($line["userPrivileges"]==3)
+				echo "Banners";
+			if($line["userPrivileges"]==4)
+				echo "Broadcast";
+
+			echo '
+					</td>
+					<td>
+						<span class="label label-danger deleteAdmin" name='.$line['idAdmin'].' style="cursor:pointer">Delete</span><br>
+						<span class="label label-default" style="cursor:pointer" ng-click="changeShow()">Change Password</span><br>
+						<div class="changePass form-group col-md-8" ng-show="showPass">
+							<br><input name="pass" type="password" class="form-control pass" placeholder="Type a new Password" style="margin-bottom:5px;">
+							<input name="confirmPass" type="password" class="form-control confirmPass" placeholder="Confirm your new Password" style="margin-bottom:5px;">
+							<button type="button" data-id-admin="'.$line['idAdmin'].'" class="form-control btn btn-info editPassword" style="margin-bottom:5px;">Change</button>
+							<span class="errorPassword" style="display:none;">Passwords must match</span>
+						</div>
+					</td>
+				</tr>
+				';
+			}
+
+	}
+
+	function changePassword(){
+		$idAdmin = $_POST['idAdmin'];
+		$password = $_POST['password'];
+		$passwordhash = password_hash($password, PASSWORD_DEFAULT);
+
+		$query = "UPDATE adminuser SET adminPassword = '$passwordhash' WHERE idAdmin = $idAdmin";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function deleteAdmin(){
+			$idAdmin = $_POST['id'];
+			$query = "DELETE FROM adminuser WHERE idAdmin = $idAdmin";
+			$result = mysql_query($query) or die(mysql_error());
+	}
+
+	function addNewAdminUser(){
+		$name = $_POST['name'];
+		$lastname = $_POST['lastname'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$userPrivileges = $_POST['userPrivileges'];
+		$passwordhash = password_hash($password, PASSWORD_DEFAULT);
+
+		$query = "INSERT INTO adminuser (adminName, adminLastName, adminUserEmail, adminPassword, adminLastConnection, userPrivileges) VALUES
+																		('$name', '$lastname', '$email', '$passwordhash', '0000-00-00 00:00:00', $userPrivileges)";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
 	function functionPrintBeerList(){
   		$query = "SELECT * FROM beer
   				  INNER JOIN producer

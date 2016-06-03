@@ -975,4 +975,118 @@
 		}
 	})
 
+	.directive('listAdmin', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './../partials/list-admin.php',
+			controller: function($document){
+				$(document).on('click', '.deleteAdmin', function(){
+					var id = $(this).attr('name');
+					var namefunction = 'deleteAdmin';
+					$.ajax({
+						beforeSend: function(){
+						},
+						url: "../php/functions.php",
+						type: "POST",
+						data: {
+							namefunction : namefunction,
+							id: id
+						},
+						success: function(result){
+							location.reload();
+						},
+						error: function(error){
+
+						},
+						complete: function(){
+
+						},
+						timeout: 10000
+					});
+				});
+
+				$(document).on('click', '.editPassword', function(){
+					var confirmPass = $(this).siblings('input[name=confirmPass]').val();
+					var password = $(this).siblings('input[name=pass]').val();
+					var idAdmin = $(this).attr('data-id-admin');
+					if(confirmPass != password ){
+						$('.errorPassword').css({'display': 'block'});
+						setTimeout(function(){
+							$('.errorPassword').css({'display': 'none'});
+						},2000);
+					}else{
+						var namefunction = 'changePassword';
+						$.ajax({
+							beforeSend: function(){
+							},
+							url: "../php/functions.php",
+							type: "POST",
+							data: {
+								namefunction: namefunction,
+								idAdmin: idAdmin,
+								password: password
+							},
+							success: function(result){
+								location.reload();
+							},
+							error: function(error){
+							},
+							complete: function(){
+							},
+							timeout: 10000
+						});
+					}
+				});
+			}
+		}
+	})
+
+	.directive('formAdmin', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './../partials/form-admin.php',
+			controller: function($document){
+
+				$('#buttonSave').click(function(){
+					$('#formBeer .submit').trigger('click');
+				});
+
+				$("#formBeer").submit(function(e){
+					e.preventDefault();
+					var confirmPass = $('input[name=password]').val();
+					var password = $('input[name=confirmPassword]').val();
+					if(confirmPass != password ){
+						$('.msg-match').css({'display': 'block'});
+						setTimeout(function(){
+							$('.msg-match').css({'display': 'none'});
+						},2000);
+					}else{
+						var data = $(this).serializeArray();
+						data.push({name: 'namefunction', value: 'addNewAdminUser'});
+						$.ajax({
+							beforeSend: function(){
+							},
+							url: "../php/functions.php",
+							type: "POST",
+							data: data,
+							success: function(result){
+								$('.msg-newbeer').css({'display': 'block'});
+								setTimeout(function(){
+									location.reload();
+								},2000);
+							},
+							error: function(error){
+							},
+							complete: function(){
+							},
+							timeout: 10000
+						});
+					}
+				});
+			}
+		}
+	})
+
+
+
 })();
