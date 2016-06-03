@@ -8,6 +8,15 @@
 		<form class="form-horizontal" id="formBeer" name="formBeerData" enctype="multipart/form-data">
 			<div class="col-md-5">
 				<div class="form-group">
+					<label for="beer-name" class="col-sm-4 control-label">Language *</label>
+					<div class="col-sm-8">
+						<select required class="form-control" id="beer-language" name="language">
+							<option value="1" name="1">Spanish</option>
+							<option value="0" name="0">English</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="beer-name" class="col-sm-4 control-label">Name *</label>
 					<div class="col-sm-8">
 						<input required type="text" class="form-control" id="beer-name" placeholder="Insert beer name" name="name"></input>

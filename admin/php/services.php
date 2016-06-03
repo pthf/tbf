@@ -149,7 +149,8 @@
 			'state_id' => $line['state_id'],
 			'name_s' => $line['name_s'],
 			'idProducerType' => $line['idProducerType'],
-			'producerTypeName' => $line['producerTypeName']
+			'producerTypeName' => $line['producerTypeName'],
+			'city' => $line['city']
 		);
 		echo json_encode($data);
 	}
@@ -170,12 +171,15 @@
 
 	function getRawMaterial($id){
 		$query = "SELECT * FROM rawmaterial
+							INNER JOIN states ON rawmaterial.state_id = states.id
+							INNER JOIN countries ON rawmaterial.country_id = countries.id
 							WHERE idRawMaterial = $id";
 		$result = mysql_query($query) or die(mysql_error());
 		$line = mysql_fetch_array($result);
 
 		$data = array();
 		$data[] = array(
+			'city' => $line['city'],
 			'idRawMaterial' => $line['idRawMaterial'],
 			'rawMaterialName' => $line['rawMaterialName'],
 			'rawMaterialGeneralDescription' => $line['rawMaterialGeneralDescription'],
@@ -192,7 +196,11 @@
 			'rawMaterialTwitter' => $line['rawMaterialTwitter'],
 			'rawMaterialInstagram' => $line['rawMaterialInstagram'],
 			'rawMaterialProfileImage' => $line['rawMaterialProfileImage'],
-			'rawMaterialCoverImage' => $line['rawMaterialCoverImage']
+			'rawMaterialCoverImage' => $line['rawMaterialCoverImage'],
+			'country_id' => $line['country_id'],
+			'name_c' => $line['name_c'],
+			'state_id' => $line['state_id'],
+			'name_s' => $line['name_s']
 		);
 		echo json_encode($data);
 	}

@@ -432,7 +432,12 @@
 		$query = "INSERT INTO beerslider (idSlider) VALUES (NULL);";
 		$result = mysql_query($query) or die(mysql_error());
 		$idBeerslider = mysql_insert_id();
-		$query = "INSERT INTO beer (beerName,beerDescription,beerStrength,beerIBUS,beerProfileImage,beerCoverImage,beerBottleImage,beerSite,beerFacebook,beerTwitter,beerInstagram,idProducer,idSlider,idBeerType)VALUES ('".$formData['name']."','".$formData['description']."','".$formData['strength']."','".$formData['ibus']."','".$fileNames[0]."','".$fileNames[1]."','".$fileNames[2]."','".$formData['site']."','".$formData['facebook']."','".$formData['twitter']."','".$formData['instagram']."',".$formData['producer'].",".$idBeerslider.",".$formData['beerType'].")";
+
+		$query = "INSERT INTO publicmessageslist (idPublicMessagesList) VALUES (NULL);";
+		$result = mysql_query($query) or die(mysql_error());
+		$idPublicMessagesList = mysql_insert_id();
+
+		$query = "INSERT INTO beer (idPublicMessagesList, language, beerName,beerDescription,beerStrength,beerIBUS,beerProfileImage,beerCoverImage,beerBottleImage,beerSite,beerFacebook,beerTwitter,beerInstagram,idProducer,idSlider,idBeerType)VALUES ($idPublicMessagesList,".$formData['language'].",'".$formData['name']."','".$formData['description']."','".$formData['strength']."','".$formData['ibus']."','".$fileNames[0]."','".$fileNames[1]."','".$fileNames[2]."','".$formData['site']."','".$formData['facebook']."','".$formData['twitter']."','".$formData['instagram']."',".$formData['producer'].",".$idBeerslider.",".$formData['beerType'].")";
 		$result = mysql_query($query) or die(mysql_error());
 
 		functionPrintBeerList();
@@ -659,7 +664,7 @@
 		$query = "INSERT INTO beerslider (idSlider) VALUES (NULL);";
 		$result = mysql_query($query) or die(mysql_error());
 		$idBeerslider = mysql_insert_id();
-		$query = "INSERT INTO producer (producerName, producerDescription, producerAddress, producerZip,producerPhone, producerEmail, producerProfileImage, producerCoverImage, producerSite, producerFacebook, producerTwitter, producerInstagram, country_id, state_id, idProducerType) VALUES ('".$formData['name']."', '".$formData['description']."', '".$formData['address']."', '".$formData['zip']."', '".$formData['phone']."', '".$formData['email']."', '".$fileNames[0]."', '".$fileNames[1]."', '".$formData['site']."', '".$formData['facebook']."', '".$formData['twitter']."', '".$formData['instagram']."', ".$formData['country'].", ".$formData['state'].", ".$formData['type']." )";
+		$query = "INSERT INTO producer (city, language, producerName, producerDescription, producerAddress, producerZip,producerPhone, producerEmail, producerProfileImage, producerCoverImage, producerSite, producerFacebook, producerTwitter, producerInstagram, country_id, state_id, idProducerType) VALUES ('".$formData['city']."', ".$formData['language'].", '".$formData['name']."', '".$formData['description']."', '".$formData['address']."', '".$formData['zip']."', '".$formData['phone']."', '".$formData['email']."', '".$fileNames[0]."', '".$fileNames[1]."', '".$formData['site']."', '".$formData['facebook']."', '".$formData['twitter']."', '".$formData['instagram']."', ".$formData['country'].", ".$formData['state'].", ".$formData['type']." )";
 		$result = mysql_query($query) or die(mysql_error());
 
 		functionPrintProducerList();
@@ -731,6 +736,7 @@
 		}
 
 		$query = "UPDATE producer SET
+							city = '".$formData['city']."',
 							producerName = '".$formData['name']."',
 							producerDescription = '".$formData['description']."',
 							producerAddress = '".$formData['address']."',
@@ -862,6 +868,10 @@
 		}
 
 		$query = "INSERT INTO rawmaterial (
+				city,
+				country_id,
+				state_id,
+				language,
 				rawMaterialName,
 				rawMaterialGeneralDescription,
 				rawMaterialDescription,
@@ -878,6 +888,10 @@
 				rawMaterialFacebook,
 				rawMaterialTwitter,
 				rawMaterialInstagram) VALUES (
+					'".$formData['city']."',
+					".$formData['country'].",
+					".$formData['state'].",
+					".$formData['language'].",
 					'".$formData['name']."',
 					'".$formData['general-description']."',
 					'".$formData['description']."',
@@ -948,6 +962,9 @@
 		}
 
 		$query = "UPDATE rawmaterial SET
+							city = '".$formData['city']."',
+							country_id = ".$formData['country'].",
+							state_id = ".$formData['state'].",
 							rawMaterialName = '".$formData['name']."',
 							rawMaterialGeneralDescription = '".$formData['general-description']."',
 							rawMaterialDescription = '".$formData['description']."',
@@ -988,7 +1005,7 @@
 
 			move_uploaded_file($fileTemp, "../../images/homeBanners/".$fileName);
 
-			$query = "INSERT INTO bannersliderhome (bannerSliderHomeImage, bannerSliderHomeUrl) VALUES ('$fileName', '".$_POST['urlBanner']."')";
+			$query = "INSERT INTO bannersliderhome (bannerSliderHomeImage, bannerSliderHomeUrl, language) VALUES ('$fileName', '".$_POST['urlBanner']."', ".$_POST['language'].")";
 			$result = mysql_query($query) or die(mysql_error());
 		}
 	}
@@ -1010,7 +1027,7 @@
 
 			move_uploaded_file($fileTemp, "../../images/newBanners/".$fileName);
 
-			$query = "INSERT INTO  bannerslidernew (bannerSliderNewTitle, bannerSliderNewSubtitle, bannerSliderNewDescription, bannerSliderNewUrl, bannerSliderNewImage) VALUES ('".$formData["bannerTitle"]."', '".$formData["bannerSubtitle"]."', '".$formData["bannerDescription"]."', '".$formData["bannerUrl"]."', '$fileName' )";
+			$query = "INSERT INTO  bannerslidernew (language, bannerSliderNewTitle, bannerSliderNewSubtitle, bannerSliderNewDescription, bannerSliderNewUrl, bannerSliderNewImage) VALUES ('".$formData["language"]."','".$formData["bannerTitle"]."', '".$formData["bannerSubtitle"]."', '".$formData["bannerDescription"]."', '".$formData["bannerUrl"]."', '$fileName' )";
 			$result = mysql_query($query) or die(mysql_error());
 		}
 	}
@@ -1033,7 +1050,7 @@
 
 			move_uploaded_file($fileTemp, "../../images/postBanners/".$fileName);
 
-			$query = "INSERT INTO  bannersliderpost (bannerSliderPostTitle, bannerSliderPostSubtitle, bannerSliderPostDescription, bannerSliderPostUrl, bannerSliderPostImage) VALUES ('".$formData["bannerTitle"]."', '".$formData["bannerSubtitle"]."', '".$formData["bannerDescription"]."', '".$formData["bannerUrl"]."', '$fileName' )";
+			$query = "INSERT INTO  bannersliderpost (language, bannerSliderPostTitle, bannerSliderPostSubtitle, bannerSliderPostDescription, bannerSliderPostUrl, bannerSliderPostImage) VALUES (".$formData["language"].", '".$formData["bannerTitle"]."', '".$formData["bannerSubtitle"]."', '".$formData["bannerDescription"]."', '".$formData["bannerUrl"]."', '$fileName' )";
 			$result = mysql_query($query) or die(mysql_error());
 
 		}
