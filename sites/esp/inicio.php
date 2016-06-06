@@ -773,6 +773,7 @@ if (isset($_SESSION['idUser'])) {
             });
         </script>
 
+        <!-- script recover password -->
         <script type="text/javascript">
 
             $('.sendRecoveryMail').click(function(){

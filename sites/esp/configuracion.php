@@ -120,6 +120,7 @@ if (isset($_SESSION['idUser'])) {
                         <div class="send-login-content">
                             <br>
                             <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+          <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
                             <br><br>
                             <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
                         </div>
@@ -222,8 +223,10 @@ if (isset($_SESSION['idUser'])) {
 
                         <input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-                        <span style="display:none;" id="mail">Los email no son idénticos.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
                         <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
                         <div class="send-login-content sign-up-send">
                             <br>
@@ -251,12 +254,12 @@ if (isset($_SESSION['idUser'])) {
               <div class="password-modal-content">
                 <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
 
-                <button type="submit" name="button" id="send-login">ENVIAR</button>
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
 
                 <br><br>
-                <span style="" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
                 <br>
-                <span style="color:red" id="passMsg">EMAIL NO ENCONTRADO.</span>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
               </div>
             </div>
 
@@ -718,6 +721,41 @@ if (isset($_SESSION['idUser'])) {
 
         <script type="text/javascript">
 
+            $('.sendRecoveryMail').click(function(){
+              var emailRecovery = $(this).siblings('.password-form').val();
+              var namefunction = "recoveryPassword";
+
+
+              $.ajax({
+                  beforeSend: function () {},
+                  url: "../../admin/php/functions.php",
+                  type: "POST",
+                  data: {
+                      namefunction: namefunction,
+                      emailRecovery: emailRecovery
+                  },
+                  success: function (result) {
+                    if(result==0){
+                      $('.mailnotvalid').css({'display': 'block'});
+                        setTimeout(function () {
+                          $('.mailnotvalid').css({'display': 'none'});
+                      }, 2000);
+                    }else{
+                      $('.msgacceptedpassword').css({'display': 'block'});
+                        setTimeout(function () {
+                            $('.msgacceptedpassword').css({'display': 'none'});
+                        }, 2000);
+                    }
+                  },
+                  error: function () {},
+                  complete: function () {},
+                  timeout: 10000
+              });
+
+
+
+            });
+
             $("#selectCountry").change(function () {
                 var idCountry = $("option:selected", this).attr('name');
                 var namefunction = 'getStatesUser';
@@ -755,11 +793,10 @@ if (isset($_SESSION['idUser'])) {
                 var namefunction = "addNewUser";
 
                 if (confirmEmail != email) {
-                    $('#mailMsg').css({'display': 'block'});
+                    $('.mailMsgNotSame').css({'display': 'block'});
                     setTimeout(function () {
-                        $('#mailMsg').css({'display': 'none'});
+                        $('.mailMsgNotSame').css({'display': 'none'});
                     }, 2000);
-
                 } else {
                     if (confirmPassword != password) {
                         $('#passMsg').css({'display': 'block'});
@@ -785,7 +822,14 @@ if (isset($_SESSION['idUser'])) {
                                 password: password
                             },
                             success: function (result) {
+                              if(result==-1){
+                                $('#mailExist').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('#mailExist').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             },
                             error: function (error) {
                             },
@@ -863,7 +907,9 @@ if (isset($_SESSION['idUser'])) {
                     timeout: 10000
                 });
             });
+
         </script>
+
 
         <script type="text/javascript">
 
