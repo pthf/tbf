@@ -122,6 +122,38 @@
 			case 'sendMessageAllUsers':
 				sendMessageAllUsers();
 				break;
+			case 'recoveryPassword':
+				recoveryPassword();
+				break;
+		}
+	}
+
+	function recoveryPassword(){
+		$emailRecovery = $_POST['emailRecovery'];
+		$query = "SELECT userPassword, idUser  FROM user WHERE userEmail = '$emailRecovery'";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		if(mysql_num_rows($result)>0){
+			$newpassword = "";
+			$len = 16;
+			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ?!-0123456789";
+			$charArray = str_split($chars);
+			for($i = 0; $i < $len; $i++){
+		    $randItem = array_rand($charArray);
+		    $newpassword .= "".$charArray[$randItem];
+	    }
+			$newpassword = password_hash($newpassword, PASSWORD_DEFAULT);
+			$query = "UPDATE user SET userPassword = '$newpassword' WHERE idUser = ".$line['idUser'];
+			$result = mysql_query($query) or die(mysql_error());
+
+			$to = $emailRecovery;
+			$title = "Recovery Password";
+			$message = "Hello!, your new password is: ".$newpassword." we recommend you change your password.";
+			mail($to,$title,$message);
+
+			echo "1";
+		}else{
+			echo "0";
 		}
 	}
 
@@ -285,55 +317,94 @@
 		$userCoverImage = "cover_default.png";
 
 		$email = $_POST['email'];
-		$password =  password_hash($_POST['password'], PASSWORD_DEFAULT);
-		$userStatus = 1;
-		$userConnection = 1;
-		$userExp = 0.0;
 
-		$country = $_POST['country'];
-		$state = $_POST['state'];
-
-		$query = "INSERT INTO favoriteslist (idFavoritesList) VALUES (NULL);";
+		$query = "SELECT * FROM user WHERE userEmail = '$email'";
 		$result = mysql_query($query) or die(mysql_error());
-		$idFavoritesList = mysql_insert_id();
+		if(mysql_num_rows($result)>0){
+			echo -1;
+		}else{
+			$password =  password_hash($_POST['password'], PASSWORD_DEFAULT);
+			$userStatus = 1;
+			$userConnection = 1;
+			$userExp = 0.0;
 
-		$query = "INSERT INTO wishlist (idWishList) VALUES (NULL);";
-		$result = mysql_query($query) or die(mysql_error());
-		$idWishList = mysql_insert_id();
+			$country = $_POST['country'];
+			$state = $_POST['state'];
 
-		$query = "INSERT INTO rankslist (idRanksList) VALUES (NULL);";
-		$result = mysql_query($query) or die(mysql_error());
-		$idRanksList = mysql_insert_id();
-
-		$query = "INSERT INTO publicmessageslist (idPublicMessagesList) VALUES (NULL);";
-		$result = mysql_query($query) or die(mysql_error());
-		$idPublicMessagesList = mysql_insert_id();
-
-		$query = "INSERT INTO inbox (idInbox) VALUES (NULL);";
-		$result = mysql_query($query) or die(mysql_error());
-		$idInbox = mysql_insert_id();
-
-		$query = "INSERT INTO user (
-			registrationDate, userName, userLastName,
-			userBirthDate, userDescription, userProfileImage,
-			userCoverImage, userEmail, userPassword, userStatus,
-			userConnection, userExp, country_id,
-			state_id, idFavoritesList,
-			idWishList, idRanksList, idPublicMessagesList,
-			idInbox) VALUES(
-			'$registrationDate', '$name', '$lastname',
-			'$userBirthDate', '$userDescription', '$userProfileImage',
-			'$userCoverImage', '$email', '$password', $userStatus,
-			$userConnection, $userExp, $country,
-			$state, $idFavoritesList,
-			$idWishList, $idRanksList, $idPublicMessagesList,
-			$idInbox)";
-
+			$query = "INSERT INTO favoriteslist (idFavoritesList) VALUES (NULL);";
 			$result = mysql_query($query) or die(mysql_error());
-			$idUser = mysql_insert_id();
+			$idFavoritesList = mysql_insert_id();
 
-			session_start();
-			$_SESSION['idUser'] = $idUser;
+			$query = "INSERT INTO wishlist (idWishList) VALUES (NULL);";
+			$result = mysql_query($query) or die(mysql_error());
+			$idWishList = mysql_insert_id();
+
+			$query = "INSERT INTO rankslist (idRanksList) VALUES (NULL);";
+			$result = mysql_query($query) or die(mysql_error());
+			$idRanksList = mysql_insert_id();
+
+			$query = "INSERT INTO publicmessageslist (idPublicMessagesList) VALUES (NULL);";
+			$result = mysql_query($query) or die(mysql_error());
+			$idPublicMessagesList = mysql_insert_id();
+
+			$query = "INSERT INTO inbox (idInbox) VALUES (NULL);";
+			$result = mysql_query($query) or die(mysql_error());
+			$idInbox = mysql_insert_id();
+
+			$query = "INSERT INTO user (
+				registrationDate, userName, userLastName,
+				userBirthDate, userDescription, userProfileImage,
+				userCoverImage, userEmail, userPassword, userStatus,
+				userConnection, userExp, country_id,
+				state_id, idFavoritesList,
+				idWishList, idRanksList, idPublicMessagesList,
+				idInbox) VALUES(
+				'$registrationDate', '$name', '$lastname',
+				'$userBirthDate', '$userDescription', '$userProfileImage',
+				'$userCoverImage', '$email', '$password', $userStatus,
+				$userConnection, $userExp, $country,
+				$state, $idFavoritesList,
+				$idWishList, $idRanksList, $idPublicMessagesList,
+				$idInbox)";
+
+				$result = mysql_query($query) or die(mysql_error());
+				$idUser = mysql_insert_id();
+
+				session_start();
+				$_SESSION['idUser'] = $idUser;
+
+		}
+
+
+
+
+
+			// $message = $_POST['message'];
+			// $messageDate = date("Y-m-d H:i:s");
+			// $messageStatus = 1;
+			// $user_idUser = 1;
+			// $query = "SELECT * FROM user";
+			// $result = mysql_query($query) or die(mysql_error());
+			// while($line=mysql_fetch_array($result)){
+			// 	$idInbox = $line['idInbox'];
+			//
+			// 	$query2 = "SELECT idChat FROM chat WHERE inbox_idInbox = $idInbox AND user_idUser = $user_idUser";
+			// 	$result2 = mysql_query($query2) or die(mysql_error());
+			// 	if(mysql_num_rows($result2)>0){
+			// 		$line2 = mysql_fetch_array($result2);
+			// 		$chat = $line2['idChat'];
+			// 	}else{
+			// 		$query2 = "INSERT INTO chat (inbox_idInbox, user_idUser) VALUES ($idInbox, $user_idUser)";
+			// 		$result2 = mysql_query($query2) or die(mysql_error());
+			// 		$chat = mysql_insert_id();
+			// 	}
+			//
+			// 	$query2 = "INSERT INTO message(messageText, messageDate, messageStatus, chat_idChat, user_idUser) VALUES('$message', '$messageDate', $messageStatus, $chat, $user_idUser)";
+			// 	$result2 = mysql_query($query2) or die(mysql_error());
+			//
+			// }
+
+
 	}
 
 	function getStatesUser($id){
