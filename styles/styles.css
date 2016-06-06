@@ -1043,6 +1043,13 @@ select.filter-opt {
     font-size: 10px;
 }
 
+@-moz-document url-prefix() {
+  select.filter-opt {
+      text-indent: 8%;
+  }
+
+}
+
 .search.main-search {
     width: 24%;
     margin-left: 1%;
@@ -3700,6 +3707,13 @@ input.slider-dot{
 
   .date-input-wrapper {
       width: 51%;
+  }
+
+  select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
   }
 
   select.birthday {
