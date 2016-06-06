@@ -398,4 +398,13 @@
 
 	}])
 
+	.controller('filterList', ['$scope', function($scope){
+		$scope.itemShowElements = 0;
+
+		$scope.changeItemShow = function($item){
+			$scope.itemShowElements = $item;
+		};
+
+	}])
+
 })();
