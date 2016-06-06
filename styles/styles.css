@@ -3511,7 +3511,7 @@ input.slider-dot{
     transition: 1s;
   }
 
-  .login-modal,.signup-modal{
+  .login-modal,.signup-modal,.password-modal{
     position: absolute;
     width: 40%;
     height: auto;
@@ -3519,7 +3519,7 @@ input.slider-dot{
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
-    margin-top: 5vw;
+    margin-top: 2vw;
     z-index: -10;
     opacity: 0;
     border: solid 2px black;
@@ -3540,8 +3540,6 @@ input.slider-dot{
     border: solid 2px black;
     padding: 1vw 0 1vw 0;
   }
-
-
 
 
 
@@ -3589,7 +3587,7 @@ input.slider-dot{
     padding-bottom: 3vw;
   }
 
-  .not-user,#send-login{
+  .not-user,#send-login,.forgot-password{
     font-size: 12px;
   }
 
@@ -3628,14 +3626,18 @@ input.slider-dot{
      font-size: 12px;
   }
 
+  input.password-form {
+      padding: 0.38vw 0 0.38vw .5vw;
+  }
+
   input.signup-form {
       margin-bottom: .8vw;
       padding: .5vw 0 .5vw .5vw;
   }
 
-.underline{
-  border-bottom: solid 1px gray;
-}
+  .underline{
+    border-bottom: solid 1px gray;
+  }
 
   /* SignUp Modal */
 
@@ -3652,6 +3654,19 @@ input.slider-dot{
 
   .signup-modal-content{
     text-align: center;
+  }
+
+  /* password recover modal*/
+
+  .password-modal-content {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  input.signup-form {
+      margin-bottom: .8vw;
+      padding: .43vw;
   }
 
 
