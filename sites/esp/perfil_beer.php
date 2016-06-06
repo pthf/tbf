@@ -297,7 +297,7 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="search-filter">
                           <select class="filter-opt">
-                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+                            <option value="usuario"> Usuarios  </option>
                             <option value="cervezas">Cervezas</option>
                             <option value="productores">Productores</option>
                             <option value="Materia Prima">Materia Prima</option>

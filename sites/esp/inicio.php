@@ -115,7 +115,8 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="send-login-content">
                             <br>
-                            <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                            <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div> <br>
+                            <div class="forgot-password"><span class="underline">¿Olvidaste tu contraseña? </span> </div>
                             <br><br>
                             <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
                         </div>
@@ -234,6 +235,26 @@ if (isset($_SESSION['idUser'])) {
             </div>
         <?php } ?>
 
+            <div class="password-modal">
+              <div class="close-icon">
+                  <img src="../../images/img_galeria-02_close.png" >
+              </div>
+
+              <div class="login-title">
+                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+              </div>
+
+              <div class="password-modal-content">
+                <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
+
+                <button type="submit" name="button" id="send-login">ENVIAR</button>
+
+                <br><br>
+                <span style="" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <br>
+                <span style="color:red" id="passMsg">EMAIL NO ENCONTRADO.</span>
+              </div>
+            </div>
         <div id="menu_options">
 
             <div class="close_menu">
@@ -650,7 +671,11 @@ if (isset($_SESSION['idUser'])) {
                         "opacity": "1",
                         "z-index": "10",
                     }),
-                            $(".background-filter").css({
+                    $(".login-modal").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    }),
+                    $(".background-filter").css({
                         "opacity": "1",
                         "z-index": "10",
                     })
@@ -662,6 +687,38 @@ if (isset($_SESSION['idUser'])) {
                         "z-index": "-1",
                     }),
                             $(".background-filter").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    })
+                });
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).on("ready", function () {
+
+                $(".forgot-password").on("click", function () {
+                    $(".password-modal").css({
+                        "opacity": "1",
+                        "z-index": "10",
+                    }),
+                    $(".login-modal").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    }),
+                    $(".background-filter").css({
+                        "opacity": "1",
+                        "z-index": "10",
+                    })
+                });
+
+                $(".close-icon,.background-filter").on("click", function () {
+                    $(".password-modal").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    }),
+                      $(".background-filter").css({
                         "opacity": "0",
                         "z-index": "-1",
                     })
