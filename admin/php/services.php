@@ -234,6 +234,7 @@
 
 		while($line = mysql_fetch_array($result)){
 			$data[] = array(
+				'language' => $line['language'],
 				'idBannerSliderHome' => $line['idBannerSliderHome'],
 				'bannerSliderHomeImage' => $line['bannerSliderHomeImage'],
 				'bannerSliderHomeUrl' => $line['bannerSliderHomeUrl']
@@ -251,6 +252,7 @@
 
 		while($line = mysql_fetch_array($result)){
 			$data[] = array(
+				'language' => $line['language'],
 				'idBannerSliderNew' => $line['idBannerSliderNew'],
 				'bannerSliderNewTitle' => $line['bannerSliderNewTitle'],
 				'bannerSliderNewSubtitle' => $line['bannerSliderNewSubtitle'],
@@ -271,6 +273,7 @@
 
 		while($line = mysql_fetch_array($result)){
 			$data[] = array(
+				'language' => $line['language'],
 				'idBannerSliderPost' => $line['idBannerSliderPost'],
 				'bannerSliderPostTitle' => $line['bannerSliderPostTitle'],
 				'bannerSliderPostSubtitle' => $line['bannerSliderPostSubtitle'],

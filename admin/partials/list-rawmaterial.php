@@ -9,10 +9,14 @@
   <thead>
   	<tr>
   		<th>#</th>
+			<th>Language</th>
   		<th>Name</th>
 			<th>Type</th>
   		<th>General</th>
 			<th>Description</th>
+			<th>Country</th>
+			<th>State</th>
+			<th>City</th>
 			<th>Address</th>
 			<th>Zip</th>
       <th>Phone</th>

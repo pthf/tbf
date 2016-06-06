@@ -148,7 +148,7 @@
 
 			$query2 = "INSERT INTO message(messageText, messageDate, messageStatus, chat_idChat, user_idUser) VALUES('$message', '$messageDate', $messageStatus, $chat, $user_idUser)";
 			$result2 = mysql_query($query2) or die(mysql_error());
-			
+
 		}
 	}
 
@@ -434,7 +434,8 @@
 	}
 
 	function functionPrintBeerList(){
-  		$query = "SELECT * FROM beer
+  		$query = "SELECT idBeer, beer.language, beerName, producerName, name_c, name_s, beerTypeName, beerDescription, beerStrength, beerIBUS, beerSite, beerFacebook, beerTwitter, beerInstagram
+			    	FROM beer
   				  INNER JOIN producer
   				  INNER JOIN beerType
   				  INNER JOIN countries
@@ -446,9 +447,15 @@
   				  ORDER BY beer.idBeer DESC";
   		$result = mysql_query($query) or die(mysql_error());
   		while ($line = mysql_fetch_array($result)) {
+
+			$langText = 'Spanish';
+			if($line['language']==0){
+				$langText = 'English';
+			}
   		echo '
   			<tr>
 		  		<th scope="row">'.$line["idBeer"].'</th>
+					<td>'.$langText.'</td>
 		  		<td>'.$line["beerName"].'</td>
 		  		<td>'.$line["producerName"].'</td>
 		  		<td>'.$line["name_c"].'</td>
@@ -679,14 +686,20 @@
   				  ORDER BY producer.idProducer DESC";
   		$result = mysql_query($query) or die(mysql_error());
   		while ($line = mysql_fetch_array($result)) {
+			$langText = 'Spanish';
+			if($line['language']==0){
+				$langText = 'English';
+			}
   		echo '
   			<tr>
 		  		<th scope="row">'.$line["idProducer"].'</th>
+					<td>'.$langText.'</td>
 					<td>'.$line["producerName"].'</td>
 		  		<td>'.$line["producerDescription"].'</td>
 		  		<td>'.$line["producerTypeName"].'</td>
 		  		<td>'.$line["name_c"].'</td>
 		  		<td>'.$line["name_s"].'</td>
+					<td>'.$line["city"].'</td>
 		  		<td>'.$line["producerAddress"].'</td>
 		  		<td>'.$line["producerZip"].'</td>
 		  		<td>'.$line["producerPhone"].'</td>
@@ -870,14 +883,24 @@
 
 	///////////////////////////////////
 	function functionPrintRawMaterialList(){
-			$query = "SELECT * FROM rawmaterial ORDER BY idRawMaterial DESC";
+			$query = "SELECT * FROM rawmaterial
+								INNER JOIN countries
+								INNER JOIN states
+								ON rawmaterial.country_id = countries.id
+								AND rawmaterial.state_id = states.id
+								ORDER BY rawmaterial.idRawMaterial DESC";
+
 			$result = mysql_query($query) or die(mysql_error());
 			while ($line = mysql_fetch_array($result)) {
+			$langText = 'Spanish';
+			if($line['language']==0){
+				$langText = 'English';
+			}
 			echo '
 				<tr>
 					<th scope="row">'.$line["idRawMaterial"].'</th>
+					<td>'.$langText.'</td>
 					<td>'.$line["rawMaterialName"].'</td>
-
 					<td>
 			';
 						$query2 = "SELECT * FROM rawmaterial_has_rawmaterialtype
@@ -893,6 +916,9 @@
 					<td>'.$line["rawMaterialGeneralDescription"].'</td>
 					<td>'.$line["rawMaterialDescription"].'</td>
 					<td>'.$line["rawMaterialAddress"].'</td>
+					<td>'.$line["name_c"].'</td>
+		  		<td>'.$line["name_s"].'</td>
+					<td>'.$line["city"].'</td>
 					<td>'.$line["rawMaterialZip"].'</td>
 					<td>'.$line["rawMaterialPhone"].'</td>
 					<td>'.$line["rawMaterialEmail"].'</td>
