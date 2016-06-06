@@ -2833,6 +2833,10 @@ input.slider-dot{
       height: 32vw;
   }
 
+  #slider2 li {
+      width: 100%;
+  }
+
   .rslides_tabs {
     list-style: none;
     width: 100%;
@@ -3812,7 +3816,7 @@ input.slider-dot{
       height: auto;
       font-size: 10px;
       color: white;
-      margin-top: .5vw;
+      margin-top: 0vw;
   }
 
   .msg a img{
@@ -3850,8 +3854,10 @@ input.slider-dot{
   .profile-img{
     width: 22%;
   }
-  .profile-img img{
-    width: 100%;
+
+  .profile-img img {
+    width: 40px;
+    height: 40px;
   }
 
   .profile-info{

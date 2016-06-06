@@ -29,11 +29,7 @@ if (isset($_SESSION['idUser'])) {
         <script type="text/javascript" src="../../js/check.js"></script>
         <script type="text/javascript" src="../../js/responsiveslides.js"></script>
         <script>
-          // You can also use "$(window).load(function() {"
-          $(function () {
-
-
-            // Slideshow 2
+            $(function () {
             $("#slider2").responsiveSlides({
               auto: true,
               speed: 200,
@@ -115,8 +111,8 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="send-login-content">
                             <br>
-                            <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div> <br>
-                            <div class="forgot-password"><span class="underline">¿Olvidaste tu contraseña? </span> </div>
+                            <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
                             <br><br>
                             <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
                         </div>
@@ -255,6 +251,7 @@ if (isset($_SESSION['idUser'])) {
                 <span style="color:red" id="passMsg">EMAIL NO ENCONTRADO.</span>
               </div>
             </div>
+
         <div id="menu_options">
 
             <div class="close_menu">
@@ -740,6 +737,38 @@ if (isset($_SESSION['idUser'])) {
                     "opacity": "0",
                     "z-index": "-10"
                 })
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).on("ready", function () {
+
+                $(".forgot-password").on("click", function () {
+                    $(".password-modal").css({
+                        "opacity": "1",
+                        "z-index": "10",
+                    }),
+                    $(".login-modal").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    }),
+                    $(".background-filter").css({
+                        "opacity": "1",
+                        "z-index": "10",
+                    })
+                });
+
+                $(".close-icon,.background-filter").on("click", function () {
+                    $(".password-modal").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    }),
+                      $(".background-filter").css({
+                        "opacity": "0",
+                        "z-index": "-1",
+                    })
+                });
+
             });
         </script>
 
