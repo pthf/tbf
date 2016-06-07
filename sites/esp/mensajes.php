@@ -654,7 +654,7 @@ if (isset($_SESSION['idUser'])) {
                 		<input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
                 		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
 	                    <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
-	                    <input type="text" required name="message" placeholder="Escribe una respuesta...">
+	                    <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
 	                    <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
 	                </form>
                 </div>

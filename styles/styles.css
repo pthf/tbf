@@ -1784,6 +1784,14 @@ textarea{
   margin-right: 5%;
 }
 
+a.other_contact.ig img{
+  width: 20%;
+}
+
+a.other_contact.twt img {
+    width: 20%;
+}
+
 /* perfil.php */
 
 .profile_container{
@@ -1888,6 +1896,7 @@ input.slider-dot{
   -webkit-transition: 1s;
   transition: 1s;
 }
+
 
 .profile_res p{
   margin-bottom: 5%;
@@ -2916,7 +2925,6 @@ input.slider-dot{
     /*width: 500%;*/
     /*-webkit-transition: all 0.5s linear 0s;
     transition: all 0.5s linear 0s;*/
-    background: red;
   }
   .slides .overflow .inner article {
     float: left;
@@ -3836,6 +3844,8 @@ input.slider-dot{
       color: white;
       margin-top: 0vw;
   }
+
+
 
   .msg a img{
     margin-right: -1vw;

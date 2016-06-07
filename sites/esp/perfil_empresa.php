@@ -431,7 +431,7 @@ if (isset($_SESSION['idUser'])) {
 
                 <div class="social_company">
                     <?php if(strlen($lineProducer['producerSite'])>0){?>
-                    <a target="_blank" href="<?= $lineProducer['producerSite'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                    <a target="_blank" href="<?= $lineProducer['producerSite'] ?>" class="first_contact fb"><img src="../../images/web-icon.png"/></a>
                     <?php } ?>
                     <?php if(strlen($lineProducer['producerFacebook'])>0){?>
                     <a target="_blank" href="<?= $lineProducer['producerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
