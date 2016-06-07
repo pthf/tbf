@@ -525,33 +525,47 @@ if (isset($_SESSION['idUser'])) {
                               $q = "SELECT * FROM beer";
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
-                              while($l = mysql_fetch_array($r)){
+                              while($l1 = mysql_fetch_array($r)){
                                 if($contador==0)
                                   echo '<article class="favoritos-slideItems">';
                                 $contador++;
 
                                 $length = 40;
-                                $descriptionText = substr($l['beerDescription'], 0, $length);
-                                if(strlen($l['beerDescription'])>$length){
+                                $descriptionText = substr($l1['beerDescription'], 0, $length);
+                                if(strlen($l1['beerDescription'])>$length){
                                   $descriptionText .= "...";
                                 }
-                                echo '
-                                    <li class="first_beer">
-                                      <a href=""><img src="../../images/beerBottles/'.$l["beerBottleImage"].'"></a> <br>
-                                      <span class="title">'.$l["beerName"].'</span>
-                                      <span class="subtitle">'.$descriptionText.'</span> <br>
-                                      <div class="heart-status">
-                                        <span name="1" class="heart-icon 1">&#9829;</span>
-                                        <span name="0" class="heart-icon 0" style="display:none;">&#9825;</span>
-                                      </div>
-                                    </li>
-                                ';
+                                echo '<li class="first_beer">
+                                        <a href="perfil_beer.php?id='.$l1['idBeer'].'"><img src="../../images/beerBottles/'.$l1["beerBottleImage"].'"></a> <br>
+                                        <span class="title">'.$l1["beerName"].'</span>
+                                        <span class="subtitle">'.$descriptionText.'</span> <br>';
+                                        if(isset($_SESSION['idUser'])) {
+                                            $qu = "SELECT idFavoritesList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                                            $ru = mysql_query($qu) or die(mysql_error());
+                                            $lo = mysql_fetch_array($ru);
+                                            $listaUser = $lo['idFavoritesList'];  
+
+                                        echo '<div class="heart-status">';
+                                            $qo = "SELECT idFavoriteElement FROM favoriteelement WHERE idBeer = ".$l1['idBeer']." AND $listaUser = idFavoritesList";
+                                            $rr = mysql_query($qo) or die(mysql_error());
+                                            if(mysql_num_rows($rr)>0) {
+                                            echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Eliminar de favoritos">&#9829;</span>';
+                                              } else { 
+                                            echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Agregar a favoritos">&#9825;</span>';
+                                              }
+                                        echo '</div>';
+                                        } else {
+                                          echo ' <span name="0" class="heart-icon logintoadd" title="Agregar a favoritos"style="display:none;">&#9825;</span>';
+                                        }
+                                echo '</li>';
+
                                 if($contador==8){
                                   echo '</article>';
                                   $contador=0;
                                 }
                               }
                           	?>
+
 
                         </div>
                     </div>
@@ -600,23 +614,42 @@ if (isset($_SESSION['idUser'])) {
                               $q = "SELECT * FROM beer";
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
-                              while($l = mysql_fetch_array($r)){
+                              while($l2 = mysql_fetch_array($r)){
                                 if($contador==0)
                                   echo '<article class="wishlist-slideItems">';
                                 $contador++;
 
                                 $length = 40;
-                                $descriptionText = substr($l['beerDescription'], 0, $length);
-                                if(strlen($l['beerDescription'])>$length){
+                                $descriptionText = substr($l2['beerDescription'], 0, $length);
+                                if(strlen($l2['beerDescription'])>$length){
                                   $descriptionText .= "...";
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href=""><img src="../../images/beerBottles/'.$l["beerBottleImage"].'"></a> <br>
-                                      <span class="title">'.$l["beerName"].'</span>
-                                      <span class="subtitle">'.$descriptionText.'</span> <br>
-                                      <span class="delete-opt">Eliminar</span>
-                                    </li>
+                                      <a href=""><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
+                                      <span class="title">'.$l2["beerName"].'</span>
+                                      <span class="subtitle">'.$descriptionText.'</span> <br>';
+                                      if(isset($_SESSION['idUser'])){
+                                        $qx = "SELECT idWishList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                                        $rx = mysql_query($qx) or die(mysql_error());
+                                        $lx = mysql_fetch_array($rx);
+                                        $listaUser = $lx['idWishList'];
+                                        echo '
+                                        <div class="hearts-statuss">';
+                                        $qz = "SELECT idWishListElement FROM wishlistelement WHERE $listaUser = idWishList AND ".$l2['idBeer']." = idBeer";
+                                        $rz = mysql_query($qz) or die(mysql_error());
+
+                                        if(mysql_num_rows($rz)>0){
+                                          echo '<span name="1" class="1" data-function="deleteWishList" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ELIMINAR</span>';
+                                        }else{
+                                          echo '<span name="0" class="0" data-function="addWishList" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">AGREGAR</span>';
+                                        }
+                                        echo '
+                                        </div>';
+                                      }else{
+                                        echo '<span name="0" class="0" style="display:none;">AGREGAR A WISHLIST</span>';
+                                      }
+                                    echo '</li>
                                 ';
                                 if($contador==8){
                                   echo '</article>';
@@ -668,1170 +701,70 @@ if (isset($_SESSION['idUser'])) {
                     <div class="overflow">
                         <div class="inner profile ranks-slider">
 
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
-                            <article class="ranks-slideItems">
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                              <li class="first_beer">
-                                  <a href=""><img src="../../images/beerBottles/beers-01.png"></a> <br>
-                                  <span class="title">Nombre Cerveza</span>
-                                  <span class="subtitle">Brief description of the beer </span>
-                                  <div class='rating-stars text-center'>
-                                    <ul id='stars'>
-                                      <li class='star' data-value='1'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='2'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='3'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='4'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                      <li class='star' data-value='5'>
-                                        <i class='fa fa-star fa-fw star-small'></i>
-                                      </li>
-                                    </ul>
-                                  </div>
-                              </li>
-                            </article>
+                          <?php
+                              $q = "SELECT * FROM beer";
+                              $r = mysql_query($q) or die(mysql_error());
+                              $contador = 0;
+                              while($l3 = mysql_fetch_array($r)){
+                                if($contador==0)
+                                  echo '<article class="ranks-slideItems">';
+                                $contador++;
+
+                                $length = 40;
+                                $descriptionText = substr($l3['beerDescription'], 0, $length);
+                                if(strlen($l3['beerDescription'])>$length){
+                                  $descriptionText .= "...";
+                                }
+                                echo '
+                                    <li class="first_beer" id="rankbeer" id-beer-element="'.$l3['idBeer'].'">
+                                      <a href="perfil_beer.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
+                                      <span class="title">'.$l3["beerName"].'</span>
+                                      <span class="subtitle">'.$descriptionText.'</span> <br>
+                                      <div class="rating-stars text-center">
+                                        <ul id="stars" class="stars-profile-view appendGold">
+                                        </ul>
+                                      </div>';
+                                    if(isset($_SESSION['idUser'])){
+                                      $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                                      $result = mysql_query($query) or die(mysql_error());
+                                      $line = mysql_fetch_array($result);
+                                      $idRanksList = $line['idRanksList'];
+
+                                      $queryl3 = "SELECT * FROM rankslistelement WHERE idBeer = ".$l3['idBeer']." AND idRanksList = $idRanksList";
+                                      $resultl3 = mysql_query($queryl3) or die(mysql_error());
+                                      if(mysql_num_rows($resultl3)>0){
+                                        echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                                      } else {  
+                                        echo '<div class="rating-stars text-center">
+                                          <ul id="stars" class="stars-profile-view changeRank">
+                                            <li class="star" data-value="1">
+                                              <i class="fa fa-star fa-fw star-small"></i>
+                                            </li>
+                                            <li class="star" data-value="2">
+                                              <i class="fa fa-star fa-fw star-small"></i>
+                                            </li>
+                                            <li class="star" data-value="3">
+                                              <i class="fa fa-star fa-fw star-small"></i>
+                                            </li>
+                                            <li class="star" data-value="4">
+                                              <i class="fa fa-star fa-fw star-small"></i>
+                                            </li>
+                                            <li class="star" data-value="5">
+                                              <i class="fa fa-star fa-fw star-small"></i>
+                                            </li>
+                                          </ul>
+                                        </div>';
+                                      }  
+                                    }  
+                                echo '
+                                    </li>
+                                ';
+                                if($contador==8){
+                                  echo '</article>';
+                                  $contador=0;
+                                }
+                              }
+                            ?>
 
                         </div>
                     </div>
@@ -2022,10 +955,11 @@ if (isset($_SESSION['idUser'])) {
                 </div>
             </div>
             <script src="../../js/services.js"></script>
+
             <script type="text/javascript">
                 $(document).on("ready", function () {
 
-                    $(document).on('click', '.user_name, .user_name_click', function () {
+                    $(document).on('click', '.user_name, .user_name_click .logintoadd', function () {
                         $(".login-modal").css({
                             "opacity": "1",
                             "z-index": "10",
@@ -2144,10 +1078,203 @@ if (isset($_SESSION['idUser'])) {
                     if (value == 1) {
                         $(this).css({'display': 'none'});
                         $(this).siblings('span[name=0]').css({'display': 'inline-block'});
+                        
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                dataUser : dataUser,
+                                dataBeer : dataBeer
+                            },
+                            success: function (result) {
+                              location.reload();
+                            },
+                            error: function (error) {
+                              alert(error);
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
                     } else {
                         $(this).css({'display': 'none'});
                         $(this).siblings('span[name=1]').css({'display': 'inline-block'});
+
+                        var dataUser = $(this).attr('data-user');
+                        var dataBeer = $(this).attr('data-beer');
+                        var namefunction = $(this).attr('data-function');
+                        $.ajax({
+                            beforeSend: function () {
+                            },
+                            url: "../../php/functions.php",
+                            type: "POST",
+                            data: {
+                                namefunction : namefunction,
+                                dataUser : dataUser,
+                                dataBeer : dataBeer
+                            },
+                            success: function (result) {
+                              location.reload();
+                            },
+                            error: function (error) {
+                              alert(error);
+                            },
+                            complete: function () {
+                            },
+                            timeout: 10000
+                        });
                     }
+                });
+                 
+                $('.deleteRank').click(function(){
+                  var idBeer = $(this).attr('data-beer');
+                  var idList = $(this).attr('data-list');
+                  var namefunction = "deleteRank";
+                  $.ajax({
+                      beforeSend: function () {
+                      },
+                      url: "../../php/functions.php",
+                      type: "POST",
+                      data: {
+                          namefunction : namefunction,
+                          idList : idList,
+                          idBeer : idBeer
+                      },
+                      success: function (result) {
+                        location.reload();
+                      },
+                      error: function (error) {
+                      },
+                      complete: function () {
+                      },
+                      timeout: 10000
+                  });
+                });
+                        
+                $('.changeRank li').click(function(){
+                  var valuenew = $(this).attr('data-value');
+                  var namefunction = "rankUser";
+                  var idBeer = $('#rankbeer').attr('id-beer-element');
+                  var idUser = $(this).parent().attr('data-user');
+                  $.ajax({
+                      beforeSend: function () {
+                      },
+                      url: "../../php/functions.php",
+                      type: "POST",
+                      data: {
+                          namefunction : namefunction,
+                          valuenew : valuenew,
+                          idBeer : idBeer,
+                          idUser : idUser
+                      },
+                      success: function (result) {
+                        $('.ranklevel').html(result);
+                        var stars = "";
+                        for(var i = 1; i<=5; i++){
+                          if(result>= i)
+                              stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                        }
+                        $('.appendGold').html(stars);
+                        location.reload();
+                      },
+                      error: function (error) {
+                      },
+                      complete: function () {
+                      },
+                      timeout: 10000
+                  });
+                });
+                var namefunction = "prinnfRank";
+                var idBeer = $('#rankbeer').attr('id-beer-element');
+                $.ajax({
+                    beforeSend: function () {
+                    },
+                    url: "../../php/functions.php",
+                    type: "POST",
+                    data: {
+                        namefunction : namefunction,
+                        idBeer : idBeer
+                    },
+                    success: function (result) {
+                      $('.ranklevel').html(result);
+                      var stars = "";
+                      for(var i = 1; i<=5; i++){
+                        if(result>= i)
+                            stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                      }
+                      $('.appendGold').html(stars);
+                    },
+                    error: function (error) {
+                    },
+                    complete: function () {
+                    },
+                    timeout: 10000
+                });
+
+            </script>
+
+            <script type="text/javascript">
+                $('div.hearts-statuss .1,div.hearts-statuss .0').on('click', function () {
+                  var value = $(this).attr('name');
+                  if (value == 1) {
+                      $(this).css({'display': 'none'});
+                      $(this).siblings('span[name=0]').css({'display': 'inline-block'});
+                      var dataUser = $(this).attr('data-user');
+                      var dataBeer = $(this).attr('data-beer');
+                      var namefunction = $(this).attr('data-function');
+                      $.ajax({
+                          beforeSend: function () {
+                          },
+                          url: "../../php/functions.php",
+                          type: "POST",
+                          data: {
+                              namefunction : namefunction,
+                              dataUser : dataUser,
+                              dataBeer : dataBeer
+                          },
+                          success: function (result) {
+                            location.reload();
+                          },
+                          error: function (error) {
+                            alert(error);
+                          },
+                          complete: function () {
+                          },
+                          timeout: 10000
+                      });
+                  } else {
+                    $(this).css({'display': 'none'});
+                    $(this).siblings('span[name=1]').css({'display': 'inline-block'});
+                    var dataUser = $(this).attr('data-user');
+                    var dataBeer = $(this).attr('data-beer');
+                    var namefunction = $(this).attr('data-function');
+                    $.ajax({
+                        beforeSend: function () {
+                        },
+                        url: "../../php/functions.php",
+                        type: "POST",
+                        data: {
+                            namefunction : namefunction,
+                            dataUser : dataUser,
+                            dataBeer : dataBeer
+                        },
+                        success: function (result) {
+                          location.reload();
+                        },
+                        error: function (error) {
+                          alert(error);
+                        },
+                        complete: function () {
+                        },
+                        timeout: 10000
+                    });
+                  }
                 });
             </script>
 

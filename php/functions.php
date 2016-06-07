@@ -30,7 +30,27 @@ if(isset($_POST['namefunction'])){
 		case 'SendCommentMessage':
 			SendCommentMessage();
 		break;
-		
+		case 'deleteFavorites':
+			deleteFavorites($_POST['dataUser'], $_POST['dataBeer']);
+		break;
+		case 'addFavorites':
+			addFavorites($_POST['dataUser'], $_POST['dataBeer']);
+		break;
+		case 'rankUser':
+			rankUser($_POST['valuenew'], $_POST['idBeer'], $_POST['idUser']);
+		break;
+		case 'deleteRank':
+			deleteRank($_POST['idBeer'], $_POST['idList']);
+		break;
+		case 'prinnfRank':
+			prinnfRank($_POST['idBeer']);
+		break;
+		case 'deleteWishList':
+			deleteWishList($_POST['dataUser'], $_POST['dataBeer']);
+		break;
+		case 'addWishList':
+			addWishList($_POST['dataUser'], $_POST['dataBeer']);
+		break;
 	}
 }
 
@@ -322,4 +342,92 @@ function SendCommentMessage () {
 	$query1 = "INSERT INTO postelement VALUES (null,'".$_POST['message']."','".$datatime."','".$row['idPublicMessagesList']."','".$_POST['idSession']."')";
 	$resultado = mysql_query($query1) or die(mysql_error());
 
+}
+
+function deleteFavorites($dataUser, $dataBeer){
+
+	$query = "SELECT idFavoritesList FROM  user WHERE idUser = $dataUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$idFavoritesList = $line['idFavoritesList'];
+	$query = "DELETE FROM favoriteelement WHERE idFavoritesList = $idFavoritesList AND idBeer = $dataBeer";
+	$result = mysql_query($query) or die(mysql_error());
+
+}
+
+function addFavorites($dataUser, $dataBeer){
+
+	$query = "SELECT idFavoritesList FROM  user WHERE idUser = $dataUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$idFavoritesList = $line['idFavoritesList'];
+	$query = "INSERT INTO favoriteelement (idFavoritesList, idBeer ) VALUES ($idFavoritesList, $dataBeer)";
+	$result = mysql_query($query) or die(mysql_error());
+
+}
+
+function deleteRank($idBeer, $idList){
+	$query = "DELETE FROM rankslistelement WHERE idBeer = $idBeer AND idRanksList = $idList";
+	$result = mysql_query($query) or die(mysql_error());
+}
+
+function rankUser($value, $idBeer, $idUser){
+	$query = "SELECT idRanksList FROM user WHERE idUser = $idUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$idRanksList = $line['idRanksList'];
+
+	$query = "SELECT * FROM rankslistelement WHERE idBeer = $idBeer AND idRanksList = $idRanksList";
+	$result = mysql_query($query) or die(mysql_error());
+	if(mysql_num_rows($result)>0){
+		$line = mysql_fetch_array($result);
+		$idRanksListElement = $line['idRanksListElement'];
+		$query = "UPDATE rankslistelement SET ranksListElementRank = $value WHERE idRanksListElement =  $idRanksListElement";
+		$result = mysql_query($query) or die(mysql_error());
+	}else{
+		$query = "INSERT INTO rankslistelement (idBeer, ranksListElementRank, idRanksList) VALUES ($idBeer, $value, $idRanksList)";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
+	prinnfRank($idBeer);
+
+}
+
+function prinnfRank($idBeer){
+
+	$query = "SELECT ranksListElementRank FROM rankslistelement WHERE idBeer = $idBeer";
+	$result = mysql_query($query) or die(mysql_error());
+	$sumatoria=0;
+	$contador=0;
+	while($line=mysql_fetch_array($result)){
+		$sumatoria = $line['ranksListElementRank'] + $sumatoria;
+		$contador++;
+	}
+
+	$sumatoria = $sumatoria + 4;
+	$contador++;
+	$promedio = $sumatoria/$contador;
+	$promedio = round($promedio);
+
+	echo $promedio;
+}
+
+function deleteWishList($dataUser, $dataBeer){
+	$query = "SELECT idWishList FROM  user WHERE idUser = $dataUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$idWishList = $line['idWishList'];
+
+	$query = "DELETE FROM wishlistelement WHERE idWishList = $idWishList AND idBeer = $dataBeer";
+	$result = mysql_query($query) or die(mysql_error());
+}
+
+function addWishList($dataUser, $dataBeer){
+	$query = "SELECT idWishList FROM  user WHERE idUser = $dataUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$idWishList = $line['idWishList'];
+
+	$query = "INSERT INTO wishlistelement (idWishList, idBeer ) VALUES ($idWishList, $dataBeer)";
+	$result = mysql_query($query) or die(mysql_error());
 }
