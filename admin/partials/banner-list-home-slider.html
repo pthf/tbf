@@ -3,6 +3,7 @@
 	  <thead>
 	  	<tr>
 	  		<th>#</th>
+        <th>Language</th>
 	  		<th>Image</th>
         <th>URL</th>
 	  		<th>Options</th>
@@ -11,6 +12,8 @@
 	  <tbody>
 	  	<tr ng-repeat="banner in dataBanners">
 	  		<th scope="row">{{banner.idBannerSliderHome}}</th>
+        <td ng-if="banner.language==1">Spanish</td>
+        <td ng-if="banner.language==0">English</td>
 	  		<td><img src="../../images/homeBanners/{{banner.bannerSliderHomeImage}}" style="width: 250px; height: auto;"></td>
         <td>{{banner.bannerSliderHomeUrl}}</td>
 	  		<td>

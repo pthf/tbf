@@ -9,6 +9,7 @@
   <thead>
   	<tr>
   		<th>#</th>
+			<th>Language</th>
   		<th>Name</th>
   		<th>Producer</th>
       <th>Country</th>

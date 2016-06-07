@@ -120,6 +120,7 @@ if (isset($_SESSION['idUser'])) {
 												<div class="send-login-content">
 														<br>
 														<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
 														<br><br>
 														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
@@ -239,6 +240,28 @@ if (isset($_SESSION['idUser'])) {
 						</div>
 				<?php } ?>
 
+            <div class="password-modal">
+              <div class="close-icon">
+                  <img src="../../images/img_galeria-02_close.png" >
+              </div>
+
+              <div class="login-title">
+                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+              </div>
+
+              <div class="password-modal-content">
+                <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
+
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
+
+                <br><br>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <br>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
+              </div>
+            </div>
+
+
 				<div id="menu_options">
 
 						<div class="close_menu">
@@ -297,7 +320,7 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="search-filter">
                           <select class="filter-opt">
-                            <option value="usuario"><span class="arrow-down">&#9660;</span>Usuarios  </option>
+                            <option value="usuario"> Usuarios  </option>
                             <option value="cervezas">Cervezas</option>
                             <option value="productores">Productores</option>
                             <option value="Materia Prima">Materia Prima</option>
@@ -1024,6 +1047,38 @@ if (isset($_SESSION['idUser'])) {
 		            });
 		        </script>
 
+            <script type="text/javascript">
+                $(document).on("ready", function () {
+
+                    $(".forgot-password").on("click", function () {
+                        $(".password-modal").css({
+                            "opacity": "1",
+                            "z-index": "10",
+                        }),
+                        $(".login-modal").css({
+                            "opacity": "0",
+                            "z-index": "-1",
+                        }),
+                        $(".background-filter").css({
+                            "opacity": "1",
+                            "z-index": "10",
+                        })
+                    });
+
+                    $(".close-icon,.background-filter").on("click", function () {
+                        $(".password-modal").css({
+                            "opacity": "0",
+                            "z-index": "-1",
+                        }),
+                          $(".background-filter").css({
+                            "opacity": "0",
+                            "z-index": "-1",
+                        })
+                    });
+
+                });
+            </script>
+
 		        <script type="text/javascript">
 		            $("#box-target").focus(function () {
 		                $(".search-box").css({
@@ -1040,154 +1095,196 @@ if (isset($_SESSION['idUser'])) {
 		            });
 		        </script>
 
-		        <script type="text/javascript">
+            <script type="text/javascript">
 
-		            $("#selectCountry").change(function () {
-		                var idCountry = $("option:selected", this).attr('name');
-		                var namefunction = 'getStatesUser';
-		                $.ajax({
-		                    beforeSend: function () {},
-		                    url: "../../admin/php/functions.php",
-		                    type: "POST",
-		                    data: {
-		                        namefunction: namefunction,
-		                        idCountry: idCountry
-		                    },
-		                    success: function (result) {
-		                        $('#selectState').html(result);
-		                    },
-		                    error: function () {},
-		                    complete: function () {},
-		                    timeout: 10000
-		                });
-		            });
+                $('.sendRecoveryMail').click(function(){
+                  var emailRecovery = $(this).siblings('.password-form').val();
+                  var namefunction = "recoveryPassword";
 
-		            $('#formNewUser').submit(function (e) {
-		                e.preventDefault();
 
-		                var name = $('input[name=userName]').val();
-		                var lastname = $('input[name=lastname]').val();
-		                var month = $('select[name=birthday_month] option:selected').attr('value');
-		                var day = $('select[name=birthday_day] option:selected').attr('value');
-		                var year = $('select[name=birthday_year] option:selected').attr('value');
-		                var country = $('select[name=country] option:selected').attr('value');
-		                var state = $('select[name=state] option:selected').attr('value');
-		                var confirmEmail = $('input[name=confirmEmail]').val();
-		                var email = $('input[name=email]').val();
-		                var confirmPassword = $('input[name=confirmPassword]').val();
-		                var password = $('input[name=password]').val();
-		                var namefunction = "addNewUser";
+                  $.ajax({
+                      beforeSend: function () {},
+                      url: "../../admin/php/functions.php",
+                      type: "POST",
+                      data: {
+                          namefunction: namefunction,
+                          emailRecovery: emailRecovery
+                      },
+                      success: function (result) {
+                        if(result==0){
+                          $('.mailnotvalid').css({'display': 'block'});
+                            setTimeout(function () {
+                              $('.mailnotvalid').css({'display': 'none'});
+                          }, 2000);
+                        }else{
+                          $('.msgacceptedpassword').css({'display': 'block'});
+                            setTimeout(function () {
+                                $('.msgacceptedpassword').css({'display': 'none'});
+                            }, 2000);
+                        }
+                      },
+                      error: function () {},
+                      complete: function () {},
+                      timeout: 10000
+                  });
 
-		                if (confirmEmail != email) {
-		                    $('#mailMsg').css({'display': 'block'});
-		                    setTimeout(function () {
-		                        $('#mailMsg').css({'display': 'none'});
-		                    }, 2000);
 
-		                } else {
-		                    if (confirmPassword != password) {
-		                        $('#passMsg').css({'display': 'block'});
-		                        setTimeout(function () {
-		                            $('#passMsg').css({'display': 'none'});
-		                        }, 2000);
-		                    } else {
-		                        $.ajax({
-		                            beforeSend: function () {
-		                            },
-		                            url: "../../admin/php/functions.php",
-		                            type: "POST",
-		                            data: {
-		                                namefunction: namefunction,
-		                                name: name,
-		                                lastname: lastname,
-		                                month: month,
-		                                day: day,
-		                                year: year,
-		                                country: country,
-		                                state: state,
-		                                email: email,
-		                                password: password
-		                            },
-		                            success: function (result) {
-		                                location.reload();
-		                            },
-		                            error: function (error) {
-		                            },
-		                            complete: function () {
-		                            },
-		                            timeout: 10000
-		                        });
-		                    }
-		                }
-		            });
 
-		            $('.logOut').click(function (e) {
-		                e.preventDefault();
-		                var namefunction = "logOutUser";
-		                var idUser = $(this).attr('name');
+                });
 
-		                $.ajax({
-		                    beforeSend: function () {
-		                    },
-		                    url: "../../admin/php/functions.php",
-		                    type: "POST",
-		                    data: {
-		                        namefunction: namefunction,
-		                        idUser: idUser
-		                    },
-		                    success: function (result) {
-		                        location.reload();
-		                    },
-		                    error: function (error) {
-		                    },
-		                    complete: function () {
-		                    },
-		                    timeout: 10000
-		                });
-		            });
+                $("#selectCountry").change(function () {
+                    var idCountry = $("option:selected", this).attr('name');
+                    var namefunction = 'getStatesUser';
+                    $.ajax({
+                        beforeSend: function () {},
+                        url: "../../admin/php/functions.php",
+                        type: "POST",
+                        data: {
+                            namefunction: namefunction,
+                            idCountry: idCountry
+                        },
+                        success: function (result) {
+                            $('#selectState').html(result);
+                        },
+                        error: function () {},
+                        complete: function () {},
+                        timeout: 10000
+                    });
+                });
 
-		            $('.sendLoginUser').click(function (e) {
-		                e.preventDefault();
-		                var namefunction = "loginUser";
-		                var passwordLogin = $('input[name=passwordLogin]').val();
-		                var emailLogin = $('input[name=emailLogin]').val();
+                $('#formNewUser').submit(function (e) {
+                    e.preventDefault();
 
-		                $.ajax({
-		                    beforeSend: function () {
-		                    },
-		                    url: "../../admin/php/functions.php",
-		                    type: "POST",
-		                    data: {
-		                        namefunction: namefunction,
-		                        passwordLogin: passwordLogin,
-		                        emailLogin: emailLogin
-		                    },
-		                    success: function (result) {
-		                        if (result == -1) {
-		                            $('.notEmail').css({'display': 'block'});
+                    var name = $('input[name=userName]').val();
+                    var lastname = $('input[name=lastname]').val();
+                    var month = $('select[name=birthday_month] option:selected').attr('value');
+                    var day = $('select[name=birthday_day] option:selected').attr('value');
+                    var year = $('select[name=birthday_year] option:selected').attr('value');
+                    var country = $('select[name=country] option:selected').attr('value');
+                    var state = $('select[name=state] option:selected').attr('value');
+                    var confirmEmail = $('input[name=confirmEmail]').val();
+                    var email = $('input[name=email]').val();
+                    var confirmPassword = $('input[name=confirmPassword]').val();
+                    var password = $('input[name=password]').val();
+                    var namefunction = "addNewUser";
 
-		                            setTimeout(function () {
-		                                $('.notEmail').css({'display': 'none'});
-		                            }, 2000);
-		                        } else {
-		                            if (result == 0) {
-		                                $('.notPass').css({'display': 'block'});
-		                                setTimeout(function () {
-		                                    $('.notPass').css({'display': 'none'});
-		                                }, 2000);
-		                            } else {
-		                                location.reload();
-		                            }
-		                        }
-		                    },
-		                    error: function (error) {
-		                    },
-		                    complete: function () {
-		                    },
-		                    timeout: 10000
-		                });
-		            });
-		        </script>
+                    if (confirmEmail != email) {
+                        $('.mailMsgNotSame').css({'display': 'block'});
+                        setTimeout(function () {
+                            $('.mailMsgNotSame').css({'display': 'none'});
+                        }, 2000);
+                    } else {
+                        if (confirmPassword != password) {
+                            $('#passMsg').css({'display': 'block'});
+                            setTimeout(function () {
+                                $('#passMsg').css({'display': 'none'});
+                            }, 2000);
+                        } else {
+                            $.ajax({
+                                beforeSend: function () {
+                                },
+                                url: "../../admin/php/functions.php",
+                                type: "POST",
+                                data: {
+                                    namefunction: namefunction,
+                                    name: name,
+                                    lastname: lastname,
+                                    month: month,
+                                    day: day,
+                                    year: year,
+                                    country: country,
+                                    state: state,
+                                    email: email,
+                                    password: password
+                                },
+                                success: function (result) {
+                                  if(result==-1){
+                                    $('#mailExist').css({'display': 'block'});
+                                    setTimeout(function () {
+                                        $('#mailExist').css({'display': 'none'});
+                                    }, 2000);
+                                  }else{
+                                    location.reload();
+                                  }
+                                },
+                                error: function (error) {
+                                },
+                                complete: function () {
+                                },
+                                timeout: 10000
+                            });
+                        }
+                    }
+                });
+
+                $('.logOut').click(function (e) {
+                    e.preventDefault();
+                    var namefunction = "logOutUser";
+                    var idUser = $(this).attr('name');
+
+                    $.ajax({
+                        beforeSend: function () {
+                        },
+                        url: "../../admin/php/functions.php",
+                        type: "POST",
+                        data: {
+                            namefunction: namefunction,
+                            idUser: idUser
+                        },
+                        success: function (result) {
+                            location.reload();
+                        },
+                        error: function (error) {
+                        },
+                        complete: function () {
+                        },
+                        timeout: 10000
+                    });
+                });
+
+                $('.sendLoginUser').click(function (e) {
+                    e.preventDefault();
+                    var namefunction = "loginUser";
+                    var passwordLogin = $('input[name=passwordLogin]').val();
+                    var emailLogin = $('input[name=emailLogin]').val();
+
+                    $.ajax({
+                        beforeSend: function () {
+                        },
+                        url: "../../admin/php/functions.php",
+                        type: "POST",
+                        data: {
+                            namefunction: namefunction,
+                            passwordLogin: passwordLogin,
+                            emailLogin: emailLogin
+                        },
+                        success: function (result) {
+                            if (result == -1) {
+                                $('.notEmail').css({'display': 'block'});
+
+                                setTimeout(function () {
+                                    $('.notEmail').css({'display': 'none'});
+                                }, 2000);
+                            } else {
+                                if (result == 0) {
+                                    $('.notPass').css({'display': 'block'});
+                                    setTimeout(function () {
+                                        $('.notPass').css({'display': 'none'});
+                                    }, 2000);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        },
+                        error: function (error) {
+                        },
+                        complete: function () {
+                        },
+                        timeout: 10000
+                    });
+                });
+
+            </script>
 
 		        <script type="text/javascript">
 

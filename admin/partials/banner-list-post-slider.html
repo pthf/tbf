@@ -3,6 +3,7 @@
 	  <thead>
 	  	<tr>
 	  		<th>#</th>
+        <th>Language</th>
         <th>Title</th>
         <th>Subtitle</th>
         <th>Description</th>
@@ -14,6 +15,8 @@
 	  <tbody>
 	  	<tr ng-repeat="banner in dataBanners">
 	  		<th scope="row">{{banner.idBannerSliderPost}}</th>
+        <td ng-if="banner.language==1">Spanish</td>
+        <td ng-if="banner.language==0">English</td>
         <td>{{banner.bannerSliderPostTitle}}</td>
         <td>{{banner.bannerSliderPostSubtitle}}</td>
         <td>{{banner.bannerSliderPostDescription}}</td>
