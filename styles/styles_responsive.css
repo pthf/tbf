@@ -38,6 +38,14 @@
 		margin-left: 8px;
 	}
 
+	li.star.star-small-profile {
+	    width: 6% !important;
+	}
+
+	li.star.star-data {
+	    width: 4% !important;
+	}
+
 }
 
 @media (max-width: 1680px){
@@ -2176,6 +2184,16 @@
 		width: 100%;
 	}
 
+	li.star.star-small-profile-user {
+	    width: 18% !important;
+	    margin-bottom: 0 !important;
+	    margin-top: 1vw !important;
+	}
+
+	li.star {
+	    width: 13% !important;
+	}
+
 }
 
 @media (max-width: 640px){
@@ -2870,6 +2888,10 @@
 
 	.flex-item-info span:nth-child(4){
 		width: 85%;
+	}
+
+	ul#stars.stars-profile-view.appendGold{
+		width: 50%;
 	}
 
 }
@@ -3658,7 +3680,15 @@
 	}
 
 	li.star.star-data {
-	    width: 5% !important;
+	    width: 7% !important;
+	}
+
+	ul#stars.stars-profile-view.appendGold {
+	    width: 75% !important;
+	}
+
+	ul#stars.stars-profile-view.profile-rank {
+	    width: 100% !important;
 	}
 
 }
@@ -4091,6 +4121,10 @@
 	.content_profile.content_profile_beer {
 	    width: 50%;
 			margin-left: 20%;
+	}
+
+	li.star.star-data {
+	    width: 7% !important;
 	}
 
 

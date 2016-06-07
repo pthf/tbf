@@ -7,6 +7,7 @@ if(isset($_GET['id'])){
     $queryProducer = "SELECT * FROM producer
     INNER JOIN countries ON producer.country_id = countries.id
     INNER JOIN states ON producer.state_id = states.id
+    INNER JOIN producertype ON producer.idProducerType = producertype.idProducerType
     WHERE idProducer = ".$_GET['id'];
     $resultProducer = mysql_query($queryProducer) or die(mysql_error());
     $lineProducer = mysql_fetch_array($resultProducer);
@@ -401,32 +402,33 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="name_profile" style="width: 70%;">
-
                     <p><?=mb_strtoupper($lineProducer['producerName'])?></p>
-
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?=$lineProducer['name_c']?>, <?=$lineProducer['name_s']?>.</p>
+                    <p><?= strtoupper($lineProducer['producerTypeName']) ?></p><br><br>
+                    <p><?=$lineProducer['city']?>, <?= $lineProducer['name_s']?>, <?=$lineProducer['name_c']?>.</p>
                 </div>
 
                 <div class="age_profile material_age" style="width: 70%;">
                     <p><?=$lineProducer['producerAddress']?>, CP. <?=$lineProducer['producerZip']?> <br> T.  <?=$lineProducer['producerPhone']?>.</p>
-                </div>
+                </div><br>
 
                 <div class="desc_profile">
-
-                    <p><?=$lineProducer['producerDescription']?></p><br><br>
-
-                    <a href="mailto:<?=$lineProducer['producerEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
-                        <div class="send_message" >
-                            <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO.</p>
-                        </div>
-                    </a><br>
-
-                    <p><?=$lineProducer['producerEmail'];?></p>
-
+                  <h2 style="font-size: 1.5em;">Descripción</h2><br>
+                  <p><?=$lineProducer['producerDescription']?></p><br><br>
+                  <h2 style="font-size: 1.5em;">Caracteristicas Generales</h2><br>
+                  <span>País: </span> <span><?=$lineProducer['name_c']?></span> <br>
+                  <span>Estado: </span> <span><?=$lineProducer['name_s']?></span> <br>
+                  <span>Ciudad: </span> <span><?=$lineProducer['city']?></span> <br>
+                  <span>Estilo: </span> <span> <?= $lineProducer['producerTypeName'] ?> </span> <br><br>
+                  <a href="mailto:<?=$lineProducer['producerEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
+                      <div class="send_message" >
+                          <img src="../../images/social-03.png"/>
+                          <p>ENVIAR CORREO.</p>
+                      </div>
+                  </a><br>
+                  <p><?=$lineProducer['producerEmail'];?></p>
                 </div>
 
                 <div class="social_company">

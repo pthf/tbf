@@ -31,7 +31,10 @@
 								$query = "SELECT * FROM producer ORDER BY producerName ASC";
 								$result = mysql_query($query) or die(mysql_error());
 								while ($line = mysql_fetch_array($result)) {
-									echo '<option value="'.$line["idProducer"].'" name="'.$line["idProducer"].'">'.$line["producerName"].'</option>';
+									$idioma = "English";
+									if($line['language']==1)
+										$idioma = "Spanish";
+									echo '<option value="'.$line["idProducer"].'" name="'.$line["idProducer"].'">'.$line["producerName"].' - '.$idioma.'</option>';
 								}
 							?>
 						</select>

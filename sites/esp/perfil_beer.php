@@ -405,21 +405,23 @@ if (isset($_SESSION['idUser'])) {
 
 
                 <div class="name_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beerName']) ?></p>
+                    <p><a href="perfil_empresa.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br>
-                    <p><?=$lineBeer['name_c']?>, <?=$lineBeer['name_s']?>.</p>
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br><br>
+                    <p><?=$lineBeer['city']?>, <?= $lineBeer['name_s']?>, <?=$lineBeer['name_c']?>.</p>
                 </div>
                 <br>
                 <div class="desc_profile">
-                    <h2>Caracteristicas Generales</h2><br>
-                    <p><?=$lineBeer['beerDescription']?></p>
-                    <br><br>
-                    <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br><br>
-                    <span>Estilo: </span> <span> <?= strtoupper($lineBeer['beerTypeName']) ?> </span> <br><br>
-                    <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br><br>
+                    <h2 style="font-size: 1.5em;">Descripción</h2><br>
+                    <p><?=$lineBeer['beerDescription']?></p><br><br>
+                    <h2 style="font-size: 1.5em;">Caracteristicas Generales</h2><br>
+                    <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br>
+                    <span>Estado: </span> <span><?=$lineBeer['name_s']?></span> <br>
+                    <span>Ciudad: </span> <span><?=$lineBeer['city']?></span> <br>
+                    <span>Estilo: </span> <span> <?= $lineBeer['beerTypeName'] ?> </span> <br>
+                    <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br>
                     <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
                 </div>
@@ -524,19 +526,19 @@ if (isset($_SESSION['idUser'])) {
                           <div class='rating-stars text-center'>
                             <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
                               <li class='star star-data' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                             </ul>
                           </div>
@@ -548,19 +550,19 @@ if (isset($_SESSION['idUser'])) {
                           <a href='#'>
                             <ul id='stars' class='stars-profile-view logintoadd'>
                               <li class='star star-data' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                               <li class='star star-data' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                             </ul>
                           </a>
@@ -765,143 +767,6 @@ if (isset($_SESSION['idUser'])) {
                 <!-- comments -->
                 <div id="comments_box">
                     <div class="msn_content">
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
-
-                        <!-- message received -->
-                        <div id="itemContainer">
-                            <div id="itemContainerInner">
-
-                                <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
-                                </div>
-
-                                <div class="item i2">
-                                    <p>CONTACTO</p>
-                                </div>
-
-                                <div class="item i3">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam.
-
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-                            <h2>Miércoles 18 de Junio 2015</h2>
-                        </div>
 
                         <!-- message received -->
                         <div id="itemContainer">
