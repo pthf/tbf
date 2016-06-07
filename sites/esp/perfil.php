@@ -545,7 +545,12 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile favoritos-slider">
 
                         	<?php
-                              $q = "SELECT * FROM beer";
+                              $q = "SELECT * FROM beer be 
+                                      INNER JOIN favoriteelement f
+                                      ON f.idBeer = be.idBeer
+                                      INNER JOIN user u 
+                                      ON u.idFavoritesList = f.idFavoritesList
+                                      WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
                               while($l1 = mysql_fetch_array($r)){
@@ -578,7 +583,7 @@ if (isset($_SESSION['idUser'])) {
                                               }
                                         echo '</div>';
                                         } else {
-                                          echo ' <span name="0" class="heart-icon logintoadd" title="Agregar a favoritos"style="display:none;">&#9825;</span>';
+                                          echo ' <a href="#"><span class="heart-icon logintoadd" title="Agregar a favoritos">&#9825;</span></a>';
                                         }
                                 echo '</li>';
 
@@ -634,7 +639,12 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile wishlist-slider">
 
                         	<?php
-                              $q = "SELECT * FROM beer";
+                              $q = "SELECT * FROM beer be 
+                                      INNER JOIN wishlistelement w
+                                      ON w.idBeer = be.idBeer
+                                      INNER JOIN user u 
+                                      ON u.idFavoritesList = w.idWishList
+                                      WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
                               while($l2 = mysql_fetch_array($r)){
@@ -663,14 +673,14 @@ if (isset($_SESSION['idUser'])) {
                                         $rz = mysql_query($qz) or die(mysql_error());
 
                                         if(mysql_num_rows($rz)>0){
-                                          echo '<span name="1" class="1" data-function="deleteWishList" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ELIMINAR</span>';
+                                          echo '<span name="1" class="1" data-function="deleteWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ELIMINAR</span>';
                                         }else{
-                                          echo '<span name="0" class="0" data-function="addWishList" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">AGREGAR</span>';
+                                          echo '<span name="0" class="0" data-function="addWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">AGREGAR</span>';
                                         }
                                         echo '
                                         </div>';
                                       }else{
-                                        echo '<span name="0" class="0" style="display:none;">AGREGAR A WISHLIST</span>';
+                                        echo '<a href="#"><span class="0 logintoadd">AGREGAR</span></a>';
                                       }
                                     echo '</li>
                                 ';
@@ -725,7 +735,12 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile ranks-slider">
 
                           <?php
-                              $q = "SELECT * FROM beer";
+                              $q = "SELECT * FROM beer be 
+                                      INNER JOIN rankslistelement r
+                                      ON r.idBeer = be.idBeer
+                                      INNER JOIN user u 
+                                      ON u.idFavoritesList = r.idRanksList
+                                      WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
                               while($l3 = mysql_fetch_array($r)){
@@ -739,46 +754,92 @@ if (isset($_SESSION['idUser'])) {
                                   $descriptionText .= "...";
                                 }
                                 echo '
-                                    <li class="first_beer" id="rankbeer" id-beer-element="'.$l3['idBeer'].'">
+                                    <li class="first_beer">
                                       <a href="perfil_beer.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l3["beerName"].'</span>
-                                      <span class="subtitle">'.$descriptionText.'</span> <br>
+                                      <span class="subtitle">'.$descriptionText.'</span> <br>';
+
+                                        $query = "SELECT ranksListElementRank FROM rankslistelement WHERE idBeer = '".$l3['idBeer']."'";
+                                        $result = mysql_query($query) or die(mysql_error());
+                                        $sumatoria=0;
+                                        $contador=0;
+                                        while($line=mysql_fetch_array($result)){
+                                          $sumatoria = $line['ranksListElementRank'] + $sumatoria;
+                                          $contador++;
+                                        }
+
+                                        $sumatoria = $sumatoria + 4;
+                                        $contador++;
+                                        $promedio = $sumatoria/$contador;
+                                        $promedio = round($promedio);
+                                      echo '
                                       <div class="rating-stars text-center">
-                                        <ul id="stars" class="stars-profile-view appendGold">
+                                        <ul id="stars" class="stars-profile-view appendGold">';
+                                        for($i = 1; $i<=5; $i++){
+                                          if($promedio >= $i)
+                                            echo "<li class='star star-small-profile-user' data-value='".$i."'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
+                                        }
+                                          echo '
                                         </ul>
                                       </div>';
-                                    if(isset($_SESSION['idUser'])){
-                                      $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
-                                      $result = mysql_query($query) or die(mysql_error());
-                                      $line = mysql_fetch_array($result);
-                                      $idRanksList = $line['idRanksList'];
+                                      if(isset($_SESSION['idUser'])){
+                                        $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
+                                        $result = mysql_query($query) or die(mysql_error());
+                                        $line = mysql_fetch_array($result);
+                                        $idRanksList = $line['idRanksList']; 
+                                        $query = "SELECT * FROM rankslistelement WHERE idBeer = ".$l3['idBeer']." AND idRanksList = $idRanksList";
+                                        $result = mysql_query($query) or die(mysql_error());
+                                        if(mysql_num_rows($result)>0){
 
-                                      $queryl3 = "SELECT * FROM rankslistelement WHERE idBeer = ".$l3['idBeer']." AND idRanksList = $idRanksList";
-                                      $resultl3 = mysql_query($queryl3) or die(mysql_error());
-                                      if(mysql_num_rows($resultl3)>0){
-                                        echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
-                                      } else {  
-                                        echo '<div class="rating-stars text-center">
-                                          <ul id="stars" class="stars-profile-view changeRank">
-                                            <li class="star" data-value="1">
-                                              <i class="fa fa-star fa-fw star-small"></i>
-                                            </li>
-                                            <li class="star" data-value="2">
-                                              <i class="fa fa-star fa-fw star-small"></i>
-                                            </li>
-                                            <li class="star" data-value="3">
-                                              <i class="fa fa-star fa-fw star-small"></i>
-                                            </li>
-                                            <li class="star" data-value="4">
-                                              <i class="fa fa-star fa-fw star-small"></i>
-                                            </li>
-                                            <li class="star" data-value="5">
-                                              <i class="fa fa-star fa-fw star-small"></i>
-                                            </li>
-                                          </ul>
-                                        </div>';
-                                      }  
-                                    }  
+                                            echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                                        }else{
+                                          echo "
+                                            <div class='rating-stars text-center'>
+                                              <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
+                                                <li class='star' data-value='1' data-beer='".$l3['idBeer']."'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='2' data-beer='".$l3['idBeer']."'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='3' data-beer='".$l3['idBeer']."'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='4' data-beer='".$l3['idBeer']."'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='5' data-beer='".$l3['idBeer']."'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                          ";
+                                        }
+                                      }else{
+                                        echo "
+                                          <div class='rating-stars text-center'>
+                                            <a href='#'>
+                                              <ul id='stars' class='stars-profile-view logintoadd'>
+                                                <li class='star' data-value='1'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='2'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='3'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='4'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' data-value='5'>
+                                                  <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                              </ul>
+                                            </a>
+                                          </div>
+                                        ";
+                                      }
                                 echo '
                                     </li>
                                 ';
@@ -982,7 +1043,7 @@ if (isset($_SESSION['idUser'])) {
             <script type="text/javascript">
                 $(document).on("ready", function () {
 
-                    $(document).on('click', '.user_name, .user_name_click .logintoadd', function () {
+                    $(document).on('click', '.user_name, .user_name_click, .logintoadd', function () {
                         $(".login-modal").css({
                             "opacity": "1",
                             "z-index": "10",
@@ -1183,7 +1244,7 @@ if (isset($_SESSION['idUser'])) {
                 $('.changeRank li').click(function(){
                   var valuenew = $(this).attr('data-value');
                   var namefunction = "rankUser";
-                  var idBeer = $('#rankbeer').attr('id-beer-element');
+                  var idBeer = $(this).attr('data-beer');
                   var idUser = $(this).parent().attr('data-user');
                   $.ajax({
                       beforeSend: function () {
@@ -1212,32 +1273,6 @@ if (isset($_SESSION['idUser'])) {
                       },
                       timeout: 10000
                   });
-                });
-                var namefunction = "prinnfRank";
-                var idBeer = $('#rankbeer').attr('id-beer-element');
-                $.ajax({
-                    beforeSend: function () {
-                    },
-                    url: "../../php/functions.php",
-                    type: "POST",
-                    data: {
-                        namefunction : namefunction,
-                        idBeer : idBeer
-                    },
-                    success: function (result) {
-                      $('.ranklevel').html(result);
-                      var stars = "";
-                      for(var i = 1; i<=5; i++){
-                        if(result>= i)
-                            stars = stars + "<li class='star star-small-profile' data-value='"+i+"'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
-                      }
-                      $('.appendGold').html(stars);
-                    },
-                    error: function (error) {
-                    },
-                    complete: function () {
-                    },
-                    timeout: 10000
                 });
 
             </script>

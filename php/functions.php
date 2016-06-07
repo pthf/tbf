@@ -372,6 +372,7 @@ function deleteRank($idBeer, $idList){
 }
 
 function rankUser($value, $idBeer, $idUser){
+
 	$query = "SELECT idRanksList FROM user WHERE idUser = $idUser";
 	$result = mysql_query($query) or die(mysql_error());
 	$line = mysql_fetch_array($result);
@@ -391,25 +392,6 @@ function rankUser($value, $idBeer, $idUser){
 
 	prinnfRank($idBeer);
 
-}
-
-function prinnfRank($idBeer){
-
-	$query = "SELECT ranksListElementRank FROM rankslistelement WHERE idBeer = $idBeer";
-	$result = mysql_query($query) or die(mysql_error());
-	$sumatoria=0;
-	$contador=0;
-	while($line=mysql_fetch_array($result)){
-		$sumatoria = $line['ranksListElementRank'] + $sumatoria;
-		$contador++;
-	}
-
-	$sumatoria = $sumatoria + 4;
-	$contador++;
-	$promedio = $sumatoria/$contador;
-	$promedio = round($promedio);
-
-	echo $promedio;
 }
 
 function deleteWishList($dataUser, $dataBeer){

@@ -2072,6 +2072,10 @@ input.slider-dot{
       width: 3% !important;
   }
 
+  li.star.star-small-profile-user {
+      width: 9% !important;
+  }
+
 
   .rating-stars ul {
     list-style-type:none;
