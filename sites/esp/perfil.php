@@ -479,7 +479,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                 <div class="name_profile">
-                    <p><?php echo $row['userName']; ?></p>
+                    <p><?php echo $row['userName']; ?> <?php echo $row['userLastName']; ?></p>
                 </div>
 
                 <div class="city_profile">
@@ -545,10 +545,10 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile favoritos-slider">
 
                         	<?php
-                              $q = "SELECT * FROM beer be 
+                              $q = "SELECT * FROM beer be
                                       INNER JOIN favoriteelement f
                                       ON f.idBeer = be.idBeer
-                                      INNER JOIN user u 
+                                      INNER JOIN user u
                                       ON u.idFavoritesList = f.idFavoritesList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
@@ -571,14 +571,14 @@ if (isset($_SESSION['idUser'])) {
                                             $qu = "SELECT idFavoritesList FROM user WHERE idUser = ".$_SESSION['idUser'];
                                             $ru = mysql_query($qu) or die(mysql_error());
                                             $lo = mysql_fetch_array($ru);
-                                            $listaUser = $lo['idFavoritesList'];  
+                                            $listaUser = $lo['idFavoritesList'];
 
                                         echo '<div class="heart-status">';
                                             $qo = "SELECT idFavoriteElement FROM favoriteelement WHERE idBeer = ".$l1['idBeer']." AND $listaUser = idFavoritesList";
                                             $rr = mysql_query($qo) or die(mysql_error());
                                             if(mysql_num_rows($rr)>0) {
                                             echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Eliminar de favoritos">&#9829;</span>';
-                                              } else { 
+                                              } else {
                                             echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Agregar a favoritos">&#9825;</span>';
                                               }
                                         echo '</div>';
@@ -639,10 +639,10 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile wishlist-slider">
 
                         	<?php
-                              $q = "SELECT * FROM beer be 
+                              $q = "SELECT * FROM beer be
                                       INNER JOIN wishlistelement w
                                       ON w.idBeer = be.idBeer
-                                      INNER JOIN user u 
+                                      INNER JOIN user u
                                       ON u.idFavoritesList = w.idWishList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
@@ -735,10 +735,10 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile ranks-slider">
 
                           <?php
-                              $q = "SELECT * FROM beer be 
+                              $q = "SELECT * FROM beer be
                                       INNER JOIN rankslistelement r
                                       ON r.idBeer = be.idBeer
-                                      INNER JOIN user u 
+                                      INNER JOIN user u
                                       ON u.idFavoritesList = r.idRanksList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
@@ -786,7 +786,7 @@ if (isset($_SESSION['idUser'])) {
                                         $query = "SELECT idRanksList FROM user WHERE idUser = ".$_SESSION['idUser'];
                                         $result = mysql_query($query) or die(mysql_error());
                                         $line = mysql_fetch_array($result);
-                                        $idRanksList = $line['idRanksList']; 
+                                        $idRanksList = $line['idRanksList'];
                                         $query = "SELECT * FROM rankslistelement WHERE idBeer = ".$l3['idBeer']." AND idRanksList = $idRanksList";
                                         $result = mysql_query($query) or die(mysql_error());
                                         if(mysql_num_rows($result)>0){
@@ -1162,7 +1162,7 @@ if (isset($_SESSION['idUser'])) {
                     if (value == 1) {
                         $(this).css({'display': 'none'});
                         $(this).siblings('span[name=0]').css({'display': 'inline-block'});
-                        
+
                         var dataUser = $(this).attr('data-user');
                         var dataBeer = $(this).attr('data-beer');
                         var namefunction = $(this).attr('data-function');
@@ -1215,7 +1215,7 @@ if (isset($_SESSION['idUser'])) {
                         });
                     }
                 });
-                 
+
                 $('.deleteRank').click(function(){
                   var idBeer = $(this).attr('data-beer');
                   var idList = $(this).attr('data-list');
@@ -1240,7 +1240,7 @@ if (isset($_SESSION['idUser'])) {
                       timeout: 10000
                   });
                 });
-                        
+
                 $('.changeRank li').click(function(){
                   var valuenew = $(this).attr('data-value');
                   var namefunction = "rankUser";
