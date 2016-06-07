@@ -2069,7 +2069,7 @@ input.slider-dot{
   }
 
   li.star {
-      width: 8% !important;
+      width: 3% !important;
       margin-right: 9px;
   }
 
@@ -2118,12 +2118,16 @@ input.slider-dot{
   }
 
   ul#stars{
-    padding: 1vw 0 1vw 0;
+    padding: 0vw 0 1vw 0;
   }
 
   ul#stars.stars-profile-view{
     width: 40%;
     margin: 0 auto;
+  }
+
+  ul#stars.stars-profile-view.changeRank {
+      width: 100%;
   }
 
   i.fa.fa-star.fa-fw{

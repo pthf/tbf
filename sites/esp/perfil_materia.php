@@ -426,7 +426,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <div class="social_company materia-width">
                         <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
-                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact"><img src="../../images/web-icon.png"/></a>
+                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
                         <?php } ?>
                         <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
@@ -452,7 +452,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="back_ profile_back">
                     <a href="cervezas.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">VOLVER A CERVEZAS</p>
+                        <p class="back_text">IR A CERVEZAS</p>
                     </a>
                 </div>
 
