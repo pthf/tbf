@@ -427,7 +427,7 @@ if (isset($_SESSION['idUser'])) {
 
                 <div class="social_company">
                     <?php if(strlen($lineBeer['beerSite'])>0){?>
-                    <a target="_blank" href="<?= $lineBeer['beerSite'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                    <a target="_blank" href="<?= $lineBeer['beerSite'] ?>" class="first_contact fb"><img src="../../images/web-icon.png"/></a>
                     <?php } ?>
                     <?php if(strlen($lineBeer['beerFacebook'])>0){?>
                     <a target="_blank" href="<?= $lineBeer['beerFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
