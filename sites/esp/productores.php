@@ -463,7 +463,7 @@ if (isset($_SESSION['idUser'])) {
 				                              $descriptionText .= "...";
 				                            }
 				                            echo '
-				                                <li class="first_beer beertwo beers">
+				                                <li class="first_beer beertwo producer">
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
@@ -492,7 +492,7 @@ if (isset($_SESSION['idUser'])) {
 				                              $descriptionText .= "...";
 				                            }
 				                            echo '
-				                            	<li class="first_beer beertwo beers">
+				                            	<li class="first_beer beertwo producer">
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
@@ -521,7 +521,7 @@ if (isset($_SESSION['idUser'])) {
 				                              $descriptionText .= "...";
 				                            }
 				                            echo '
-				                            	<li class="first_beer beertwo beers">
+				                            	<li class="first_beer beertwo producer">
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
@@ -548,7 +548,7 @@ if (isset($_SESSION['idUser'])) {
 				                              $descriptionText .= "...";
 				                            }
 				                            echo '
-				                                <li class="first_beer beertwo beers">
+				                                <li class="first_beer beertwo producer">
 			                                      <img src="../../images/producerProfiles/'.$row2['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>

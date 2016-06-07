@@ -443,7 +443,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <div class="social_company materia-width">
                         <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
-                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact fb"><img src="../../images/social-01.png"/></a>
+                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact"><img src="../../images/web-icon.png"/></a>
                         <?php } ?>
                         <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
@@ -483,7 +483,7 @@ if (isset($_SESSION['idUser'])) {
 
                 <div class="map" id="googleMap" >	</div>
 
-                <div class="profile_res">
+                <div class="profile_res materia_res">
                   <?=$lineMateria['rawMaterialDescriptionHTML'];?>
                 </div>
 
