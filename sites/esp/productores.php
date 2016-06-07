@@ -445,12 +445,12 @@ if (isset($_SESSION['idUser'])) {
                             	<?php
 	                        		if ((isset($_GET['type'])) && (isset($_GET['country']))) {
 			                          	$query3 = "SELECT * FROM producer pro
-													INNER JOIN producertype pt
-													ON pt.idProducerType = pro.idProducerType
-													INNER JOIN countries co
-													ON co.id = pro.country_id
-						                            WHERE pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
-                                      	$resultado3 = mysql_query($query3) or die(mysql_error());
+                    													INNER JOIN producertype pt
+                    													ON pt.idProducerType = pro.idProducerType
+                    													INNER JOIN countries co
+                    													ON co.id = pro.country_id
+						                                  WHERE pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
+                                	$resultado3 = mysql_query($query3) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado3)) {
 				                            if($contador==0)
