@@ -126,8 +126,9 @@ if (isset($_SESSION['idUser'])) {
                         </div>
 
                         <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-                        <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                    </form>
+												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
+										</form>
                 </div>
 
             </div>
@@ -226,6 +227,7 @@ if (isset($_SESSION['idUser'])) {
                         <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
                         <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
                         <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 
                         <div class="send-login-content sign-up-send">
@@ -771,7 +773,7 @@ if (isset($_SESSION['idUser'])) {
                 });
             });
 
-            $('#').submit(function (e) {
+            $('#formNewUser').submit(function (e) {
                 e.preventDefault();
 
                 var name = $('input[name=userName]').val();
@@ -891,7 +893,14 @@ if (isset($_SESSION['idUser'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
+                              if(result == -2){
+                                $('.blockcount').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.blockcount').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             }
                         }
                     },
@@ -904,6 +913,7 @@ if (isset($_SESSION['idUser'])) {
             });
 
         </script>
+
 
 
         <script type="text/javascript">

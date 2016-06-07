@@ -111,8 +111,9 @@ if (isset($_SESSION['idUser'])) {
 														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -890,7 +891,14 @@ if (isset($_SESSION['idUser'])) {
                                             $('.notPass').css({'display': 'none'});
                                         }, 2000);
                                     } else {
+                                      if(result == -2){
+                                        $('.blockcount').css({'display': 'block'});
+                                        setTimeout(function () {
+                                            $('.blockcount').css({'display': 'none'});
+                                        }, 2000);
+                                      }else{
                                         location.reload();
+                                      }
                                     }
                                 }
                             },
@@ -903,6 +911,7 @@ if (isset($_SESSION['idUser'])) {
                     });
 
                 </script>
+
 
 				        <script type="text/javascript">
 

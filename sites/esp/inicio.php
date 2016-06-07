@@ -118,8 +118,9 @@ if (isset($_SESSION['idUser'])) {
                         </div>
 
                         <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-                        <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                    </form>
+												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
+										</form>
                 </div>
 
             </div>
@@ -496,7 +497,8 @@ if (isset($_SESSION['idUser'])) {
                                                 ON states.id = user.state_id
                                                 INNER JOIN countries
                                                 ON countries.id = user.country_id
-                                                WHERE user.country_id = ".$line['country_id']." AND user.idUser != ".$line['idUser'];
+                                                WHERE user.userStatus != 0
+                                                AND user.country_id = ".$line['country_id']." AND user.idUser != ".$line['idUser'];
                                   $resultUser = mysql_query($queryUser) or die(mysql_error());
                                   if(mysql_num_rows($resultUser)>0){
                                     while($lineUser = mysql_fetch_array($resultUser)){
@@ -951,7 +953,14 @@ if (isset($_SESSION['idUser'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
+                              if(result == -2){
+                                $('.blockcount').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.blockcount').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             }
                         }
                     },
@@ -964,6 +973,7 @@ if (isset($_SESSION['idUser'])) {
             });
 
         </script>
+
 
         <script type="text/javascript">
 

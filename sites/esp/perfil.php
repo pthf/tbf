@@ -4,18 +4,22 @@ include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
 if(isset($_GET['idUser'])){
-
+  $query = "SELECT userStatus FROM user WHERE idUser =".$_GET['idUser'];
+  $result = mysql_query($query) or die(mysql_error());
+  $line = mysql_fetch_array($result);
+  if($line['userStatus']==0){
+    header('Location: inicio.php');
+  }
 }else{
   header('Location: inicio.php');
 }
-
-
 
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
 ?>
 
 
@@ -126,6 +130,7 @@ if (isset($_SESSION['idUser'])) {
 
 												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -222,8 +227,10 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -1606,7 +1613,14 @@ if (isset($_SESSION['idUser'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
+                              if(result == -2){
+                                $('.blockcount').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.blockcount').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             }
                         }
                     },

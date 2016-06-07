@@ -118,8 +118,9 @@ if (isset($_SESSION['idUser'])) {
 														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -215,8 +216,10 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -810,7 +813,14 @@ if (isset($_SESSION['idUser'])) {
                                         $('.notPass').css({'display': 'none'});
                                     }, 2000);
                                 } else {
+                                  if(result == -2){
+                                    $('.blockcount').css({'display': 'block'});
+                                    setTimeout(function () {
+                                        $('.blockcount').css({'display': 'none'});
+                                    }, 2000);
+                                  }else{
                                     location.reload();
+                                  }
                                 }
                             }
                         },
@@ -823,6 +833,7 @@ if (isset($_SESSION['idUser'])) {
                 });
 
             </script>
+
 
 		        <script type="text/javascript">
 
