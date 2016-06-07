@@ -423,30 +423,8 @@ if (isset($_SESSION['idUser'])) {
                             <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:60%; border: none" value="<?php echo $row['userLastName']; ?>">
                         </div>
 
-                        <!--<div class="email_config">
-                          <p>EMAIL: </p> <input required type="email" name="email"  style="width:60%; border: none" value="<?php echo $row['userEmail']; ?>">
-                        </div>-->
-
-                        <div class="vivoen_config">
+                        <!-- <div class="vivoen_config">
                             <p>FECHA NAC: </p>
-                            <select required id="birthday_day" name="birthday_day" class="birthday day" style="width: 18%;">
-                                <option value="">Día &#x25BE;</option>
-                            </select>
-                            <select required id="birthday_month" name="birthday_month" class="birthday month" style="width: 18%;">
-                                <option value="">Mes &#x25BE;</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Septiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
-                            </select>
                             <select required id="birthday_year" name="birthday_year" class="birthday year" style="width: 18%;">
                                 <option value="">Año &#x25BE;</option>
                                 <option value="1995">1995</option>
@@ -466,7 +444,25 @@ if (isset($_SESSION['idUser'])) {
                                 <option value="1981">1981</option>
                                 <option value="1980">1980</option>
                             </select>
-                        </div>
+                            <select required id="birthday_month" name="birthday_month" class="birthday month" style="width: 18%;">
+                                <option value="">Mes &#x25BE;</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                            <select required id="birthday_day" name="birthday_day" class="birthday day" style="width: 18%;">
+                                <option value="">Día &#x25BE;</option>
+                            </select>
+                        </div> -->
 
 
 
@@ -550,7 +546,6 @@ if (isset($_SESSION['idUser'])) {
 		                        <div class="email_config" style="width: 80%;">
 		                            <p>NUEVO PASSWORD: </p> <input required type="password" name="newpass" style="width:50%; border: none" value="">
 		                        </div>
-
 		                        <div class="email_config" style="width: 80%;">
 		                            <p>CONFIRMAR PASSWORD: </p> <input required type="password" name="confirpass" style="width:50%; border: none" value="">
 		                        </div>
@@ -776,7 +771,7 @@ if (isset($_SESSION['idUser'])) {
                 });
             });
 
-            $('#formNewUser').submit(function (e) {
+            $('#').submit(function (e) {
                 e.preventDefault();
 
                 var name = $('input[name=userName]').val();

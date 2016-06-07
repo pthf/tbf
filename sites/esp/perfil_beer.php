@@ -405,21 +405,23 @@ if (isset($_SESSION['idUser'])) {
 
 
                 <div class="name_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beerName']) ?></p>
+                    <p><a href="perfil_empresa.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br>
-                    <p><?=$lineBeer['name_c']?>, <?=$lineBeer['name_s']?>.</p>
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br><br>
+                    <p><?=$lineBeer['city']?>, <?= $lineBeer['name_s']?>, <?=$lineBeer['name_c']?>.</p>
                 </div>
                 <br>
                 <div class="desc_profile">
-                    <h2>Caracteristicas Generales</h2><br>
-                    <p><?=$lineBeer['beerDescription']?></p>
-                    <br><br>
-                    <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br><br>
-                    <span>Estilo: </span> <span> <?= strtoupper($lineBeer['beerTypeName']) ?> </span> <br><br>
-                    <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br><br>
+                    <h2 style="font-size: 1.5em;">Descripción</h2><br>
+                    <p><?=$lineBeer['beerDescription']?></p><br><br>
+                    <h2 style="font-size: 1.5em;">Caracteristicas Generales</h2><br>
+                    <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br>
+                    <span>Estado: </span> <span><?=$lineBeer['name_s']?></span> <br>
+                    <span>Ciudad: </span> <span><?=$lineBeer['city']?></span> <br>
+                    <span>Estilo: </span> <span> <?= $lineBeer['beerTypeName'] ?> </span> <br>
+                    <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br>
                     <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
                 </div>
@@ -449,7 +451,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="back_ profile_back">
                     <a href="cervezas.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">VOLVER A CERVEZAS</p>
+                        <p class="back_text">IR A CERVEZAS</p>
                     </a>
                 </div>
                 <!-- Beer rank -->
@@ -523,20 +525,20 @@ if (isset($_SESSION['idUser'])) {
                         echo "
                           <div class='rating-stars text-center'>
                             <ul id='stars' class='stars-profile-view changeRank' data-user = '".$_SESSION['idUser']."'>
-                              <li class='star' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='1'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='2'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='3'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='4'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='5'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                             </ul>
                           </div>
@@ -547,20 +549,20 @@ if (isset($_SESSION['idUser'])) {
                         <div class='rating-stars text-center'>
                           <a href='#'>
                             <ul id='stars' class='stars-profile-view logintoadd'>
-                              <li class='star' data-value='1'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='1'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='2'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='2'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='3'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='3'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='4'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='4'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
-                              <li class='star' data-value='5'>
-                                <i class='fa fa-star fa-fw'></i>
+                              <li class='star star-data' data-value='5'>
+                                <i class='fa fa-star fa-fw profile-fa'></i>
                               </li>
                             </ul>
                           </a>

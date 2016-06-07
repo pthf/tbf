@@ -160,7 +160,7 @@
 	function sendMessageAllUsers(){
 		$message = $_POST['message'];
 		$messageDate = date("Y-m-d H:i:s");
-		$messageStatus = 1;
+		$messageStatus = 0;
 		$user_idUser = 1;
 		$query = "SELECT * FROM user";
 		$result = mysql_query($query) or die(mysql_error());
@@ -373,38 +373,29 @@
 				session_start();
 				$_SESSION['idUser'] = $idUser;
 
+				$message = "Welcome to the beer fans, we hope you enjoy your experience on our site. There are a lot of surprises so stay with us!";
+				$messageDate = date("Y-m-d H:i:s");
+				$messageStatus = 0;
+				$user_idUser = 1;
+
+				$query = "SELECT * FROM user WHERE idUser = $idUser";
+				$result = mysql_query($query) or die(mysql_error());
+				while($line=mysql_fetch_array($result)){
+					$idInbox = $line['idInbox'];
+					$query2 = "SELECT idChat FROM chat WHERE inbox_idInbox = $idInbox AND user_idUser = $user_idUser";
+					$result2 = mysql_query($query2) or die(mysql_error());
+					if(mysql_num_rows($result2)>0){
+						$line2 = mysql_fetch_array($result2);
+						$chat = $line2['idChat'];
+					}else{
+						$query2 = "INSERT INTO chat (inbox_idInbox, user_idUser) VALUES ($idInbox, $user_idUser)";
+						$result2 = mysql_query($query2) or die(mysql_error());
+						$chat = mysql_insert_id();
+					}
+					$query2 = "INSERT INTO message(messageText, messageDate, messageStatus, chat_idChat, user_idUser) VALUES('$message', '$messageDate', $messageStatus, $chat, $user_idUser)";
+					$result2 = mysql_query($query2) or die(mysql_error());
+				}
 		}
-
-
-
-
-
-			// $message = $_POST['message'];
-			// $messageDate = date("Y-m-d H:i:s");
-			// $messageStatus = 1;
-			// $user_idUser = 1;
-			// $query = "SELECT * FROM user";
-			// $result = mysql_query($query) or die(mysql_error());
-			// while($line=mysql_fetch_array($result)){
-			// 	$idInbox = $line['idInbox'];
-			//
-			// 	$query2 = "SELECT idChat FROM chat WHERE inbox_idInbox = $idInbox AND user_idUser = $user_idUser";
-			// 	$result2 = mysql_query($query2) or die(mysql_error());
-			// 	if(mysql_num_rows($result2)>0){
-			// 		$line2 = mysql_fetch_array($result2);
-			// 		$chat = $line2['idChat'];
-			// 	}else{
-			// 		$query2 = "INSERT INTO chat (inbox_idInbox, user_idUser) VALUES ($idInbox, $user_idUser)";
-			// 		$result2 = mysql_query($query2) or die(mysql_error());
-			// 		$chat = mysql_insert_id();
-			// 	}
-			//
-			// 	$query2 = "INSERT INTO message(messageText, messageDate, messageStatus, chat_idChat, user_idUser) VALUES('$message', '$messageDate', $messageStatus, $chat, $user_idUser)";
-			// 	$result2 = mysql_query($query2) or die(mysql_error());
-			//
-			// }
-
-
 	}
 
 	function getStatesUser($id){

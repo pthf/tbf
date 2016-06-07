@@ -61,17 +61,16 @@ function changeUser() {
 
 	parse_str($_POST['data'], $formData);
 
-	$newformat = $formData['birthday_year'].'/'.$formData['birthday_month'].'/'.$formData['birthday_day'];
-	$time = strtotime($newformat);
-	$fecha = date('Y-m-d',$time);
-	
-	$query = "UPDATE user 
-				SET userName = '".$formData['name']."', 
-							userLastName = '".$formData['lastname']."', 
-							userBirthDate = '".$fecha."', 
-							userDescription = '".$formData['description']."', 
-							country_id = '".$formData['country']."', 
-							state_id = '".$formData['state']."' 
+	//$newformat = $formData['birthday_year'].'/'.$formData['birthday_month'].'/'.$formData['birthday_day'];
+	//$time = strtotime($newformat);
+	//$fecha = date('Y-m-d',$time);
+
+	$query = "UPDATE user
+				SET userName = '".$formData['name']."',
+							userLastName = '".$formData['lastname']."',
+							userDescription = '".$formData['description']."',
+							country_id = '".$formData['country']."',
+							state_id = '".$formData['state']."'
 				WHERE idUser = '".$formData['iduser']."'";
 	$resultado = mysql_query($query) or die(mysql_error());
 	echo " <span class='not-user' style='color:blue;'><label for='privacyTerms'>Usuario actualizado.</label></span> ";
@@ -117,7 +116,7 @@ function changePass() {
 			$resultado1 = mysql_query($query1) or die(mysql_error());
 			echo " <span class='not-user' style='color:blue;'><label for='privacyTerms'>Contraseña actualizada.</label></span> ";
 		} else if ($formData['newpass'] != $formData['confirpass']) {
-			echo " <span class='not-user' style='color:red;'><label for='privacyTerms'>Las nuevas contraseñas no coinciden, intentalo de nuevo.</label></span> ";	
+			echo " <span class='not-user' style='color:red;'><label for='privacyTerms'>Las nuevas contraseñas no coinciden, intentalo de nuevo.</label></span> ";
 		}
 	} else {
 
@@ -158,7 +157,7 @@ function newMessage() {
 		$resultado4 = mysql_query($query4) or die (mysql_error());
 
 	} else if ($row2 > 0) {
-		
+
 		$sql2 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
 		$res2 = mysql_query($sql2) or die (mysql_error());
 		$row4 = mysql_fetch_array($res2);
@@ -242,7 +241,7 @@ function requestMessage () {
 		$resultado4 = mysql_query($query4) or die (mysql_error());
 
 	} else if ($row2 > 0) {
-		
+
 		$sql2 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
 		$res2 = mysql_query($sql2) or die (mysql_error());
 		$row4 = mysql_fetch_array($res2);
