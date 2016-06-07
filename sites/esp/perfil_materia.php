@@ -4,7 +4,10 @@ include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
 if(isset($_GET['id'])){
-    $queryMateria = "SELECT * FROM rawmaterial WHERE idRawMaterial = ".$_GET['id'];
+    $queryMateria = "SELECT * FROM rawmaterial
+    INNER JOIN countries ON rawmaterial.country_id = countries.id
+    INNER JOIN states ON rawmaterial.state_id = states.id
+    WHERE rawmaterial.idRawMaterial = ".$_GET['id'];
     $resultMateria = mysql_query($queryMateria) or die(mysql_error());
     $lineMateria = mysql_fetch_array($resultMateria);
     if(!mysql_num_rows($resultMateria)>0)
@@ -392,8 +395,24 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="name_profile" style="width: 70%;">
-                    <p><?=mb_strtoupper ($lineMateria['rawMaterialName']);?></p>
+                    <p><?=mb_strtoupper ($lineMateria['rawMaterialName']);?></p><br>
                 </div>
+
+                <div class="city_profile" style="width: 70%;">
+                    <p>
+                    <?php
+                        $q = "SELECT rawMaterialTypeName FROM rawmaterialtype
+                                  INNER JOIN rawmaterial_has_rawmaterialtype ON rawmaterialtype.idDrawMaterialType = rawmaterial_has_rawmaterialtype.idDrawMaterialType
+                                  WHERE rawmaterial_has_rawmaterialtype.idRawMaterial = ".$lineMateria['idRawMaterial'];
+                        $r = mysql_query($q) or die(mysql_error());
+                        while($l = mysql_fetch_array($r)){
+                          echo strtoupper($l['rawMaterialTypeName'])." ";
+                        }
+                    ?>
+                    </p><br><br>
+                    <p><?=$lineMateria['city']?>, <?= $lineMateria['name_s']?>, <?=$lineMateria['name_c']?>.</p>
+                </div>
+
 
                 <!-- <div class="city_profile">
 
@@ -415,8 +434,6 @@ if (isset($_SESSION['idUser'])) {
                         </div>
                     </a>
                     <br>
-                    <span> correo_de_ejemplo@ejemplo.com</span>
-
 
                     <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
 
