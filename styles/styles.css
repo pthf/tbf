@@ -1861,6 +1861,10 @@ input.slider-dot{
   display: none;
 }
 
+.toptext_slider, .toptext_slider.comments_title{
+  margin: 0 auto !important;
+}
+
 .toptext_slider{
   position: relative;
   display: -webkit-box;
@@ -2069,8 +2073,10 @@ input.slider-dot{
   }
 
   li.star {
-      width: 8% !important;
-      margin-right: 9px;
+      width: 5% !important;
+  }
+  i.fa.fa-star.fa-fw {
+      font-size: 1.5em;
   }
 
   .gold-star{
@@ -2078,12 +2084,28 @@ input.slider-dot{
   }
 
   li.star.star-small-profile {
-      width: 3% !important;
+      width: 10% !important;
   }
 
   li.star.star-small-profile-user {
-      width: 9% !important;
+      width: 11% !important;
+      margin-bottom: 0 !important;
+      margin-top: 1vw !important;
   }
+
+  li.star.star-data {
+	    width: 5% !important;
+	}
+
+  li.star.star-small-profile-user {
+	    width: 18% !important;
+	    margin-bottom: 0 !important;
+	    margin-top: 1vw !important;
+	}
+
+	li.star {
+	    width: 13% !important;
+	}
 
 
   .rating-stars ul {
@@ -2099,8 +2121,11 @@ input.slider-dot{
 
   /* Idle State of the stars */
   .rating-stars ul > li.star > i.fa {
-    font-size:2em; /* Tamaño de estrellas */
     color:#ccc; /* Color en estado de espera */
+  }
+
+  i.fa.fa-star.fa-fw.profile-fa {
+      font-size: 2em;
   }
 
   .star-small{
@@ -2122,12 +2147,25 @@ input.slider-dot{
   }
 
   ul#stars{
-    padding: 1vw 0 1vw 0;
+    padding: 0vw 0 0vw 0;
   }
 
   ul#stars.stars-profile-view{
-    width: 40%;
+    width: 75%;
     margin: 0 auto;
+  }
+
+  ul#stars.stars-profile-view.appendGold{
+    width: 40% !important;
+    margin-top: 1.5vw;
+  }
+
+  ul#stars.stars-profile-view.changeRank {
+      width: 100%;
+  }
+
+  ul#stars.stars-profile-view.appendGold.profile-rank {
+      width: 75% !important;
   }
 
   i.fa.fa-star.fa-fw{

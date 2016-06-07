@@ -536,7 +536,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="back_ profile_back">
                     <a href="cervezas.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">VOLVER A CERVEZAS</p>
+                        <p class="back_text">IR A CERVEZAS</p>
                     </a>
                 </div>
                 <div class="slides">
@@ -774,7 +774,7 @@ if (isset($_SESSION['idUser'])) {
                                         $promedio = round($promedio);
                                       echo '
                                       <div class="rating-stars text-center">
-                                        <ul id="stars" class="stars-profile-view appendGold">';
+                                        <ul id="stars" class="stars-profile-view appendGold profile-rank">';
                                         for($i = 1; $i<=5; $i++){
                                           if($promedio >= $i)
                                             echo "<li class='star star-small-profile-user' data-value='".$i."'><i class='fa fa-star fa-fw star-small gold-star'></i></li>";
