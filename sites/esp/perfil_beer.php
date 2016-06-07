@@ -769,34 +769,92 @@ if (isset($_SESSION['idUser'])) {
                 <!-- comments -->
                 <div id="comments_box">
                     <div class="msn_content">
-
+                    	<?php
+                        $query2 = "SELECT * FROM postelement po
+									INNER JOIN beer be
+									ON be.idPublicMessagesList = po.idPublicMessagesList
+									INNER JOIN user us
+									ON us.idUser = po.idUser
+									WHERE po.idPublicMessagesList = ".$lineBeer['idPublicMessagesList'];
+                        $resultado2 = mysql_query($query2) or die(mysql_error());
+                        while ($rows2 = mysql_fetch_array($resultado2)) {
+                        ?>
                         <!-- message received -->
                         <div id="itemContainer">
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
-                                    <img src="../../images/profile_default.jpg"/>
+                                    <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
                                 </div>
 
                                 <div class="item i2">
-                                    <p>CONTACTO</p>
+                                    <p><?php echo $rows2['userName']; ?></p>
                                 </div>
 
                                 <div class="item i3">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
-                                        dolor sit amet, consectetur adipiscing
+                                       <?php echo $rows2['postElementComment']; ?>
                                     </p>
 
                                 </div>
 
 
                             </div>
+                            <?php
+							    $fecha = $rows2['postElementDate'];
+							    $fechafinal = explode('-', $fecha);
+							    $dia = explode(' ', $fechafinal[2]);
+								$fechats = strtotime($fecha);
 
-                            <h2>Miércoles 18 de Junio 2015</h2>
+								switch (date('w', $fechats)){
+								    case 0: $nameDia[] = "Domingo";
+							    	break;
+							    	case 1: $nameDia[] = "Lunes";
+							    	break;
+							    	case 2: $nameDia[] = "Martes";
+							    	break;
+							    	case 3: $nameDia[] = "Miércoles";
+							    	break;
+							    	case 4: $nameDia[] = "Jueves";
+							    	break;
+							    	case 5: $nameDia[] = 'Viernes';
+							    	break;
+							    	case 6: $nameDia[] = 'Sábado';
+							    	break;
+								}
+
+								switch (date('n', $fechats)){
+								    case 1: $nameMes[] = "Enero";
+							    	break;
+							    	case 2: $nameMes[] = "Febrero";
+							    	break;
+							    	case 3: $nameMes[] = "Marzo";
+							    	break;
+							    	case 4: $nameMes[] = "Abril";
+							    	break;
+							    	case 5: $nameMes[] = 'Mayo';
+							    	break;
+							    	case 6: $nameMes[] = "Junio";
+							    	break;
+							    	case 7: $nameMes[] = "Julio";
+							    	break;
+							    	case 8: $nameMes[] = "Agosto";
+							    	break;
+							    	case 9: $nameMes[] = "Septiembre";
+							    	break;
+							    	case 10: $nameMes[] = "Octube";
+							    	break;
+							    	case 11: $nameMes[] = "Noviembre";
+							    	break;
+							    	case 12: $nameMes[] = "Diciembre";
+							    	break;
+								}
+						    ?>
+                            <h2>
+                            	<?php echo $nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                            </h2>
                         </div>
-
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -804,15 +862,17 @@ if (isset($_SESSION['idUser'])) {
 
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <div class="send_a_message comments_text">
-                        <textarea name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
-                        <style media="screen">
-                          ::-webkit-input-placeholder{
-                            padding: 1.5% 0 0 1.5%;
-                          }
-                        </style>
-                        <div class="send_button comments_send">
-                            <a href="#"> <p>COMENTAR</p></a>
-                        </div>
+                    	<form id="SendCommentBeer">
+                    		<input type="text" name="idBeer" hidden value="<?php echo $_GET['id']?>">
+                    		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <style media="screen">
+		                        ::-webkit-input-placeholder{
+		                          padding: 1.5% 0 0 1.5%;
+		                        }
+		                    </style>
+	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                    </form>
                     </div>
                 <?php } ?>
 
@@ -857,8 +917,9 @@ if (isset($_SESSION['idUser'])) {
                     <span class="right_about">Â© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>
             </div>
+            	<script src="../../js/services.js"></script>
 
-						<script type="text/javascript">
+				<script type="text/javascript">
 		            $(document).on("ready", function () {
 
 		                $(document).on('click', '.user_name, .user_name_click, .logintoadd', function () {

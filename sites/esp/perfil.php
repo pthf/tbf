@@ -498,7 +498,7 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="profile_res">
-                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'No description.' ?></p>
+                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'Ninguna descripción.' ?></p>
                 </div>
 
                 <!-- Send message popup -->
@@ -530,7 +530,7 @@ if (isset($_SESSION['idUser'])) {
 	                    </div>
 	                </div>
 	            <?php }
-	        	} ?>
+	        	    } ?>
                 <!-- /lightbox-panel -->
                 <div id="lightbox"></div>
                 <!-- /lightbox -->
@@ -559,6 +559,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = f.idFavoritesList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay favoritos <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l1 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -598,7 +601,8 @@ if (isset($_SESSION['idUser'])) {
                                   echo '</article>';
                                   $contador=0;
                                 }
-                              }
+                              } 
+                            //}
                           	?>
 
 
@@ -653,6 +657,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = w.idWishList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay Wishlist <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l2 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -696,6 +703,7 @@ if (isset($_SESSION['idUser'])) {
                                   $contador=0;
                                 }
                               }
+                            //}
                           	?>
 
                         </div>
@@ -749,6 +757,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = r.idRanksList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay Ranking <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l3 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -855,6 +866,7 @@ if (isset($_SESSION['idUser'])) {
                                   $contador=0;
                                 }
                               }
+                            //}
                             ?>
 
                         </div>

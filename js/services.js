@@ -201,4 +201,25 @@ $("#SendComment").submit(function(e){
     })
 });
 
+$("#SendCommentBeer").submit(function(e){
+
+	e.preventDefault();
+
+	var data = $(this).serializeArray();
+	data.push({ name: "namefunction", value: "SendCommentProfileBeer" });
+
+	$.ajax({
+        type : 'POST', 
+        url : '../../php/functions.php', 
+        data : data,
+        success: function(result){
+			$('#SendCommentBeer')[0].reset();
+			location.reload();
+	 	},
+	 	error: function(error){
+	 		alert(error);
+	 	}
+    })
+});
+
 

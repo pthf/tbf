@@ -7,10 +7,12 @@ $query = "SELECT * FROM user u
 			ON c.id = u.country_id
 			INNER JOIN states s
 			ON s.id = u.state_id
-			WHERE u.userName LIKE '" . $_POST['valores'] . "%'
+			WHERE u.userStatus <> 0
+            AND u.userName LIKE '" . $_POST['valores'] . "%'
 			OR s.name_s LIKE '" . $_POST['valores'] . "%'
 			OR c.sortname LIKE '" . $_POST['valores'] . "%'
-			OR name_c LIKE '" . $_POST['valores'] . "%'";
+			OR name_c LIKE '" . $_POST['valores'] . "%'
+            LIMIT 10";
 
 $resultado = mysql_query($query) or die(mysql_error());
 if (mysql_num_rows($resultado) > 0) {

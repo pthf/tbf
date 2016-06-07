@@ -30,6 +30,9 @@ if(isset($_POST['namefunction'])){
 		case 'SendCommentMessage':
 			SendCommentMessage();
 		break;
+		case 'SendCommentProfileBeer':
+			SendCommentProfileBeer();
+		break;
 		case 'deleteFavorites':
 			deleteFavorites($_POST['dataUser'], $_POST['dataBeer']);
 		break;
@@ -335,6 +338,20 @@ function SendCommentMessage () {
     date_default_timezone_set("America/Mexico_City");
     $datatime = date("Y-m-d H:i:s");
 	$query = "SELECT * FROM user WHERE idUser = '".$_POST['idUser']."'";
+	$resultado = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($resultado);
+
+	$query1 = "INSERT INTO postelement VALUES (null,'".$_POST['message']."','".$datatime."','".$row['idPublicMessagesList']."','".$_POST['idSession']."')";
+	$resultado = mysql_query($query1) or die(mysql_error());
+
+}
+
+function SendCommentProfileBeer () {
+
+	date_default_timezone_set('UTC');
+    date_default_timezone_set("America/Mexico_City");
+    $datatime = date("Y-m-d H:i:s");
+	$query = "SELECT * FROM beer WHERE idBeer = '".$_POST['idBeer']."'";
 	$resultado = mysql_query($query) or die(mysql_error());
 	$row = mysql_fetch_array($resultado);
 
