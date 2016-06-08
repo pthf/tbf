@@ -8,6 +8,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanish by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -387,7 +393,7 @@ if (isset($_SESSION['idUser'])) {
                 <!-- Slideshow 2 -->
                 <ul class="rslides" id="slider2">
                 <?php
-                  $q = "SELECT * FROM bannersliderhome";
+                  $q = "SELECT * FROM bannersliderhome WHERE language = ".$_SESSION['language'];
                   $r = mysql_query($q) or die(mysql_error());
                   while($l = mysql_fetch_array($r)){
                     echo '<li><a target="_BLANK" href="'.$l["bannerSliderHomeUrl"].'" class="no-opacity"><img src="../../images/homeBanners/'.$l["bannerSliderHomeImage"].'" alt=""></a></li>';
@@ -443,7 +449,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <ul class="beers_month">
                         <?php
-                            $q = "SELECT * FROM bannerslidernew";
+                            $q = "SELECT * FROM bannerslidernew WHERE language = ".$_SESSION['language'];
                             $r = mysql_query($q) or die(mysql_error());
                             $cantidad = 0;
                             while($l = mysql_fetch_array($r)){
@@ -469,7 +475,7 @@ if (isset($_SESSION['idUser'])) {
 
                     <ul class="nav_beers cantidadElements" name="<?= $cantidad ?>">
                       <?php
-                          $q = "SELECT * FROM bannerslidernew";
+                          $q = "SELECT * FROM bannerslidernew WHERE language = ".$_SESSION['language'];
                           $r = mysql_query($q) or die(mysql_error());
                           $cantidad = 0;
                           while($l = mysql_fetch_array($r)){
@@ -533,7 +539,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                     <?php
-                      $q = "SELECT * FROM bannersliderpost ORDER BY RAND() LIMIT 1";
+                      $q = "SELECT * FROM bannersliderpost WHERE language = ".$_SESSION['language']." ORDER BY RAND() LIMIT 1";
                       $r = mysql_query($q) or die(mysql_error());
                       $l = mysql_fetch_array($r);
                       $listpreview = $l['idBannerSliderPost'];
@@ -557,7 +563,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="part_info_bottom">
 
                     <?php
-                      $q = "SELECT * FROM bannersliderpost WHERE idBannerSliderPost != $listpreview ORDER BY RAND() LIMIT 1";
+                      $q = "SELECT * FROM bannersliderpost WHERE idBannerSliderPost != $listpreview AND language = ".$_SESSION['language']." ORDER BY RAND() LIMIT 1";
                       $r = mysql_query($q) or die(mysql_error());
                       $l = mysql_fetch_array($r);
                     ?>

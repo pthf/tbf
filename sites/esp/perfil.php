@@ -20,6 +20,11 @@ if (isset($_SESSION['idUser'])) {
     $line = mysql_fetch_array($result);
 }
 
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 
@@ -601,7 +606,7 @@ if (isset($_SESSION['idUser'])) {
                                   echo '</article>';
                                   $contador=0;
                                 }
-                              } 
+                              }
                             //}
                           	?>
 
@@ -912,9 +917,10 @@ if (isset($_SESSION['idUser'])) {
                         <!-- message received -->
                         <?php
                         $query2 = "SELECT * FROM postelement po
-									INNER JOIN user us
-									ON us.idUser = po.idUser
-									WHERE po.idPublicMessagesList =".$row['idPublicMessagesList'];
+                									INNER JOIN user us
+                									ON us.idUser = po.idUser
+                                  WHERE us.userStatus != 0
+                									AND po.idPublicMessagesList =".$row['idPublicMessagesList'];
                         $resultado2 = mysql_query($query2) or die(mysql_error());
                         while ($rows2 = mysql_fetch_array($resultado2)) {
                         ?>

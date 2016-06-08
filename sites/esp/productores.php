@@ -7,6 +7,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -409,7 +415,7 @@ if (isset($_SESSION['idUser'])) {
                                     <span class="principal_text country">PAÍS</span>
                                     <ul class="suboptions_li country">
                                         <?php
-                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
+                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id WHERE p.language = ".$_SESSION['language']." GROUP BY name_c";
                                         $resultado1 = mysql_query($query1) or die(mysql_error());
 
                                         while ($row1 = mysql_fetch_array($resultado1)) {
@@ -451,7 +457,8 @@ if (isset($_SESSION['idUser'])) {
                     													ON pt.idProducerType = pro.idProducerType
                     													INNER JOIN countries co
                     													ON co.id = pro.country_id
-						                                  WHERE pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
+                                              WHERE pro.language = ".$_SESSION['language']."
+						                                  AND pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
                                 	$resultado3 = mysql_query($query3) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado3)) {
@@ -480,7 +487,9 @@ if (isset($_SESSION['idUser'])) {
 		                          	} else if ((isset($_GET['type']))) {
 		                          		$query_type = "SELECT * FROM producer pro
                                       					INNER JOIN producertype pt
-                                      					ON pt.idProducerType = pro.idProducerType WHERE pt.producerTypeName ='" . $_GET['type'] . "'";
+                                      					ON pt.idProducerType = pro.idProducerType
+                                                WHERE pro.language = ". $_SESSION['language'] ."
+                                                AND pt.producerTypeName ='" . $_GET['type'] . "'";
                                       	$resultado_type = mysql_query($query_type) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado_type)) {
@@ -509,7 +518,7 @@ if (isset($_SESSION['idUser'])) {
 		                          	} else if ((isset($_GET['country']))) {
 		                          		$query_country = "SELECT * FROM producer pro
 								                              INNER JOIN countries co
-								                              ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
+								                              ON co.id = pro.country_id WHERE pro.language = ".$_SESSION['language']." AND co.name_c ='" . $_GET['country'] . "'";
                                         $resultado_country = mysql_query($query_country) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row3 = mysql_fetch_array($resultado_country)) {
@@ -536,7 +545,7 @@ if (isset($_SESSION['idUser'])) {
 				                            }
 				                        }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM producer";
+		                          		$query2 = "SELECT * FROM producer WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {

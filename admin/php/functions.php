@@ -128,6 +128,17 @@
 		}
 	}
 
+	function addUseExp($idUser){
+		$query = "SELECT userExp FROM user WHERE idUser = $idUser";
+		$result = mysql_query($query) or die(mysql_error());
+		$line = mysql_fetch_array($result);
+		$userExp = $line['userExp'];
+		$userExp = $userExp + 10;
+
+		$query = "UPDATE user SET userExp = $userExp WHERE idUser = $idUser";
+		$result = mysql_query($query) or die(mysql_error());
+	}
+
 	function recoveryPassword(){
 		$emailRecovery = $_POST['emailRecovery'];
 		$query = "SELECT userPassword, idUser  FROM user WHERE userEmail = '$emailRecovery'";
@@ -208,7 +219,7 @@
 		}
 
 		prinnfRank($idBeer);
-
+		addUseExp($idUser);
 	}
 
 	function prinnfRank($idBeer){
@@ -248,6 +259,8 @@
 
 		$query = "INSERT INTO wishlistelement (idWishList, idBeer ) VALUES ($idWishList, $dataBeer)";
 		$result = mysql_query($query) or die(mysql_error());
+
+		addUseExp($dataUser);
 	}
 
 	function deleteFavorites($dataUser, $dataBeer){
@@ -266,6 +279,7 @@
 		$idFavoritesList = $line['idFavoritesList'];
 		$query = "INSERT INTO favoriteelement (idFavoritesList, idBeer ) VALUES ($idFavoritesList, $dataBeer)";
 		$result = mysql_query($query) or die(mysql_error());
+		addUseExp($dataUser);
 	}
 
 	function loginUser(){
@@ -287,6 +301,7 @@
 						$result = mysql_query($query) or die(mysql_error());
 						session_start();
 						$_SESSION['idUser'] = $line['idUser'];
+						addUseExp($_SESSION['idUser']);
 					}
 				}
 			}

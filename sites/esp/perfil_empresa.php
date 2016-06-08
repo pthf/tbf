@@ -22,6 +22,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -468,7 +474,7 @@ if (isset($_SESSION['idUser'])) {
                         <div class="inner profile favoritos-slider">
 
                           <?php
-                              $q = "SELECT * FROM beer WHERE idProducer = ".$_GET['id'];
+                              $q = "SELECT * FROM beer WHERE language = ".$_SESSION['language']." AND idProducer = ".$_GET['id'];
                               $r = mysql_query($q) or die(mysql_error());
                               $contador = 0;
                               while($l = mysql_fetch_array($r)){

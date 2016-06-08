@@ -23,6 +23,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -767,15 +773,17 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <!-- comments -->
+                <span class="toptext_slider comments_title">COMENTARIOS</span>
                 <div id="comments_box">
                     <div class="msn_content">
                     	<?php
                         $query2 = "SELECT * FROM postelement po
-									INNER JOIN beer be
-									ON be.idPublicMessagesList = po.idPublicMessagesList
-									INNER JOIN user us
-									ON us.idUser = po.idUser
-									WHERE po.idPublicMessagesList = ".$lineBeer['idPublicMessagesList'];
+                									INNER JOIN beer be ON be.idPublicMessagesList = po.idPublicMessagesList
+                									INNER JOIN user us ON us.idUser = po.idUser
+                                  WHERE us.userStatus != 0
+                									AND po.idPublicMessagesList = ".$lineBeer['idPublicMessagesList'];
+
+
                         $resultado2 = mysql_query($query2) or die(mysql_error());
                         while ($rows2 = mysql_fetch_array($resultado2)) {
                         ?>

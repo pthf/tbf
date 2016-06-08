@@ -10,6 +10,12 @@ if (isset($_SESSION['idUser'])) {
 } else {
     header("Location: inicio.php");
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
