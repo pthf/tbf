@@ -46,6 +46,23 @@
 	    width: 4% !important;
 	}
 
+	.Grid li {
+	    display: inline-flex;
+	    width: 32.5%;
+	    margin-bottom: 2%;
+	}
+
+	.item.i3 {
+	    margin-left: 12%;
+	}
+
+	.item.i2 {
+	    position: absolute;
+	    width: 50%;
+	    height: 5%;
+	    left: 12%;
+	}
+
 }
 
 @media (max-width: 1680px){
@@ -409,6 +426,21 @@
 
 	span.number{
 			margin-left: 2px;
+	}
+
+	.Grid li {
+	    display: inline-flex;
+	    width: 42%;
+	    margin-bottom: 2%;
+	    margin-left: 3%;
+	}
+
+	.item.i2 {
+	  left: 14%;
+	}
+
+	.item.i3 {
+	  margin-left: 13.5%;
 	}
 
 }
@@ -1362,6 +1394,14 @@
 		width: 120%;
 	}
 
+	.item.i3{
+		margin-left: 17%
+	}
+
+	.item.i2{
+		margin-left: 2%
+	}
+
 }
 
 @media (max-width: 768px){
@@ -2056,9 +2096,10 @@
 		width: 65%;
 	}
 
-	.Grid li{
-     width: 40%;
-     margin-bottom: 4%;
+	.Grid li {
+	    width: 44%;
+	    margin-bottom: 4%;
+	    margin-left: 5%;
 	}
 
 	.login-modal{
@@ -2194,6 +2235,14 @@
 	    width: 13% !important;
 	}
 
+	.item.i2 {
+	  margin-left: 1%;
+	}
+
+	.item.i3 {
+	  margin-left: 15%;
+	}
+
 }
 
 @media (max-width: 640px){
@@ -2311,7 +2360,7 @@
 	}
 
 	.perfil_tbf .search{
-		width: 35%;
+		width: 30%;
 		height: 20px;
 	}
 
@@ -2894,6 +2943,14 @@
 		width: 50%;
 	}
 
+	.item.i2 {
+	  margin-left: 3%;
+	}
+
+	.item.i3 {
+	  margin-left: 17%;
+	}
+
 }
 
 @media (max-width: 480px){
@@ -3024,7 +3081,7 @@
 	.perfil_tbf .search{
 		padding: 0;
 		margin: 0;
-		width: 30%;
+		width: 25%;
 		height: 14px;
 	}
 
@@ -3296,7 +3353,8 @@
 	}
 
 	.item.i2{
-		top: -12%;
+		top: -6%;
+		margin-left: 6%;
 	}
 
 	.item.i2 p{
@@ -3309,6 +3367,11 @@
 
 	.item.i3.sent_{
 		margin-left: 3%;
+	}
+
+	.item.i3{
+		margin-left: 20%;
+		margin-top: -13%;
 	}
 
 
@@ -3689,6 +3752,12 @@
 
 	ul#stars.stars-profile-view.profile-rank {
 	    width: 100% !important;
+	}
+
+	.Grid li {
+	    width: 40%;
+	    margin-bottom: 4%;
+	    margin-left: 5%;
 	}
 
 }
@@ -4127,5 +4196,14 @@
 	    width: 7% !important;
 	}
 
+	.item.i2 {
+	    top: -6%;
+	    margin-left: 15%;
+	}
+
+	.item.i3 {
+	    margin-left: 29%;
+	    margin-top: -20%;
+	}
 
 }
