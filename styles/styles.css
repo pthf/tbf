@@ -407,8 +407,8 @@ span.text_prin span{
 }
 
 .user-status img {
-    width: 10px;
-    height: 10px;
+    width: 10px !important;
+    height: 10px !important;
 }
 
 .menu_buttom{
@@ -1794,30 +1794,6 @@ textarea{
   border-bottom: none !important;
 }
 
-.social_contact img{
-  transform: scale(0.6, 0.6);
-  -ms-transform: scale(0.6, 0.6);
-  -webkit-transform: scale(0.6, 0.6);
-}
-
-
-.first_contact{
-  margin-left: 5%;
-  margin-right: 3%;
-}
-
-.other_contact{
-  margin-right: 5%;
-}
-
-a.other_contact.ig img{
-  width: 20%;
-}
-
-a.other_contact.twt img {
-    width: 20%;
-}
-
 /* perfil.php */
 
 .profile_container{
@@ -2322,10 +2298,18 @@ input.slider-dot{
   .social_company{
     width: 80%;
     text-align: center;
-    padding-bottom: 3%;
+    padding: 1.5vw 0;
     margin-bottom: 8%;
     color: #2E2E2E;
     border-bottom: 2px solid rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .social_company a img {
+    width: 45px;
+    height: 55px;
   }
 
   .social-no-padding{
@@ -2337,12 +2321,6 @@ input.slider-dot{
 
   .social_company p{
     padding-top: 8%;
-  }
-
-  .social_company img{
-    transform: scale(0.6, 0.6);
-    -ms-transform: scale(0.6, 0.6);
-    -webkit-transform: scale(0.6, 0.6);
   }
 
   .fav_box{
