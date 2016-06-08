@@ -59,14 +59,35 @@
 						<div class="perfil_tbf">
 
 								<div class="search-filter">
-									<select class="filter-opt">
-										<option value="usuario"> Usuarios  </option>
-										<option value="cervezas">Cervezas</option>
-										<option value="productores">Productores</option>
-										<option value="Materia Prima">Materia Prima</option>
-									</select>
-
-								</div>
+		                          <select class="filter-opt" id="type-search">
+		                            <?php if ($_GET['option'] == 1 ) { ?>
+		                            <option selected value="1">Usuarios</option>
+		                            <option value="2" id="filters">Cervezas</option>
+		                            <option value="3" id="filters">Productores</option>
+		                            <option value="4" id="filters">Materia Prima</option>
+		                            <?php } else if ($_GET['option'] == 2 ) { ?>
+		                            <option value="1" id="filters"> Usuarios </option>
+		                            <option selected value="2">Cervezas</option>
+		                            <option value="3" id="filters">Productores</option>
+		                            <option value="4" id="filters">Materia Prima</option>
+		                            <?php } else if ($_GET['option'] == 3 ) { ?>
+		                            <option value="1" id="filters"> Usuarios </option>
+		                            <option value="2" id="filters">Cervezas</option>
+		                            <option selected value="3">Productores</option>
+		                            <option value="4" id="filters">Materia Prima</option>
+		                            <?php } else if ($_GET['option'] == 4 ) { ?>
+		                            <option value="1" id="filters"> Usuarios </option>
+		                            <option value="2" id="filters">Cervezas</option>
+		                            <option value="3" id="filters">Productores</option>
+		                            <option selected value="4">Materia Prima</option>
+		                            <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
+		                            <option value="1" selected id="filters"> Usuarios </option>
+		                            <option value="2" id="filters">Cervezas</option>
+		                            <option value="3" id="filters">Productores</option>
+		                            <option value="4" id="filters">Materia Prima</option>
+		                            <?php } ?>
+		                          </select>
+		                        </div>
 								<div class="search main-search">
 										<img src="../../images/icon-01.png" alt="search icon" title="search icon">
 										<input type="text" id="box-target">
