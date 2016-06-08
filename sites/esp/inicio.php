@@ -547,7 +547,15 @@ if (!isset($_SESSION['language'])) {
                                     echo '
                                       <li class="flex-item">
                                           <div class="user-status">
-            	                             <img src="../../images/gray_icon.png" alt="" />
+                                    ';
+                                        if($lineUser['userConnection']==0){
+                                          echo '<img src="../../images/gray_icon.png" alt="" />';
+                                        }else {
+                                          echo '<img src="../../images/green_icon.png" alt="" />';
+                                        }
+                                        
+                                    echo '
+
                                           </div>
                                           <a href="perfil.php?idUser='.$lineUser["idUser"].'"><img class="flex-item-info" src="../../images/userProfile/'.$lineUser["userProfileImage"].'"/></a>
                                           <div class="flex-item-info">
