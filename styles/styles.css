@@ -2309,7 +2309,7 @@ input.slider-dot{
 
   .social_company a img {
     width: 45px;
-    height: 55px;
+    height: auto;
   }
 
   .social-no-padding{
