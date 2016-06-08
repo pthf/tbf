@@ -30,6 +30,9 @@ if(isset($_POST['namefunction'])){
 		case 'SendCommentMessage':
 			SendCommentMessage();
 		break;
+		case 'SendCommentProfileBeer':
+			SendCommentProfileBeer();
+		break;
 		case 'deleteFavorites':
 			deleteFavorites($_POST['dataUser'], $_POST['dataBeer']);
 		break;
@@ -54,6 +57,17 @@ if(isset($_POST['namefunction'])){
 	}
 }
 
+function addUseExp($idUser){
+	$query = "SELECT userExp FROM user WHERE idUser = $idUser";
+	$result = mysql_query($query) or die(mysql_error());
+	$line = mysql_fetch_array($result);
+	$userExp = $line['userExp'];
+	$userExp = $userExp + 10;
+
+	$query = "UPDATE user SET userExp = $userExp WHERE idUser = $idUser";
+	$result = mysql_query($query) or die(mysql_error());
+}
+
 function changeUser() {
 
 	parse_str($_POST['data'], $formData);
@@ -72,7 +86,6 @@ function changeUser() {
 	$resultado = mysql_query($query) or die(mysql_error());
 	echo " <span class='not-user' style='color:blue;'><label for='privacyTerms'>Usuario actualizado.</label></span> ";
 }
-
 
 function changeEmail() {
 
@@ -94,7 +107,6 @@ function changeEmail() {
 	}
 
 }
-
 
 function changePass() {
 
@@ -307,6 +319,8 @@ function changeImageBanner () {
 	$query = "UPDATE user SET userCoverImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
 	$result = mysql_query($query) or die(mysql_error());
 
+	addUseExp($formData['idUser']);
+
 }
 
 function changeImagePerfil () {
@@ -327,6 +341,8 @@ function changeImagePerfil () {
 	$query = "UPDATE user SET userProfileImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
 	$result = mysql_query($query) or die(mysql_error());
 
+	addUseExp($formData['idUser']);
+
 }
 
 function SendCommentMessage () {
@@ -340,6 +356,24 @@ function SendCommentMessage () {
 
 	$query1 = "INSERT INTO postelement VALUES (null,'".$_POST['message']."','".$datatime."','".$row['idPublicMessagesList']."','".$_POST['idSession']."')";
 	$resultado = mysql_query($query1) or die(mysql_error());
+
+	addUseExp($_POST['idSession']);
+
+}
+
+function SendCommentProfileBeer () {
+
+	date_default_timezone_set('UTC');
+    date_default_timezone_set("America/Mexico_City");
+    $datatime = date("Y-m-d H:i:s");
+	$query = "SELECT * FROM beer WHERE idBeer = '".$_POST['idBeer']."'";
+	$resultado = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($resultado);
+
+	$query1 = "INSERT INTO postelement VALUES (null,'".$_POST['message']."','".$datatime."','".$row['idPublicMessagesList']."','".$_POST['idSession']."')";
+	$resultado = mysql_query($query1) or die(mysql_error());
+
+	addUseExp($_POST['idSession']);
 
 }
 
@@ -362,7 +396,7 @@ function addFavorites($dataUser, $dataBeer){
 	$idFavoritesList = $line['idFavoritesList'];
 	$query = "INSERT INTO favoriteelement (idFavoritesList, idBeer ) VALUES ($idFavoritesList, $dataBeer)";
 	$result = mysql_query($query) or die(mysql_error());
-
+	addUseExp($dataUser);
 }
 
 function deleteRank($idBeer, $idList){
@@ -390,6 +424,7 @@ function rankUser($value, $idBeer, $idUser){
 	}
 
 	prinnfRank($idBeer);
+	addUseExp($idUser);
 
 }
 
@@ -411,4 +446,6 @@ function addWishList($dataUser, $dataBeer){
 
 	$query = "INSERT INTO wishlistelement (idWishList, idBeer ) VALUES ($idWishList, $dataBeer)";
 	$result = mysql_query($query) or die(mysql_error());
+
+	addUseExp($dataUser);
 }

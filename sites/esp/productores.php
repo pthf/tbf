@@ -7,6 +7,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -58,10 +64,11 @@ if (isset($_SESSION['idUser'])) {
                         } else {
                             var rex = new RegExp($(this).val(), 'i');
                             var valores = $(this).val();
+                            var option = <?php echo $_GET['option'];?>;
                             $.ajax({
                                 url: "busqueda.php",
                                 type: "POST",
-                                data: {valores: valores},
+                                data: {valores: valores, option: option},
                                 success: function (result) {
                                     $('.buscar').html(result);
                                     $('.buscar .users').show();
@@ -74,6 +81,16 @@ if (isset($_SESSION['idUser'])) {
                     })
                 }(jQuery));
             });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#type-search").change(function(){
+                var option = $('select[id=type-search]').val();
+                location.href = "productores.php?option="+option;
+                $('#type-search').val($(this).val());
+            });
+        });
         </script>
 
 			</head>
@@ -108,8 +125,9 @@ if (isset($_SESSION['idUser'])) {
 														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -205,8 +223,9 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -296,13 +315,34 @@ if (isset($_SESSION['idUser'])) {
                   <div class="perfil_tbf">
 
                       <div class="search-filter">
-                        <select class="filter-opt">
-                          <option value="usuario"> Usuarios  </option>
-                          <option value="cervezas">Cervezas</option>
-                          <option value="productores">Productores</option>
-                          <option value="Materia Prima">Materia Prima</option>
+                        <select class="filter-opt" id="type-search">
+                          <?php if ($_GET['option'] == 1 ) { ?>
+                          <option selected value="1">Usuarios</option>
+                          <option value="2" id="filters">Cervezas</option>
+                          <option value="3" id="filters">Productores</option>
+                          <option value="4" id="filters">Materia Prima</option>
+                          <?php } else if ($_GET['option'] == 2 ) { ?>
+                          <option value="1" id="filters"> Usuarios </option>
+                          <option selected value="2">Cervezas</option>
+                          <option value="3" id="filters">Productores</option>
+                          <option value="4" id="filters">Materia Prima</option>
+                          <?php } else if ($_GET['option'] == 3 ) { ?>
+                          <option value="1" id="filters"> Usuarios </option>
+                          <option value="2" id="filters">Cervezas</option>
+                          <option selected value="3">Productores</option>
+                          <option value="4" id="filters">Materia Prima</option>
+                          <?php } else if ($_GET['option'] == 4 ) { ?>
+                          <option value="1" id="filters"> Usuarios </option>
+                          <option value="2" id="filters">Cervezas</option>
+                          <option value="3" id="filters">Productores</option>
+                          <option selected value="4">Materia Prima</option>
+                          <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
+                          <option value="1" selected id="filters"> Usuarios </option>
+                          <option value="2" id="filters">Cervezas</option>
+                          <option value="3" id="filters">Productores</option>
+                          <option value="4" id="filters">Materia Prima</option>
+                          <?php } ?>
                         </select>
-
                       </div>
                       <div class="search main-search">
                           <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -407,7 +447,7 @@ if (isset($_SESSION['idUser'])) {
                                     <span class="principal_text country">PAÍS</span>
                                     <ul class="suboptions_li country">
                                         <?php
-                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
+                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id WHERE p.language = ".$_SESSION['language']." GROUP BY name_c";
                                         $resultado1 = mysql_query($query1) or die(mysql_error());
 
                                         while ($row1 = mysql_fetch_array($resultado1)) {
@@ -445,12 +485,13 @@ if (isset($_SESSION['idUser'])) {
                             	<?php
 	                        		if ((isset($_GET['type'])) && (isset($_GET['country']))) {
 			                          	$query3 = "SELECT * FROM producer pro
-													INNER JOIN producertype pt
-													ON pt.idProducerType = pro.idProducerType
-													INNER JOIN countries co
-													ON co.id = pro.country_id
-						                            WHERE pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
-                                      	$resultado3 = mysql_query($query3) or die(mysql_error());
+                    													INNER JOIN producertype pt
+                    													ON pt.idProducerType = pro.idProducerType
+                    													INNER JOIN countries co
+                    													ON co.id = pro.country_id
+                                              WHERE pro.language = ".$_SESSION['language']."
+						                                  AND pt.producerTypeName = '" . $_GET['type'] . "' AND co.name_c = '" . $_GET['country'] . "'";
+                                	$resultado3 = mysql_query($query3) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado3)) {
 				                            if($contador==0)
@@ -478,7 +519,9 @@ if (isset($_SESSION['idUser'])) {
 		                          	} else if ((isset($_GET['type']))) {
 		                          		$query_type = "SELECT * FROM producer pro
                                       					INNER JOIN producertype pt
-                                      					ON pt.idProducerType = pro.idProducerType WHERE pt.producerTypeName ='" . $_GET['type'] . "'";
+                                      					ON pt.idProducerType = pro.idProducerType
+                                                WHERE pro.language = ". $_SESSION['language'] ."
+                                                AND pt.producerTypeName ='" . $_GET['type'] . "'";
                                       	$resultado_type = mysql_query($query_type) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado_type)) {
@@ -507,7 +550,7 @@ if (isset($_SESSION['idUser'])) {
 		                          	} else if ((isset($_GET['country']))) {
 		                          		$query_country = "SELECT * FROM producer pro
 								                              INNER JOIN countries co
-								                              ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
+								                              ON co.id = pro.country_id WHERE pro.language = ".$_SESSION['language']." AND co.name_c ='" . $_GET['country'] . "'";
                                         $resultado_country = mysql_query($query_country) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row3 = mysql_fetch_array($resultado_country)) {
@@ -534,7 +577,7 @@ if (isset($_SESSION['idUser'])) {
 				                            }
 				                        }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM producer";
+		                          		$query2 = "SELECT * FROM producer WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {
@@ -921,7 +964,14 @@ if (isset($_SESSION['idUser'])) {
                                             $('.notPass').css({'display': 'none'});
                                         }, 2000);
                                     } else {
+                                      if(result == -2){
+                                        $('.blockcount').css({'display': 'block'});
+                                        setTimeout(function () {
+                                            $('.blockcount').css({'display': 'none'});
+                                        }, 2000);
+                                      }else{
                                         location.reload();
+                                      }
                                     }
                                 }
                             },
@@ -934,6 +984,7 @@ if (isset($_SESSION['idUser'])) {
                     });
 
                 </script>
+
 
 				        <script type="text/javascript">
 

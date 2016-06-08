@@ -4,18 +4,27 @@ include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
 if(isset($_GET['idUser'])){
-
+  $query = "SELECT userStatus FROM user WHERE idUser =".$_GET['idUser'];
+  $result = mysql_query($query) or die(mysql_error());
+  $line = mysql_fetch_array($result);
+  if($line['userStatus']==0){
+    header('Location: inicio.php');
+  }
 }else{
   header('Location: inicio.php');
 }
-
-
 
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 
@@ -73,10 +82,11 @@ if (isset($_SESSION['idUser'])) {
                         } else {
                             var rex = new RegExp($(this).val(), 'i');
                             var valores = $(this).val();
+                            var option = <?php echo $_GET['option'];?>;
                             $.ajax({
                                 url: "busqueda.php",
                                 type: "POST",
-                                data: {valores: valores},
+                                data: {valores: valores, option: option},
                                 success: function (result) {
                                     $('.buscar').html(result);
                                     $('.buscar .users').show();
@@ -89,6 +99,16 @@ if (isset($_SESSION['idUser'])) {
                     })
                 }(jQuery));
             });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#type-search").change(function(){
+                var option = $('select[id=type-search]').val();
+                location.href = "perfil.php?option="+option;
+                $('#type-search').val($(this).val());
+            });
+        });
         </script>
 
     </head>
@@ -126,6 +146,7 @@ if (isset($_SESSION['idUser'])) {
 
 												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -222,8 +243,10 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -335,13 +358,34 @@ if (isset($_SESSION['idUser'])) {
                     <div class="perfil_tbf">
 
                         <div class="search-filter">
-                          <select class="filter-opt">
-                            <option value="usuario"> Usuarios  </option>
-                            <option value="cervezas">Cervezas</option>
-                            <option value="productores">Productores</option>
-                            <option value="Materia Prima">Materia Prima</option>
+                          <select class="filter-opt" id="type-search">
+                            <?php if ($_GET['option'] == 1 ) { ?>
+                            <option selected value="1">Usuarios</option>
+                            <option value="2" id="filters">Cervezas</option>
+                            <option value="3" id="filters">Productores</option>
+                            <option value="4" id="filters">Materia Prima</option>
+                            <?php } else if ($_GET['option'] == 2 ) { ?>
+                            <option value="1" id="filters"> Usuarios </option>
+                            <option selected value="2">Cervezas</option>
+                            <option value="3" id="filters">Productores</option>
+                            <option value="4" id="filters">Materia Prima</option>
+                            <?php } else if ($_GET['option'] == 3 ) { ?>
+                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="2" id="filters">Cervezas</option>
+                            <option selected value="3">Productores</option>
+                            <option value="4" id="filters">Materia Prima</option>
+                            <?php } else if ($_GET['option'] == 4 ) { ?>
+                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="2" id="filters">Cervezas</option>
+                            <option value="3" id="filters">Productores</option>
+                            <option selected value="4">Materia Prima</option>
+                            <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
+                            <option value="1" selected id="filters"> Usuarios </option>
+                            <option value="2" id="filters">Cervezas</option>
+                            <option value="3" id="filters">Productores</option>
+                            <option value="4" id="filters">Materia Prima</option>
+                            <?php } ?>
                           </select>
-
                         </div>
                         <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -479,7 +523,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                 <div class="name_profile">
-                    <p><?php echo $row['userName']; ?></p>
+                    <p><?php echo $row['userName']; ?> <?php echo $row['userLastName']; ?></p>
                 </div>
 
                 <div class="city_profile">
@@ -491,7 +535,7 @@ if (isset($_SESSION['idUser'])) {
                 </div>
 
                 <div class="profile_res">
-                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'No description.' ?></p>
+                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'Ninguna descripción.' ?></p>
                 </div>
 
                 <!-- Send message popup -->
@@ -523,7 +567,7 @@ if (isset($_SESSION['idUser'])) {
 	                    </div>
 	                </div>
 	            <?php }
-	        	} ?>
+	        	    } ?>
                 <!-- /lightbox-panel -->
                 <div id="lightbox"></div>
                 <!-- /lightbox -->
@@ -552,6 +596,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = f.idFavoritesList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay favoritos <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l1 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -592,6 +639,7 @@ if (isset($_SESSION['idUser'])) {
                                   $contador=0;
                                 }
                               }
+                            //}
                           	?>
 
 
@@ -646,6 +694,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = w.idWishList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay Wishlist <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l2 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -689,6 +740,7 @@ if (isset($_SESSION['idUser'])) {
                                   $contador=0;
                                 }
                               }
+                            //}
                           	?>
 
                         </div>
@@ -742,6 +794,9 @@ if (isset($_SESSION['idUser'])) {
                                       ON u.idFavoritesList = r.idRanksList
                                       WHERE u.idUser = '".$_GET['idUser']."'";
                               $r = mysql_query($q) or die(mysql_error());
+                              /*if (($favorites = mysql_fetch_array($r)) == false) {
+                                echo "<p>No hay Ranking <a href='cervezas.php'><u>Ver Cervezas</u></a></p>";
+                              } else {*/
                               $contador = 0;
                               while($l3 = mysql_fetch_array($r)){
                                 if($contador==0)
@@ -848,6 +903,7 @@ if (isset($_SESSION['idUser'])) {
                                   $contador=0;
                                 }
                               }
+                            //}
                             ?>
 
                         </div>
@@ -893,9 +949,10 @@ if (isset($_SESSION['idUser'])) {
                         <!-- message received -->
                         <?php
                         $query2 = "SELECT * FROM postelement po
-									INNER JOIN user us
-									ON us.idUser = po.idUser
-									WHERE po.idPublicMessagesList =".$row['idPublicMessagesList'];
+                									INNER JOIN user us
+                									ON us.idUser = po.idUser
+                                  WHERE us.userStatus != 0
+                									AND po.idPublicMessagesList =".$row['idPublicMessagesList'];
                         $resultado2 = mysql_query($query2) or die(mysql_error());
                         while ($rows2 = mysql_fetch_array($resultado2)) {
                         ?>
@@ -1606,7 +1663,14 @@ if (isset($_SESSION['idUser'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
+                              if(result == -2){
+                                $('.blockcount').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.blockcount').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             }
                         }
                     },
