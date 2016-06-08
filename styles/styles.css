@@ -406,6 +406,11 @@ span.text_prin span{
     align-items: flex-start;
 }
 
+.user-status img {
+    width: 10px;
+    height: 10px;
+}
+
 .menu_buttom{
   width: 8%;
   height: auto;
@@ -815,6 +820,10 @@ span.ver-perfil-button{
 .flex-item-info{
   margin-left: .5vw;
   text-align: center;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: clip;
+  white-space: nowrap;
 }
 
 .flex-item-info span{
