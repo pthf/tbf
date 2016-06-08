@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Inicio | The Beer Fans | Red Social</title>
+	<title>Inicio | The Beer Fans | Social Network</title>
 
 	<link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -301,7 +301,7 @@
 <!--					<a href="home.html"><li><span>HOME</span></li></a>
 					<a href="cervezas.html"><li><span>CERVEZAS</span></li></a>
 					<a href="productores.html"><li><span>PRODUCTORES</span></li></a>
-					<a href="materia.html"><li><span>MATERIA PRIMA</span></li></a>
+					<a href="materia.html"><li><spanRaw</span></li></a>
 					<a href="perfil.html"><li><span>MI PERFIL</span></li></a>
 					<a href="configuracion.html"><li><span>CONFIGURACIÓN</span></li></a> -->
 					<a href="contact_en.html"><li><span>CONTACT</span></li></a>

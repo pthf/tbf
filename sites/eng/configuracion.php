@@ -25,7 +25,7 @@ if (!isset($_SESSION['language'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Inicio | The Beer Fans | Red Social</title>
+        <title>Inicio | The Beer Fans | Social Network</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -123,7 +123,7 @@ if (!isset($_SESSION['language'])) {
                         <img src="../../images/img_galeria-02_close.png" >
                     </div>
                     <div class="login-title">
-                        <span class="login-title-text">INICIAR SESIÓN</span>
+                        <span class="login-title-text">LOGIN</span>
                     </div>
 
                     <form action="">
@@ -136,15 +136,15 @@ if (!isset($_SESSION['language'])) {
 
                         <div class="send-login-content">
                             <br>
-                            <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
-          <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
+                            <div class="not-user">YOU STILL DO NOT HAVE ACCOUNT? <span class="underline">SIGN UP.</span></div>
+          <div class="forgot-password"><span class="underline">FORGOT PASSWORD? </span> </div>
                             <br><br>
-                            <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
+                            <button type="button" name="button" id="send-login" class="sendLoginUser">ENTER</button>
                         </div>
 
-                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NOT FOUND.</span></div>
+												<div class="not-user notPass"  style="display:none;">WRONG PASSWORD.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">YOUR ACCOUNT IS BLOCKED.</span></div>
 										</form>
                 </div>
 
@@ -249,10 +249,10 @@ if (!isset($_SESSION['language'])) {
 
                         <div class="send-login-content sign-up-send">
                             <br>
-                            <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
+                            <span class="not-user"><label for="privacyTerms">I AGREE <u>TERMS</u>.</label></span>
                             <input required type="checkbox" id="privacyTerms">
                             <br><br>
-                            <button type="submit" name="button" id="send-login">REGISTRARTE</button>
+                            <button type="submit" name="button" id="send-login">SIGN UP</button>
                         </div>
 
                     </form>
@@ -267,18 +267,18 @@ if (!isset($_SESSION['language'])) {
               </div>
 
               <div class="login-title">
-                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+                  <span class="login-title-text">RECOVER PASSWORD</span>
               </div>
 
               <div class="password-modal-content">
                 <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
 
-                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">SEND</button>
 
                 <br><br>
-                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Check your email to verify password.</span>
                 <br>
-                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">Email not found.</span>
               </div>
             </div>
 
@@ -295,18 +295,18 @@ if (!isset($_SESSION['language'])) {
                         <a href="inicio.php"><li><span>HOME</span></li></a>
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="materia.php"><li><spanRaw</span></li></a>
                         <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
                         <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                        <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
+                        <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
                         <a href="inicio.php"><li><span>HOME</span></li></a>
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                        <a href="materia.php"><li><spanRaw</span></li></a>
+                        <a href="#" class="user_name_click"><li><span>LOGIN</span></li></a>
                     </ul>
                 <?php } ?>
             </div>
@@ -341,27 +341,27 @@ if (!isset($_SESSION['language'])) {
                             <option selected value="1">Usuarios</option>
                             <option value="2" id="filters">Cervezas</option>
                             <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4" id="filters">Raw</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
                             <option value="1" id="filters"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
                             <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4" id="filters">Raw</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
                             <option value="1" id="filters"> Usuarios </option>
                             <option value="2" id="filters">Cervezas</option>
                             <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4" id="filters">Raw</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
                             <option value="1" id="filters"> Usuarios </option>
                             <option value="2" id="filters">Cervezas</option>
                             <option value="3" id="filters">Productores</option>
-                            <option selected value="4">Materia Prima</option>
+                            <option selected value="4">Raw</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
                             <option value="1" selected id="filters"> Usuarios </option>
                             <option value="2" id="filters">Cervezas</option>
                             <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4" id="filters">Raw</option>
                             <?php } ?>
                           </select>
                         </div>
@@ -417,7 +417,7 @@ if (!isset($_SESSION['language'])) {
                             } else {
                                 echo '
                                       <div class="user_name">
-                                        <a href="#"><span>INICIAR SESIÓN</span></a>
+                                        <a href="#"><span>LOGIN</span></a>
                                       </div>';
                             }
                             ?>
@@ -456,11 +456,11 @@ if (!isset($_SESSION['language'])) {
                     <form id="formUser" name="formUserData" >
                     	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
                         <div class="email_config">
-                            <p>NOMBRE: </p> <input required type="text" name="name" style="width:40%; border: none; overflow : hidden" value="<?php echo $row['userName']; ?>">
+                            <p>NOMBRE: </p> <input required type="text" name="name" style="width:60%; border: none" value="<?php echo $row['userName']; ?>">
                         </div>
 
                         <div class="edad_config">
-                            <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:40%; border: none;  overflow : hidden" value="<?php echo $row['userLastName']; ?>">
+                            <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:60%; border: none" value="<?php echo $row['userLastName']; ?>">
                         </div>
 
                         <!-- <div class="vivoen_config">
@@ -508,7 +508,7 @@ if (!isset($_SESSION['language'])) {
 
                         <div class="email_config">
                             <p>PAIS: </p>
-                            <select required name="country" class="" style="width:40%; border: none" id="selectCountry">
+                            <select required name="country" class="" style="width:82%; border: none" id="selectCountry">
                                 <option selected disabled value="">Selecciona..</option>
                                 <?php
                                 $query = "SELECT * FROM countries ORDER BY name_c ASC";
@@ -526,7 +526,7 @@ if (!isset($_SESSION['language'])) {
 
                         <div class="pass_config">
                             <p>ESTADO: </p>
-                            <select required name="state" class="" style="width:40%; border: none" id="selectState">
+                            <select required name="state" class="" style="width:70%; border: none" id="selectState">
                                 <option disabled selected value="">Selecciona..</option>
                                 <?php
                                 $query1 = "SELECT * FROM states ORDER BY name_s ASC";
@@ -614,7 +614,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="inicio.php"><li><span>HOME</span></li></a>
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="materia.php"><li><spanRaw</span></li></a>
                         <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
                         <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
                         <a href="contact.php"><li><span>CONTACTO</span></li></a>

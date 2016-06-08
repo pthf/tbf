@@ -63,6 +63,10 @@
 	    left: 12%;
 	}
 
+	.cont_config{
+			width: 97% !important;
+	}
+
 }
 
 @media (max-width: 1680px){
@@ -234,6 +238,10 @@
 		left: 4vw;
 	}
 
+	.cont_config{
+			width: 98% !important;
+	}
+
 }
 
 @media (max-width: 1366px){
@@ -390,10 +398,6 @@
 
 	.inner.profile article li{
 		margin-bottom: 2vw;
-	}
-
-	.favs_profile{
-		margin-left: 9%;
 	}
 
 	.change_profile{
@@ -815,6 +819,10 @@
 
 	span.user_list{
 		font-size: 1.8em;
+	}
+
+	.cont_config{
+			width: 96% !important;
 	}
 
 }
@@ -1351,6 +1359,11 @@
 	    width: 35px;
 	    height: 45px;
 	}
+
+	.cont_config {
+	    width: 97% !important;
+	}
+
 
 }
 
@@ -1939,9 +1952,6 @@
 		top: -1.5vw;
 	}
 
-	.favs_profile{
-		margin-left: 10%;
-	}
 
 	/* comments */
 
@@ -2155,7 +2165,7 @@
 	}
 
 	.cont_config{
-		width: 100%;
+			width: 98% !important;
 	}
 
 	li.star.star-small-profile-user {
@@ -2179,6 +2189,18 @@
 	.social_company a img {
 	    width: 25px;
 	    height: 34px;
+	}
+
+	.cont_config{
+			width: 98% !important;
+	}
+
+	.perfil_change, .banner_change {
+	    width: 70%;
+	}
+
+	input.send_button {
+	    font-size: 10px;
 	}
 
 }
@@ -2632,10 +2654,6 @@
 		height: 280px;
 	}
 
-	.favs_profile{
-		margin-left: 8%;
-	}
-
 	/* configuracion.php */
 
 	.topinfo_config{
@@ -2882,6 +2900,26 @@
 	  margin-left: 17%;
 	}
 
+	.cont_config{
+			width: 97% !important;
+	}
+
+	.perfil_change, .banner_change {
+	    width: 80%;
+	}
+
+	.send_button.comments_send {
+	    font-size: 10px;
+	}
+
+	.rslides_tabs{
+		margin-bottom: 3vw;
+	}
+
+	.rslides_tabs a{
+		padding: 3px 3px;
+	}
+
 }
 
 @media (max-width: 480px){
@@ -2916,10 +2954,6 @@
 
 	.favs_config h1{
 		font-size: 18px;
-	}
-
-	.favs_profile{
-		margin-left: 7%;
 	}
 
 	.toptext_slider,.toptext_slider.comments_title{
@@ -3484,7 +3518,6 @@
 
 	.slides{
 		margin-top: 8%;
-		margin-left: 6%;
 	}
 
 	h1.title_slider{
@@ -3668,6 +3701,19 @@
 	    margin-left: 5%;
 	}
 
+	.cont_config{
+			width: 99% !important;
+	}
+
+	.perfil_change, .banner_change {
+	    width: 85%;
+	}
+
+	#itemContainer {
+    padding-top: 0;
+    padding-bottom: 7%;
+	}
+
 }
 
 @media (max-width: 320px){
@@ -3701,7 +3747,7 @@
 	}
 
 	.favs_profile{
-		margin-left: 4%;
+		margin-left: 0%;
 	}
 
 	.name_profile p{
@@ -3816,8 +3862,8 @@
 	/*mensajes.php */
 
 	.contacttop_messages p{
-		font-size: 14px;
-		line-height: 0;
+		font-size: 12px;
+		line-height: 8px;
 	}
 
 	.image_top img{

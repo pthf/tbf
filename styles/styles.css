@@ -1367,7 +1367,7 @@ select.filter-opt {
 }
 
 .topinfo_config{
-  width: 100%;
+  width: 95%;
   margin-top: 5%;
   padding-bottom: 1%;
   border-bottom: 2px solid #2E2E2E;
@@ -2793,6 +2793,10 @@ input.slider-dot{
     color:  #2E2E2E;
   }
 
+  input.send_button.comments_send {
+      background: white !important;
+  }
+
   .send_button:active,.send_button:hover{
     cursor: pointer;
     opacity: .5;
@@ -2818,7 +2822,7 @@ input.slider-dot{
     display: inline-block;
     vertical-align: top;
     bottom: 0vw;
-    margin-left: 15%;
+    margin-left: 10%;
     width: 80%;
     height: auto;
     border: 1px solid gray;
@@ -2828,7 +2832,7 @@ input.slider-dot{
     bottom: 0vw;
     width: 80.2%;
     margin-top: 1vw;
-    margin-left: 15%;
+    margin-left: 10%;
     left: 0;
   }
 
@@ -2871,6 +2875,7 @@ input.slider-dot{
     width: 100%;
     position: relative;
     z-index: 0;
+    overflow: hidden;
   }
 
   #wrapper-slider:hover{
