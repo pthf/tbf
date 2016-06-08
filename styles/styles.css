@@ -406,6 +406,11 @@ span.text_prin span{
     align-items: flex-start;
 }
 
+.user-status img {
+    width: 10px !important;
+    height: 10px !important;
+}
+
 .menu_buttom{
   width: 8%;
   height: auto;
@@ -815,6 +820,10 @@ span.ver-perfil-button{
 .flex-item-info{
   margin-left: .5vw;
   text-align: center;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: clip;
+  white-space: nowrap;
 }
 
 .flex-item-info span{
@@ -1785,30 +1794,6 @@ textarea{
   border-bottom: none !important;
 }
 
-.social_contact img{
-  transform: scale(0.6, 0.6);
-  -ms-transform: scale(0.6, 0.6);
-  -webkit-transform: scale(0.6, 0.6);
-}
-
-
-.first_contact{
-  margin-left: 5%;
-  margin-right: 3%;
-}
-
-.other_contact{
-  margin-right: 5%;
-}
-
-a.other_contact.ig img{
-  width: 20%;
-}
-
-a.other_contact.twt img {
-    width: 20%;
-}
-
 /* perfil.php */
 
 .profile_container{
@@ -2313,10 +2298,18 @@ input.slider-dot{
   .social_company{
     width: 80%;
     text-align: center;
-    padding-bottom: 3%;
+    padding: 1.5vw 0;
     margin-bottom: 8%;
     color: #2E2E2E;
     border-bottom: 2px solid rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .social_company a img {
+    width: 45px;
+    height: 55px;
   }
 
   .social-no-padding{
@@ -2328,12 +2321,6 @@ input.slider-dot{
 
   .social_company p{
     padding-top: 8%;
-  }
-
-  .social_company img{
-    transform: scale(0.6, 0.6);
-    -ms-transform: scale(0.6, 0.6);
-    -webkit-transform: scale(0.6, 0.6);
   }
 
   .fav_box{
