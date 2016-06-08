@@ -194,7 +194,7 @@
 					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
-      <tr ng-if="itemShowElements===9" ng-repeat="data in dataUsers | orderBy: 'userExp'">
+      <tr ng-if="itemShowElements===9" ng-repeat="data in dataUsers | orderBy: '-userExp'">
         <th scope="row">{{data.idUser}}</th>
 				<td>{{data.registrationDate}}</td>
 				<td>{{data.userName}}</td>

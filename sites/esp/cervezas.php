@@ -8,6 +8,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 
@@ -125,6 +131,7 @@ if (isset($_SESSION['idUser'])) {
 
                       <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
                       <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                      <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
                   </form>
               </div>
 
@@ -222,8 +229,10 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -445,7 +454,7 @@ if (isset($_SESSION['idUser'])) {
                                     <span class="principal_text country">PAÍS</span>
                                     <ul class="suboptions_li country">
                                         <?php
-                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id GROUP BY name_c";
+                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id WHERE p.language = ".$_SESSION['language']." GROUP BY name_c";
                                         $resultado1 = mysql_query($query1) or die(mysql_error());
 
                                         while ($row1 = mysql_fetch_array($resultado1)) {
@@ -481,7 +490,7 @@ if (isset($_SESSION['idUser'])) {
 
                         	<?php
                         		if (isset($_GET['type'])) {
-		                          	$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idBeerType = bt.idBeerType WHERE bt.beerTypeName ='" . $_GET['type'] . "'";
+		                          	$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idBeerType = bt.idBeerType WHERE b.language = ".$_SESSION['language']." AND bt.beerTypeName ='" . $_GET['type'] . "'";
 	                                $resultado_type = mysql_query($query_type) or die(mysql_error());
 		                          	$contador = 0;
 		                          	while ($row3 = mysql_fetch_array($resultado_type)) {
@@ -512,8 +521,10 @@ if (isset($_SESSION['idUser'])) {
 									                    INNER JOIN beerfans.producer pro
 									                    ON pro.idProducer = b.idProducer
 									                    INNER JOIN beerfans.countries co
-									                    ON co.id = pro.country_id WHERE co.name_c ='" . $_GET['country'] . "'";
-	                                $resultado3 = mysql_query($query3) or die(mysql_error());
+									                    ON co.id = pro.country_id
+                                      WHERE b.language = ".$_SESSION['language']."
+                                      AND co.name_c ='" . $_GET['country'] . "'";
+	                                $resultado3 = mysql_query($query_country) or die(mysql_error());
 		                          	$contador = 0;
 		                          	while ($row3 = mysql_fetch_array($resultado3)) {
 			                            if($contador==0)
@@ -546,7 +557,8 @@ if (isset($_SESSION['idUser'])) {
 								                  ON p.idProducer = b.idProducer
 								                  INNER JOIN countries c
 								                  ON c.id = p.country_id
-								                  WHERE bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
+                                  WHERE b.language = ".$_SESSION['language']."
+								                  AND bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
                                     $resultado3 = mysql_query($query3) or die(mysql_error());
                                     $contador = 0;
                                     while ($row3 = mysql_fetch_array($resultado3)) {
@@ -573,7 +585,7 @@ if (isset($_SESSION['idUser'])) {
 			                            }
 			                        }
 	                          	} else {
-	                          		$query2 = "SELECT * FROM beer";
+	                          		$query2 = "SELECT * FROM beer WHERE language = ".$_SESSION['language'];
                                     $resultado2 = mysql_query($query2) or die(mysql_error());
                                     $contador = 0;
                                     while ($row2 = mysql_fetch_array($resultado2)) {
@@ -965,7 +977,14 @@ if (isset($_SESSION['idUser'])) {
                                         $('.notPass').css({'display': 'none'});
                                     }, 2000);
                                 } else {
+                                  if(result == -2){
+                                    $('.blockcount').css({'display': 'block'});
+                                    setTimeout(function () {
+                                        $('.blockcount').css({'display': 'none'});
+                                    }, 2000);
+                                  }else{
                                     location.reload();
+                                  }
                                 }
                             }
                         },
@@ -978,6 +997,7 @@ if (isset($_SESSION['idUser'])) {
                 });
 
             </script>
+
 
 		        <script type="text/javascript">
 

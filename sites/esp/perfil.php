@@ -4,18 +4,27 @@ include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
 if(isset($_GET['idUser'])){
-
+  $query = "SELECT userStatus FROM user WHERE idUser =".$_GET['idUser'];
+  $result = mysql_query($query) or die(mysql_error());
+  $line = mysql_fetch_array($result);
+  if($line['userStatus']==0){
+    header('Location: inicio.php');
+  }
 }else{
   header('Location: inicio.php');
 }
-
-
 
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 
@@ -137,6 +146,7 @@ if (isset($_SESSION['idUser'])) {
 
 												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -233,8 +243,10 @@ if (isset($_SESSION['idUser'])) {
 
 												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-												<span style="display:none;" id="mail">Los email no son idénticos.</span>
-												<span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+
 
 												<div class="send-login-content sign-up-send">
 														<br>
@@ -511,7 +523,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                 <div class="name_profile">
-                    <p><?php echo $row['userName']; ?></p>
+                    <p><?php echo $row['userName']; ?> <?php echo $row['userLastName']; ?></p>
                 </div>
 
                 <div class="city_profile">
@@ -626,7 +638,7 @@ if (isset($_SESSION['idUser'])) {
                                   echo '</article>';
                                   $contador=0;
                                 }
-                              } 
+                              }
                             //}
                           	?>
 
@@ -937,9 +949,10 @@ if (isset($_SESSION['idUser'])) {
                         <!-- message received -->
                         <?php
                         $query2 = "SELECT * FROM postelement po
-									INNER JOIN user us
-									ON us.idUser = po.idUser
-									WHERE po.idPublicMessagesList =".$row['idPublicMessagesList'];
+                									INNER JOIN user us
+                									ON us.idUser = po.idUser
+                                  WHERE us.userStatus != 0
+                									AND po.idPublicMessagesList =".$row['idPublicMessagesList'];
                         $resultado2 = mysql_query($query2) or die(mysql_error());
                         while ($rows2 = mysql_fetch_array($resultado2)) {
                         ?>
@@ -1650,7 +1663,14 @@ if (isset($_SESSION['idUser'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
+                              if(result == -2){
+                                $('.blockcount').css({'display': 'block'});
+                                setTimeout(function () {
+                                    $('.blockcount').css({'display': 'none'});
+                                }, 2000);
+                              }else{
                                 location.reload();
+                              }
                             }
                         }
                     },

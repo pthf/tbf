@@ -7,6 +7,12 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 }
+
+if (!isset($_SESSION['language'])) {
+    //Spanihs by default.
+    $_SESSION['language'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -122,8 +128,9 @@ if (isset($_SESSION['idUser'])) {
 														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
 												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -443,7 +450,7 @@ if (isset($_SESSION['idUser'])) {
                                     <span class="principal_text country">PAÍS</span>
                                     <ul class="suboptions_li country">
                                       <?php
-                                      $query1 = "SELECT c.id,c.name_c FROM rawmaterial ra INNER JOIN countries c ON c.id = ra.country_id  GROUP BY name_c";
+                                      $query1 = "SELECT c.id,c.name_c FROM rawmaterial ra INNER JOIN countries c ON c.id = ra.country_id WHERE ra.language = ".$_SESSION['language']." GROUP BY name_c";
                                       $resultado1 = mysql_query($query1) or die(mysql_error());
 
                                       while ($row1 = mysql_fetch_array($resultado1)) {
@@ -460,7 +467,7 @@ if (isset($_SESSION['idUser'])) {
                                     <ul class="suboptions_li state">
                                       <?php
                                       if (isset($_GET['country'])) {
-                                        $query1 = "SELECT * FROM rawmaterial rm INNER JOIN states st ON st.id = rm.state_id INNER JOIN countries co ON co.id = rm.country_id WHERE co.name_c = '".$_GET['country']."' GROUP BY name_s";
+                                        $query1 = "SELECT * FROM rawmaterial rm INNER JOIN states st ON st.id = rm.state_id INNER JOIN countries co ON co.id = rm.country_id WHERE rm.language = ".$_SESSION['language']." AND co.name_c = '".$_GET['country']."' GROUP BY name_s";
                                         $resultado1 = mysql_query($query1) or die(mysql_error());
 
                                         while ($row1 = mysql_fetch_array($resultado1)) {
@@ -500,11 +507,12 @@ if (isset($_SESSION['idUser'])) {
                                                         ON mhrm.idRawMaterial = rm.idRawMaterial
                                                         INNER JOIN rawmaterialtype rmt
                                                         ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType
-                                                        INNER JOIN countries co 
+                                                        INNER JOIN countries co
                                                         ON co.id = rm.country_id
-                                                        INNER JOIN states st 
-                                                        ON st.id = rm.state_id 
-                                                        WHERE rmt.rawMaterialTypeName ='" . $_GET['type'] . "' AND co.name_c = '".$_GET['country']."' AND st.name_s = '".$_GET['state']."'";
+                                                        INNER JOIN states st
+                                                        ON st.id = rm.state_id
+                                                        WHERE rm.language = ".$_SESSION['language']."
+                                                        AND rmt.rawMaterialTypeName ='" . $_GET['type'] . "' AND co.name_c = '".$_GET['country']."' AND st.name_s = '".$_GET['state']."'";
                                   $resultTypeCountry = mysql_query($queryTypeCountry) or die(mysql_error());
                                   $contador = 0;
                                   while ($row3 = mysql_fetch_array($resultTypeCountry)) {
@@ -536,8 +544,10 @@ if (isset($_SESSION['idUser'])) {
                                                         ON mhrm.idRawMaterial = rm.idRawMaterial
                                                         INNER JOIN rawmaterialtype rmt
                                                         ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType
-                                                        INNER JOIN countries co 
-                                                        ON co.id = rm.country_id WHERE rmt.rawMaterialTypeName ='" . $_GET['type'] . "' AND co.name_c = '".$_GET['country']."'";
+                                                        INNER JOIN countries co
+                                                        ON co.id = rm.country_id
+                                                        WHERE rm.language = ".$_SESSION['language']."
+                                                        AND rmt.rawMaterialTypeName ='" . $_GET['type'] . "' AND co.name_c = '".$_GET['country']."'";
 	                        		    $resultTypeCountry = mysql_query($queryTypeCountry) or die(mysql_error());
                                   $contador = 0;
                                   while ($row3 = mysql_fetch_array($resultTypeCountry)) {
@@ -568,7 +578,9 @@ if (isset($_SESSION['idUser'])) {
                       														INNER JOIN beerfans.rawmaterial_has_rawmaterialtype mhrm
                       														ON mhrm.idRawMaterial = rm.idRawMaterial
                       														INNER JOIN beerfans.rawmaterialtype rmt
-                      														ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType WHERE rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";
+                      														ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType
+                                                  WHERE rm.language = ".$_SESSION['language']."
+                                                  AND rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";
                                 	$resultado_type = mysql_query($query_type) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado_type)) {
@@ -598,8 +610,10 @@ if (isset($_SESSION['idUser'])) {
 		                          		$query2 = "SELECT * FROM rawmaterial rm
                                               INNER JOIN rawmaterial_has_rawmaterialtype mhrm
                                               ON mhrm.idRawMaterial = rm.idRawMaterial
-                                              INNER JOIN countries co 
-                                              ON co.id = rm.country_id WHERE co.name_c = '".$_GET['country']."'";
+                                              INNER JOIN countries co
+                                              ON co.id = rm.country_id
+                                              WHERE rm.language = ".$_SESSION['language']."
+                                              AND co.name_c = '".$_GET['country']."'";
                                   $resultado_country = mysql_query($query2) or die(mysql_error());
 			                          	$contador = 0;
 			                          	while ($row3 = mysql_fetch_array($resultado_country)) {
@@ -627,9 +641,10 @@ if (isset($_SESSION['idUser'])) {
 		                          		}
                                 } else if (isset($_GET['state'])) {
                                   $query2 = "SELECT * FROM rawmaterial rm
-                                              INNER JOIN states st 
+                                              INNER JOIN states st
                                               ON st.id = rm.state_id
-                                              WHERE st.name_s = '".$_GET['state']."'";
+                                              WHERE rm.language = ".$_SESSION['language']."
+                                              AND st.name_s = '".$_GET['state']."'";
                                   $resultado_state = mysql_query($query2) or die(mysql_error());
                                   $contador = 0;
                                   while ($row3 = mysql_fetch_array($resultado_state)) {
@@ -656,7 +671,7 @@ if (isset($_SESSION['idUser'])) {
                                     }
                                   }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM rawmaterial";
+		                          		$query2 = "SELECT * FROM rawmaterial WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {
@@ -1042,7 +1057,14 @@ if (isset($_SESSION['idUser'])) {
                                             $('.notPass').css({'display': 'none'});
                                         }, 2000);
                                     } else {
+                                      if(result == -2){
+                                        $('.blockcount').css({'display': 'block'});
+                                        setTimeout(function () {
+                                            $('.blockcount').css({'display': 'none'});
+                                        }, 2000);
+                                      }else{
                                         location.reload();
+                                      }
                                     }
                                 }
                             },
@@ -1055,6 +1077,7 @@ if (isset($_SESSION['idUser'])) {
                     });
 
                 </script>
+
 
 				        <script type="text/javascript">
 
