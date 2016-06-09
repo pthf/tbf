@@ -3039,6 +3039,20 @@ input.slider-dot{
     width: 50%;
   }
 
+  span.title {
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  span.subtitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
   .inner li .title{
     display: inline-block;
     text-align: center;

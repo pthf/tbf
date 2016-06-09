@@ -67,6 +67,19 @@
 			width: 97% !important;
 	}
 
+	.comments_text{
+		margin-left: 20%;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 20% !important;
+	}
+
+	#comments_box{
+		margin-left: 20% !important;
+	}
+
+
 }
 
 @media (max-width: 1680px){
@@ -241,6 +254,19 @@
 	.cont_config{
 			width: 98% !important;
 	}
+
+	.comments_text{
+		margin-left: 20%;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 20% !important;
+	}
+
+	#comments_box{
+		margin-left: 20% !important;
+	}
+
 
 }
 
@@ -427,6 +453,19 @@
 	.item.i3 {
 	  margin-left: 13.5%;
 	}
+
+	.comments_text{
+		margin-left: 20%;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 20% !important;
+	}
+
+	#comments_box{
+		margin-left: 20% !important;
+	}
+
 
 }
 
@@ -825,6 +864,19 @@
 			width: 96% !important;
 	}
 
+	.comments_text{
+		margin-left: 20%;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 20% !important;
+	}
+
+	#comments_box{
+		margin-left: 20% !important;
+	}
+
+
 }
 
 @media (max-width: 1024px){
@@ -849,10 +901,10 @@
 		font-size: 14px;
 	}
 
-	.profile_res{
-		font-size: 12px;
-		width: 200%;
-		margin-left:-40%;
+	.profile_res {
+	    font-size: 12px;
+	    width: 150%;
+	    margin-left: 0;
 	}
 
 	.materia_res{
@@ -1357,11 +1409,23 @@
 
 	.social_company a img {
 	    width: 35px;
-	    height: 45px;
+	    height: auto;
 	}
 
 	.cont_config {
-	    width: 97% !important;
+	  width: 97% !important;
+	}
+
+	.comments_text{
+		margin-left: 20%;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 20% !important;
+	}
+
+	#comments_box{
+		margin-left: 20% !important;
 	}
 
 
@@ -2147,7 +2211,7 @@
 
 	.content_profile{
 		width: 30%;
-    margin-left: 30%;
+    margin-left: 25%;
 	}
 
 	.social_company{
@@ -2188,7 +2252,7 @@
 
 	.social_company a img {
 	    width: 25px;
-	    height: 34px;
+	    height: auto;
 	}
 
 	.cont_config{
@@ -2202,6 +2266,19 @@
 	input.send_button {
 	    font-size: 10px;
 	}
+
+	.comments_text{
+		margin-left: 10% !important;
+	}
+
+	.toptext_slider.comments_title{
+		margin-left: 0% !important;
+	}
+
+	#comments_box{
+		margin-left: 10% !important;
+	}
+
 
 }
 
@@ -2253,7 +2330,6 @@
 
 	.content_profile{
 		width: 27%;
-		left: 5vw;
 	}
 
 	.beer_message{
@@ -3711,8 +3787,13 @@
 
 	#itemContainer {
     padding-top: 0;
-    padding-bottom: 7%;
+    padding-bottom: 0%;
 	}
+
+	#itemContainer h2 {
+    margin-top: 6%;
+	}
+
 
 }
 
@@ -4142,6 +4223,15 @@
 	.item.i3 {
 	    margin-left: 29%;
 	    margin-top: -20%;
+	}
+
+	#itemContainer h2 {
+	    margin-top: 9%;
+	}
+
+	#itemContainer {
+	    padding-top: 0;
+	    padding-bottom: 2%;
 	}
 
 
