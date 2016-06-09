@@ -102,8 +102,9 @@ if (!isset($_SESSION['language'])) {
         <script type="text/javascript">
         $(document).ready(function(){
             $("#type-search").change(function(){
+            	var id = <?php echo $_GET['id'];?>;
                 var option = $('select[id=type-search]').val();
-                location.href = "perfil_beer.php?option="+option;
+                location.href = "perfil_beer.php?id="+id+"&option="+option;
                 $('#type-search').val($(this).val());
             });
         });
@@ -340,30 +341,35 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
+                            <option value="" disabled> Tipo búsqueda </option>
                             <option selected value="1">Usuarios</option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
                             <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
                             <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option value="1" selected id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option selected value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
                         </div>
@@ -384,7 +390,8 @@ if (!isset($_SESSION['language'])) {
                                 $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
                                                WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                               AND message.user_idUser != " . $line['idUser'];
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 

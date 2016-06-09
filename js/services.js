@@ -171,8 +171,9 @@ $("#SendRequestChat").submit(function(e){
         	namefunction : "requestMessage",
         },
         success: function(result){
-			$('#SendRequestChat')[0].reset();
-			location.reload();
+        	alert(result);
+			/*$('#SendRequestChat')[0].reset();
+			location.reload();*/
 	 	},
 	 	error: function(error){
 	 		alert(error);

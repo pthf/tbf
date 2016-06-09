@@ -54,6 +54,9 @@ if(isset($_POST['namefunction'])){
 		case 'addWishList':
 			addWishList($_POST['dataUser'], $_POST['dataBeer']);
 		break;
+		case 'changeStatusMessage':
+			changeStatusMessage();
+		break;
 	}
 }
 
@@ -204,7 +207,7 @@ function newMessage() {
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
 	    $idChatReceptor = mysql_insert_id();
-		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idEmisor']."')";
 		$resultado4 = mysql_query($query5) or die (mysql_error());
 
 	} else if ($row3 > 0) {
@@ -216,7 +219,7 @@ function newMessage() {
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
-		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idReceptor']."')";
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idEmisor']."')";
 		$resultado4 = mysql_query($query5) or die (mysql_error());
 
 	}
@@ -225,6 +228,9 @@ function newMessage() {
 function requestMessage () {
 
 	parse_str($_POST['data'], $formData);
+
+	var_dump($formData);
+	exit();
 
 	//Consulta del Usuario Receptor
 	$query1 = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser =  '".$formData['idReceptor']."'";
@@ -448,4 +454,11 @@ function addWishList($dataUser, $dataBeer){
 	$result = mysql_query($query) or die(mysql_error());
 
 	addUseExp($dataUser);
+}
+
+function changeStatusMessage () {
+
+	/*$query = "UPDATE message SET messageStatus = '1' WHERE chat_idChat = '".$_POST['data']."'";
+	$result = mysql_query($query) or die(mysql_error());*/
+
 }

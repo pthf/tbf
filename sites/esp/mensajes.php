@@ -4,7 +4,7 @@ if (isset($_SESSION['idUser'])) {
     include('../../admin/php/connect_bd.php');
     connect_base_de_datos();
 
-	$query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
+  $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 
@@ -38,49 +38,49 @@ if (!isset($_SESSION['language'])) {
 
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
 
-		<script type="text/javascript">
-            $(document).ready(function () {
+        <script type="text/javascript">
+    $(document).ready(function () {
 
-                (function ($) {
-                    $('#filtrar_user').keyup(function () {
-                        var rex = new RegExp($(this).val(), 'i');
-                        $('.user_message .chat_user').hide();
-                        $('.user_message .chat_user').filter(function () {
-                            return rex.test($(this).text());
-                        }).show();
-                    })
-                }(jQuery));
-            });
+        (function ($) {
+            $('#filtrar_user').keyup(function () {
+                var rex = new RegExp($(this).val(), 'i');
+                $('.user_message .chat_user').hide();
+                $('.user_message .chat_user').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+            })
+        }(jQuery));
+    });
         </script>
 
-		    <script type="text/javascript">
-            $(document).ready(function () {
+        <script type="text/javascript">
+$(document).ready(function () {
+    $('.buscar .users').hide();
+    $('.noresults').hide();
+    (function ($) {
+        $('#box-target').keyup(function () {
+            if ($(this).val() == '') {
                 $('.buscar .users').hide();
-                $('.noresults').hide();
-                (function ($) {
-                    $('#box-target').keyup(function () {
-                        if ($(this).val() == '') {
-                            $('.buscar .users').hide();
-                        } else {
-                            var rex = new RegExp($(this).val(), 'i');
-                            var valores = $(this).val();
-                            var option = <?php echo $_GET['option'];?>;
-                            $.ajax({
-                                url: "busqueda.php",
-                                type: "POST",
-                                data: {valores: valores, option: option},
-                                success: function (result) {
-                                    $('.buscar').html(result);
-                                    $('.buscar .users').show();
-                                },
-                                error: function (error) {
-                                    alert(error);
-                                }
-                            })
-                        }
-                    })
-                }(jQuery));
-            });
+            } else {
+                var rex = new RegExp($(this).val(), 'i');
+                var valores = $(this).val();
+                var option = <?php echo $_GET['option'];?>;
+                $.ajax({
+                    url: "busqueda.php",
+                    type: "POST",
+                    data: {valores: valores, option: option},
+                    success: function (result) {
+                        $('.buscar').html(result);
+                        $('.buscar .users').show();
+                    },
+                    error: function (error) {
+                        alert(error);
+                    }
+                })
+            }
+        })
+    }(jQuery));
+});
         </script>
 
         <script type="text/javascript">
@@ -95,162 +95,162 @@ if (!isset($_SESSION['language'])) {
 
     </head>
     <body>
-				<?php if (!isset($_SESSION['idUser'])) { ?>
-						<div class="background-filter"></div>
-				<?php } ?>
+        <?php if (!isset($_SESSION['idUser'])) { ?>
+        <div class="background-filter"></div>
+        <?php } ?>
 
-				<?php if (!isset($_SESSION['idUser'])) { ?>
-						<div class="login-modal">
-								<div class="login-modal-wrapper">
-										<div class="close-icon">
-												<img src="../../images/img_galeria-02_close.png" >
-										</div>
-										<div class="login-title">
-												<span class="login-title-text">INICIAR SESIÓN</span>
-										</div>
+        <?php if (!isset($_SESSION['idUser'])) { ?>
+        <div class="login-modal">
+            <div class="login-modal-wrapper">
+                <div class="close-icon">
+                    <img src="../../images/img_galeria-02_close.png" >
+                </div>
+                <div class="login-title">
+                    <span class="login-title-text">INICIAR SESIÓN</span>
+                </div>
 
-										<form action="">
-												<div class="input-boxes">
-														<input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
-														<br><br>
-														<input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
-														<br>
-												</div>
+                <form action="">
+                    <div class="input-boxes">
+                        <input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
+                        <br><br>
+                        <input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
+                        <br>
+                    </div>
 
-												<div class="send-login-content">
-														<br>
-														<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
-                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
-														<br><br>
-														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
-												</div>
+                    <div class="send-login-content">
+                        <br>
+                        <div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                        <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
+                        <br><br>
+                        <button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
+                    </div>
 
-                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
-										</form>
-								</div>
+                    <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+                    <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                    <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
+                </form>
+            </div>
 
-						</div>
-				<?php } ?>
+        </div>
+        <?php } ?>
 
-				<?php if (!isset($_SESSION['idUser'])) { ?>
-						<div class="signup-modal">
-								<div class="close-icon">
-										<img src="../../images/img_galeria-02_close.png" >
-								</div>
+        <?php if (!isset($_SESSION['idUser'])) { ?>
+        <div class="signup-modal">
+            <div class="close-icon">
+                <img src="../../images/img_galeria-02_close.png" >
+            </div>
 
-								<div class="login-title">
-										<span class="login-title-text">REGISTRARSE</span>
-								</div>
+            <div class="login-title">
+                <span class="login-title-text">REGISTRARSE</span>
+            </div>
 
-								<div class="signup-modal-content">
+            <div class="signup-modal-content">
 
-										<form class="formNewUser" id="formNewUser">
+                <form class="formNewUser" id="formNewUser">
 
-												<input required type="text" name="userName" placeholder="NOMBRE:" class="signup-form">
-												<input required type="text" name="lastname" placeholder="APELLIDO:" class="signup-form">
+                    <input required type="text" name="userName" placeholder="NOMBRE:" class="signup-form">
+                    <input required type="text" name="lastname" placeholder="APELLIDO:" class="signup-form">
 
 
-												<div class="date-input">
-														<span class="title-date">Fecha de nacimiento</span>
+                    <div class="date-input">
+                        <span class="title-date">Fecha de nacimiento</span>
 
-														<div class="date-input-wrapper">
+                        <div class="date-input-wrapper">
 
-                              <select required id="birthday_year" name="birthday_year" class="birthday year" >
-                                  <option value="">Año &#x25BE;</option>
-                                  <option value="1995">1995</option>
-                                  <option value="1994">1994</option>
-                                  <option value="1993">1993</option>
-                                  <option value="1992">1992</option>
-                                  <option value="1991">1991</option>
-                                  <option value="1990">1990</option>
-                                  <option value="1989">1989</option>
-                                  <option value="1988">1988</option>
-                                  <option value="1987">1987</option>
-                                  <option value="1986">1986</option>
-                                  <option value="1985">1985</option>
-                                  <option value="1984">1984</option>
-                                  <option value="1983">1983</option>
-                                  <option value="1982">1982</option>
-                                  <option value="1981">1981</option>
-                                  <option value="1980">1980</option>
-                              </select>
+                            <select required id="birthday_year" name="birthday_year" class="birthday year" >
+                                <option value="">Año &#x25BE;</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                                <option value="1983">1983</option>
+                                <option value="1982">1982</option>
+                                <option value="1981">1981</option>
+                                <option value="1980">1980</option>
+                            </select>
 
-                              <select required id="birthday_month" name="birthday_month" class="birthday month" >
-                                  <option value="">Mes &#x25BE;</option>
-                                  <option value="1">Enero</option>
-                                  <option value="2">Febrero</option>
-                                  <option value="3">Marzo</option>
-                                  <option value="4">Abril</option>
-                                  <option value="5">Mayo</option>
-                                  <option value="6">Junio</option>
-                                  <option value="7">Julio</option>
-                                  <option value="8">Agosto</option>
-                                  <option value="9">Septiembre</option>
-                                  <option value="10">Octubre</option>
-                                  <option value="11">Noviembre</option>
-                                  <option value="12">Diciembre</option>
-                              </select>
+                            <select required id="birthday_month" name="birthday_month" class="birthday month" >
+                                <option value="">Mes &#x25BE;</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
 
-                              <select required id="birthday_day" name="birthday_day" class="birthday day" >
-                                  <option value="">Día &#x25BE;</option>
-                              </select>
-														</div>
+                            <select required id="birthday_day" name="birthday_day" class="birthday day" >
+                                <option value="">Día &#x25BE;</option>
+                            </select>
+                        </div>
 
-												</div>
+                    </div>
 
-												<select required name="country" class="signup-form select-Country" id="selectCountry">
-														<option selected disabled value="">Selecciona un país &#x25BE;</option>
-														<?php
-														$query = "SELECT * FROM countries ORDER BY name_c ASC";
-														$result = mysql_query($query) or die(mysql_error());
-														while ($line = mysql_fetch_array($result)) {
-																echo '<option value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
-														}
-														?>
-												</select>
+                    <select required name="country" class="signup-form select-Country" id="selectCountry">
+                        <option selected disabled value="">Selecciona un país &#x25BE;</option>
+                            <?php
+                            $query = "SELECT * FROM countries ORDER BY name_c ASC";
+                            $result = mysql_query($query) or die(mysql_error());
+                            while ($line = mysql_fetch_array($result)) {
+                                echo '<option value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
+                            }
+                            ?>
+                    </select>
 
-												<select required name="state" class="signup-form select-Country" id="selectState">
-														<option disabled selected value="">Selecciona un estado &#x25BE;</option>
-												</select>
+                    <select required name="state" class="signup-form select-Country" id="selectState">
+                        <option disabled selected value="">Selecciona un estado &#x25BE;</option>
+                    </select>
 
-												<input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
+                    <input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
 
-												<input required type="email" name="confirmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
+                    <input required type="email" name="confirmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
 
-												<input required type="password" name="password" placeholder="CONTRASEÑA:" class="signup-form">
+                    <input required type="password" name="password" placeholder="CONTRASEÑA:" class="signup-form">
 
-												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
+                    <input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
 
-                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
-                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
-                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+                    <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
+                    <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
+                    <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
 
-												<div class="send-login-content sign-up-send">
-														<br>
-														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
-														<input required type="checkbox" id="privacyTerms">
-														<br><br>
-														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
-												</div>
+                    <div class="send-login-content sign-up-send">
+                        <br>
+                        <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
+                        <input required type="checkbox" id="privacyTerms">
+                        <br><br>
+                        <button type="submit" name="button" id="send-login">REGISTRARTE</button>
+                    </div>
 
-										</form>
+                </form>
 
-								</div>
-						</div>
-				<?php } ?>
+            </div>
+        </div>
+        <?php } ?>
 
-            <div class="password-modal">
-              <div class="close-icon">
-                  <img src="../../images/img_galeria-02_close.png" >
-              </div>
+        <div class="password-modal">
+            <div class="close-icon">
+                <img src="../../images/img_galeria-02_close.png" >
+            </div>
 
-              <div class="login-title">
-                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
-              </div>
+            <div class="login-title">
+                <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+            </div>
 
-              <div class="password-modal-content">
+            <div class="password-modal-content">
                 <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
 
                 <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
@@ -259,48 +259,48 @@ if (!isset($_SESSION['language'])) {
                 <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
                 <br>
                 <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
-              </div>
+            </div>
+        </div>
+
+
+        <div id="menu_options">
+
+            <div class="close_menu">
+                <img src="../../images/close_image-01.png">
             </div>
 
+            <div class="menu_list">
+                <?php if (isset($_SESSION['idUser'])) { ?>
+                <ul>
+                    <a href="inicio.php"><li><span>HOME</span></li></a>
+                    <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                    <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                    <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                    <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                    <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
+                </ul>
+                <?php } else { ?>
+                <ul>
+                    <a href="inicio.php"><li><span>HOME</span></li></a>
+                    <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                    <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                    <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                    <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                </ul>
+                <?php } ?>
+            </div>
 
-				<div id="menu_options">
+            <div class="social_other">
+                <ul>
+                    <a href=""><li><img src="../../images/bottom-05.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-04.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-03.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-02.png"></li></a>
+                </ul>
+            </div>
 
-						<div class="close_menu">
-								<img src="../../images/close_image-01.png">
-						</div>
-
-						<div class="menu_list">
-								<?php if (isset($_SESSION['idUser'])) { ?>
-										<ul>
-												<a href="inicio.php"><li><span>HOME</span></li></a>
-												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
-										</ul>
-								<?php } else { ?>
-										<ul>
-												<a href="inicio.php"><li><span>HOME</span></li></a>
-												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-												<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
-										</ul>
-								<?php } ?>
-						</div>
-
-						<div class="social_other">
-								<ul>
-										<a href=""><li><img src="../../images/bottom-05.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-04.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-03.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-02.png"></li></a>
-								</ul>
-						</div>
-
-				</div>
+        </div>
 
         <div id="contenedor">
 
@@ -316,34 +316,39 @@ if (!isset($_SESSION['language'])) {
                     <div class="perfil_tbf">
 
                         <div class="search-filter">
-                          <select class="filter-opt" id="type-search">
+                            <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
-                            <option selected value="1">Usuarios</option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                                <option value="" disabled> Tipo búsqueda </option>
+                                <option selected value="1">Usuarios</option>
+                                <option value="2">Cervezas</option>
+                                <option value="3">Productores</option>
+                                <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option selected value="2">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                                <option value="" disabled> Tipo búsqueda </option>
+                                <option value="1"> Usuarios </option>
+                                <option selected value="2">Cervezas</option>
+                                <option value="3">Productores</option>
+                                <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                                <option value="" disabled> Tipo búsqueda </option>
+                                <option value="1"> Usuarios </option>
+                                <option value="2">Cervezas</option>
+                                <option selected value="3">Productores</option>
+                                <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option selected value="4">Materia Prima</option>
+                                <option value="" disabled> Tipo búsqueda </option>
+                                <option value="1"> Usuarios </option>
+                                <option value="2">Cervezas</option>
+                                <option value="3">Productores</option>
+                                <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option value="1" selected id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                                <option selected value="" disabled> Tipo búsqueda </option>
+                                <option value="1"> Usuarios </option>
+                                <option value="2">Cervezas</option>
+                                <option value="3">Productores</option>
+                                <option value="4">Materia Prima</option>
                             <?php } ?>
-                          </select>
+                            </select>
                         </div>
                         <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -362,27 +367,28 @@ if (!isset($_SESSION['language'])) {
                                 $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
                                                WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                               AND message.user_idUser != " . $line['idUser'];
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
-                                <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
-                                        <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
+                            <div class="msg">
+                                <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
                                             echo '<span class="number">' . mysql_num_rows($resultadoconsulta) . '</span>';
                                         }
                                         ?>
-                                    </a>
-                                </div>
+                                </a>
+                            </div>
 
 
-                                <div class="profile_img">
-                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
-                                        <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
-                                    </a>
-                                </div>
+                            <div class="profile_img">
+                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                    <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
+                                </a>
+                            </div>
                             <?php } ?>
 
                             <?php
@@ -444,259 +450,291 @@ if (!isset($_SESSION['language'])) {
             <div class="content_messages_bottom user_message">
                 <!--box bottom left -->
                 <div id="contact_list">
-                	<?php
-	            	$query = "SELECT ch.user_idUser,ch.inbox_idInbox,us.idInbox,us.userName,us.userProfileImage FROM chat ch
-								INNER JOIN user us
-								ON us.idUser = ch.user_idUser
-								WHERE ch.user_idUser != '".$_SESSION['idUser']."' AND ch.inbox_idInbox = '".$line['idInbox']."'";
-	            	$resultado = mysql_query($query) or die (mysql_error());
-	            	while ($row = mysql_fetch_array($resultado)) {
-	            	?>
-                    <a href="?idUserChat=<?php echo $row['user_idUser'];?>&idChat=<?php echo $row['inbox_idInbox'];?>" id="chats_inbox">
-                    	<div class="contactProfile chat_user">
+                  <?php
+                  $query = "SELECT ch.user_idUser,ch.inbox_idInbox,us.idInbox,us.userName,us.userProfileImage, ms.messageStatus,ch.idChat FROM chat ch
+                  INNER JOIN user us ON us.idUser = ch.user_idUser
+                  INNER JOIN message ms ON ms.chat_idChat = ch.idChat
+                  WHERE ch.user_idUser != '".$_SESSION['idUser']."' AND ch.inbox_idInbox = '".$line['idInbox']."'
+                  GROUP BY us.userName";
+                  $resultado = mysql_query($query) or die (mysql_error());
+                  while ($row = mysql_fetch_array($resultado)) {
+                    /*$user_idUser = $row;
+                    var_dump($row);*/
+                  ?>
+                    <a href="?idChat=<?php echo $row['idChat'];?>" class="chats_inbox" data-id-chat="<?php echo $row['idChat'];?>">
+                        <div class="contactProfile chat_user">
 
-	                        <div class="contact_left">
+                            <div class="contact_left">
 
-	                            <img src="../../images/green_icon.png" alt="" />
+                                <img src="../../images/green_icon.png" alt="" />
+                                <p><?php echo $row['userName'];?> </p>
+                            </div>
 
-	                            <p><?php echo $row['userName'];?> </p>
+                            <div class="contact_image">
 
-	                        </div>
+                                <div class="img_pro">
+                                    <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
+                                </div>
 
-	                        <div class="contact_image">
+                            </div>
 
-	                            <div class="img_pro">
-	                                <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
-	                            </div>
-
-	                        </div>
-
-                    	</div>
-                	</a>
-                	<?php } ?>
+                        </div>
+                    </a>
+                  <?php } ?>
                 </div>
 
+                <script type="text/javascript">
+                  $('.chats_inbox').click(function () {
+                    var data = $(this).attr('data-id-chat');
+                    //var data1 = $(this).attr('data-id-user');
+                    alert(data);
+                    var namefunction = "changeStatusMessage";
+                    $.ajax({
+                      url: "../../php/functions.php",
+                      type: "POST",
+                      data: {data: data, namefunction: namefunction},
+                      success: function (result) {
+                        alert(result);
+                          /*$('.buscar').html(result);
+                          $('.buscar .users').show();*/
+                      },
+                      error: function (error) {
+                          //alert(error);
+                      }
+                    })
+                  }); 
+                </script>
                 <!--box bottom right -->
 
                 <!-- box bottom right -->
 
                 <div id="inbox_content">
                     <div class="msn_content">
-                    	<?php
-                    	if (isset($_GET['idUserChat'])) {
+    <?php
+    if (isset($_GET['idChat'])) {
+      $idChat = $_GET['idChat'];
+      // $query1 = "SELECT * FROM message m
+      // INNER JOIN user us
+      // ON us.idUser = m.user_idUser
+      // INNER JOIN chat c
+      // ON c.idChat = m.chat_idChat
+      // WHERE m.user_idUser = ".$idChat;
 
-	                    	$userChat = $_GET['idUserChat'];
-	                    	$idChat = $_GET['idChat'];
-			            	$query1 = "SELECT * FROM message m
-										INNER JOIN user us
-										ON us.idUser = m.user_idUser
-										INNER JOIN chat c
-										ON c.idChat = m.chat_idChat
-										WHERE m.user_idUser = '".$userChat."' AND c.inbox_idInbox = '".$idChat."'";
-			            	$resultado1 = mysql_query($query1) or die (mysql_error());
-			            	while ($row1 = mysql_fetch_array($resultado1)) {
-			            		if ($row1['messageStatus'] == 1) { ?>
-			                        <!-- message send -->
-			                        <div id="itemContainer">
-			                            <div id="itemContainerInner">
+      $query1 = "SELECT * FROM message 
+                INNER JOIN user ON message.user_idUser = user.idUser 
+                INNER JOIN chat ON message.chat_idChat = chat.idChat
+                WHERE message.chat_idChat = ".$idChat;   
+      $resultado1 = mysql_query($query1) or die (mysql_error());
 
-			                                <div class="item i1 sent_">
-			                                    <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
-			                                </div>
-
-			                                <div class="item i2 sent_">
-			                                    <p><?php echo $line['userName'];?></p>
-			                                </div>
-
-			                                <div class="item i3 sent_">
-			                                    <p>
-			                                    	<?php echo $row1['messageText'];?>
-			                                    </p>
-
-			                                </div>
-
-
-			                            </div>
-			                            <?php
-									    $fecha = $row1['messageDate'];
-									    $fechafinal = explode('-', $fecha);
-									    $dia = explode(' ', $fechafinal[2]);
-										$fechats = strtotime($fecha);
-
-										switch (date('w', $fechats)){
-										    case 0: $nameDia[] = "Domingo";
-									    	break;
-									    	case 1: $nameDia[] = "Lunes";
-									    	break;
-									    	case 2: $nameDia[] = "Martes";
-									    	break;
-									    	case 3: $nameDia[] = "Miércoles";
-									    	break;
-									    	case 4: $nameDia[] = "Jueves";
-									    	break;
-									    	case 5: $nameDia[] = 'Viernes';
-									    	break;
-									    	case 6: $nameDia[] = 'Sábado';
-									    	break;
-										}
-
-										switch (date('n', $fechats)){
-										    case 1: $nameMes[] = "Enero";
-									    	break;
-									    	case 2: $nameMes[] = "Febrero";
-									    	break;
-									    	case 3: $nameMes[] = "Marzo";
-									    	break;
-									    	case 4: $nameMes[] = "Abril";
-									    	break;
-									    	case 5: $nameMes[] = 'Mayo';
-									    	break;
-									    	case 6: $nameMes[] = "Junio";
-									    	break;
-									    	case 7: $nameMes[] = "Julio";
-									    	break;
-									    	case 8: $nameMes[] = "Agosto";
-									    	break;
-									    	case 9: $nameMes[] = "Septiembre";
-									    	break;
-									    	case 10: $nameMes[] = "Octube";
-									    	break;
-									    	case 11: $nameMes[] = "Noviembre";
-									    	break;
-									    	case 12: $nameMes[] = "Diciembre";
-									    	break;
-										}
-									    ?>
-
-			                            <div class="date_sent">
-			                            	<h2>
-			                            		<?php echo 'Enviado: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
-			                            	</h2>
-			                            </div>
-			                        </div>
-			              <?php } else { ?>
-			              			<!-- message recibed -->
-			                        <div id="itemContainer">
-			                            <div id="itemContainerInner">
-
-			                                <div class="item i1">
-			                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
-			                                </div>
-
-			                                <div class="item i2">
-			                                    <p><?php echo $row1['userName'];?></p>
-			                                </div>
-
-			                                <div class="item i3">
-			                                    <p>
-			                                    	<?php echo $row1['messageText'];?>
-			                                    </p>
-
-			                                </div>
-
-
-			                            </div>
-			                            <?php
-									    $fecha = $row1['messageDate'];
-									    $fechafinal = explode('-', $fecha);
-									    $dia = explode(' ', $fechafinal[2]);
-										$fechats = strtotime($fecha);
-
-										switch (date('w', $fechats)){
-										    case 0: $nameDia[] = "Domingo";
-									    	break;
-									    	case 1: $nameDia[] = "Lunes";
-									    	break;
-									    	case 2: $nameDia[] = "Martes";
-									    	break;
-									    	case 3: $nameDia[] = "Miércoles";
-									    	break;
-									    	case 4: $nameDia[] = "Jueves";
-									    	break;
-									    	case 5: $nameDia[] = 'Viernes';
-									    	break;
-									    	case 6: $nameDia[] = 'Sábado';
-									    	break;
-										}
-
-										switch (date('n', $fechats)){
-										    case 1: $nameMes[] = "Enero";
-									    	break;
-									    	case 2: $nameMes[] = "Febrero";
-									    	break;
-									    	case 3: $nameMes[] = "Marzo";
-									    	break;
-									    	case 4: $nameMes[] = "Abril";
-									    	break;
-									    	case 5: $nameMes[] = 'Mayo';
-									    	break;
-									    	case 6: $nameMes[] = "Junio";
-									    	break;
-									    	case 7: $nameMes[] = "Julio";
-									    	break;
-									    	case 8: $nameMes[] = "Agosto";
-									    	break;
-									    	case 9: $nameMes[] = "Septiembre";
-									    	break;
-									    	case 10: $nameMes[] = "Octube";
-									    	break;
-									    	case 11: $nameMes[] = "Noviembre";
-									    	break;
-									    	case 12: $nameMes[] = "Diciembre";
-									    	break;
-										}
-									    ?>
-
-			                            <div class="date_sent" style="text-align: left;">
-			                            	<h2>
-			                            		<?php echo 'Recibido: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
-			                            	</h2>
-			                            </div>
-			                        </div>
-			              <?php } ?>
-						<?php }
-                        } else { ?>
+      while ($row1 = mysql_fetch_array($resultado1)) {
+        /*$query2 = "SELECT * FROM message m WHERE user_idUser = '".$line['idUser']."' AND messageText = '".$row1['messageText']."'";
+        $resultado2 = mysql_query($query2) or die (mysql_error());
+        $row2 = mysql_fetch_array($resultado2);*/
+        //var_dump($row2);
+        if ($row1['user_idUser'] == $_SESSION['idUser'] ) { ?>
 
                         <!-- message send -->
-	                        <div id="itemContainer">
-	                            <div id="itemContainerInner">
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
 
-	                                <div class="item i1 sent_">
+                                <div class="item i1 sent_">
+                                    <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
+                                </div>
 
-	                                </div>
+                                <div class="item i2 sent_">
+                                    <p><?php echo $line['userName'];?></p>
+                                </div>
 
-	                                <div class="item i2">
-	                                    <p>BANDEJA DE ENTRADA</p>
-	                                </div>
+                                <div class="item i3 sent_">
+                                    <p>
+                                      <?php echo $row1['messageText'];?>
+                                    </p>
 
-	                                <div class="item i3 sent_">
-	                                    <p>
-
-	                                    </p>
-
-	                                </div>
+                                </div>
 
 
-	                            </div>
-	                            <div class="date_sent">
-	                            	<h2></h2>
-	                        	</div>
-	                        </div>
+                            </div>
+        <?php
+        $fecha = $row1['messageDate'];
+        $fechafinal = explode('-', $fecha);
+        $dia = explode(' ', $fechafinal[2]);
+        $fechats = strtotime($fecha);
 
-                        <?php } ?>
+        switch (date('w', $fechats)){
+        case 0: $nameDia[] = "Domingo";
+        break;
+        case 1: $nameDia[] = "Lunes";
+        break;
+        case 2: $nameDia[] = "Martes";
+        break;
+        case 3: $nameDia[] = "Miércoles";
+        break;
+        case 4: $nameDia[] = "Jueves";
+        break;
+        case 5: $nameDia[] = 'Viernes';
+        break;
+        case 6: $nameDia[] = 'Sábado';
+        break;
+        }
+
+        switch (date('n', $fechats)){
+        case 1: $nameMes[] = "Enero";
+        break;
+        case 2: $nameMes[] = "Febrero";
+        break;
+        case 3: $nameMes[] = "Marzo";
+        break;
+        case 4: $nameMes[] = "Abril";
+        break;
+        case 5: $nameMes[] = 'Mayo';
+        break;
+        case 6: $nameMes[] = "Junio";
+        break;
+        case 7: $nameMes[] = "Julio";
+        break;
+        case 8: $nameMes[] = "Agosto";
+        break;
+        case 9: $nameMes[] = "Septiembre";
+        break;
+        case 10: $nameMes[] = "Octube";
+        break;
+        case 11: $nameMes[] = "Noviembre";
+        break;
+        case 12: $nameMes[] = "Diciembre";
+        break;
+        }
+        ?>
+
+                            <div class="date_sent">
+                                <h2>
+        <?php echo 'Enviado: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                                </h2>
+                            </div>
+                        </div>
+        <?php } else { ?>
+                        <!-- message recibed -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1">
+                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+                                </div>
+
+                                <div class="item i2">
+                                    <p><?php echo $row1['userName'];?></p>
+                                </div>
+
+                                <div class="item i3">
+                                    <p>
+            <?php echo $row1['messageText'];?>
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+          <?php
+          $fecha = $row1['messageDate'];
+          $fechafinal = explode('-', $fecha);
+          $dia = explode(' ', $fechafinal[2]);
+          $fechats = strtotime($fecha);
+
+          switch (date('w', $fechats)){
+          case 0: $nameDia[] = "Domingo";
+          break;
+          case 1: $nameDia[] = "Lunes";
+          break;
+          case 2: $nameDia[] = "Martes";
+          break;
+          case 3: $nameDia[] = "Miércoles";
+          break;
+          case 4: $nameDia[] = "Jueves";
+          break;
+          case 5: $nameDia[] = 'Viernes';
+          break;
+          case 6: $nameDia[] = 'Sábado';
+          break;
+          }
+
+          switch (date('n', $fechats)){
+          case 1: $nameMes[] = "Enero";
+          break;
+          case 2: $nameMes[] = "Febrero";
+          break;
+          case 3: $nameMes[] = "Marzo";
+          break;
+          case 4: $nameMes[] = "Abril";
+          break;
+          case 5: $nameMes[] = 'Mayo';
+          break;
+          case 6: $nameMes[] = "Junio";
+          break;
+          case 7: $nameMes[] = "Julio";
+          break;
+          case 8: $nameMes[] = "Agosto";
+          break;
+          case 9: $nameMes[] = "Septiembre";
+          break;
+          case 10: $nameMes[] = "Octube";
+          break;
+          case 11: $nameMes[] = "Noviembre";
+          break;
+          case 12: $nameMes[] = "Diciembre";
+          break;
+          }
+          ?>
+
+                            <div class="date_sent" style="text-align: left;">
+                                <h2>
+          <?php echo 'Recibido: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                                </h2>
+                            </div>
+                        </div>
+        <?php } ?>
+    <?php 
+    }
+  } else { ?>
+
+                        <!-- message send -->
+                        <div id="itemContainer">
+                            <div id="itemContainerInner">
+
+                                <div class="item i1 sent_">
+
+                                </div>
+
+                                <div class="item i2">
+                                    <p>BANDEJA DE ENTRADA</p>
+                                </div>
+
+                                <div class="item i3 sent_">
+                                    <p>
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+                            <div class="date_sent">
+                                <h2></h2>
+                            </div>
+                        </div>
+
+    <?php } ?>
 
                     </div>
                 </div>
                 <!--box foot right -->
                 <div class="send_a_message">
-                	<form id="SendRequestChat">
-                		<!--<input type="text" hidden name="idUserChat" value="<?php //echo $_GET['idUserChat']; ?>">
-                		<input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
-                		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
-	                    <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
-	                    <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
-	                    <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
-	                </form>
+                    <form id="SendRequestChat">
+                    <!--<input type="text" hidden name="idUserChat" value="<?php //echo $_GET['idUserChat']; ?>">
+                    <input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
+                        <input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
+                        <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
+                        <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
+                        <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
+                    </form>
                 </div>
 
             </div>
@@ -719,24 +757,24 @@ if (!isset($_SESSION['language'])) {
                     </ul>
 
                     <?php if (isset($_SESSION['idUser'])) { ?>
-                                            <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                                            </ul>
+                    <ul class="nav">
+                        <a href="inicio.php"><li><span>HOME</span></li></a>
+                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                        <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                    </ul>
                     <?php } else { ?>
-                                            <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                                            </ul>
+                    <ul class="nav">
+                        <a href="inicio.php"><li><span>HOME</span></li></a>
+                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                    </ul>
                     <?php } ?>
 
                     <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
@@ -746,34 +784,34 @@ if (!isset($_SESSION['language'])) {
             </div>
 
         </div>
-        		<script src="../../js/services.js"></script>
-				<script type="text/javascript">
-						$(document).on("ready", function () {
+        <script src="../../js/services.js"></script>
+        <script type="text/javascript">
+                        $(document).on("ready", function () {
 
-								$(document).on('click', '.user_name, .user_name_click', function () {
-										$(".login-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
+                                        $(document).on('click', '.user_name, .user_name_click', function () {
+                                                        $(".login-modal").css({
+                                                                        "opacity": "1",
+                                                                        "z-index": "10",
+                                                        }),
+                                                                                        $(".background-filter").css({
+                                                                        "opacity": "1",
+                                                                        "z-index": "10",
+                                                        })
+                                        });
 
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".login-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
+                                        $(".close-icon,.background-filter").on("click", function () {
+                                                        $(".login-modal").css({
+                                                                        "opacity": "0",
+                                                                        "z-index": "-1",
+                                                        }),
+                                                                                        $(".background-filter").css({
+                                                                        "opacity": "0",
+                                                                        "z-index": "-1",
+                                                        })
+                                        });
 
-						});
-				</script>
+                        });
+        </script>
 
         <script type="text/javascript">
             $(document).on("ready", function () {
@@ -807,49 +845,49 @@ if (!isset($_SESSION['language'])) {
             });
         </script>
 
-				<script type="text/javascript">
-						$(document).on("ready", function () {
+        <script type="text/javascript">
+                        $(document).on("ready", function () {
 
-								$(".not-user").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "1",
-												"z-index": "10",
-										}),
-														$(".background-filter").css({
-												"opacity": "1",
-												"z-index": "10",
-										})
-								});
+                                        $(".not-user").on("click", function () {
+                                                        $(".signup-modal").css({
+                                                                        "opacity": "1",
+                                                                        "z-index": "10",
+                                                        }),
+                                                                                        $(".background-filter").css({
+                                                                        "opacity": "1",
+                                                                        "z-index": "10",
+                                                        })
+                                        });
 
-								$(".close-icon,.background-filter").on("click", function () {
-										$(".signup-modal").css({
-												"opacity": "0",
-												"z-index": "-1",
-										}),
-														$(".background-filter").css({
-												"opacity": "0",
-												"z-index": "-1",
-										})
-								});
+                                        $(".close-icon,.background-filter").on("click", function () {
+                                                        $(".signup-modal").css({
+                                                                        "opacity": "0",
+                                                                        "z-index": "-1",
+                                                        }),
+                                                                                        $(".background-filter").css({
+                                                                        "opacity": "0",
+                                                                        "z-index": "-1",
+                                                        })
+                                        });
 
-						});
-				</script>
+                        });
+        </script>
 
-				<script type="text/javascript">
-						$("#box-target").focus(function () {
-								$(".search-box").css({
-										"opacity": "1",
-										"z-index": "9"
-								})
-						});
+        <script type="text/javascript">
+                        $("#box-target").focus(function () {
+                                        $(".search-box").css({
+                                                        "opacity": "1",
+                                                        "z-index": "9"
+                                        })
+                        });
 
-						$("#box-target").focusout(function () {
-								$(".search-box").css({
-										"opacity": "0",
-										"z-index": "-10"
-								})
-						});
-				</script>
+                        $("#box-target").focusout(function () {
+                                        $(".search-box").css({
+                                                        "opacity": "0",
+                                                        "z-index": "-10"
+                                        })
+                        });
+        </script>
 
         <script type="text/javascript">
 
@@ -1050,67 +1088,67 @@ if (!isset($_SESSION['language'])) {
         </script>
 
 
-				<script type="text/javascript">
+        <script type="text/javascript">
 
-						function isLeapYear(year) {
-								return (new Date(year, 2, 0).getDate() == 29);
-						}
+                        function isLeapYear(year) {
+                                        return (new Date(year, 2, 0).getDate() == 29);
+                        }
 
-						function getAge(birthDate) {
-								var today = new Date();
-								var age = today.getFullYear() - birthDate.getFullYear();
-								var m = today.getMonth() - birthDate.getMonth();
+                        function getAge(birthDate) {
+                                        var today = new Date();
+                                        var age = today.getFullYear() - birthDate.getFullYear();
+                                        var m = today.getMonth() - birthDate.getMonth();
 
-								if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-										age--;
-								}
+                                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                                                        age--;
+                                        }
 
-								return age;
-						}
+                                        return age;
+                        }
 
-						function getDays(year, month) {
-								var days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                        function getDays(year, month) {
+                                        var days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-								if (isLeapYear(year)) {
-										days[2] = 29;
-								}
+                                        if (isLeapYear(year)) {
+                                                        days[2] = 29;
+                                        }
 
-								return days[month];
-						}
+                                        return days[month];
+                        }
 
-						function validateDoB() {
-								var birthday_year = $('#birthday_year');
-								var birthday_month = $('#birthday_month');
-								var birthday_day = $('#birthday_day');
+                        function validateDoB() {
+                                        var birthday_year = $('#birthday_year');
+                                        var birthday_month = $('#birthday_month');
+                                        var birthday_day = $('#birthday_day');
 
-								return false;
-						}
+                                        return false;
+                        }
 
-						$('.birthday.year, .birthday.month').change(function () {
-								var year = $('#birthday_year');
-								var month = $('#birthday_month');
-								var day = $('#birthday_day');
+                        $('.birthday.year, .birthday.month').change(function () {
+                                        var year = $('#birthday_year');
+                                        var month = $('#birthday_month');
+                                        var day = $('#birthday_day');
 
-								var selected_day = day.val();
+                                        var selected_day = day.val();
 
-								if (year.val() == '' || month.val() == '') {
-										return false;
-								}
+                                        if (year.val() == '' || month.val() == '') {
+                                                        return false;
+                                        }
 
-								var days = getDays(year.val(), month.val());
-								var options = ['<option value=""></option>'];
+                                        var days = getDays(year.val(), month.val());
+                                        var options = ['<option value=""></option>'];
 
-								for (var i = 1; i <= days; i++) {
-										options.push('<option value="' + i + '">' + i + '</option>');
-								}
+                                        for (var i = 1; i <= days; i++) {
+                                                        options.push('<option value="' + i + '">' + i + '</option>');
+                                        }
 
-								day.html('').append(options.join("\n"));
-								day.val(Math.min(selected_day, days));
-						}).trigger('change');
+                                        day.html('').append(options.join("\n"));
+                                        day.val(Math.min(selected_day, days));
+                        }).trigger('change');
 
-						$('#btn_submit').click(validateDoB);
+                        $('#btn_submit').click(validateDoB);
 
-				</script>
+        </script>
 
 
     </body>

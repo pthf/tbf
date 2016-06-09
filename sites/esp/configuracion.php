@@ -10,12 +10,6 @@ if (isset($_SESSION['idUser'])) {
 } else {
     header("Location: inicio.php");
 }
-
-if (!isset($_SESSION['language'])) {
-    //Spanihs by default.
-    $_SESSION['language'] = 1;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -81,23 +75,28 @@ if (!isset($_SESSION['language'])) {
                         }
                     })
                 }(jQuery));
-				$('.changeemail').hide();
-	        	$('.changepass').hide();
-				$("#em").on( "click", function() {
-					$('.changeemail').show();
-					$('.changepass').hide();
-				});
-				$("#pass").on( "click", function() {
-					$('.changepass').show();
-					$('.changeemail').hide();
-				});
-				$("#cancelemail").on( "click", function() {
-					$('.changeemail').hide();
-				});
-				$("#cancelpass").on( "click", function() {
-					$('.changepass').hide();
-				});
             });
+        </script>
+        
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('.changeemail').hide();
+            $('.changepass').hide();
+            $("#em").on( "click", function() {
+                $('.changeemail').show();
+                $('.changepass').hide();
+            });
+            $("#pass").on( "click", function() {
+                $('.changepass').show();
+                $('.changeemail').hide();
+            });
+            $("#cancelemail").on( "click", function() {
+                $('.changeemail').hide();
+            });
+            $("#cancelpass").on( "click", function() {
+                $('.changepass').hide();
+            });
+        });
         </script>
 
         <script type="text/javascript">
@@ -143,9 +142,8 @@ if (!isset($_SESSION['language'])) {
                         </div>
 
                         <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
-										</form>
+                        <div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                    </form>
                 </div>
 
             </div>
@@ -246,7 +244,6 @@ if (!isset($_SESSION['language'])) {
                         <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
 
 
-
                         <div class="send-login-content sign-up-send">
                             <br>
                             <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
@@ -338,30 +335,35 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
+                            <option value="" disabled> Tipo búsqueda </option>
                             <option selected value="1">Usuarios</option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
                             <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
+                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
                             <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option value="1" selected id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Materia Prima</option>
+                            <option selected value="" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
                         </div>
@@ -382,7 +384,8 @@ if (!isset($_SESSION['language'])) {
                                 $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
                                                WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                               AND message.user_idUser != " . $line['idUser'];
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
@@ -811,7 +814,7 @@ if (!isset($_SESSION['language'])) {
                 });
             });
 
-            $('#formNewUser').submit(function (e) {
+            $('#').submit(function (e) {
                 e.preventDefault();
 
                 var name = $('input[name=userName]').val();
@@ -931,14 +934,7 @@ if (!isset($_SESSION['language'])) {
                                     $('.notPass').css({'display': 'none'});
                                 }, 2000);
                             } else {
-                              if(result == -2){
-                                $('.blockcount').css({'display': 'block'});
-                                setTimeout(function () {
-                                    $('.blockcount').css({'display': 'none'});
-                                }, 2000);
-                              }else{
                                 location.reload();
-                              }
                             }
                         }
                     },
@@ -951,7 +947,6 @@ if (!isset($_SESSION['language'])) {
             });
 
         </script>
-
 
 
         <script type="text/javascript">
