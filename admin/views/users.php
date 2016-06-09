@@ -15,6 +15,7 @@
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
 				  <li style="cursor: pointer;" role="presentation" ng-class="{ active:itemBeer === 1 }"><a ng-click="selectItemBeer(1)">List</a></li>
+					<li id="" style="cursor: pointer;" role="presentation" ng-class="{ active:itemBeer === 2 }"><a href="../php/exportExcel.php" target="_blank" >Export to Excel</a></li>
 				</ul>
 
 				<div ng-show="itemBeer === 1" class="cont-nav">

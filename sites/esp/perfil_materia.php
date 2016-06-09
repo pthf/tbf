@@ -485,7 +485,7 @@ if (!isset($_SESSION['language'])) {
                     <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
 
                     <div class="link_profile" style="width: 70%;">
-                        <a href="<?=$lineMateria['rawMaterialSite'];?>"><?=$lineMateria['rawMaterialSite'];?></a>
+                        <?=$lineMateria['rawMaterialEmail'];?>
                     </div>
 
                     <div class="social_company materia-width">
