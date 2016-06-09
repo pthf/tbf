@@ -965,7 +965,9 @@ if (!isset($_SESSION['language'])) {
                         ?>
                         <div id="itemContainer">
                             <div id="itemContainerInner">
-
+                              <div class="delete-comment">
+                                  <img src="../../images/img_galeria-02_close.png" >
+                              </div>
                                 <div class="item i1">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
                                 </div>

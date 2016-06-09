@@ -828,6 +828,9 @@ if (!isset($_SESSION['language'])) {
                         ?>
                         <!-- message received -->
                         <div id="itemContainer">
+                          <div class="delete-comment">
+                              <img src="../../images/img_galeria-02_close.png" >
+                          </div>
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
