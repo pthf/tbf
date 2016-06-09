@@ -10,10 +10,7 @@
 	<link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles.css">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
 	<script type="text/javascript" src="../../js/all_pages_jquery.js"> </script>
 
@@ -174,7 +171,7 @@
 			<div class="config_back contact_back">
 				<a href="inicio.php">
 					<img src="../../images/flecha-izq_negro.png" />
-					<p class="back_text">VOLVER A HOME</p>
+					<p class="back_text">IR A  HOME</p>
 				</a>
 			</div>
   		<div class="input_contact">
@@ -197,12 +194,11 @@
 
 				<span><p>info@thebeerfans.com <br> Av. Patria #234 Col. Lomas <br> Guadalajara, Jalisco, México</p></span>
 
-		    <div class="social_contact">
-					<a href="#" class="first_contact "><img src="../../images/social-04.png"/></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-02.png" /></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-01.png" /></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-03.png" /></a>
-				</div>
+				<div class="social_company">
+					<a target="_blank" href="" class="first_contact fb"><img src="../../images/social-04.png"></a>
+					<a target="_blank" href="" class="other_contact twt"><img src="../../images/social-02.png"></a>
+					<a target="_blank" href="" class="other_contact ig"><img src="../../images/social-01.png"></a>
+        </div>
   		</div>
 
   		</div>

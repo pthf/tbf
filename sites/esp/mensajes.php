@@ -727,6 +727,7 @@ $(document).ready(function () {
                 </div>
                 <!--box foot right -->
                 <div class="send_a_message">
+
                     <form id="SendRequestChat">
                     <!--<input type="text" hidden name="idUserChat" value="<?php //echo $_GET['idUserChat']; ?>">
                     <input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
@@ -735,6 +736,7 @@ $(document).ready(function () {
                         <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
                         <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
                     </form>
+
                 </div>
 
             </div>

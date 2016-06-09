@@ -28,7 +28,6 @@ if (!isset($_SESSION['language'])) {
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
@@ -411,7 +410,11 @@ if (!isset($_SESSION['language'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<a href="#"><span>INICIAR SESIÓN</span></a>
+                  											<a href="#">
+                      										<div class="user_name-title">
+                                            <span>INICIAR SESIÓN</span>
+                                          </div>
+                                        </a>
                   										</div>';
                             }
                             ?>
@@ -549,11 +552,24 @@ if (!isset($_SESSION['language'])) {
                                     while($lineUser = mysql_fetch_array($resultUser)){
                                     echo '
                                       <li class="flex-item">
+                                          <div class="user-status">
+                                    ';
+                                        if($lineUser['userConnection']==0){
+                                          echo '<img src="../../images/gray_icon.png" alt="" />';
+                                        }else {
+                                          echo '<img src="../../images/green_icon.png" alt="" />';
+                                        }
+                                        
+                                    echo '
+
+                                          </div>
                                           <a href="perfil.php?idUser='.$lineUser["idUser"].'"><img class="flex-item-info" src="../../images/userProfile/'.$lineUser["userProfileImage"].'"/></a>
                                           <div class="flex-item-info">
                                               <span>'.$lineUser["userName"].'</span>
                                               <span>'.$lineUser["userLastName"].'</span>
+                                              <br>
                                               <span>'.$lineUser["name_s"].' - '.$lineUser["sortname"].'</span>
+                                              <br>
                                               <a href="perfil.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">Ver perfil</span></a>
                                           </div>
                                       </li>

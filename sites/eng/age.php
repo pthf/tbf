@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Inicio | The Beer Fans | Red Social</title>
+	<title>Inicio | The Beer Fans | Social Network</title>
 
 	<link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles.css">

@@ -480,7 +480,7 @@ if (!isset($_SESSION['language'])) {
                     <div class="back_">
                         <a href="inicio.php">
                             <img src="../../images/flecha-izq_negro.png" />
-                            <p class="back_text">REGRESAR A HOME</p>
+                            <p class="back_text">IR A  HOME</p>
                         </a>
                     </div>
 

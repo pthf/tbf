@@ -389,10 +389,26 @@ span.text_prin span{
   width: auto;
   color: #FFF;
   margin-right: 8%;
+  text-align: left;
 }
 
 .user_name span {
     color: white !important;
+}
+
+.user_name-title span {
+    font-size: .8em;
+}
+
+.user-status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.user-status img {
+    width: 10px !important;
+    height: 10px !important;
 }
 
 .menu_buttom{
@@ -771,9 +787,8 @@ span.user_list.list-sub{
 
 .Grid li{
   display: inline-flex;
-  width: 25.5%;
+  width: 49%;
   margin-bottom: 2%;
-  margin-right: 6%;
 }
 
 span.AddFriend{
@@ -802,18 +817,26 @@ span.ver-perfil-button{
   width: auto;
 }
 
+.flex-item-info{
+  margin-left: .5vw;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
 .flex-item-info span{
   margin: 0;
   padding: 0;
   font-size: 14px;
   text-align: left;
-  margin-left: .5vw;
+  display: inline !important;
 }
 
 .flex-item-info span:first-child{
   font-size: 10px;
   text-align: center;
-  padding: .3vw;
 }
 
 .flex-item-info span:nth-child(2){
@@ -828,9 +851,12 @@ span.ver-perfil-button{
 .flex-item-info span:nth-child(4){
   font-size: 10px;
   width: 100%;
-  padding: .3vw;
   text-align: center;
   font-size: 10px;
+}
+
+.flex-item-info a span{
+  padding: .3vw;
 }
 
 .contenido_social{
@@ -1341,7 +1367,7 @@ select.filter-opt {
 }
 
 .topinfo_config{
-  width: 100%;
+  width: 95%;
   margin-top: 5%;
   padding-bottom: 1%;
   border-bottom: 2px solid #2E2E2E;
@@ -1768,30 +1794,6 @@ textarea{
   border-bottom: none !important;
 }
 
-.social_contact img{
-  transform: scale(0.6, 0.6);
-  -ms-transform: scale(0.6, 0.6);
-  -webkit-transform: scale(0.6, 0.6);
-}
-
-
-.first_contact{
-  margin-left: 5%;
-  margin-right: 3%;
-}
-
-.other_contact{
-  margin-right: 5%;
-}
-
-a.other_contact.ig img{
-  width: 20%;
-}
-
-a.other_contact.twt img {
-    width: 20%;
-}
-
 /* perfil.php */
 
 .profile_container{
@@ -2107,7 +2109,6 @@ input.slider-dot{
 	    width: 13% !important;
 	}
 
-
   .rating-stars ul {
     list-style-type:none;
     padding:0;
@@ -2297,10 +2298,18 @@ input.slider-dot{
   .social_company{
     width: 80%;
     text-align: center;
-    padding-bottom: 3%;
+    padding: 1.5vw 0;
     margin-bottom: 8%;
     color: #2E2E2E;
     border-bottom: 2px solid rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .social_company a img {
+    width: 45px;
+    height: auto;
   }
 
   .social-no-padding{
@@ -2312,12 +2321,6 @@ input.slider-dot{
 
   .social_company p{
     padding-top: 8%;
-  }
-
-  .social_company img{
-    transform: scale(0.6, 0.6);
-    -ms-transform: scale(0.6, 0.6);
-    -webkit-transform: scale(0.6, 0.6);
   }
 
   .fav_box{
@@ -2708,18 +2711,17 @@ input.slider-dot{
     position: absolute;
     width: 50%;
     height:5%;
-    left: 10%;
+    left: 17%;
     top: 1%;
     display: inline;
     font-size: 18px;
   }
 
-
   .item.i3 {
     width: 90%;
     height:auto;
     margin-top: -5%;
-    margin-left: 10%;
+    margin-left: 17%;
     display: block;
   }
 
@@ -2791,6 +2793,10 @@ input.slider-dot{
     color:  #2E2E2E;
   }
 
+  input.send_button.comments_send {
+      background: white !important;
+  }
+
   .send_button:active,.send_button:hover{
     cursor: pointer;
     opacity: .5;
@@ -2816,7 +2822,7 @@ input.slider-dot{
     display: inline-block;
     vertical-align: top;
     bottom: 0vw;
-    margin-left: 15%;
+    margin-left: 10%;
     width: 80%;
     height: auto;
     border: 1px solid gray;
@@ -2826,7 +2832,7 @@ input.slider-dot{
     bottom: 0vw;
     width: 80.2%;
     margin-top: 1vw;
-    margin-left: 15%;
+    margin-left: 10%;
     left: 0;
   }
 
@@ -2869,6 +2875,7 @@ input.slider-dot{
     width: 100%;
     position: relative;
     z-index: 0;
+    overflow: hidden;
   }
 
   #wrapper-slider:hover{
@@ -3030,6 +3037,20 @@ input.slider-dot{
 
   .inner.materials article li img{
     width: 50%;
+  }
+
+  span.title {
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  span.subtitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
   }
 
   .inner li .title{
@@ -3522,6 +3543,10 @@ input.slider-dot{
 
   .user_name{
     cursor: pointer;
+    text-overflow: ellipsis;
+  	white-space: nowrap;
+    max-width: 32%;
+  	overflow: hidden;
   }
 
   .underline{

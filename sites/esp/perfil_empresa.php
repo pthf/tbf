@@ -502,7 +502,7 @@ if (!isset($_SESSION['language'])) {
                 <div class="back_ profile_back">
                     <a href="cervezas.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">IR A CERVEZAS</p>
+                        <p class="back_text">IR A PRODUCTORES</p>
                     </a>
                 </div>
 

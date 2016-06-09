@@ -444,7 +444,7 @@ if (isset($_SESSION['idUser'])) {
                 <div class="config_back">
                     <a href="inicio.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">VOLVER A HOME</p>
+                        <p class="back_text">IR A  HOME</p>
                     </a>
                 </div>
                 <div class="topinfo_config">
@@ -459,11 +459,11 @@ if (isset($_SESSION['idUser'])) {
                     <form id="formUser" name="formUserData" >
                     	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
                         <div class="email_config">
-                            <p>NOMBRE: </p> <input required type="text" name="name" style="width:60%; border: none" value="<?php echo $row['userName']; ?>">
+                            <p>NOMBRE: </p> <input required type="text" name="name" style="width:40%; border: none; overflow : hidden" value="<?php echo $row['userName']; ?>">
                         </div>
 
                         <div class="edad_config">
-                            <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:60%; border: none" value="<?php echo $row['userLastName']; ?>">
+                            <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:40%; border: none;  overflow : hidden" value="<?php echo $row['userLastName']; ?>">
                         </div>
 
                         <!-- <div class="vivoen_config">
@@ -511,7 +511,7 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="email_config">
                             <p>PAIS: </p>
-                            <select required name="country" class="" style="width:82%; border: none" id="selectCountry">
+                            <select required name="country" class="" style="width:40%; border: none" id="selectCountry">
                                 <option selected disabled value="">Selecciona..</option>
                                 <?php
                                 $query = "SELECT * FROM countries ORDER BY name_c ASC";
@@ -529,7 +529,7 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="pass_config">
                             <p>ESTADO: </p>
-                            <select required name="state" class="" style="width:70%; border: none" id="selectState">
+                            <select required name="state" class="" style="width:40%; border: none" id="selectState">
                                 <option disabled selected value="">Selecciona..</option>
                                 <?php
                                 $query1 = "SELECT * FROM states ORDER BY name_s ASC";
