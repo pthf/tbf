@@ -502,7 +502,7 @@ $(document).ready(function () {
                           //alert(error);
                       }
                     })
-                  }); 
+                  });
                 </script>
                 <!--box bottom right -->
 
@@ -520,10 +520,10 @@ $(document).ready(function () {
       // ON c.idChat = m.chat_idChat
       // WHERE m.user_idUser = ".$idChat;
 
-      $query1 = "SELECT * FROM message 
-                INNER JOIN user ON message.user_idUser = user.idUser 
+      $query1 = "SELECT * FROM message
+                INNER JOIN user ON message.user_idUser = user.idUser
                 INNER JOIN chat ON message.chat_idChat = chat.idChat
-                WHERE message.chat_idChat = ".$idChat;   
+                WHERE message.chat_idChat = ".$idChat;
       $resultado1 = mysql_query($query1) or die (mysql_error());
 
       while ($row1 = mysql_fetch_array($resultado1)) {
@@ -535,6 +535,7 @@ $(document).ready(function () {
 
                         <!-- message send -->
                         <div id="itemContainer">
+
                             <div id="itemContainerInner">
 
                                 <div class="item i1 sent_">
@@ -691,7 +692,7 @@ $(document).ready(function () {
                             </div>
                         </div>
         <?php } ?>
-    <?php 
+    <?php
     }
   } else { ?>
 

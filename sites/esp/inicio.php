@@ -324,29 +324,29 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
-                            <option selected value="1">Usuarios</option>
-                            <option value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="0" disabled> Tipo búsqueda </option>
+                            <option selected value="1" name="1">Usuarios</option>
+                            <option value="2" name="2">Cervezas</option>
+                            <option value="3" name="3">Productores</option>
+                            <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
                             <option value="" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option selected value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="1" name="1"> Usuarios </option>
+                            <option selected value="2" name="2">Cervezas</option>
+                            <option value="3" name="3">Productores</option>
+                            <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
                             <option value="" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option value="2">Cervezas</option>
-                            <option selected value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="1" name="1"> Usuarios </option>
+                            <option value="2" name="2">Cervezas</option>
+                            <option selected value="3" name="3">Productores</option>
+                            <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
                             <option value="" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option selected value="4">Materia Prima</option>
+                            <option value="1" name="1"> Usuarios </option>
+                            <option value="2" name="2">Cervezas</option>
+                            <option value="3" name="3">Productores</option>
+                            <option selected value="4" name="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
                             <option selected value="" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
@@ -355,6 +355,10 @@ if (!isset($_SESSION['language'])) {
                             <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
+                          <br>
+                          <ul class="callouts">
+                            <li class="callouts--top">Seleccione un filtro</li>
+                          </ul>
                         </div>
 
                         <div class="search main-search">
@@ -559,7 +563,7 @@ if (!isset($_SESSION['language'])) {
                                         }else {
                                           echo '<img src="../../images/green_icon.png" alt="" />';
                                         }
-                                        
+
                                     echo '
 
                                           </div>
@@ -1098,8 +1102,25 @@ if (!isset($_SESSION['language'])) {
 
         </script>
 
+
         <script type="text/javascript" src="../../js/slider.js"></script>
         <script type="text/javascript" src="../../js/homeSlider.js"></script>
+        <script type="text/javascript">
+
+            var selected = $( ".filter-opt option:selected").attr('name');
+            alert(selected);
+
+            if (selected = 'undefined') {
+              $( "#box-target" ).focus(function() {
+                 $( 'ul.callouts' ).css( "display", "block" );
+              });
+
+              $( "#box-target" ).focusout(function() {
+                 $( 'ul.callouts' ).css( "display", "none" );
+              });
+
+            }
+        </script>
 
 
     </body>
