@@ -166,7 +166,7 @@
 			<div class="config_back contact_back">
 				<a href="inicio.php">
 					<img src="../../images/flecha-izq_negro.png" />
-					<p class="back_text">VOLVER A HOME</p>
+					<p class="back_text">IR A  HOME</p>
 				</a>
 			</div>
   		<div class="input_contact">
