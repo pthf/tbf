@@ -232,7 +232,7 @@ if (!isset($_SESSION['language'])) {
 
 												<div class="send-login-content sign-up-send">
 														<br>
-														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
+														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <a href="term.pdf" target="_blank"><u>TÉRMINOS DE PRIVACIDAD</u></a>.</label></span>
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
 														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
@@ -697,9 +697,9 @@ if (!isset($_SESSION['language'])) {
                                     }
                                   }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM rawmaterial rm 
-                                              INNER JOIN rawmaterial_has_rawmaterialtype rhm ON rhm.idRawMaterial = rm.idRawMaterial 
-                                              INNER JOIN rawmaterialtype rmt ON rmt. idDrawMaterialType = rhm.idDrawMaterialType 
+		                          		$query2 = "SELECT * FROM rawmaterial rm
+                                              INNER JOIN rawmaterial_has_rawmaterialtype rhm ON rhm.idRawMaterial = rm.idRawMaterial
+                                              INNER JOIN rawmaterialtype rmt ON rmt. idDrawMaterialType = rhm.idDrawMaterialType
                                               WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
@@ -1197,7 +1197,7 @@ if (!isset($_SESSION['language'])) {
                             namefunction: namefunction
                         },
                         success: function (result) {
-                           
+
                         },
                         error: function (error) {
                         },
@@ -1207,7 +1207,7 @@ if (!isset($_SESSION['language'])) {
                     });
                   });
                 </script>
-                
+
 
                 </body>
                 </html>

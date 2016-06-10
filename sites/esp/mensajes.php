@@ -229,7 +229,7 @@ $(document).ready(function () {
 
                     <div class="send-login-content sign-up-send">
                         <br>
-                        <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
+                        <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <a href="term.pdf" target="_blank"><u>TÉRMINOS DE PRIVACIDAD</u></a>.</label></span>
                         <input required type="checkbox" id="privacyTerms">
                         <br><br>
                         <button type="submit" name="button" id="send-login">REGISTRARTE</button>
@@ -537,12 +537,12 @@ $(document).ready(function () {
       $query1 = "SELECT * FROM message
                 INNER JOIN user ON message.user_idUser = user.idUser
                 INNER JOIN chat ON message.chat_idChat = chat.idChat
-                WHERE message.chat_idChat = '".$idChat."' ORDER BY message.messageDate";   
+                WHERE message.chat_idChat = '".$idChat."' ORDER BY message.messageDate";
       $resultado1 = mysql_query($query1) or die (mysql_error());
 
       while ($row1 = mysql_fetch_array($resultado1)) {
 
-        if ($row1['idUser'] == $_SESSION['idUser'] ) { 
+        if ($row1['idUser'] == $_SESSION['idUser'] ) {
           ?>
 
                         <!-- message send -->
@@ -1189,7 +1189,7 @@ $(document).ready(function () {
                     namefunction: namefunction
                 },
                 success: function (result) {
-                   
+
                 },
                 error: function (error) {
                 },
@@ -1199,7 +1199,7 @@ $(document).ready(function () {
             });
           });
         </script>
-        
+
 
     </body>
 </html>
