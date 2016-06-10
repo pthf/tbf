@@ -244,8 +244,10 @@ if (!isset($_SESSION['language'])) {
 
 
 												<div class="send-login-content sign-up-send">
-														<br>
-														<span class="not-user"><label for="privacyTerms">YOU AGREE <u>TO OUR TERMS</u>.</label></span>
+
+
+														<span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
+
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
 														<button type="submit" name="button" id="send-login">SIGN UP</button>
