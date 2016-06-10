@@ -392,6 +392,10 @@ span.text_prin span{
   text-align: left;
 }
 
+span.user_name {
+    overflow: visible;
+}
+
 .user_name span {
     color: white !important;
 }
@@ -756,12 +760,12 @@ span.text_prin span{
   width: 100%;
   left: 0;
   color: #000;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-left: 1vw;
 }
 
 span.user_list{
-  font-size: 1.7em;
+  font-size: 2.5em;
   width: 100%;
   text-align: left;
   margin: 0;
@@ -3645,7 +3649,7 @@ input.slider-dot{
 
   .delete-comment{
     position: absolute;
-    top: 0%;
+    top: 3%;
     right: -0.5%;
     cursor: pointer;
   }

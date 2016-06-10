@@ -28,6 +28,7 @@
 				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="../eng/contact-us.php"><li><span>ENGLISH</span></li></a>
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
@@ -58,37 +59,40 @@
 								<div class="search-filter">
 		                          <select class="filter-opt" id="type-search">
 		                            <?php if ($_GET['option'] == 1 ) { ?>
-		                            <option value="" disabled> Tipo búsqueda </option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option selected value="1">Usuarios</option>
 		                            <option value="2">Cervezas</option>
 		                            <option value="3">Productores</option>
 		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 2 ) { ?>
-		                            <option value="" disabled> Tipo búsqueda </option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option value="1"> Usuarios </option>
 		                            <option selected value="2">Cervezas</option>
 		                            <option value="3">Productores</option>
 		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 3 ) { ?>
-		                            <option value="" disabled> Tipo búsqueda </option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option value="1"> Usuarios </option>
 		                            <option value="2">Cervezas</option>
 		                            <option selected value="3">Productores</option>
 		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 4 ) { ?>
-		                            <option value="" disabled> Tipo búsqueda </option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option value="1"> Usuarios </option>
 		                            <option value="2">Cervezas</option>
 		                            <option value="3">Productores</option>
 		                            <option selected value="4">Materia Prima</option>
 		                            <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-		                            <option selected value="" disabled> Tipo búsqueda </option>
+		                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option value="1"> Usuarios </option>
 		                            <option value="2">Cervezas</option>
 		                            <option value="3">Productores</option>
 		                            <option value="4">Materia Prima</option>
 		                            <?php } ?>
 		                          </select>
+															<ul class="callouts">
+		                            <li class="callouts--top">Seleccione un filtro</li>
+		                          </ul>
 		                        </div>
 								<div class="search main-search">
 										<img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -142,7 +146,7 @@
 										} else {
 												echo '
 															<div class="user_name">
-																<a href="#"><span>INICIAR SESIÓN</span></a>
+																<a href="#"><span>INICIA SESIÓN</span></a>
 															</div>';
 										}
 										?>
@@ -232,6 +236,20 @@
 		 <span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
 	 </div>
  </div>
+ <script type="text/javascript">
+
+		 var selected = $( ".filter-opt option:selected").attr('name');
+
+		 if (selected < 1) {
+			 $( "#box-target" ).focus(function() {
+					$( 'ul.callouts' ).css( "display", "block" );
+			 });
+
+			 $( "#box-target" ).focusout(function() {
+					$( 'ul.callouts' ).css( "display", "none" );
+			 });
+		 }
+ </script>
 
 	</div>
 </body>
