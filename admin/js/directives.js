@@ -160,7 +160,7 @@
 					$('.msg-type').css({'display':'none'});
 					$('.msg-error').css({'display':'none'});
 					var data = $('.textNewType').val();
-					var namefunction = 'addBeerType';
+					var namefunction = 'addbeertype';
 					if(data.length!=0){
 						$.ajax({
 							beforeSend: function(){
@@ -256,7 +256,7 @@
 					$('.msg-type').css({'display':'none'});
 					$('.msg-error').css({'display':'none'});
 					var data = $('.textNewType').val();
-					var namefunction = 'addBeerType';
+					var namefunction = 'addbeertype';
 					if(data.length!=0){
 						$.ajax({
 							beforeSend: function(){
