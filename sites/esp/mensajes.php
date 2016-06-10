@@ -482,7 +482,7 @@ $(document).ready(function () {
                             <div class="contact_image">
 
                                 <div class="img_pro">
-                                    <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
+                                        <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
                                 </div>
 
                             </div>
@@ -553,7 +553,9 @@ $(document).ready(function () {
                             <div id="itemContainerInner">
 
                                 <div class="item i1 sent_">
-                                    <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
+                                    <a href="perfil.php?idUser=<?php echo $line['idUser']?>">
+                                        <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
+                                    </a>
                                 </div>
 
                                 <div class="item i2 sent_">
@@ -632,7 +634,9 @@ $(document).ready(function () {
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
-                                    <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+                                    <a href="perfil.php?idUser=<?php echo $row1['idUser']?>">
+                                        <img src="../../images/userProfile/<?php echo $row1['userProfileImage']; ?>"/>
+                                    </a>
                                 </div>
 
                                 <div class="item i2">
