@@ -114,7 +114,7 @@ if (!isset($_SESSION['language'])) {
                         <img src="../../images/img_galeria-02_close.png" >
                     </div>
                     <div class="login-title">
-                        <a href="#"><span class="login-title-text">INICIAR SESIÓN</span></a>
+                        <a href="#"><span class="login-title-text">INICIA SESIÓN</span></a>
                     </div>
 
                     <form action="">
@@ -293,7 +293,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                         <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                        <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
                     </ul>
                 <?php } ?>
             </div>
@@ -324,31 +324,31 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
-                            <option value="0" disabled> Tipo búsqueda </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option selected value="1" name="1">Usuarios</option>
                             <option value="2" name="2">Cervezas</option>
                             <option value="3" name="3">Productores</option>
                             <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="" name="0" disabled> Tipo búsqueda </option>
                             <option value="1" name="1"> Usuarios </option>
                             <option selected value="2" name="2">Cervezas</option>
                             <option value="3" name="3">Productores</option>
                             <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="" name="0" disabled> Tipo búsqueda </option>
                             <option value="1" name="1"> Usuarios </option>
                             <option value="2" name="2">Cervezas</option>
                             <option selected value="3" name="3">Productores</option>
                             <option value="4" name="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="" name="0" disabled> Tipo búsqueda </option>
                             <option value="1" name="1"> Usuarios </option>
                             <option value="2" name="2">Cervezas</option>
                             <option value="3" name="3">Productores</option>
                             <option selected value="4" name="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option selected value="" disabled> Tipo búsqueda </option>
+                            <option selected value="" name="0" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
                             <option value="2">Cervezas</option>
                             <option value="3">Productores</option>
@@ -416,7 +416,7 @@ if (!isset($_SESSION['language'])) {
                   										<div class="user_name">
                   											<a href="#">
                       										<div class="user_name-title">
-                                            <span>INICIAR SESIÓN</span>
+                                            <span>INICIA SESIÓN</span>
                                           </div>
                                         </a>
                   										</div>';
@@ -591,7 +591,7 @@ if (!isset($_SESSION['language'])) {
 
                                 </div>
                             <?php } else { ?>
-                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><span class="user_name">INICIAR SESIÓN</span></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
+                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><span class="user_name">INICIA SESIÓN</span></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
 <?php } ?>
                         </div>
                     </div>
@@ -687,7 +687,7 @@ if (!isset($_SESSION['language'])) {
                                                 <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                                                 <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                                                 <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACTO</span></li></a>
                                             </ul>
                     <?php } ?>
@@ -1108,9 +1108,8 @@ if (!isset($_SESSION['language'])) {
         <script type="text/javascript">
 
             var selected = $( ".filter-opt option:selected").attr('name');
-            alert(selected);
 
-            if (selected = 'undefined') {
+            if (selected < 1) {
               $( "#box-target" ).focus(function() {
                  $( 'ul.callouts' ).css( "display", "block" );
               });
@@ -1118,7 +1117,6 @@ if (!isset($_SESSION['language'])) {
               $( "#box-target" ).focusout(function() {
                  $( 'ul.callouts' ).css( "display", "none" );
               });
-
             }
         </script>
 
