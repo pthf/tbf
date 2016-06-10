@@ -28,7 +28,7 @@
 				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-				<a href="../eng/contact-us.php"><li><span>ENGLISH</span></li></a>
+				<a href="../eng/contact-us.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
@@ -251,6 +251,29 @@
 		 }
  </script>
 
+ <script>
+ 	$('.changeLanguage').click(function(e){
+ 		var namefunction = 'changeLanguageMenu';
+ 		$.ajax({
+ 				beforeSend: function () {
+ 				},
+ 				url: "../../admin/php/functions.php",
+ 				type: "POST",
+ 				data: {
+ 						namefunction: namefunction
+ 				},
+ 				success: function (result) {
+ 					 
+ 				},
+ 				error: function (error) {
+ 				},
+ 				complete: function () {
+ 				},
+ 				timeout: 10000
+ 		});
+ 	});
+ </script>
+ 
 	</div>
 </body>
 </html>

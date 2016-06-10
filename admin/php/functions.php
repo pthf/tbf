@@ -5,6 +5,9 @@
 		connect_base_de_datos();
 		$namefunction = $_POST['namefunction'];
 		switch ($namefunction) {
+			case 'changeLanguageMenu':
+				changeLanguageMenu();
+			break;
 			case 'prinnfRank':
 				prinnfRank($_POST['idBeer']);
 			break;
@@ -129,6 +132,15 @@
 				deleteComment($_POST['idComment']);
 				break;
 		}
+	}
+
+	function changeLanguageMenu(){
+			session_start();
+			if($_SESSION['language']==1){
+				$_SESSION['language'] = 0;
+			}else{
+				$_SESSION['language']=1;
+			}
 	}
 
 	function deleteComment($idComment){
