@@ -546,11 +546,7 @@ if (!isset($_SESSION['language'])) {
                                             <img src="../../images/rawMaterialProfiles/'.$row3['rawMaterialProfileImage'].'"> <br>
                                             <span class="title">'.$row3['rawMaterialName'].'</span>
                                           <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
                                           <a href="raw_profile.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-                                          <a href="perfil_raw.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
                                         </li>
                                     ';
                                     if($contador==8){
@@ -585,11 +581,7 @@ if (!isset($_SESSION['language'])) {
                                             <img src="../../images/rawMaterialProfiles/'.$row3['rawMaterialProfileImage'].'"> <br>
                                             <span class="title">'.$row3['rawMaterialName'].'</span>
                                           <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
                                           <a href="raw_profile.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-                                          <a href="perfil_raw.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
                                         </li>
                                     ';
                                     if($contador==8){
@@ -622,11 +614,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/rawMaterialProfiles/'.$row3['rawMaterialProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['rawMaterialName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
 				                                  <a href="raw_profile.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-				                                  <a href="perfil_raw.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
 				                                </li>
 				                            ';
 				                            if($contador==8){
@@ -659,11 +647,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/rawMaterialProfiles/'.$row3['rawMaterialProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['rawMaterialName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
 				                                  <a href="raw_profile.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-				                                  <a href="perfil_raw.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
 				                                </li>
 				                            ';
 				                            if($contador==8){
@@ -694,11 +678,7 @@ if (!isset($_SESSION['language'])) {
                                             <img src="../../images/rawMaterialProfiles/'.$row3['rawMaterialProfileImage'].'"> <br>
                                             <span class="title">'.$row3['rawMaterialName'].'</span>
                                           <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
                                           <a href="raw_profile.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-                                          <a href="perfil_raw.php?id='.$row3['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
                                         </li>
                                     ';
                                     if($contador==8){
@@ -725,11 +705,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/rawMaterialProfiles/'.$row2['rawMaterialProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['rawMaterialName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-<<<<<<< HEAD
 				                                  <a href="raw_profile.php?id='.$row2['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
-=======
-				                                  <a href="perfil_raw.php?id='.$row2['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
->>>>>>> origin/master
 				                                </li>
 				                            ';
 				                            if($contador==8){
