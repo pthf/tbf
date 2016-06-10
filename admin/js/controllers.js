@@ -42,6 +42,21 @@
 			$scope.addBanner = !$scope.addBanner;
 		};
 
+		$('#expExcel').click(function(){
+			var data = "users";
+			$.ajax({
+				url: "../php/exportExcel.php",
+			  	type: "POST",
+			  	data: data,
+				success: function(result){
+					alert(result);
+				},
+				error: function(error){
+					alert(error);
+				}
+			});
+		});
+
 	}])
 
 	.controller('beerListController', ['$scope', '$routeParams', 'tbfService', function($scope, $routeParams, tbfService){

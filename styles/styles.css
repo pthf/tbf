@@ -392,6 +392,10 @@ span.text_prin span{
   text-align: left;
 }
 
+span.user_name {
+    overflow: visible;
+}
+
 .user_name span {
     color: white !important;
 }
@@ -756,12 +760,12 @@ span.text_prin span{
   width: 100%;
   left: 0;
   color: #000;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-left: 1vw;
 }
 
 span.user_list{
-  font-size: 1.7em;
+  font-size: 2.5em;
   width: 100%;
   text-align: left;
   margin: 0;
@@ -2684,7 +2688,7 @@ input.slider-dot{
     position: relative;
     width:99.5%;
     height:auto;
-    padding-top:3%;
+    padding-top:1%;
     padding-bottom: 1%;
     border-top: 1px solid black;
 
@@ -3650,6 +3654,20 @@ input.slider-dot{
     opacity: .5;
   }
 
+  .delete-comment{
+    position: absolute;
+    top: 3%;
+    right: -0.5%;
+    cursor: pointer;
+  }
+
+  .delete-comment img{
+    width: 80%;
+  }
+  .delete-comment:hover{
+    opacity: .5;
+  }
+
   .login-title{
     text-align: center;
     width: 85%;
@@ -3980,4 +3998,51 @@ input.slider-dot{
 
   span.profile-city{
     font-size: 12px;
+  }
+
+  .callouts {
+    list-style-type: none;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    display:none;
+  }
+
+  .callouts li {
+    display: inline-block;
+    position: absolute;
+    width: 90px;
+    height: 10px;
+    padding: 5px;
+  	background-color: #fff;
+    border: 1px solid #c1c1c1;
+  	border-radius: 4px;
+  	box-shadow: 0 0 10px #c1c1c1;
+    font-size: 10px;
+    text-align: center;
+    left: 0;
+  }
+
+
+  /* TOP */
+  .callouts--top:before {
+  	content: "";
+  	position: absolute;
+  	width: 0;
+  	height: 0;
+  	left: 10px;
+  	top: -22px;
+    border: 10px solid transparent;
+    border-bottom: 12px solid rgb(193,193,193);
+    border-bottom: 12px solid rgba(193,193,193,0.5);
+  }
+  .callouts--top:after {
+    content: "";
+  	position: absolute;
+  	width: 0;
+  	height: 0;
+  	left: 12px;
+  	top: -17px;
+    border: 8px solid transparent;
+    border-bottom: 9px solid #fff;
   }

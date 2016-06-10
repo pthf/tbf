@@ -2279,6 +2279,24 @@
 		margin-left: 10% !important;
 	}
 
+	.callouts--top:after {
+  	top: -17px;
+    border-bottom: 10px solid #fff;
+  }
+
+  .callouts--top:before{
+    top: 19px;
+    border-bottom: 15px solid rgb(193,193,193);
+    border-bottom: 9px solid rgba(193,193,193,0.5);
+  }
+
+  .callouts li{
+    width: 53px;
+    height: 5px;
+		font-size: 6px;
+  }
+
+
 
 }
 

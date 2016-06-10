@@ -5,6 +5,9 @@
 		connect_base_de_datos();
 		$namefunction = $_POST['namefunction'];
 		switch ($namefunction) {
+			case 'changeLanguageMenu':
+				changeLanguageMenu();
+			break;
 			case 'prinnfRank':
 				prinnfRank($_POST['idBeer']);
 			break;
@@ -125,7 +128,24 @@
 			case 'recoveryPassword':
 				recoveryPassword();
 				break;
+			case 'deleteComment':
+				deleteComment($_POST['idComment']);
+				break;
 		}
+	}
+
+	function changeLanguageMenu(){
+			session_start();
+			if($_SESSION['language']==1){
+				$_SESSION['language'] = 0;
+			}else{
+				$_SESSION['language']=1;
+			}
+	}
+
+	function deleteComment($idComment){
+		$query = "DELETE FROM postelement WHERE idPostElement = $idComment";
+		$result = mysql_query($query) or die(mysql_error());
 	}
 
 	function addUseExp($idUser){

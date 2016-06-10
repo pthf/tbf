@@ -124,7 +124,7 @@ if (!isset($_SESSION['language'])) {
 												<img src="../../images/img_galeria-02_close.png" >
 										</div>
 										<div class="login-title">
-												<span class="login-title-text">INICIAR SESIÓN</span>
+												<span class="login-title-text">INICIA SESIÓN</span>
 										</div>
 
 										<form action="">
@@ -296,6 +296,7 @@ if (!isset($_SESSION['language'])) {
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+												<a href="../eng/beer_profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
 										</ul>
@@ -305,7 +306,8 @@ if (!isset($_SESSION['language'])) {
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-												<a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
 										</ul>
 								<?php } ?>
 						</div>
@@ -341,37 +343,40 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option selected value="1">Usuarios</option>
                             <option value="2">Cervezas</option>
                             <option value="3">Productores</option>
                             <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
                             <option value="3">Productores</option>
                             <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
                             <option value="2">Cervezas</option>
                             <option selected value="3">Productores</option>
                             <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="" disabled> Tipo búsqueda </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
                             <option value="2">Cervezas</option>
                             <option value="3">Productores</option>
                             <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option selected value="" disabled> Tipo búsqueda </option>
+                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
                             <option value="1"> Usuarios </option>
                             <option value="2">Cervezas</option>
                             <option value="3">Productores</option>
                             <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
+                          <ul class="callouts">
+                            <li class="callouts--top">Seleccione un filtro</li>
+                          </ul>
                         </div>
                         <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -426,7 +431,7 @@ if (!isset($_SESSION['language'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<a href="#"><span>INICIAR SESIÓN</span></a>
+                  											<a href="#"><span>INICIA SESIÓN</span></a>
                   										</div>';
                             }
                             ?>
@@ -828,6 +833,41 @@ if (!isset($_SESSION['language'])) {
                         ?>
                         <!-- message received -->
                         <div id="itemContainer">
+
+
+                            <?php
+                              if(isset($_SESSION['idUser'])){
+                              if($_SESSION['idUser'] == 1){
+                            ?>
+                            <div class="delete-comment" data-name-post="<?=$rows2['idPostElement']?>">
+                                <img src="../../images/img_galeria-02_close.png" >
+                            </div>
+
+                            <script>
+                              $('.delete-comment').click(function(){
+                                var idComment = $(this).attr('data-name-post');
+                                var namefunction = "deleteComment";
+                                $.ajax({
+                                    beforeSend: function () {},
+                                    url: "../../admin/php/functions.php",
+                                    type: "POST",
+                                    data: {
+                                        idComment: idComment,
+                                        namefunction : namefunction
+                                    },
+                                    success: function (result) {
+                                      location.reload();
+                                    },
+                                    error: function () {},
+                                    complete: function () {},
+                                    timeout: 10000
+                                });
+                              });
+                            </script>
+                            <?php
+                              }
+                              }
+                            ?>
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
@@ -957,7 +997,7 @@ if (!isset($_SESSION['language'])) {
                                                 <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                                                 <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
                                                 <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                                                <a href="#" class="user_name_click"><li><span>INICIAR SESIÓN</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACTO</span></li></a>
                                             </ul>
                     <?php } ?>
@@ -1373,5 +1413,45 @@ if (!isset($_SESSION['language'])) {
           <script type="text/javascript" src="../../js/rating.js"></script>
           <script type="text/javascript" src="../../js/slider.js"></script>
         </div>
+        <script type="text/javascript">
+
+            var selected = $( ".filter-opt option:selected").attr('name');
+
+            if (selected < 1) {
+              $( "#box-target" ).focus(function() {
+                 $( 'ul.callouts' ).css( "display", "block" );
+              });
+
+              $( "#box-target" ).focusout(function() {
+                 $( 'ul.callouts' ).css( "display", "none" );
+              });
+            }
+        </script>
+
+
+        <script>
+          $('.changeLanguage').click(function(e){
+            var namefunction = 'changeLanguageMenu';
+            $.ajax({
+                beforeSend: function () {
+                },
+                url: "../../admin/php/functions.php",
+                type: "POST",
+                data: {
+                    namefunction: namefunction
+                },
+                success: function (result) {
+                   
+                },
+                error: function (error) {
+                },
+                complete: function () {
+                },
+                timeout: 10000
+            });
+          });
+        </script>
+
+
     </body>
 </html>
