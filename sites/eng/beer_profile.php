@@ -298,7 +298,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
                         <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../eng/producer_profile.php?id=<?php echo $_GET['id'];?>"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
@@ -463,7 +463,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beertypeName']) ?></p><br><br>
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br><br>
                     <p><?=$lineBeer['city']?>, <?= $lineBeer['name_s']?>, <?=$lineBeer['name_c']?>.</p>
                 </div>
                 <br>
@@ -474,7 +474,7 @@ if (!isset($_SESSION['language'])) {
                     <span>Country: </span> <span><?=$lineBeer['name_c']?></span> <br>
                     <span>State: </span> <span><?=$lineBeer['name_s']?></span> <br>
                     <span>City: </span> <span><?=$lineBeer['city']?></span> <br>
-                    <span>Style: </span> <span> <?= $lineBeer['beertypeName'] ?> </span> <br>
+                    <span>Style: </span> <span> <?= $lineBeer['beerTypeName'] ?> </span> <br>
                     <span>Alcoholic strength:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br>
                     <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
