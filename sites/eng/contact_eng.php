@@ -5,15 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Inicio | The Beer Fans | Social Network</title>
+	<title>Inicio | The Beer Fans | Red Social</title>
 
 	<link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles.css">
 	<link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
 	<script type="text/javascript" src="../../js/all_pages_jquery.js"> </script>
 
@@ -29,10 +26,11 @@
 				<a href="inicio.php"><li><span>HOME</span></li></a>
 				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-				<a href="materia.php"><li><spanRaw</span></li></a>
+				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="../eng/contact-us.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-				<a href=""><li class="no_border"><span>LOG OUT</span></li></a>
+				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
 		</div>
 		<div class="social_other">
@@ -61,32 +59,40 @@
 								<div class="search-filter">
 		                          <select class="filter-opt" id="type-search">
 		                            <?php if ($_GET['option'] == 1 ) { ?>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
 		                            <option selected value="1">Usuarios</option>
-		                            <option value="2" id="filters">Cervezas</option>
-		                            <option value="3" id="filters">Productores</option>
-		                            <option value="4" id="filters">Raw</option>
+		                            <option value="2">Cervezas</option>
+		                            <option value="3">Productores</option>
+		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 2 ) { ?>
-		                            <option value="1" id="filters"> Usuarios </option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+		                            <option value="1"> Usuarios </option>
 		                            <option selected value="2">Cervezas</option>
-		                            <option value="3" id="filters">Productores</option>
-		                            <option value="4" id="filters">Raw</option>
+		                            <option value="3">Productores</option>
+		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 3 ) { ?>
-		                            <option value="1" id="filters"> Usuarios </option>
-		                            <option value="2" id="filters">Cervezas</option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+		                            <option value="1"> Usuarios </option>
+		                            <option value="2">Cervezas</option>
 		                            <option selected value="3">Productores</option>
-		                            <option value="4" id="filters">Raw</option>
+		                            <option value="4">Materia Prima</option>
 		                            <?php } else if ($_GET['option'] == 4 ) { ?>
-		                            <option value="1" id="filters"> Usuarios </option>
-		                            <option value="2" id="filters">Cervezas</option>
-		                            <option value="3" id="filters">Productores</option>
-		                            <option selected value="4">Raw</option>
+		                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+		                            <option value="1"> Usuarios </option>
+		                            <option value="2">Cervezas</option>
+		                            <option value="3">Productores</option>
+		                            <option selected value="4">Materia Prima</option>
 		                            <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-		                            <option value="1" selected id="filters"> Usuarios </option>
-		                            <option value="2" id="filters">Cervezas</option>
-		                            <option value="3" id="filters">Productores</option>
-		                            <option value="4" id="filters">Raw</option>
+		                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
+		                            <option value="1"> Usuarios </option>
+		                            <option value="2">Cervezas</option>
+		                            <option value="3">Productores</option>
+		                            <option value="4">Materia Prima</option>
 		                            <?php } ?>
 		                          </select>
+															<ul class="callouts">
+		                            <li class="callouts--top">Seleccione un filtro</li>
+		                          </ul>
 		                        </div>
 								<div class="search main-search">
 										<img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -140,7 +146,7 @@
 										} else {
 												echo '
 															<div class="user_name">
-																<a href="#"><span>LOGIN</span></a>
+																<a href="#"><span>INICIA SESIÓN</span></a>
 															</div>';
 										}
 										?>
@@ -169,7 +175,7 @@
 			<div class="config_back contact_back">
 				<a href="inicio.php">
 					<img src="../../images/flecha-izq_negro.png" />
-					<p class="back_text">VOLVER A HOME</p>
+					<p class="back_text">IR A  HOME</p>
 				</a>
 			</div>
   		<div class="input_contact">
@@ -180,7 +186,7 @@
 			  	<p class="email_form">EMAIL:<input type="email" name="email"></p>
 			  	<p class="message_form">MENSAJE: <textarea name="name" rows="8" cols="40"></textarea> </p>
 					<br>
-			  	<input type="submit" value="SEND">
+			  	<input type="submit" value="ENVIAR">
 
 				</div>
 
@@ -192,12 +198,11 @@
 
 				<span><p>info@thebeerfans.com <br> Av. Patria #234 Col. Lomas <br> Guadalajara, Jalisco, México</p></span>
 
-		    <div class="social_contact">
-					<a href="#" class="first_contact "><img src="../../images/social-04.png"/></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-02.png" /></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-01.png" /></a>
-				  <a href="#" class="other_contact "><img src="../../images/social-03.png" /></a>
-				</div>
+				<div class="social_company">
+					<a target="_blank" href="" class="first_contact fb"><img src="../../images/social-04.png"></a>
+					<a target="_blank" href="" class="other_contact twt"><img src="../../images/social-02.png"></a>
+					<a target="_blank" href="" class="other_contact ig"><img src="../../images/social-01.png"></a>
+        </div>
   		</div>
 
   		</div>
@@ -222,7 +227,7 @@
 			 <a href="inicio.php"><li><span>HOME</span></li></a>
 <!--			 <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 			 <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-			 <a href="materia.php"><li><spanRaw</span></li></a>
+			 <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 			 <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
 			 <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 			 <a href="contact.php"><li><span>CONTACTO</span></li></a> -->
@@ -231,7 +236,44 @@
 		 <span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
 	 </div>
  </div>
+ <script type="text/javascript">
 
+		 var selected = $( ".filter-opt option:selected").attr('name');
+
+		 if (selected < 1) {
+			 $( "#box-target" ).focus(function() {
+					$( 'ul.callouts' ).css( "display", "block" );
+			 });
+
+			 $( "#box-target" ).focusout(function() {
+					$( 'ul.callouts' ).css( "display", "none" );
+			 });
+		 }
+ </script>
+
+ <script>
+ 	$('.changeLanguage').click(function(e){
+ 		var namefunction = 'changeLanguageMenu';
+ 		$.ajax({
+ 				beforeSend: function () {
+ 				},
+ 				url: "../../admin/php/functions.php",
+ 				type: "POST",
+ 				data: {
+ 						namefunction: namefunction
+ 				},
+ 				success: function (result) {
+ 					 
+ 				},
+ 				error: function (error) {
+ 				},
+ 				complete: function () {
+ 				},
+ 				timeout: 10000
+ 		});
+ 	});
+ </script>
+ 
 	</div>
 </body>
 </html>

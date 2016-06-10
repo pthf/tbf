@@ -510,7 +510,7 @@ if (!isset($_SESSION['language'])) {
 
                     <div class="back_left">
                       <p class="back_text" style="margin-left: 1vw;"><a href="cervezas.php">Todos</a></p>
-                      <?php if(isset($_GET['type']) && isset($_GET['country'])) { ?>
+                      <?php if(isset($_GET['type']) && isset($_GET['country']) && isset($_GET['state'])) { ?>
                       <p class="back_text" style="">/ <a href="materia.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a> / <a href="materia.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a> / <a href="materia.php?state=<?php echo $_GET['state']?>"><?php echo $_GET['state']?></a></p>
                       <?php } else if(isset($_GET['type']) && isset($_GET['country'])) { ?>
                       <p class="back_text" style="">/ <a href="materia.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a> / <a href="materia.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a></p>

@@ -3,6 +3,19 @@ session_start();
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
+if(isset($_GET['id'])){
+    $queryMateria = "SELECT * FROM rawmaterial
+    INNER JOIN countries ON rawmaterial.country_id = countries.id
+    INNER JOIN states ON rawmaterial.state_id = states.id
+    WHERE rawmaterial.idRawMaterial = ".$_GET['id'];
+    $resultMateria = mysql_query($queryMateria) or die(mysql_error());
+    $lineMateria = mysql_fetch_array($resultMateria);
+    if(!mysql_num_rows($resultMateria)>0)
+      header('Location: inicio.php');
+}else{
+  header('Location: inicio.php');
+}
+
 if (isset($_SESSION['idUser'])) {
     $query = "SELECT * FROM user WHERE idUser = " . $_SESSION['idUser'];
     $result = mysql_query($query) or die(mysql_error());
@@ -16,31 +29,23 @@ if (!isset($_SESSION['language'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Cervezas | The Beer Fans | Social Network</title>
+        <title>Materia Prima | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
         <link rel="stylesheet" type="text/css" href="../../styles/styles_responsive.css">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-
         <script type="text/javascript" src="../../js/all_pages_jquery.js"></script>
-        <script type="text/javascript" src="../../js/slidedown.js"></script>
-        <script type="text/javascript">
-          setTimeout(function(){
-               $( '.slides .overflow .inner' ).css( "transition", "all 0.5s linear 0s" );
-          }, 1000);
-        </script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+        <script type="text/javascript" src="../../js/popup_img.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function () {
 
@@ -56,7 +61,7 @@ if (!isset($_SESSION['language'])) {
             });
         </script>
 
-				<script type="text/javascript">
+        <script type="text/javascript">
             $(document).ready(function () {
                 $('.buscar .users').hide();
                 $('.noresults').hide();
@@ -90,13 +95,14 @@ if (!isset($_SESSION['language'])) {
         $(document).ready(function(){
             $("#type-search").change(function(){
                 var option = $('select[id=type-search]').val();
-                location.href = "cervezas.php?option="+option;
+                location.href = "perfil_materia.php?option="+option;
                 $('#type-search').val($(this).val());
             });
         });
         </script>
 
     </head>
+
     <body>
 
 				<?php if (!isset($_SESSION['idUser'])) { ?>
@@ -104,39 +110,38 @@ if (!isset($_SESSION['language'])) {
 				<?php } ?>
 
 				<?php if (!isset($_SESSION['idUser'])) { ?>
-          <div class="login-modal">
-              <div class="login-modal-wrapper">
-                  <div class="close-icon">
-                      <img src="../../images/img_galeria-02_close.png" >
-                  </div>
-                  <div class="login-title">
-                      <a href="#"><span class="login-title-text">LOGIN</span></a>
-                  </div>
+						<div class="login-modal">
+								<div class="login-modal-wrapper">
+										<div class="close-icon">
+												<img src="../../images/img_galeria-02_close.png" >
+										</div>
+										<div class="login-title">
+												<span class="login-title-text">INICIA SESIÓN</span>
+										</div>
 
-                  <form action="">
-                      <div class="input-boxes">
-                          <input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
-                          <br><br>
-                          <input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
-                          <br>
-                      </div>
+										<form action="">
+												<div class="input-boxes">
+														<input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
+														<br><br>
+														<input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
+														<br>
+												</div>
 
-                      <div class="send-login-content">
-                          <br>
-                          <div class="not-user">YOU STILL DO NOT HAVE ACCOUNT? <span class="underline">SIGN UP.</span></div>
-                          <div class="forgot-password"><span class="underline">FORGOT PASSWORD? </span> </div>
-                          <br><br>
-                          <button type="button" name="button" id="send-login" class="sendLoginUser">ENTER</button>
-                      </div>
+												<div class="send-login-content">
+														<br>
+														<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
+														<br><br>
+														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
+												</div>
 
-                      <div class="not-user notEmail" style="display:none;">EMAIL NOT FOUND.</span></div>
-                      <div class="not-user notPass"  style="display:none;">WRONG PASSWORD.</span></div>
-                      <div class="not-user blockcount"  style="display:none;">YOUR ACCOUNT IS BLOCKED.</span></div>
-                  </form>
-              </div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
+										</form>
+								</div>
 
-          </div>
-
+						</div>
 				<?php } ?>
 
 				<?php if (!isset($_SESSION['idUser'])) { ?>
@@ -201,7 +206,6 @@ if (!isset($_SESSION['language'])) {
                               <select required id="birthday_day" name="birthday_day" class="birthday day" >
                                   <option value="">Día &#x25BE;</option>
                               </select>
-
 														</div>
 
 												</div>
@@ -236,10 +240,10 @@ if (!isset($_SESSION['language'])) {
 
 												<div class="send-login-content sign-up-send">
 														<br>
-														<span class="not-user"><label for="privacyTerms">I AGREE <u>TERMS</u>.</label></span>
+														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
-														<button type="submit" name="button" id="send-login">SIGN UP</button>
+														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
 												</div>
 
 										</form>
@@ -248,26 +252,26 @@ if (!isset($_SESSION['language'])) {
 						</div>
 				<?php } ?>
 
-          <div class="password-modal">
-            <div class="close-icon">
-                <img src="../../images/img_galeria-02_close.png" >
+            <div class="password-modal">
+              <div class="close-icon">
+                  <img src="../../images/img_galeria-02_close.png" >
+              </div>
+
+              <div class="login-title">
+                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+              </div>
+
+              <div class="password-modal-content">
+                <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
+
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
+
+                <br><br>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <br>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
+              </div>
             </div>
-
-            <div class="login-title">
-                <span class="login-title-text">RECOVER PASSWORD</span>
-            </div>
-
-            <div class="password-modal-content">
-              <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
-
-              <button type="submit" name="button" id="send-login" class="sendRecoveryMail">SEND</button>
-
-              <br><br>
-              <span class="msgacceptedpassword" style="display:none" id="mail">Check your email to verify password.</span>
-              <br>
-              <span class="mailnotvalid" style="color:red; display:none" id="passMsg">Email not found.</span>
-            </div>
-          </div>
 
 				<div id="menu_options">
 
@@ -281,18 +285,20 @@ if (!isset($_SESSION['language'])) {
 												<a href="inicio.php"><li><span>HOME</span></li></a>
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><spanRaw</span></li></a>
+												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+												<a href="../eng/raw_profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
+												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
 										</ul>
 								<?php } else { ?>
 										<ul>
 												<a href="inicio.php"><li><span>HOME</span></li></a>
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><spanRaw</span></li></a>
-												<a href="#" class="user_name_click"><li><span>LOGIN</span></li></a>
+												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
 										</ul>
 								<?php } ?>
 						</div>
@@ -310,6 +316,11 @@ if (!isset($_SESSION['language'])) {
 
         <div id="contenedor">
 
+            <div class="popup_img">
+                <img class="profile_popup" src="../../images/rawMaterialProfiles/<?=$lineMateria['rawMaterialProfileImage']?>" />
+                <a href=""><img class="close-pop" src="../../images/close_image-01.png" alt=""></a>
+            </div>
+
             <div class="top_info">
                 <div class="contenedo_info">
                     <a href="inicio.php">
@@ -323,32 +334,40 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option selected value="1">Usuarios</option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
                             <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option selected value="4">Raw</option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option value="1" selected id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
+                          <ul class="callouts">
+                            <li class="callouts--top">Seleccione un filtro</li>
+                          </ul>
                         </div>
                         <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -367,7 +386,8 @@ if (!isset($_SESSION['language'])) {
                                 $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
                                                WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                               AND message.user_idUser != " . $line['idUser'];
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
@@ -395,15 +415,15 @@ if (!isset($_SESSION['language'])) {
 
                                 echo '<div class="user_name">
                                         <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
-                                        <span>' . $line["userName"] . '</span>
+                  											<span>' . $line["userName"] . '</span>
                                         </a>
-                                      </div>
+                  										</div>
                                       ';
                             } else {
                                 echo '
-                                      <div class="user_name">
-                                        <a href="#"><span>LOGIN</span></a>
-                                      </div>';
+                  										<div class="user_name">
+                  											<a href="#"><span>INICIA SESIÓN</span></a>
+                  										</div>';
                             }
                             ?>
 
@@ -417,284 +437,149 @@ if (!isset($_SESSION['language'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/beer_page-02.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
-                <span class="text_prin bottom_text">CERVEZAS</span>
+                <img src="../../images/rawMaterialCovers/<?=$lineMateria['rawMaterialCoverImage']?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
             </div>
 
-            <div class="beer_info">
-                <span class="title_beer_info">CONOCE ALGO NUEVO</span>
-                <div class="aside_info">
-                    <div class="cont_search">
-                        <div class="search">
-                            <img src="../../images/icon-01.png" alt="search icon" title="search icon">
-                            <input type="text" id="filtrar" placeholder="">
+            <div class="content_profile content_profile_beer">
+
+                <div class="image_logo">
+                    <img src="../../images/rawMaterialProfiles/<?=$lineMateria['rawMaterialProfileImage']?>" />
+                </div>
+
+                <div class="name_profile" style="width: 70%;">
+                    <p><?=mb_strtoupper ($lineMateria['rawMaterialName']);?></p><br>
+                </div>
+
+                <div class="city_profile" style="width: 70%;">
+                    <p>
+                    <?php
+                        $q = "SELECT rawMaterialTypeName FROM rawmaterialtype
+                                  INNER JOIN rawmaterial_has_rawmaterialtype ON rawmaterialtype.idDrawMaterialType = rawmaterial_has_rawmaterialtype.idDrawMaterialType
+                                  WHERE rawmaterial_has_rawmaterialtype.idRawMaterial = ".$lineMateria['idRawMaterial'];
+                        $r = mysql_query($q) or die(mysql_error());
+                        while($l = mysql_fetch_array($r)){
+                          echo strtoupper($l['rawMaterialTypeName'])." ";
+                        }
+                    ?>
+                    </p><br><br>
+                    <p><?=$lineMateria['city']?>, <?= $lineMateria['name_s']?>, <?=$lineMateria['name_c']?>.</p>
+                </div>
+
+
+                <!-- <div class="city_profile">
+
+                    <p>Guadalajara, México.</p>
+
+                </div> -->
+
+                <div class="age_profile material_age" style="width: 70%;">
+                    <p><?=$lineMateria['rawMaterialAddress']?>, CP. <?=$lineMateria['rawMaterialZip']?> <br> T.  <?=$lineMateria['rawMaterialPhone']?>.</p>
+                </div>
+
+                <div class="desc_profile material-profile">
+
+
+                    <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
+                        <div class="send_message">
+                            <img src="../../images/social-03.png"/>
+                            <p>ENVIAR CORREO:</p>
                         </div>
+                    </a>
+                    <br>
 
-                        <div class="list_options">
-                            <ul class="options_li">
-                                <li class="option_principal">
-                                    <span class="principal_text type">TIPO</span>
-                                    <ul class="suboptions_li type">
-                                        <?php
-                                        $query = "SELECT * FROM beertype";
-                                        $resultado = mysql_query($query) or die(mysql_error());
+                    <?php if(isset($lineMateria['rawMaterialSite'])){ ?>
 
-                                        while ($row = mysql_fetch_array($resultado)) {
-                                            if (isset($_GET['country'])) {
-                                                ?>
-                                                <li><span><a href="?type=<?php echo $row['beerTypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['beerTypeName']; ?></a></span></li>
-                                            <?php } else { ?>
-                                                <li><span><a href="?type=<?php echo $row['beerTypeName']; ?>"><?php echo $row['beerTypeName']; ?></a></span></li>
-    <?php }
-}
-?>
-                                    </ul>
-                                </li>
-                                <li class="option_principal">
-                                    <span class="principal_text country">PAÍS</span>
-                                    <ul class="suboptions_li country">
-                                        <?php
-                                        $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id WHERE p.language = ".$_SESSION['language']." GROUP BY name_c";
-                                        $resultado1 = mysql_query($query1) or die(mysql_error());
-
-                                        while ($row1 = mysql_fetch_array($resultado1)) {
-                                            if (isset($_GET['type'])) {
-                                                ?>
-                                                <li><span><a href="?type=<?php echo $_GET['type']; ?>&country=<?php echo $row1['name_c']; ?>"><?php echo $row1['name_c']; ?></a></span></li>
-    <?php } else { ?>
-                                                <li><span><a href="?country=<?php echo $row1['name_c']; ?>"><?php echo $row1['name_c']; ?></a></span></li>
-    <?php }
-}
-?>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="link_profile" style="width: 70%;">
+                        <?=$lineMateria['rawMaterialEmail'];?>
                     </div>
+
+                    <div class="social_company materia-width">
+                        <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
+                        <?php } ?>
+                        <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
+                        <?php } ?>
+                        <?php if(strlen($lineMateria['rawMaterialTwitter'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialTwitter'] ?>" class="other_contact twt"><img src="../../images/social-02.png" /></a>
+                        <?php } ?>
+                          <?php if(strlen($lineMateria['rawMaterialInstagram'])>0){?>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialInstagram'] ?>" class="other_contact ig"><img src="../../images/social-01.png" /></a>
+                        <?php } ?>
+                    </div>
+
+                    <?php } ?>
+
 
                 </div>
 
-                <!-- slider -->
 
-                <div class="content buscar_beers">
-                    <div class="back_">
-                        <a href="inicio.php">
-                            <img src="../../images/flecha-izq_negro.png" />
-                            <p class="back_text">VOLVER A HOME</p>
-                        </a>
-                    </div>
+            </div>
 
-                    <div class="slides">
-                        <div class="overflow">
-                            <div class="inner profile favoritos-slider">
+            <div class="favs_profile favs_profile_material">
 
-                        	<?php
-                        		if (isset($_GET['type'])) {
-		                          	$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idBeerType = bt.idBeerType WHERE b.language = ".$_SESSION['language']." AND bt.beerTypeName ='" . $_GET['type'] . "'";
-	                                $resultado_type = mysql_query($query_type) or die(mysql_error());
-		                          	$contador = 0;
-		                          	while ($row3 = mysql_fetch_array($resultado_type)) {
-			                            if($contador==0)
-			                              echo '<article class="favoritos-slideItems">';
-			                            $contador++;
-
-			                            $length = 40;
-			                            $descriptionText = substr($row3['beerDescription'], 0, $length);
-			                            if(strlen($row3['beerDescription'])>$length){
-			                              $descriptionText .= "...";
-			                            }
-			                            echo '
-			                                <li class="first_beer beertwo beers">
-		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
-		                                      <span class="title">'.$row3['beerName'].'</span>
-			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">LEARN MORE</span></a>
-			                                </li>
-			                            ';
-			                            if($contador==8){
-			                              echo '</article>';
-			                              $contador=0;
-			                            }
-	                          		}
-	                          	} else if (isset($_GET['country'])) {
-	                          		$query_country = "SELECT * FROM beerfans.beer b
-									                    INNER JOIN beerfans.producer pro
-									                    ON pro.idProducer = b.idProducer
-									                    INNER JOIN beerfans.countries co
-									                    ON co.id = pro.country_id
-                                      WHERE b.language = ".$_SESSION['language']."
-                                      AND co.name_c ='" . $_GET['country'] . "'";
-	                                $resultado3 = mysql_query($query_country) or die(mysql_error());
-		                          	$contador = 0;
-		                          	while ($row3 = mysql_fetch_array($resultado3)) {
-			                            if($contador==0)
-			                              echo '<article class="favoritos-slideItems">';
-			                            $contador++;
-
-			                            $length = 40;
-			                            $descriptionText = substr($row3['beerDescription'], 0, $length);
-			                            if(strlen($row3['beerDescription'])>$length){
-			                              $descriptionText .= "...";
-			                            }
-			                            echo '
-			                            	<li class="first_beer beertwo beers">
-		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
-		                                      <span class="title">'.$row3['beerName'].'</span>
-			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">LEARN MORE</span></a>
-			                                </li>
-			                            ';
-			                            if($contador==8){
-			                              echo '</article>';
-			                              $contador=0;
-			                            }
-	                          		}
-	                          	} else if ((isset($_GET['type'])) && (isset($_GET['country']))) {
-	                          		$query3 = "SELECT * FROM beer b
-								                  INNER JOIN beertype bt
-								                  ON bt.idBeerType = b.idBeerType
-								                  INNER JOIN producer p
-								                  ON p.idProducer = b.idProducer
-								                  INNER JOIN countries c
-								                  ON c.id = p.country_id
-                                  WHERE b.language = ".$_SESSION['language']."
-								                  AND bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
-                                    $resultado3 = mysql_query($query3) or die(mysql_error());
-                                    $contador = 0;
-                                    while ($row3 = mysql_fetch_array($resultado3)) {
-                                    	if($contador==0)
-			                              echo '<article class="favoritos-slideItems">';
-			                            $contador++;
-
-			                            $length = 40;
-			                            $descriptionText = substr($row3['beerDescription'], 0, $length);
-			                            if(strlen($row3['beerDescription'])>$length){
-			                              $descriptionText .= "...";
-			                            }
-			                            echo '
-			                            	<li class="first_beer beertwo beers">
-		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
-		                                      <span class="title">'.$row3['beerName'].'</span>
-			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">LEARN MORE</span></a>
-			                                </li>
-			                            ';
-			                            if($contador==8){
-			                              echo '</article>';
-			                              $contador=0;
-			                            }
-			                        }
-	                          	} else {
-	                          		$query2 = "SELECT * FROM beer WHERE language = ".$_SESSION['language'];
-                                    $resultado2 = mysql_query($query2) or die(mysql_error());
-                                    $contador = 0;
-                                    while ($row2 = mysql_fetch_array($resultado2)) {
-                                    	if($contador==0)
-			                              echo '<article class="favoritos-slideItems">';
-			                            $contador++;
-
-			                            $length = 40;
-			                            $descriptionText = substr($row2['beerDescription'], 0, $length);
-			                            if(strlen($row2['beerDescription'])>$length){
-			                              $descriptionText .= "...";
-			                            }
-			                            echo '
-			                                <li class="first_beer beertwo beers">
-		                                      <img src="../../images/beerBottles/'.$row2['beerBottleImage'].'"> <br>
-		                                      <span class="title">'.$row2['beerName'].'</span>
-			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row2['idBeer'].'"><span class="ver_mas">LEARN MORE</span></a>
-			                                </li>
-			                            ';
-			                            if($contador==8){
-			                              echo '</article>';
-			                              $contador=0;
-			                            }
-			                        }
-	                          	}
-                      		?>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="controls labelsfavorites">
-                        <!-- <label for="slide1" ></label> -->
-                    </div>
-
-                    <!-- check beer lenght ( CERVEZAS ) -->
-                    <script type="text/javascript">
-                      var beerSlideCounter = $('.favoritos-slider article.favoritos-slideItems').length;
-                      var beerSlideWidth = 100/beerSlideCounter;
-                      $('.favoritos-slider article.favoritos-slideItems').css({ width: beerSlideWidth + '%' });
-                      $('.favoritos-slider').css({ width: beerSlideCounter*100 + '%' });
-
-                      var labels = "";
-                      $('.favoritos-slider article.favoritos-slideItems').each(function(index){
-                        labels = labels+"<label name="+(index+1)+" for='slide"+(index+1)+"'></label>";
-                      });
-                      $('.labelsfavorites').html(labels);
-                    </script>
-
-                    <!-- slider beers animation (CERVEZAS ) -->
-                    <script type="text/javascript">
-                      $(document).on('click', '.labelsfavorites label', function(){
-                        var position = $(this).attr('name'); position--;
-                        var margin = position*100; margin = margin * -1;
-                        $('.favoritos-slider').css({ "margin-left":  margin+"%" });
-                        $('.labelsfavorites label').css({ "background": "#aaa" });
-                        $(this).css({ "background": "#333" });
-                      });
-                    </script>
-
+                <div class="back_ profile_back">
+                    <a href="cervezas.php">
+                        <img src="../../images/flecha-izq_negro.png" />
+                        <p class="back_text">IR A MATERIA PRIMA</p>
+                    </a>
                 </div>
 
-                <!--- fin slider beers -->
+                <div class="name_profile material_title">
+                    <p><?=mb_strtoupper ($lineMateria['rawMaterialGeneralDescription']);?></p>
+                </div>
 
+                <div class="city_profile material_subtitle">
+                    <p><?=$lineMateria['rawMaterialDescription'];?></p>
+                </div>
 
+                <div class="map" id="googleMap" >	</div>
 
-
-                <div class="bottom_site other_bottom">
-                    <div class="center_cont_site">
-                        <a href="#contenedor" class="ancla">
-                            <div class="go_top">
-                                <img src="../../images/go_top.png">
-                            </div>
-                        </a>
-                        <ul class="social">
-                            <a href=""><li><img src="../../images/bottom-05.png"></li></a>
-                            <a href=""><li><img src="../../images/bottom-04.png"></li></a>
-                            <a href=""><li><img src="../../images/bottom-03.png"></li></a>
-                            <a href=""><li><img src="../../images/bottom-02.png"></li></a>
-                        </ul>
-<?php if (isset($_SESSION['idUser'])) { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><spanRaw</span></li></a>
-                            <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-                            <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
-<?php } else { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><spanRaw</span></li></a>
-                            <a href="#" class="user_name_click"><li><span>LOGIN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
-<?php } ?>
-
-                        <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
-
-                        <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
-                    </div>
+                <div class="profile_res materia_res">
+                  <?=$lineMateria['rawMaterialDescriptionHTML'];?>
                 </div>
 
             </div>
 
+            <div class="bottom_site other_bottom">
+                <div class="center_cont_site">
+                    <a href="#contenedor" class="ancla">
+                        <div class="go_top">
+                            <img src="../../images/go_top.png">
+                        </div>
+                    </a>
+                    <ul class="social">
+                        <a href=""><li><img src="../../images/bottom-05.png"></li></a>
+                        <a href=""><li><img src="../../images/bottom-04.png"></li></a>
+                        <a href=""><li><img src="../../images/bottom-03.png"></li></a>
+                        <a href=""><li><img src="../../images/bottom-02.png"></li></a>
+                    </ul>
+                    <?php if (isset($_SESSION['idUser'])) { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                                                <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } else { ?>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
+                                                <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                                            </ul>
+                    <?php } ?>
+
+                    <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+
+                    <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
+                </div>
+            </div>
 
 						<script type="text/javascript">
 		            $(document).on("ready", function () {
@@ -1061,6 +946,69 @@ if (!isset($_SESSION['language'])) {
 
 		        </script>
 
+        </div>
 
+        <span style="display:block"  name="<?=$lineMateria['rawMaterialLatitude']?>" id="rawMaterialLatitude">
+        <span style="display:block"  name="<?=$lineMateria['rawMaterialLongitude']?>" id="rawMaterialLongitude">
+
+        <script type="text/javascript">
+
+          var rawMaterialLatitude = $('#rawMaterialLatitude').attr('name');
+          var rawMaterialLongitude = $('#rawMaterialLongitude').attr('name');
+          var myCenter=new google.maps.LatLng(rawMaterialLatitude,rawMaterialLongitude);
+          function initialize() {
+            var mapProp = {
+              center: myCenter,
+              zoom:15,
+              scrollwheel: false,
+              mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker=new google.maps.Marker({
+              position:myCenter,
+            });
+            marker.setMap(map);
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        <script type="text/javascript">
+
+            var selected = $( ".filter-opt option:selected").attr('name');
+
+            if (selected < 1) {
+              $( "#box-target" ).focus(function() {
+                 $( 'ul.callouts' ).css( "display", "block" );
+              });
+
+              $( "#box-target" ).focusout(function() {
+                 $( 'ul.callouts' ).css( "display", "none" );
+              });
+            }
+        </script>
+
+        <script>
+          $('.changeLanguage').click(function(e){
+            var namefunction = 'changeLanguageMenu';
+            $.ajax({
+                beforeSend: function () {
+                },
+                url: "../../admin/php/functions.php",
+                type: "POST",
+                data: {
+                    namefunction: namefunction
+                },
+                success: function (result) {
+                   
+                },
+                error: function (error) {
+                },
+                complete: function () {
+                },
+                timeout: 10000
+            });
+          });
+        </script>
+
+        
     </body>
 </html>

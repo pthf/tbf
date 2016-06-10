@@ -2,6 +2,7 @@
 include('../../admin/php/connect_bd.php');
 connect_base_de_datos();
 
+
 if ($_POST['option'] == 1) {
 
    $query = "SELECT * FROM user u
@@ -189,8 +190,7 @@ if ($_POST['option'] == 1) {
             </span>
         </div>
 
-<?php }
-
+<?php } 
 
 
 ?>
