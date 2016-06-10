@@ -36,7 +36,7 @@ if (!isset($_SESSION['language'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Cervezas | The Beer Fans | Social Network</title>
+        <title>Cervezas | The Beer Fans | Red Social</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -104,8 +104,9 @@ if (!isset($_SESSION['language'])) {
         <script type="text/javascript">
         $(document).ready(function(){
             $("#type-search").change(function(){
+                var id = <?php echo $_GET['idUser'];?>;
                 var option = $('select[id=type-search]').val();
-                location.href = "perfil.php?option="+option;
+                location.href = "perfil.php?idUser="+id+"&option="+option;
                 $('#type-search').val($(this).val());
             });
         });
@@ -125,7 +126,7 @@ if (!isset($_SESSION['language'])) {
 												<img src="../../images/img_galeria-02_close.png" >
 										</div>
 										<div class="login-title">
-												<span class="login-title-text">LOGIN</span>
+												<span class="login-title-text">INICIA SESIÓN</span>
 										</div>
 
 										<form action="">
@@ -138,15 +139,15 @@ if (!isset($_SESSION['language'])) {
 
 												<div class="send-login-content">
 														<br>
-														<div class="not-user">YOU STILL DO NOT HAVE ACCOUNT? <span class="underline">SIGN UP.</span></div>
-                            <div class="forgot-password"><span class="underline">FORGOT PASSWORD? </span> </div>
+														<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
+                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
 														<br><br>
-														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTER</button>
+														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
 												</div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NOT FOUND.</span></div>
-												<div class="not-user notPass"  style="display:none;">WRONG PASSWORD.</span></div>
-                        <div class="not-user blockcount"  style="display:none;">YOUR ACCOUNT IS BLOCKED.</span></div>
+												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
+												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
 										</form>
 								</div>
 
@@ -250,10 +251,10 @@ if (!isset($_SESSION['language'])) {
 
 												<div class="send-login-content sign-up-send">
 														<br>
-														<span class="not-user"><label for="privacyTerms">I AGREE <u>TERMS</u>.</label></span>
+														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <u>TÉRMINOS DE PRIVACIDAD</u>.</label></span>
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
-														<button type="submit" name="button" id="send-login">SIGN UP</button>
+														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
 												</div>
 
 										</form>
@@ -268,18 +269,18 @@ if (!isset($_SESSION['language'])) {
               </div>
 
               <div class="login-title">
-                  <span class="login-title-text">RECOVER PASSWORD</span>
+                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
               </div>
 
               <div class="password-modal-content">
                 <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
 
-                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">SEND</button>
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
 
                 <br><br>
-                <span class="msgacceptedpassword" style="display:none" id="mail">Check your email to verify password.</span>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
                 <br>
-                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">Email not found.</span>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
               </div>
             </div>
 
@@ -296,18 +297,20 @@ if (!isset($_SESSION['language'])) {
 												<a href="inicio.php"><li><span>HOME</span></li></a>
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><spanRaw</span></li></a>
+												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+												<a href="../eng/profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
+												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
 										</ul>
 								<?php } else { ?>
 										<ul>
 												<a href="inicio.php"><li><span>HOME</span></li></a>
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><spanRaw</span></li></a>
-												<a href="#" class="user_name_click"><li><span>LOGIN</span></li></a>
+												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
 										</ul>
 								<?php } ?>
 						</div>
@@ -360,32 +363,40 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
                             <option selected value="1">Usuarios</option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
                             <option selected value="2">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
                             <option selected value="3">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option value="4">Materia Prima</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="1" id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option selected value="4">Raw</option>
+                            <option value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option selected value="4">Materia Prima</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option value="1" selected id="filters"> Usuarios </option>
-                            <option value="2" id="filters">Cervezas</option>
-                            <option value="3" id="filters">Productores</option>
-                            <option value="4" id="filters">Raw</option>
+                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
+                            <option value="1"> Usuarios </option>
+                            <option value="2">Cervezas</option>
+                            <option value="3">Productores</option>
+                            <option value="4">Materia Prima</option>
                             <?php } ?>
                           </select>
+                          <ul class="callouts">
+                            <li class="callouts--top">Seleccione un filtro</li>
+                          </ul>
                         </div>
                         <div class="search main-search">
                             <img src="../../images/icon-01.png" alt="search icon" title="search icon">
@@ -404,7 +415,8 @@ if (!isset($_SESSION['language'])) {
                                 $consulta = "SELECT * FROM message INNER JOIN chat
                                                ON message.chat_idChat = chat.idChat
                                                WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                               AND message.user_idUser != " . $line['idUser'];
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                                 ?>
 
@@ -439,7 +451,7 @@ if (!isset($_SESSION['language'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<a href="#"><span>LOGIN</span></a>
+                  											<a href="#"><span>INICIA SESIÓN</span></a>
                   										</div>';
                             }
                             ?>
@@ -544,7 +556,7 @@ if (!isset($_SESSION['language'])) {
                 	if(($_SESSION['idUser']) != $_GET['idUser']) { ?>
 	                <a id="show-img" href="#">
 	                    <img src="../../images/social-03.png" />
-	                    <p class="send_txt"> SEND MENSAJE	</p>
+	                    <p class="send_txt"> ENVIAR MENSAJE	</p>
 	                </a>
 	                <div id="lightbox-panel">
 	                    <div class="lightbox-content">
@@ -552,7 +564,7 @@ if (!isset($_SESSION['language'])) {
 	                            <img src="../../images/img_galeria-02_close.png" alt="" />
 	                        </a>
 
-	                        	<p class="toptext-light"> SEND MENSAJE </p>
+	                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
 	                        <div class="msn_form">
 	                        	<form id="formNewMessage">
 	                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
@@ -560,7 +572,7 @@ if (!isset($_SESSION['language'])) {
 		                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
 		                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
 		                            <br>
-		                            <input type="submit" value="SEND">
+		                            <input type="submit" value="ENVIAR">
 		                            <div class="resultado"></div>
 		                        </form>
 	                        </div>
@@ -959,6 +971,43 @@ if (!isset($_SESSION['language'])) {
                         <div id="itemContainer">
                             <div id="itemContainerInner">
 
+
+
+                                <?php
+                                  if(isset($_SESSION['idUser'])){
+                                  if($_GET['idUser'] == $_SESSION['idUser'] || $_SESSION['idUser'] == 1){
+                                ?>
+                                <div class="delete-comment" data-name-post="<?=$rows2['idPostElement']?>">
+                                    <img src="../../images/img_galeria-02_close.png" >
+                                </div>
+
+                                <script>
+                                  $('.delete-comment').click(function(){
+                                    var idComment = $(this).attr('data-name-post');
+                                    var namefunction = "deleteComment";
+                                    $.ajax({
+                                        beforeSend: function () {},
+                                        url: "../../admin/php/functions.php",
+                                        type: "POST",
+                                        data: {
+                                            idComment: idComment,
+                                            namefunction : namefunction
+                                        },
+                                        success: function (result) {
+                                          location.reload();
+                                        },
+                                        error: function () {},
+                                        complete: function () {},
+                                        timeout: 10000
+                                    });
+                                  });
+                                </script>
+                                <?php
+                                  }
+                                  }
+                                ?>
+
+
                                 <div class="item i1">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
                                 </div>
@@ -1074,7 +1123,7 @@ if (!isset($_SESSION['language'])) {
                             <a href="inicio.php"><li><span>HOME</span></li></a>
                             <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                             <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><spanRaw</span></li></a>
+                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
                             <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
                             <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
                             <a href="contact.php"><li><span>CONTACTO</span></li></a>
@@ -1084,8 +1133,8 @@ if (!isset($_SESSION['language'])) {
                             <a href="inicio.php"><li><span>HOME</span></li></a>
                             <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
                             <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><spanRaw</span></li></a>
-                            <a href="#" class="user_name_click"><li><span>LOGIN</span></li></a>
+                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
+                            <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
                             <a href="contact.php"><li><span>CONTACTO</span></li></a>
                         </ul>
                     <?php } ?>
@@ -1747,6 +1796,46 @@ if (!isset($_SESSION['language'])) {
 
 				</script>
 
-          <script type="text/javascript" src="../../js/rating.js"></script>
+        <script type="text/javascript" src="../../js/rating.js"></script>
+        <script type="text/javascript">
+
+            var selected = $( ".filter-opt option:selected").attr('name');
+
+            if (selected < 1) {
+              $( "#box-target" ).focus(function() {
+                 $( 'ul.callouts' ).css( "display", "block" );
+              });
+
+              $( "#box-target" ).focusout(function() {
+                 $( 'ul.callouts' ).css( "display", "none" );
+              });
+            }
+        </script>
+
+
+        <script>
+          $('.changeLanguage').click(function(e){
+            var namefunction = 'changeLanguageMenu';
+            $.ajax({
+                beforeSend: function () {
+                },
+                url: "../../admin/php/functions.php",
+                type: "POST",
+                data: {
+                    namefunction: namefunction
+                },
+                success: function (result) {
+
+                },
+                error: function (error) {
+                },
+                complete: function () {
+                },
+                timeout: 10000
+            });
+          });
+        </script>
+
+
     </body>
 </html>
