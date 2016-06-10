@@ -14,8 +14,8 @@
 			case 'rankUser':
 				rankUser($_POST['valuenew'], $_POST['idBeer'], $_POST['idUser']);
 			break;
-			case 'addBeerType':
-				addBeerType($_POST['data']);
+			case 'addbeertype':
+				addbeertype($_POST['data']);
 				break;
 			case 'addNewBeer':
 				addNewBeer();
@@ -535,14 +535,14 @@
 	}
 
 	function functionPrintBeerList(){
-  		$query = "SELECT idBeer, beer.language, beerName, producerName, name_c, name_s, beerTypeName, beerDescription, beerStrength, beerIBUS, beerSite, beerFacebook, beerTwitter, beerInstagram
+  		$query = "SELECT idBeer, beer.language, beerName, producerName, name_c, name_s, beertypeName, beerDescription, beerStrength, beerIBUS, beerSite, beerFacebook, beerTwitter, beerInstagram
 			    	FROM beer
   				  INNER JOIN producer
-  				  INNER JOIN beerType
+  				  INNER JOIN beertype
   				  INNER JOIN countries
   				  INNER JOIN states
   				  ON beer.idProducer = producer.idProducer
-  				  AND beer.idBeerType = beerType.idBeerType
+  				  AND beer.idbeertype = beertype.idbeertype
   				  AND producer.country_id = countries.id
   				  AND producer.state_id = states.id
   				  ORDER BY beer.idBeer DESC";
@@ -561,7 +561,7 @@
 		  		<td>'.$line["producerName"].'</td>
 		  		<td>'.$line["name_c"].'</td>
 		  		<td>'.$line["name_s"].'</td>
-		  		<td>'.$line["beerTypeName"].'</td>
+		  		<td>'.$line["beertypeName"].'</td>
 		  		<td>'.$line["beerDescription"].'</td>
 		  		<td>'.$line["beerStrength"].'</td>
 		  		<td>'.$line["beerIBUS"].'</td>
@@ -608,8 +608,8 @@
   		}
 	}
 
-	function addBeerType($data){
-		$query = "SELECT beerTypeName FROM beertype WHERE beerTypeName = '$data'";
+	function addbeertype($data){
+		$query = "SELECT beertypeName FROM beertype WHERE beertypeName = '$data'";
 		$result = mysql_query($query) or die(mysql_error());
 		$row = mysql_num_rows($result);
 		if($row>0){
@@ -617,14 +617,14 @@
 		}else{
 			mysql_free_result($result);
 			$data = strtolower($data);
-			$query = "INSERT INTO beertype (beerTypeName) VALUES ('$data')";
+			$query = "INSERT INTO beertype (beertypeName) VALUES ('$data')";
 			$result = mysql_query($query) or die(mysql_error());
 
-			$query = "SELECT * FROM beertype ORDER BY beerTypeName ASC";
+			$query = "SELECT * FROM beertype ORDER BY beertypeName ASC";
 			$result = mysql_query($query) or die(mysql_error());
 			echo '<option disabled selected value="">Select a beer type</option>';
 			while($line=mysql_fetch_array($result)){
-				echo '<option value="'.$line["idBeerType"].'" name="'.$line["idBeerType"].'">'.$line["beerTypeName"].'</option>';
+				echo '<option value="'.$line["idbeertype"].'" name="'.$line["idbeertype"].'">'.$line["beertypeName"].'</option>';
 			}
 		}
 	}
@@ -656,7 +656,7 @@
 		$result = mysql_query($query) or die(mysql_error());
 		$idPublicMessagesList = mysql_insert_id();
 
-		$query = "INSERT INTO beer (idPublicMessagesList, language, beerName,beerDescription,beerStrength,beerIBUS,beerProfileImage,beerCoverImage,beerBottleImage,beerSite,beerFacebook,beerTwitter,beerInstagram,idProducer,idSlider,idBeerType)VALUES ($idPublicMessagesList,".$formData['language'].",'".$formData['name']."','".$formData['description']."','".$formData['strength']."','".$formData['ibus']."','".$fileNames[0]."','".$fileNames[1]."','".$fileNames[2]."','".$formData['site']."','".$formData['facebook']."','".$formData['twitter']."','".$formData['instagram']."',".$formData['producer'].",".$idBeerslider.",".$formData['beerType'].")";
+		$query = "INSERT INTO beer (idPublicMessagesList, language, beerName,beerDescription,beerStrength,beerIBUS,beerProfileImage,beerCoverImage,beerBottleImage,beerSite,beerFacebook,beerTwitter,beerInstagram,idProducer,idSlider,idbeertype)VALUES ($idPublicMessagesList,".$formData['language'].",'".$formData['name']."','".$formData['description']."','".$formData['strength']."','".$formData['ibus']."','".$fileNames[0]."','".$fileNames[1]."','".$fileNames[2]."','".$formData['site']."','".$formData['facebook']."','".$formData['twitter']."','".$formData['instagram']."',".$formData['producer'].",".$idBeerslider.",".$formData['beertype'].")";
 		$result = mysql_query($query) or die(mysql_error());
 
 		functionPrintBeerList();
@@ -769,7 +769,7 @@
 							beerTwitter = '".$formData['twitter']."',
 							beerInstagram = '".$formData['instagram']."',
 							idProducer = ".$formData['producer'].",
-							idBeerType = ".$formData['beerType']."
+							idbeertype = ".$formData['beertype']."
 							WHERE idBeer = ".$id;
 			$result = mysql_query($query) or die(mysql_error());
 

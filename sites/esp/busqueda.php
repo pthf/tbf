@@ -49,12 +49,12 @@ if ($_POST['option'] == 1) {
 } else if ($_POST['option'] == 2) {
 
     $query = "SELECT * FROM beer b
-            INNER JOIN beertype bt ON bt.idBeerType = b.idBeerType
+            INNER JOIN beertype bt ON bt.idbeertype = b.idbeertype
             INNER JOIN producer pr ON pr.idProducer = b.idProducer
             INNER JOIN countries co ON co.id = pr.country_id
             INNER JOIN states st ON st.id = pr.state_id
             WHERE b.beerName LIKE '" . $_POST['valores'] . "%'
-            OR bt.beerTypeName LIKE '" . $_POST['valores'] . "%'
+            OR bt.beertypeName LIKE '" . $_POST['valores'] . "%'
             OR st.name_s LIKE '" . $_POST['valores'] . "%'
             OR co.sortname LIKE '" . $_POST['valores'] . "%'
             OR co.name_c LIKE '" . $_POST['valores'] . "%'
