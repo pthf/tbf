@@ -229,18 +229,22 @@ function requestMessage () {
 
 	parse_str($_POST['data'], $formData);
 
-	var_dump($formData);
-	exit();
+	//var_dump($formData);
+	//exit();
 
 	//Consulta del Usuario Receptor
 	$query1 = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser =  '".$formData['idReceptor']."'";
 	$resultado1 = mysql_query($query1) or die (mysql_error());
 	$row1 = mysql_fetch_array($resultado1);
+	//var_dump($row1);
 
 	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
 	$sql = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
 	$res = mysql_query($sql) or die (mysql_error());
 	$row2 = mysql_num_rows($res);
+	//var_dump($row2);
+	
+	//No existe
 	if ($row2 == 0) {
 
 		//Insertar chat con el idInbox del usuario logueado
@@ -260,24 +264,32 @@ function requestMessage () {
 		$sql2 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idEmisor']."' AND inbox_idInbox = '".$row1['idInbox']."'";
 		$res2 = mysql_query($sql2) or die (mysql_error());
 		$row4 = mysql_fetch_array($res2);
+		//var_dump($row4);
+		
 		//Inserta mensaje del Emisor
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
 		$query6 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','0','".$row4['idChat']."','".$formData['idEmisor']."')";
 		$resultado6 = mysql_query($query6) or die (mysql_error());
-
+		//var_dump($query6);	
+		//exit();
 	}
 
 	//Consulta del Usuario Emisor para obtener el idInbox
 	$query = "SELECT us.idUser,inb.idInbox FROM user us INNER JOIN inbox inb ON inb.idInbox = us.idInbox WHERE us.idUser = '".$formData['idEmisor']."'";
 	$resultado = mysql_query($query) or die (mysql_error());
 	$row = mysql_fetch_array($resultado);
+	//var_dump($row);
+	//exit();
 
 	//Consultamos la tabla de chats para verificar si existe el chat con el inbox actual
 	$sql1 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
 	$res1 = mysql_query($sql1) or die (mysql_error());
 	$row3 = mysql_num_rows($res1);
+	//var_dump($row3);
+	//exit();
+
 	if ($row3 == 0) {
 
 		//Insertar chat al Receptor
@@ -289,7 +301,7 @@ function requestMessage () {
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
 	    $idChatReceptor = mysql_insert_id();
-		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idReceptor']."')";
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$idChatReceptor."','".$formData['idEmisor']."')";
 		$resultado4 = mysql_query($query5) or die (mysql_error());
 
 	} else if ($row3 > 0) {
@@ -297,13 +309,15 @@ function requestMessage () {
 		$sql3 = "SELECT * FROM chat WHERE user_idUser = '".$formData['idReceptor']."' AND inbox_idInbox = '".$row['idInbox']."'";
 		$res3 = mysql_query($sql3) or die (mysql_error());
 		$row5 = mysql_fetch_array($res3);
+
 		//Inserta mensaje del Emisor
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
-		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idReceptor']."')";
+		$query5 = "INSERT INTO message VALUES (null,'".$formData['message']."','".$datatime."','1','".$row5['idChat']."','".$formData['idEmisor']."')";
 		$resultado4 = mysql_query($query5) or die (mysql_error());
-
+		//var_dump($query5);
+		//exit();
 	}
 }
 
@@ -319,7 +333,7 @@ function changeImageBanner () {
 		$fileType = $_FILES["beerBannerImage"]["type"][$key];
 		$fileTemp = $_FILES["beerBannerImage"]["tmp_name"][$key];
 		if($indice==0)
-			move_uploaded_file($fileTemp, "../images/beerBanners/".$fileName);
+			move_uploaded_file($fileTemp, "../images/userCover/".$fileName);
 		$indice++;
 	}
 	$query = "UPDATE user SET userCoverImage = ".$fileNames[0]." WHERE idUser = ".$formData['idUser'];
@@ -458,7 +472,7 @@ function addWishList($dataUser, $dataBeer){
 
 function changeStatusMessage () {
 
-	/*$query = "UPDATE message SET messageStatus = '1' WHERE chat_idChat = '".$_POST['data']."'";
-	$result = mysql_query($query) or die(mysql_error());*/
+	$query = "UPDATE message SET messageStatus = '1' WHERE chat_idChat = '".$_POST['data']."'";
+	$result = mysql_query($query) or die(mysql_error());
 
 }

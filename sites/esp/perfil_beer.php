@@ -831,7 +831,9 @@ if (!isset($_SESSION['language'])) {
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
+                                  <a href="perfil.php?idUser=<?php echo $rows2['idUser'];?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">
