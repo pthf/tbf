@@ -828,9 +828,41 @@ if (!isset($_SESSION['language'])) {
                         ?>
                         <!-- message received -->
                         <div id="itemContainer">
-                          <div class="delete-comment">
-                              <img src="../../images/img_galeria-02_close.png" >
-                          </div>
+
+
+                            <?php
+                              if(isset($_SESSION['idUser'])){
+                              if($_SESSION['idUser'] == 1){
+                            ?>
+                            <div class="delete-comment" data-name-post="<?=$rows2['idPostElement']?>">
+                                <img src="../../images/img_galeria-02_close.png" >
+                            </div>
+
+                            <script>
+                              $('.delete-comment').click(function(){
+                                var idComment = $(this).attr('data-name-post');
+                                var namefunction = "deleteComment";
+                                $.ajax({
+                                    beforeSend: function () {},
+                                    url: "../../admin/php/functions.php",
+                                    type: "POST",
+                                    data: {
+                                        idComment: idComment,
+                                        namefunction : namefunction
+                                    },
+                                    success: function (result) {
+                                      location.reload();
+                                    },
+                                    error: function () {},
+                                    complete: function () {},
+                                    timeout: 10000
+                                });
+                              });
+                            </script>
+                            <?php
+                              }
+                              }
+                            ?>
                             <div id="itemContainerInner">
 
                                 <div class="item i1">

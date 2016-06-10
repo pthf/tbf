@@ -125,7 +125,15 @@
 			case 'recoveryPassword':
 				recoveryPassword();
 				break;
+			case 'deleteComment':
+				deleteComment($_POST['idComment']);
+				break;
 		}
+	}
+
+	function deleteComment($idComment){
+		$query = "DELETE FROM postelement WHERE idPostElement = $idComment";
+		$result = mysql_query($query) or die(mysql_error());
 	}
 
 	function addUseExp($idUser){
