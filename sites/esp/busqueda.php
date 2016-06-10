@@ -6,10 +6,8 @@ connect_base_de_datos();
 if ($_POST['option'] == 1) {
 
    $query = "SELECT * FROM user u
-            INNER JOIN countries c
-            ON c.id = u.country_id
-            INNER JOIN states s
-            ON s.id = u.state_id
+            INNER JOIN countries c ON c.id = u.country_id
+            INNER JOIN states s ON s.id = u.state_id
             WHERE u.userStatus <> 0
             AND u.userName LIKE '" . $_POST['valores'] . "%'
             OR s.name_s LIKE '" . $_POST['valores'] . "%'
@@ -51,13 +49,12 @@ if ($_POST['option'] == 1) {
 } else if ($_POST['option'] == 2) {
 
     $query = "SELECT * FROM beer b
-            INNER JOIN producer pr
-            ON pr.idProducer = b.idProducer
-            INNER JOIN countries co
-            ON co.id = pr.country_id
-            INNER JOIN states st
-            ON st.id = pr.state_id
+            INNER JOIN beertype bt ON bt.idBeerType = b.idBeerType
+            INNER JOIN producer pr ON pr.idProducer = b.idProducer
+            INNER JOIN countries co ON co.id = pr.country_id
+            INNER JOIN states st ON st.id = pr.state_id
             WHERE b.beerName LIKE '" . $_POST['valores'] . "%'
+            OR bt.beerTypeName LIKE '" . $_POST['valores'] . "%'
             OR st.name_s LIKE '" . $_POST['valores'] . "%'
             OR co.sortname LIKE '" . $_POST['valores'] . "%'
             OR co.name_c LIKE '" . $_POST['valores'] . "%'
@@ -97,11 +94,11 @@ if ($_POST['option'] == 1) {
 } else if ($_POST['option'] == 3){
 
     $query = "SELECT * FROM producer pr
-            INNER JOIN countries co
-            ON co.id = pr.country_id
-            INNER JOIN states st
-            ON st.id = pr.state_id
+            INNER JOIN producertype pt ON pt.idProducerType = pr.idProducerType
+            INNER JOIN countries co ON co.id = pr.country_id
+            INNER JOIN states st ON st.id = pr.state_id
             WHERE pr.producerName LIKE '" . $_POST['valores'] . "%'
+            OR pt.producerTypeName LIKE '" . $_POST['valores'] . "%'
             OR st.name_s LIKE '" . $_POST['valores'] . "%'
             OR co.sortname LIKE '" . $_POST['valores'] . "%'
             OR co.name_c LIKE '" . $_POST['valores'] . "%'
@@ -141,11 +138,12 @@ if ($_POST['option'] == 1) {
 } else if ($_POST['option'] == 4) {
 
     $query = "SELECT * FROM rawmaterial rm
-            INNER JOIN countries co
-            ON co.id = rm.country_id
-            INNER JOIN states st
-            ON st.id = rm.state_id
+            INNER JOIN rawmaterial_has_rawmaterialtype rhm ON rhm.idRawMaterial = rm.idRawMaterial 
+            INNER JOIN rawmaterialtype rmt ON rmt. idDrawMaterialType = rhm.idDrawMaterialType
+            INNER JOIN countries co ON co.id = rm.country_id
+            INNER JOIN states st ON st.id = rm.state_id
             WHERE rm.rawMaterialName LIKE '" . $_POST['valores'] . "%'
+            OR rmt.rawMaterialTypeName LIKE '" . $_POST['valores'] . "%'
             OR st.name_s LIKE '" . $_POST['valores'] . "%'
             OR co.sortname LIKE '" . $_POST['valores'] . "%'
             OR co.name_c LIKE '" . $_POST['valores'] . "%'

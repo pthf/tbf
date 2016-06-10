@@ -463,16 +463,18 @@ $(document).ready(function () {
                   GROUP BY us.userName";
                   $resultado = mysql_query($query) or die (mysql_error());
                   while ($row = mysql_fetch_array($resultado)) {
-                    /*$user_idUser = $row;
-                    var_dump($row);*/
+                    $query2 = "SELECT * FROM message WHERE chat_idChat = '".$row['idChat']."' AND user_idUser = '".$row['user_idUser']."' AND messageStatus = 0";
+                    $resultado2 = mysql_query($query2) or die (mysql_error());
                   ?>
-                    <a href="?idChat=<?php echo $row['idChat'];?>" class="chats_inbox" data-id-chat="<?php echo $row['idChat'];?>">
-                        <div class="contactProfile chat_user">
 
+                    <a href="?idChat=<?php echo $row['idChat'];?>&idUser=<?php echo $row['user_idUser'];?>" class="chats_inbox" data-id-chat="<?php echo $row['idChat'];?>">
+
+                      <?php if(mysql_num_rows($resultado2) > 0) { ?>
+                        <div class="contactProfile chat_user color-chat" style="background:gainsboro; opacity:0.9">
                             <div class="contact_left">
 
                                 <img src="../../images/green_icon.png" alt="" />
-                                <p><?php echo $row['userName'];?> </p>
+                                <p id="parrafo"><?php echo $row['userName'];?> </p>
                             </div>
 
                             <div class="contact_image">
@@ -484,27 +486,40 @@ $(document).ready(function () {
                             </div>
 
                         </div>
+                      <?php } else { ?>
+                      <div class="contactProfile chat_user color-chat">
+                            <div class="contact_left">
+
+                                <img src="../../images/green_icon.png" alt="" />
+                                <p id="parrafo"><?php echo $row['userName'];?> </p>
+                            </div>
+
+                            <div class="contact_image">
+
+                                <div class="img_pro">
+                                    <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>"/>
+                                </div>
+
+                            </div>
+
+                        </div>
+                      <?php } ?>
                     </a>
                   <?php } ?>
                 </div>
-
                 <script type="text/javascript">
-                  $('.chats_inbox').click(function () {
+                $('.chats_inbox').click(function () {
                     var data = $(this).attr('data-id-chat');
-                    //var data1 = $(this).attr('data-id-user');
-                    alert(data);
                     var namefunction = "changeStatusMessage";
                     $.ajax({
                       url: "../../php/functions.php",
                       type: "POST",
                       data: {data: data, namefunction: namefunction},
                       success: function (result) {
-                         
-                          /*$('.buscar').html(result);
-                          $('.buscar .users').show();*/
+
                       },
                       error: function (error) {
-                          //alert(error);
+                          alert(error);
                       }
                     })
                   });
@@ -518,25 +533,17 @@ $(document).ready(function () {
     <?php
     if (isset($_GET['idChat'])) {
       $idChat = $_GET['idChat'];
-      // $query1 = "SELECT * FROM message m
-      // INNER JOIN user us
-      // ON us.idUser = m.user_idUser
-      // INNER JOIN chat c
-      // ON c.idChat = m.chat_idChat
-      // WHERE m.user_idUser = ".$idChat;
 
       $query1 = "SELECT * FROM message
                 INNER JOIN user ON message.user_idUser = user.idUser
                 INNER JOIN chat ON message.chat_idChat = chat.idChat
-                WHERE message.chat_idChat = ".$idChat;
+                WHERE message.chat_idChat = '".$idChat."' ORDER BY message.messageDate";   
       $resultado1 = mysql_query($query1) or die (mysql_error());
 
       while ($row1 = mysql_fetch_array($resultado1)) {
-        /*$query2 = "SELECT * FROM message m WHERE user_idUser = '".$line['idUser']."' AND messageText = '".$row1['messageText']."'";
-        $resultado2 = mysql_query($query2) or die (mysql_error());
-        $row2 = mysql_fetch_array($resultado2);*/
-        //var_dump($row2);
-        if ($row1['user_idUser'] == $_SESSION['idUser'] ) { ?>
+
+        if ($row1['idUser'] == $_SESSION['idUser'] ) { 
+          ?>
 
                         <!-- message send -->
                         <div id="itemContainer">
@@ -617,7 +624,7 @@ $(document).ready(function () {
                                 </h2>
                             </div>
                         </div>
-        <?php } else { ?>
+        <?php } else {  ?>
                         <!-- message recibed -->
                         <div id="itemContainer">
                             <div id="itemContainerInner">
@@ -735,10 +742,8 @@ $(document).ready(function () {
                 <div class="send_a_message">
 
                     <form id="SendRequestChat">
-                    <!--<input type="text" hidden name="idUserChat" value="<?php //echo $_GET['idUserChat']; ?>">
-                    <input type="text" hidden name="idChat" value="<?php //echo $_GET['idChat']; ?>">-->
                         <input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
-                        <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
+                        <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
                         <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
                         <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
                     </form>

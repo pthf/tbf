@@ -489,6 +489,17 @@ if (!isset($_SESSION['language'])) {
                         </a>
                     </div>
 
+                    <div class="back_left">
+                      <p class="back_text" style="margin-left: 1vw;"><a href="cervezas.php">Todos</a></p>
+                      <?php if( isset($_GET['type']) && isset($_GET['country']) ) { ?>
+                      <p class="back_text" style="">/ <a href="productores.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a> / <a href="productores.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a></p>
+                      <?php } else if(isset($_GET['country'])) { ?>
+                      <p class="back_text" style="">/ <a href="productores.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a></p>
+                      <?php } else if (isset($_GET['type'])) { ?>
+                      <p class="back_text" style="">/ <a href="productores.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a></p>
+                      <?php } ?>
+                    </div>
+
                     <div class="slides">
                         <div class="overflow">
                             <div class="inner material favoritos-slider">
@@ -519,6 +530,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row3['producerTypeName'].'</span>
 				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
 				                                </li>
 				                            ';
@@ -550,6 +562,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row3['producerTypeName'].'</span>
 				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
 				                                </li>
 				                            ';
@@ -560,6 +573,8 @@ if (!isset($_SESSION['language'])) {
 		                          		}
 		                          	} else if ((isset($_GET['country']))) {
 		                          		$query_country = "SELECT * FROM producer pro
+                                              INNER JOIN producertype pt
+                                              ON pt.idProducerType = pro.idProducerType
 								                              INNER JOIN countries co
 								                              ON co.id = pro.country_id WHERE pro.language = ".$_SESSION['language']." AND co.name_c ='" . $_GET['country'] . "'";
                                         $resultado_country = mysql_query($query_country) or die(mysql_error());
@@ -579,6 +594,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row3['producerTypeName'].'</span>
 				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
 				                                </li>
 				                            ';
@@ -588,7 +604,7 @@ if (!isset($_SESSION['language'])) {
 				                            }
 				                        }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM producer WHERE language = ".$_SESSION['language'];
+		                          		$query2 = "SELECT * FROM producer p INNER JOIN producertype pt ON pt.idProducerType = p.idProducerType WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {
@@ -606,6 +622,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row2['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row2['producerTypeName'].'</span>
 				                                  <a href="perfil_empresa.php?id='.$row2['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
 				                                </li>
 				                            ';

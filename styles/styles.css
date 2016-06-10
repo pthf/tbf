@@ -1106,6 +1106,13 @@ select.filter-opt {
   float: right;
 }
 
+.back_left{
+  position: relative;
+  margin-top: .5%;
+  margin-right: 1%;
+  float: left;
+}
+
 .config_back{
   position: absolute;
   margin-top: 0%;

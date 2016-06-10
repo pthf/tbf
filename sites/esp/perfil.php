@@ -466,7 +466,7 @@ if (!isset($_SESSION['language'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/userCover/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
                     <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
@@ -1009,7 +1009,9 @@ if (!isset($_SESSION['language'])) {
 
 
                                 <div class="item i1">
+                                  <a href="perfil.php?idUser=<?php echo $rows2['idUser']?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">

@@ -508,6 +508,21 @@ if (!isset($_SESSION['language'])) {
                         </a>
                     </div>
 
+                    <div class="back_left">
+                      <p class="back_text" style="margin-left: 1vw;"><a href="cervezas.php">Todos</a></p>
+                      <?php if(isset($_GET['type']) && isset($_GET['country']) && isset($_GET['state'])) { ?>
+                      <p class="back_text" style="">/ <a href="materia.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a> / <a href="materia.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a> / <a href="materia.php?state=<?php echo $_GET['state']?>"><?php echo $_GET['state']?></a></p>
+                      <?php } else if(isset($_GET['type']) && isset($_GET['country'])) { ?>
+                      <p class="back_text" style="">/ <a href="materia.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a> / <a href="materia.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a></p>
+                      <?php } else if(isset($_GET['country'])) { ?>
+                      <p class="back_text" style="">/ <a href="materia.php?country=<?php echo $_GET['country']?>"><?php echo $_GET['country']?></a></p>
+                      <?php } else if(isset($_GET['state'])) { ?>
+                      <p class="back_text" style="">/ <a href="materia.php?state=<?php echo $_GET['state']?>"><?php echo $_GET['state']?></a></p>
+                      <?php } else if (isset($_GET['type'])) { ?>
+                      <p class="back_text" style="">/ <a href="materia.php?type=<?php echo $_GET['type']?>"><?php echo $_GET['type']?></a></p>
+                      <?php } ?>
+                    </div>
+
                       <div class="slides">
                           <div class="overflow">
                               <div class="inner profile favoritos-slider">
@@ -682,7 +697,10 @@ if (!isset($_SESSION['language'])) {
                                     }
                                   }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM rawmaterial WHERE language = ".$_SESSION['language'];
+		                          		$query2 = "SELECT * FROM rawmaterial rm 
+                                              INNER JOIN rawmaterial_has_rawmaterialtype rhm ON rhm.idRawMaterial = rm.idRawMaterial 
+                                              INNER JOIN rawmaterialtype rmt ON rmt. idDrawMaterialType = rhm.idDrawMaterialType 
+                                              WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {
@@ -700,6 +718,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/rawMaterialProfiles/'.$row2['rawMaterialProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['rawMaterialName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row2['rawMaterialTypeName'].'</span>
 				                                  <a href="perfil_materia.php?id='.$row2['idRawMaterial'].'"><span class="ver_mas">VER MÁS</span></a>
 				                                </li>
 				                            ';
