@@ -28,6 +28,7 @@
 				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="../eng/contact-us.php"><li><span>ENGLISH</span></li></a>
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
