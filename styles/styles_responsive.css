@@ -466,6 +466,10 @@
 		margin-left: 20% !important;
 	}
 
+	input.send_button.comments_send {
+      text-align: center;
+      font-size: 12px;
+  }
 
 }
 
