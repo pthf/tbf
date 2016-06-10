@@ -306,7 +306,6 @@ if (isset($_SESSION['idUser'])) {
                         <a href="materia.php"><li><span>RAW</span></li></a>
                         <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
-=======
                         <a href="home.php"><li><span>HOME</span></li></a>
                         <a href="beers.php"><li><span>CERVEZAS</span></li></a>
                         <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
@@ -324,7 +323,6 @@ if (isset($_SESSION['idUser'])) {
                         <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
                         <a href="../eng/beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
                         <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
->>>>>>> origin/master
                     </ul>
                 <?php } ?>
             </div>

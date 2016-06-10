@@ -308,7 +308,7 @@ if (!isset($_SESSION['language'])) {
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+                        <a href="../eng/beer_profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
 										</ul>
 								<?php } ?>
