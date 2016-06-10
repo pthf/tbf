@@ -23,7 +23,7 @@ if ($_POST['option'] == 1) {
         while ($line = mysql_fetch_array($resultado)) {
             ?>
 
-            <a href="perfil.php?idUser=<?=$line['idUser'];?>">
+            <a href="profile.php?idUser=<?=$line['idUser'];?>">
                 <div class="profile-search users">
                     <span class="profile-img">
                         <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>" alt="profile image" title="profile image">
@@ -157,7 +157,7 @@ if ($_POST['option'] == 1) {
         while ($line = mysql_fetch_array($resultado)) {
             ?>
 
-            <a href="perfil_materia.php?id=<?=$line['idRawMaterial'];?>">
+            <a href="perfil_raw.php?id=<?=$line['idRawMaterial'];?>">
                 <div class="profile-search users">
                     <span class="profile-img">
                         <img src="../../images/rawMaterialProfiles/<?php echo $line['rawMaterialProfileImage']; ?>" alt="profile image" title="profile image">
