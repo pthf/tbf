@@ -28,7 +28,7 @@
 				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-				<a href="../eng/contact-us.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+				<a href="../eng/contact_eng.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
 				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
@@ -263,7 +263,7 @@
  						namefunction: namefunction
  				},
  				success: function (result) {
- 					 
+
  				},
  				error: function (error) {
  				},
@@ -273,7 +273,7 @@
  		});
  	});
  </script>
- 
+
 	</div>
 </body>
 </html>

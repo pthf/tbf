@@ -305,7 +305,6 @@ if (isset($_SESSION['idUser'])) {
                         <a href="materia.php"><li><span>RAW</span></li></a>
                         <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
-
                     </ul>
                 <?php } ?>
             </div>
@@ -618,7 +617,7 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-03.png"></li></a>
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
-                    
+
                     <?php if (isset($_SESSION['idUser'])) { ?>
                                             <ul class="nav">
                                                 <a href="inicio.php"><li><span>HOME</span></li></a>
