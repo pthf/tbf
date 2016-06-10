@@ -463,7 +463,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beertypeName']) ?></p><br><br>
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br><br>
                     <p><?=$lineBeer['city']?>, <?= $lineBeer['name_s']?>, <?=$lineBeer['name_c']?>.</p>
                 </div>
                 <br>
@@ -474,7 +474,7 @@ if (!isset($_SESSION['language'])) {
                     <span>País: </span> <span><?=$lineBeer['name_c']?></span> <br>
                     <span>Estado: </span> <span><?=$lineBeer['name_s']?></span> <br>
                     <span>Ciudad: </span> <span><?=$lineBeer['city']?></span> <br>
-                    <span>Estilo: </span> <span> <?= $lineBeer['beertypeName'] ?> </span> <br>
+                    <span>Estilo: </span> <span> <?= $lineBeer['beerTypeName'] ?> </span> <br>
                     <span>Grado de alcohol:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br>
                     <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
