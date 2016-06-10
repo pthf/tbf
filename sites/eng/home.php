@@ -10,8 +10,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 if (!isset($_SESSION['language'])) {
-    //Spanish by default.
-    $_SESSION['language'] = 1;
+    //English by default.
+    $_SESSION['language'] = 0;
+}else{
+    $_SESSION['language'] = 0;
 }
 
 ?>
@@ -280,22 +282,22 @@ if (!isset($_SESSION['language'])) {
             <div class="menu_list">
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                        <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
-                        <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>BEERS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="raw.php"><li><span>RAW</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                        <a href="../esp/inicio.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                        <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>BEERS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="raw.php"><li><span>RAW</span></li></a>
+                        <a href="../esp/inicio.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -316,7 +318,7 @@ if (!isset($_SESSION['language'])) {
 
             <div class="top_info">
                 <div class="contenedo_info">
-                    <a href="inicio.php">
+                    <a href="home.php">
                         <div class="logo_tbf">
                             <img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
                         </div>
@@ -398,7 +400,7 @@ if (!isset($_SESSION['language'])) {
 
 
                                 <div class="profile_img">
-                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="profile.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
                                     </a>
                                 </div>
@@ -408,7 +410,7 @@ if (!isset($_SESSION['language'])) {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <a href="profile.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
                   											<span>' . $line["userName"] . '</span>
                                         </a>
                   										</div>
@@ -458,7 +460,7 @@ if (!isset($_SESSION['language'])) {
 
             <div class="cont_site">
                 <div class="prin_img">
-                    <a href="cervezas.php" class="item-pring">
+                    <a href="beers.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="foto 1 principal tbf" title="foto 1 principal tbf">
                         <div class="capa">
                             <span>BEERS</span>
@@ -467,7 +469,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="prin_img">
-                    <a href="productores.php" class="item-pring">
+                    <a href="producers.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-02.png" alt="foto 2 principal tbf" title="foto 2 principal tbf">
                         <div class="capa">
                             <span>PRODUCERS</span>
@@ -476,7 +478,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="prin_img">
-                    <a href="materia.php" class="item-pring">
+                    <a href="raw.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-03.png" alt="foto 3 principal tbf" title="foto 3 principal tbf">
                         <div class="capa">
                             <span>RAW</span>
@@ -576,7 +578,7 @@ if (!isset($_SESSION['language'])) {
                                               <br>
                                               <span>'.$lineUser["name_s"].' - '.$lineUser["sortname"].'</span>
                                               <br>
-                                              <a href="perfil.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">Ver perfil</span></a>
+                                              <a href="profile.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">Ver perfil</span></a>
                                           </div>
                                       </li>
                                     ';
@@ -674,20 +676,20 @@ if (!isset($_SESSION['language'])) {
                       </ul>
                       <?php if (isset($_SESSION['idUser'])) { ?>
                                               <ul class="nav">
-                                                  <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                  <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                                                  <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                                                  <a href="materia.php"><li><span>RAW</span></li></a>
-                                                  <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                                                  <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                                                  <a href="home.php"><li><span>HOME</span></li></a>
+                                                  <a href="beers.php"><li><span>BEERS</span></li></a>
+                                                  <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                                                  <a href="raw.php"><li><span>RAW</span></li></a>
+                                                  <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                                                  <a href="settings.php"><li><span>SETTINGS</span></li></a>
                                                   <a href="contact.php"><li><span>CONTACT</span></li></a>
                                               </ul>
                       <?php } else { ?>
                                               <ul class="nav">
-                                                  <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                  <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                                                  <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                                                  <a href="materia.php"><li><span>RAW</span></li></a>
+                                                  <a href="home.php"><li><span>HOME</span></li></a>
+                                                  <a href="beers.php"><li><span>BEERS</span></li></a>
+                                                  <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                                                  <a href="raw.php"><li><span>RAW</span></li></a>
                                                   <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                                                   <a href="contact.php"><li><span>CONTACT</span></li></a>
                                               </ul>

@@ -13,9 +13,9 @@ if(isset($_GET['id'])){
     $resultBeer = mysql_query($queryBeer) or die(mysql_error());
     $lineBeer = mysql_fetch_array($resultBeer);
     if(!mysql_num_rows($resultBeer)>0)
-      header('Location: inicio.php');
+      header('Location: home.php');
 }else{
-  header('Location: inicio.php');
+  header('Location: home.php');
 }
 
 if (isset($_SESSION['idUser'])) {
@@ -25,8 +25,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 if (!isset($_SESSION['language'])) {
-    //Spanihs by default.
-    $_SESSION['language'] = 1;
+    //English by default.
+    $_SESSION['language'] = 0;
+}else{
+    $_SESSION['language'] = 0;
 }
 
 ?>
@@ -291,22 +293,22 @@ if (!isset($_SESSION['language'])) {
             <div class="menu_list">
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                        <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>BEERS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="raw.php"><li><span>RAW</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                         <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
-                        <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                        <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                        <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>BEERS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="raw.php"><li><span>RAW</span></li></a>
+                        <a href="../esp/perfil_beer.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -332,7 +334,7 @@ if (!isset($_SESSION['language'])) {
 
             <div class="top_info">
                 <div class="contenedo_info">
-                    <a href="inicio.php">
+                    <a href="home.php">
                         <div class="logo_tbf">
                             <img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
                         </div>
@@ -413,7 +415,7 @@ if (!isset($_SESSION['language'])) {
 
 
                                 <div class="profile_img">
-                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="profile.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
                                     </a>
                                 </div>
@@ -423,7 +425,7 @@ if (!isset($_SESSION['language'])) {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <a href="profile.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
                   											<span>' . $line["userName"] . '</span>
                                         </a>
                   										</div>
@@ -501,9 +503,9 @@ if (!isset($_SESSION['language'])) {
             <div class="favs_profile favs_profile_beer">
 
                 <div class="back_ profile_back">
-                    <a href="cervezas.php">
+                    <a href="beers.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">IR A CERVEZAS</p>
+                        <p class="back_text">GO TO BEERS</p>
                     </a>
                 </div>
                 <!-- Beer rank -->
@@ -981,20 +983,20 @@ if (!isset($_SESSION['language'])) {
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
                                             <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                                                <a href="materia.php"><li><span>RAW</span></li></a>
-                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                                                <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                                                <a href="home.php"><li><span>HOME</span></li></a>
+                                                <a href="beers.php"><li><span>BEERS</span></li></a>
+                                                <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                                                <a href="raw.php"><li><span>RAW</span></li></a>
+                                                <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                                                <a href="settings.php"><li><span>SETTINGS</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } else { ?>
                                             <ul class="nav">
-                                                <a href="inicio.php"><li><span>HOME</span></li></a>
-                                                <a href="cervezas.php"><li><span>BEERS</span></li></a>
-                                                <a href="productores.php"><li><span>PRODUCERS</span></li></a>
-                                                <a href="materia.php"><li><span>RAW</span></li></a>
+                                                <a href="home.php"><li><span>HOME</span></li></a>
+                                                <a href="beers.php"><li><span>BEERS</span></li></a>
+                                                <a href="producers.php"><li><span>PRODUCERS</span></li></a>
+                                                <a href="raw.php"><li><span>RAW</span></li></a>
                                                 <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
@@ -1440,7 +1442,7 @@ if (!isset($_SESSION['language'])) {
                     namefunction: namefunction
                 },
                 success: function (result) {
-                   
+
                 },
                 error: function (error) {
                 },

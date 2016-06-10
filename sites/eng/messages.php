@@ -9,12 +9,14 @@ if (isset($_SESSION['idUser'])) {
     $line = mysql_fetch_array($result);
 
 } else {
-    header("Location: inicio.php");
+    header("Location: home.php");
 }
 
 if (!isset($_SESSION['language'])) {
-    //Spanihs by default.
-    $_SESSION['language'] = 1;
+    //English by default.
+    $_SESSION['language'] = 0;
+}else{
+    $_SESSION['language'] = 0;
 }
 
 ?>
@@ -26,7 +28,7 @@ if (!isset($_SESSION['language'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Cervezas | The Beer Fans | Red Social</title>
+        <title>Inbox | The Beer Fans | Social Network</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -271,6 +273,7 @@ $(document).ready(function () {
 
             <div class="menu_list">
                 <?php if (isset($_SESSION['idUser'])) { ?>
+<<<<<<< HEAD
                     <ul>
                         <a href="inicio.php"><li><span>HOME</span></li></a>
                         <a href="cervezas.php"><li><span>BEERS</span></li></a>
@@ -290,6 +293,27 @@ $(document).ready(function () {
                         <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
+=======
+                <ul>
+                    <a href="home.php"><li><span>HOME</span></li></a>
+                    <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                    <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                    <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                    <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+										<a href="../esp/mensajes.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+                    <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
+                    <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
+                </ul>
+                <?php } else { ?>
+                <ul>
+                    <a href="home.php"><li><span>HOME</span></li></a>
+                    <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                    <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                    <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="../eng/beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+                    <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
+                </ul>
+>>>>>>> origin/master
                 <?php } ?>
             </div>
 
@@ -309,7 +333,7 @@ $(document).ready(function () {
 
             <div class="top_info">
                 <div class="contenedo_info">
-                    <a href="inicio.php">
+                    <a href="home.php">
                         <div class="logo_tbf">
                             <img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
                         </div>
@@ -390,7 +414,7 @@ $(document).ready(function () {
 
 
                             <div class="profile_img">
-                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                <a href="profile.php?idUser=<?= $line['idUser'] ?>">
                                     <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
                                 </a>
                             </div>
@@ -400,7 +424,7 @@ $(document).ready(function () {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <a href="profile.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
                                         <span>' . $line["userName"] . '</span>
                                         </a>
                                       </div>
@@ -424,7 +448,7 @@ $(document).ready(function () {
 
             <div class="top_img">
                 <img src="../../images/Pitchers_and_pints_of_cold_beer_seen_on_a_bar.jpeg" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
-                <span class="text_prin bottom_text">MENSAJES</span>
+                <span class="text_prin bottom_text">INBOX</span>
             </div>
 
 
@@ -441,7 +465,7 @@ $(document).ready(function () {
 
                 <!--box top right -->
                 <div class="contacttop_messages">
-                    <p>CONTACTO</p>
+                    <p>CONTACT</p>
                     <div class="image_top">
                         <a href="#">
                             <img src="../../images/social-03.png"/>
@@ -717,7 +741,7 @@ $(document).ready(function () {
                                 </div>
 
                                 <div class="item i2">
-                                    <p>BANDEJA DE ENTRADA</p>
+                                    <p>INBOX</p>
                                 </div>
 
                                 <div class="item i3 sent_">
@@ -743,9 +767,15 @@ $(document).ready(function () {
 
                     <form id="SendRequestChat">
                         <input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
+<<<<<<< HEAD
                         <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
                         <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
                         <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
+=======
+                        <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
+                        <input type="text" required name="message" placeholder="Send a message" autocomplete="off">
+                        <input type="submit" class="send_button" value="SEND" style="background-color:#808080;">
+>>>>>>> origin/master
                     </form>
 
                 </div>
@@ -769,6 +799,7 @@ $(document).ready(function () {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
+<<<<<<< HEAD
                                             <ul class="nav">
                                                 <a href="inicio.php"><li><span>HOME</span></li></a>
                                                 <a href="cervezas.php"><li><span>BEERS</span></li></a>
@@ -787,6 +818,26 @@ $(document).ready(function () {
                                                 <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
+=======
+                    <ul class="nav">
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                        <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
+                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                    </ul>
+                    <?php } else { ?>
+                    <ul class="nav">
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
+                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
+                    </ul>
+>>>>>>> origin/master
                     <?php } ?>
 
                     <span class="right_about">Us - Privacy Policy - FAQS</span>
