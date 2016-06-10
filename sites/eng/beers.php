@@ -10,8 +10,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 if (!isset($_SESSION['language'])) {
-    //Spanihs by default.
-    $_SESSION['language'] = 1;
+    //English by default.
+    $_SESSION['language'] = 0;
+}else{
+    $_SESSION['language'] = 0;
 }
 
 ?>
@@ -1097,7 +1099,7 @@ if (!isset($_SESSION['language'])) {
                         namefunction: namefunction
                     },
                     success: function (result) {
-                       
+
                     },
                     error: function (error) {
                     },

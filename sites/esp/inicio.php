@@ -12,6 +12,8 @@ if (isset($_SESSION['idUser'])) {
 if (!isset($_SESSION['language'])) {
     //Spanish by default.
     $_SESSION['language'] = 1;
+}else{
+    $_SESSION['language'] = 1;
 }
 
 ?>

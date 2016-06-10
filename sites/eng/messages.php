@@ -13,8 +13,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 if (!isset($_SESSION['language'])) {
-    //Spanihs by default.
-    $_SESSION['language'] = 1;
+    //English by default.
+    $_SESSION['language'] = 0;
+}else{
+    $_SESSION['language'] = 0;
 }
 
 ?>
@@ -499,7 +501,7 @@ $(document).ready(function () {
                       type: "POST",
                       data: {data: data, namefunction: namefunction},
                       success: function (result) {
-                         
+
                           /*$('.buscar').html(result);
                           $('.buscar .users').show();*/
                       },
@@ -1184,7 +1186,7 @@ $(document).ready(function () {
                     namefunction: namefunction
                 },
                 success: function (result) {
-                   
+
                 },
                 error: function (error) {
                 },
@@ -1194,7 +1196,7 @@ $(document).ready(function () {
             });
           });
         </script>
-        
+
 
     </body>
 </html>
