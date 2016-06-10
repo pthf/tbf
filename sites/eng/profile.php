@@ -106,7 +106,7 @@ if (!isset($_SESSION['language'])) {
             $("#type-search").change(function(){
                 var id = <?php echo $_GET['idUser'];?>;
                 var option = $('select[id=type-search]').val();
-                location.href = "perfil.php?idUser="+id+"&option="+option;
+                location.href = "profile.php?idUser="+id+"&option="+option;
                 $('#type-search').val($(this).val());
             });
         });
@@ -121,64 +121,64 @@ if (!isset($_SESSION['language'])) {
 
 				<?php if (!isset($_SESSION['idUser'])) { ?>
 						<div class="login-modal">
-								<div class="login-modal-wrapper">
-										<div class="close-icon">
-												<img src="../../images/img_galeria-02_close.png" >
-										</div>
-										<div class="login-title">
-												<span class="login-title-text">INICIA SESIÓN</span>
-										</div>
+                <div class="login-modal-wrapper">
+                    <div class="close-icon">
+                        <img src="../../images/img_galeria-02_close.png" >
+                    </div>
+                    <div class="login-title">
+                        <span class="login-title-text">LOG IN</span>
+                    </div>
 
-										<form action="">
-												<div class="input-boxes">
-														<input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
-														<br><br>
-														<input type="password" name="passwordLogin" placeholder="CONTRASEÑA:" id="password" class="input-login">
-														<br>
-												</div>
+                    <form action="">
+                        <div class="input-boxes">
+                            <input type="text" name="emailLogin" placeholder="EMAIL:" id="password" class="input-login">
+                            <br><br>
+                            <input type="password" name="passwordLogin" placeholder="PASSWORD:" id="password" class="input-login">
+                            <br>
+                        </div>
 
-												<div class="send-login-content">
-														<br>
-														<div class="not-user">¿NO TIENES CUENTA AÚN? <span class="underline">REGÍSTRATE.</span></div>
-                            <div class="forgot-password"><span class="underline">¿OLVIDASTE TU CONTRASEÑA? </span> </div>
-														<br><br>
-														<button type="button" name="button" id="send-login" class="sendLoginUser">ENTRAR</button>
-												</div>
+                        <div class="send-login-content">
+                            <br>
+                            <div class="not-user">¿YOU DONT HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
+                            <div class="forgot-password"><span class="underline">DID YOU FORGET YOUR PASSWORD? </span> </div>
+                            <br><br>
+                            <button type="button" name="button" id="send-login" class="sendLoginUser">SEND</button>
+                        </div>
 
-												<div class="not-user notEmail" style="display:none;">EMAIL NO ENCOTRADO.</span></div>
-												<div class="not-user notPass"  style="display:none;">CONTRASEÑA INCORRECTA.</span></div>
-                        <div class="not-user blockcount"  style="display:none;">TU CUENTA HA SIDO BLOQUEADO.</span></div>
-										</form>
-								</div>
+                        <div class="not-user notEmail" style="display:none;">EMAIL NOT FOUND.</span></div>
+                        <div class="not-user notPass"  style="display:none;">WRONG PASSWORD.</span></div>
+                        <div class="not-user blockcount"  style="display:none;">YOU ACCOUNT HAS BEEN LOG.</span></div>
+                    </form>
+                </div>
 
-						</div>
+            </div>
 				<?php } ?>
 
 				<?php if (!isset($_SESSION['idUser'])) { ?>
 						<div class="signup-modal">
-								<div class="close-icon">
-										<img src="../../images/img_galeria-02_close.png" >
-								</div>
+                <div class="close-icon">
+                    <img src="../../images/img_galeria-02_close.png" >
+                </div>
 
-								<div class="login-title">
-										<span class="login-title-text">REGISTRARSE</span>
-								</div>
+                <div class="login-title">
+                    <span class="login-title-text">SIGN UP</span>
+                </div>
 
-								<div class="signup-modal-content">
+                <div class="signup-modal-content">
 
-										<form class="formNewUser" id="formNewUser">
+                    <form class="formNewUser" id="formNewUser">
 
-												<input required type="text" name="userName" placeholder="NOMBRE:" class="signup-form">
-												<input required type="text" name="lastname" placeholder="APELLIDO:" class="signup-form">
+                        <input required type="text" name="userName" placeholder="NAME:" class="signup-form">
+                        <input required type="text" name="lastname" placeholder="LAST NAME:" class="signup-form">
 
 
-												<div class="date-input">
-														<span class="title-date">Fecha de nacimiento</span>
+                        <div class="date-input">
+                            <span class="title-date">Birthday</span>
 
-														<div class="date-input-wrapper">
+                            <div class="date-input-wrapper">
 
                               <select required id="birthday_year" name="birthday_year" class="birthday year" >
-                                  <option value="">Año &#x25BE;</option>
+                                  <option value="">Year &#x25BE;</option>
                                   <option value="1995">1995</option>
                                   <option value="1994">1994</option>
                                   <option value="1993">1993</option>
@@ -198,69 +198,68 @@ if (!isset($_SESSION['language'])) {
                               </select>
 
                               <select required id="birthday_month" name="birthday_month" class="birthday month" >
-                                  <option value="">Mes &#x25BE;</option>
-                                  <option value="1">Enero</option>
-                                  <option value="2">Febrero</option>
-                                  <option value="3">Marzo</option>
-                                  <option value="4">Abril</option>
-                                  <option value="5">Mayo</option>
-                                  <option value="6">Junio</option>
-                                  <option value="7">Julio</option>
-                                  <option value="8">Agosto</option>
-                                  <option value="9">Septiembre</option>
-                                  <option value="10">Octubre</option>
-                                  <option value="11">Noviembre</option>
-                                  <option value="12">Diciembre</option>
+                                  <option value="">Month &#x25BE;</option>
+                                  <option value="1">January</option>
+                                  <option value="2">February</option>
+                                  <option value="3">March</option>
+                                  <option value="4">April</option>
+                                  <option value="5">May</option>
+                                  <option value="6">June</option>
+                                  <option value="7">July</option>
+                                  <option value="8">August</option>
+                                  <option value="9">September</option>
+                                  <option value="10">October</option>
+                                  <option value="11">November</option>
+                                  <option value="12">December</option>
                               </select>
 
                               <select required id="birthday_day" name="birthday_day" class="birthday day" >
-                                  <option value="">Día &#x25BE;</option>
+                                  <option value="">Day &#x25BE;</option>
                               </select>
+                            </div>
 
-														</div>
+                        </div>
 
-												</div>
+                        <select required name="country" class="signup-form select-Country" id="selectCountry">
+                            <option selected disabled value="">Select country &#x25BE;</option>
+                            <?php
+                            $query = "SELECT * FROM countries ORDER BY name_c ASC";
+                            $result = mysql_query($query) or die(mysql_error());
+                            while ($line = mysql_fetch_array($result)) {
+                                echo '<option value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
+                            }
+                            ?>
+                        </select>
 
-												<select required name="country" class="signup-form select-Country" id="selectCountry">
-														<option selected disabled value="">Selecciona un país &#x25BE;</option>
-														<?php
-														$query = "SELECT * FROM countries ORDER BY name_c ASC";
-														$result = mysql_query($query) or die(mysql_error());
-														while ($line = mysql_fetch_array($result)) {
-																echo '<option value="' . $line["id"] . '" name="' . $line["id"] . '">' . $line["name_c"] . '</option>';
-														}
-														?>
-												</select>
+                        <select required name="state" class="signup-form select-Country" id="selectState">
+                            <option disabled selected value="">Select state &#x25BE;</option>
+                        </select>
 
-												<select required name="state" class="signup-form select-Country" id="selectState">
-														<option disabled selected value="">Selecciona un estado &#x25BE;</option>
-												</select>
+                        <input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
 
-												<input required type="email" name="email" placeholder="EMAIL:" class="signup-form">
+                        <input required type="email" name="confirmEmail" placeholder="RE-ENTER EMAIL:" class="signup-form">
 
-												<input required type="email" name="confirmEmail" placeholder="CONFIRMAR EMAIL:" class="signup-form">
+                        <input required type="password" name="password" placeholder="PASSWORD:" class="signup-form">
 
-												<input required type="password" name="password" placeholder="CONTRASEÑA:" class="signup-form">
+                        <input required type="password" name="confirmPassword" placeholder="RE-ENTER PASSWORD:" class="signup-form">
 
-												<input required type="password" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA:" class="signup-form">
-
-                        <span style="display:none;" id="mail" class="mailMsgNotSame">Los email no son idénticos.</span>
-                        <span style="display:none;" id="passMsg">Las cotraseñas no son idénticas.</span>
-                        <span style="display:none;" id="mailExist">El Email ya esta registrado.</span>
+                        <span style="display:none;" id="mail" class="mailMsgNotSame">Emails do not match.</span>
+                        <span style="display:none;" id="passMsg">Passwords do not match.</span>
+                        <span style="display:none;" id="mailExist">Email is already registered.</span>
 
 
 												<div class="send-login-content sign-up-send">
 														<br>
-														<span class="not-user"><label for="privacyTerms">ACEPTAS LOS <a href="term.pdf" target="_blank"><u>TÉRMINOS DE PRIVACIDAD</u></a>.</label></span>
+														<span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
 														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
 												</div>
 
-										</form>
+                    </form>
 
-								</div>
-						</div>
+                </div>
+            </div>
 				<?php } ?>
 
             <div class="password-modal">
@@ -269,62 +268,62 @@ if (!isset($_SESSION['language'])) {
               </div>
 
               <div class="login-title">
-                  <span class="login-title-text">RECUPERAR CONTRASEÑA</span>
+                  <span class="login-title-text">RECOVERY PASSWORD</span>
               </div>
 
               <div class="password-modal-content">
                 <input required type="email" name="email" placeholder="EMAIL:" class="password-form">
 
-                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">ENVIAR</button>
+                <button type="submit" name="button" id="send-login" class="sendRecoveryMail">SEND</button>
 
                 <br><br>
-                <span class="msgacceptedpassword" style="display:none" id="mail">Revisa tu correo para recuperar tu contraseña.</span>
+                <span class="msgacceptedpassword" style="display:none" id="mail">Check you email to verify your password. </span>
                 <br>
-                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NO ENCONTRADO.</span>
+                <span class="mailnotvalid" style="color:red; display:none" id="passMsg">EMAIL NOT FOUND.</span>
               </div>
             </div>
 
 
 				<div id="menu_options">
 
-						<div class="close_menu">
-								<img src="../../images/close_image-01.png">
-						</div>
+            <div class="close_menu">
+                <img src="../../images/close_image-01.png">
+            </div>
 
-						<div class="menu_list">
-								<?php if (isset($_SESSION['idUser'])) { ?>
-										<ul>
-												<a href="inicio.php"><li><span>HOME</span></li></a>
-												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-												<a href="../eng/profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
-										</ul>
-								<?php } else { ?>
-										<ul>
-												<a href="inicio.php"><li><span>HOME</span></li></a>
-												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
-										</ul>
-								<?php } ?>
-						</div>
+            <div class="menu_list">
+                <?php if (isset($_SESSION['idUser'])) { ?>
+                    <ul>
+                        <a href="inicio.php"><li><span>HOME</span></li></a>
+                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
+                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="materia.php"><li><span>RAW</span></li></a>
+                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                        <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                        <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
+                    </ul>
+                <?php } else { ?>
+                    <ul>
+                        <a href="inicio.php"><li><span>HOME</span></li></a>
+                        <a href="cervezas.php"><li><span>BEERS</span></li></a>
+                        <a href="productores.php"><li><span>PRODUCERS</span></li></a>
+                        <a href="materia.php"><li><span>RAW</span></li></a>
+                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
+                    </ul>
+                <?php } ?>
+            </div>
 
-						<div class="social_other">
-								<ul>
-										<a href=""><li><img src="../../images/bottom-05.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-04.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-03.png"></li></a>
-										<a href=""><li><img src="../../images/bottom-02.png"></li></a>
-								</ul>
-						</div>
+            <div class="social_other">
+                <ul>
+                    <a href=""><li><img src="../../images/bottom-05.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-04.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-03.png"></li></a>
+                    <a href=""><li><img src="../../images/bottom-02.png"></li></a>
+                </ul>
+            </div>
 
-				</div>
+        </div>
 
         <div id="contenedor">
             <?php
@@ -363,39 +362,39 @@ if (!isset($_SESSION['language'])) {
                         <div class="search-filter">
                           <select class="filter-opt" id="type-search">
                             <?php if ($_GET['option'] == 1 ) { ?>
-                            <option value="0" name="0" disabled> Tipo búsqueda </option>
-                            <option selected value="1">Usuarios</option>
-                            <option value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="0" name="0" disabled> Search type </option>
+                            <option selected value="1">Users</option>
+                            <option value="2">Beers</option>
+                            <option value="3">Producers</option>
+                            <option value="4">Raw</option>
                             <?php } else if ($_GET['option'] == 2 ) { ?>
-                            <option value="0" name="0" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option selected value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="0" name="0" disabled> Search type </option>
+                            <option value="1"> Users </option>
+                            <option selected value="2">Beers</option>
+                            <option value="3">Producers</option>
+                            <option value="4">Raw</option>
                             <?php } else if ($_GET['option'] == 3 ) { ?>
-                            <option value="0" name="0" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option value="2">Cervezas</option>
-                            <option selected value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option value="0" name="0" disabled> Search type </option>
+                            <option value="1"> Users </option>
+                            <option value="2">Beers</option>
+                            <option selected value="3">Producers</option>
+                            <option value="4">Raw</option>
                             <?php } else if ($_GET['option'] == 4 ) { ?>
-                            <option value="0" name="0" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option selected value="4">Materia Prima</option>
+                            <option value="0" name="0" disabled> Search type </option>
+                            <option value="1"> Users </option>
+                            <option value="2">Beers</option>
+                            <option value="3">Producers</option>
+                            <option selected value="4">Raw</option>
                             <?php } else if ((!$_GET) || ($_GET['option'] == 0) || ($_GET['option'] > 4)) { ?>
-                            <option selected value="0" name="0" disabled> Tipo búsqueda </option>
-                            <option value="1"> Usuarios </option>
-                            <option value="2">Cervezas</option>
-                            <option value="3">Productores</option>
-                            <option value="4">Materia Prima</option>
+                            <option selected value="0" name="0" disabled> Search type </option>
+                            <option value="1"> Users </option>
+                            <option value="2">Beers</option>
+                            <option value="3">Producers</option>
+                            <option value="4">Raw</option>
                             <?php } ?>
                           </select>
                           <ul class="callouts">
-                            <li class="callouts--top">Seleccione un filtro</li>
+                            <li class="callouts--top">Select filter</li>
                           </ul>
                         </div>
                         <div class="search main-search">
@@ -466,7 +465,7 @@ if (!isset($_SESSION['language'])) {
             </div>
 
             <div class="top_img">
-                <img src="../../images/beerBanners/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
+                <img src="../../images/userCover/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
                     <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
                 <?php } ?>
@@ -1119,29 +1118,29 @@ if (!isset($_SESSION['language'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-                            <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>BEERS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCERS</span></li></a>
+                                                <a href="materia.php"><li><span>RAW</span></li></a>
+                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                                                <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                            </ul>
                     <?php } else { ?>
-                        <ul class="nav">
-                            <a href="inicio.php"><li><span>HOME</span></li></a>
-                            <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                            <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                            <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                            <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
-                            <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                        </ul>
+                                            <ul class="nav">
+                                                <a href="inicio.php"><li><span>HOME</span></li></a>
+                                                <a href="cervezas.php"><li><span>BEERS</span></li></a>
+                                                <a href="productores.php"><li><span>PRODUCERS</span></li></a>
+                                                <a href="materia.php"><li><span>RAW</span></li></a>
+                                                <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
+                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                            </ul>
                     <?php } ?>
 
-                    <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+                    <span class="right_about">Us - Privacy Policy - FAQS</span>
 
-                    <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
+                    <span class="right_about">© <?= date('Y') ?> The Beer Fans. All rights reserved.</span>
                 </div>
             </div>
             <script src="../../js/services.js"></script>

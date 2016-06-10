@@ -246,7 +246,7 @@ if (isset($_SESSION['idUser'])) {
 
                         <div class="send-login-content sign-up-send">
                             <br>
-                            <span class="not-user"><label for="privacyTerms">ACEPTAS LOS <a href="term.pdf" target="_blank"><u>TÉRMINOS DE PRIVACIDAD</u></a>.</label></span>
+                            <span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
                             <input required type="checkbox" id="privacyTerms">
                             <br><br>
                             <button type="submit" name="button" id="send-login">REGISTRARTE</button>
