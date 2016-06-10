@@ -8,7 +8,7 @@ if (isset($_SESSION['idUser'])) {
     $result = mysql_query($query) or die(mysql_error());
     $line = mysql_fetch_array($result);
 } else {
-    header("Location: inicio.php");
+    header("Location: home.php");
 }
 ?>
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['idUser'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Inicio | The Beer Fans | Red Social</title>
+        <title>Settings | The Beer Fans | Social Network</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -103,7 +103,7 @@ if (isset($_SESSION['idUser'])) {
         $(document).ready(function(){
             $("#type-search").change(function(){
                 var option = $('select[id=type-search]').val();
-                location.href = "configuracion.php?option="+option;
+                location.href = "settings.php?option="+option;
                 $('#type-search').val($(this).val());
             });
         });
@@ -289,22 +289,22 @@ if (isset($_SESSION['idUser'])) {
             <div class="menu_list">
                 <?php if (isset($_SESSION['idUser'])) { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
                         <a href="../eng//settings.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-                        <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                        <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
                     </ul>
                 <?php } else { ?>
                     <ul>
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="../eng//beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="../eng/beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
                         <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -326,7 +326,7 @@ if (isset($_SESSION['idUser'])) {
 
             <div class="top_info">
                 <div class="contenedo_info">
-                    <a href="inicio.php">
+                    <a href="home.php">
                         <div class="logo_tbf">
                             <img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
                         </div>
@@ -407,7 +407,7 @@ if (isset($_SESSION['idUser'])) {
 
 
                                 <div class="profile_img">
-                                    <a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="profile.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
                                     </a>
                                 </div>
@@ -417,7 +417,7 @@ if (isset($_SESSION['idUser'])) {
                             if (isset($_SESSION['idUser'])) {
 
                                 echo '<div class="user_name">
-                                        <a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+                                        <a href="profile.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
                                         <span>' . $line["userName"] . '</span>
                                         </a>
                                       </div>
@@ -447,13 +447,13 @@ if (isset($_SESSION['idUser'])) {
             <div class="cont_config">
 
                 <div class="config_back">
-                    <a href="inicio.php">
+                    <a href="home.php">
                         <img src="../../images/flecha-izq_negro.png" />
-                        <p class="back_text">IR A  HOME</p>
+                        <p class="back_text">GO TO   HOME</p>
                     </a>
                 </div>
                 <div class="topinfo_config">
-                    <h1>ACTUALIZAR INFORMACIÓN</h1>
+                    <h1>UPDATE INFORMATION</h1>
                     <?php
                     $query = "SELECT * FROM user WHERE idUser =" . $_SESSION['idUser'];
                     $resultado = mysql_query($query) or die(mysql_error());
@@ -464,11 +464,11 @@ if (isset($_SESSION['idUser'])) {
                     <form id="formUser" name="formUserData" >
                     	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
                         <div class="email_config">
-                            <p>NOMBRE: </p> <input required type="text" name="name" style="width:40%; border: none; overflow : hidden" value="<?php echo $row['userName']; ?>">
+                            <p>NAME: </p> <input required type="text" name="name" style="width:40%; border: none; overflow : hidden" value="<?php echo $row['userName']; ?>">
                         </div>
 
                         <div class="edad_config">
-                            <p>APELLIDO: </p> <input required type="text" name="lastname" style="width:40%; border: none;  overflow : hidden" value="<?php echo $row['userLastName']; ?>">
+                            <p>LAST NAME: </p> <input required type="text" name="lastname" style="width:40%; border: none;  overflow : hidden" value="<?php echo $row['userLastName']; ?>">
                         </div>
 
                         <!-- <div class="vivoen_config">
@@ -515,9 +515,9 @@ if (isset($_SESSION['idUser'])) {
 
 
                         <div class="email_config">
-                            <p>PAIS: </p>
+                            <p>COUNTRY: </p>
                             <select required name="country" class="" style="width:40%; border: none" id="selectCountry">
-                                <option selected disabled value="">Selecciona..</option>
+                                <option selected disabled value="">Select..</option>
                                 <?php
                                 $query = "SELECT * FROM countries ORDER BY name_c ASC";
                                 $result = mysql_query($query) or die(mysql_error());
@@ -533,9 +533,9 @@ if (isset($_SESSION['idUser'])) {
                         </div>
 
                         <div class="pass_config">
-                            <p>ESTADO: </p>
+                            <p>STATE: </p>
                             <select required name="state" class="" style="width:40%; border: none" id="selectState">
-                                <option disabled selected value="">Selecciona..</option>
+                                <option disabled selected value="">Select..</option>
                                 <?php
                                 $query1 = "SELECT * FROM states ORDER BY name_s ASC";
                                 $result1 = mysql_query($query1) or die(mysql_error());
@@ -552,35 +552,35 @@ if (isset($_SESSION['idUser'])) {
                         <script type="text/javascript">
 				        </script>
 
-                        <h1 class="top_config" style="margin-top:5%">DESCRIPCION:</h1>
+                        <h1 class="top_config" style="margin-top:5%">DESCRIPTION:</h1>
 
                         <div class="desc_config">
 
                             <p><textarea required row="" cols="70" style="border: none;" name="description"><?php echo $row['userDescription']; ?></textarea></p>
                         </div>
-                        <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff;">
+                        <input type="submit" class="actualizar_info" value="UPDATE" style="background-color:#fff;">
                         <div class="resultado"></div>
                     </form>
 
                     	<div class="top_config" style="">
-                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="em">EMAIL</a></u>.</label></span>
-                        <span class="not-user"><label for="privacyTerms">CAMBIAR <u><a id="pass">CONTRASEÑA</a></u>.</label></span>
+                        <span class="not-user"><label for="privacyTerms">CHANGE <u><a id="em">EMAIL</a></u>.</label></span>
+                        <span class="not-user"><label for="privacyTerms">CHANGE <u><a id="pass">PASSWORD</a></u>.</label></span>
                     	</div>
 
                         <form id="formChangeEmail" name="formEmailData" enctype="multipart/form-data">
                         	<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
 	                        <div class="changeemail" style="margin-top:5%">
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>ANTIGUO EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="">
+		                            <p>OLD EMAIL: </p> <input required type="email" name="email" style="width:50%; border: none" value="">
 		                        </div>
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>NUEVO EMAIL: </p> <input required type="email" name="newemail" style="width:50%; border: none" value="">
+		                            <p>NEW EMAIL: </p> <input required type="email" name="newemail" style="width:50%; border: none" value="">
 		                        </div>
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>CONFIRMAR EMAIL: </p> <input required type="email" name="confirmemail" style="width:50%; border: none" value="">
+		                            <p>CONFIRM EMAIL: </p> <input required type="email" name="confirmemail" style="width:50%; border: none" value="">
 		                        </div>
-		                        <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
-		                        <input type="button" id="cancelemail" class="actualizar_info" value="REGRESAR" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
+		                        <input type="submit" class="actualizar_info" value="UPDATE" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
+		                        <input type="button" id="cancelemail" class="actualizar_info" value="CLOSE" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
 		                        <div class="resultado_email"></div>
 		                    </div>
 	                	</form>
@@ -589,16 +589,16 @@ if (isset($_SESSION['idUser'])) {
 	                		<input type="text" hidden name="iduser" value="<?php echo $row['idUser'];?>">
 		                    <div class="changepass" style="margin-top:5%">
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>ANTIGUO PASSWORD: </p> <input required type="password" name="password" style="width:50%; border: none" value="">
+		                            <p>OLD PASSWORD: </p> <input required type="password" name="password" style="width:50%; border: none" value="">
 		                        </div>
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>NUEVO PASSWORD: </p> <input required type="password" name="newpass" style="width:50%; border: none" value="">
+		                            <p>NEW PASSWORD: </p> <input required type="password" name="newpass" style="width:50%; border: none" value="">
 		                        </div>
 		                        <div class="email_config" style="width: 80%;">
-		                            <p>CONFIRMAR PASSWORD: </p> <input required type="password" name="confirpass" style="width:50%; border: none" value="">
+		                            <p>CONFIRM PASSWORD: </p> <input required type="password" name="confirpass" style="width:50%; border: none" value="">
 		                        </div>
-		                        <input type="submit" class="actualizar_info" value="ACTUALIZAR" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
-		                        <input type="button" id="cancelpass" class="actualizar_info" value="REGRESAR" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
+		                        <input type="submit" class="actualizar_info" value="UPDATE" style="background-color:#fff; margin-top: 3%; margin-right: 20%;">
+		                        <input type="button" id="cancelpass" class="actualizar_info" value="CLOSE" style="background-color:#fff; margin-top: 3%; margin-right: 1%;">
 		                        <div class="resultado_pass"></div>
 		                    </div>
 		                </form>
@@ -619,12 +619,12 @@ if (isset($_SESSION['idUser'])) {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <ul class="nav">
-                        <a href="inicio.php"><li><span>HOME</span></li></a>
-                        <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-                        <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+                        <a href="home.php"><li><span>HOME</span></li></a>
+                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+                        <a href="profile.php"><li><span>MI PERFIL</span></li></a>
+                        <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
                         <a href="contact.php"><li><span>CONTACTO</span></li></a>
                     </ul>
                     <span class="right_about">About Us - Política de Privacidad - FAQS</span>
@@ -1042,7 +1042,7 @@ if (isset($_SESSION['idUser'])) {
                     namefunction: namefunction
                 },
                 success: function (result) {
-                   
+
                 },
                 error: function (error) {
                 },
@@ -1052,6 +1052,6 @@ if (isset($_SESSION['idUser'])) {
             });
           });
         </script>
-        
+
     </body>
 </html>

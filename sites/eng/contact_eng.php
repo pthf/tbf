@@ -23,13 +23,13 @@
 		</div>
 		<div class="menu_list">
 			<ul>
-				<a href="inicio.php"><li><span>HOME</span></li></a>
-				<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-				<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-				<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-				<a href="perfil.php"><li><span>MI PERFIL</span></li></a>
+				<a href="home.php"><li><span>HOME</span></li></a>
+				<a href="beers.php"><li><span>CERVEZAS</span></li></a>
+				<a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+				<a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+				<a href="profile.php"><li><span>MI PERFIL</span></li></a>
 				<a href="../eng/contact-us.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-				<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+				<a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
 				<a href=""><li class="no_border"><span>SALIR</span></li></a>
 			</ul>
 		</div>
@@ -48,7 +48,7 @@
 
 		<div class="top_info">
 				<div class="contenedo_info">
-						<a href="inicio.php">
+						<a href="home.php">
 								<div class="logo_tbf">
 										<img src="../../images/menu_options-01.png" alt="The Beer Fans Logo" title="The Beer Fans Logo">
 								</div>
@@ -128,7 +128,7 @@
 
 
 												<div class="profile_img">
-														<a href="perfil.php?idUser=<?= $line['idUser'] ?>">
+														<a href="profile.php?idUser=<?= $line['idUser'] ?>">
 																<img src="../../images/userProfile/<?= $line['userProfileImage'] ?>" alt="profile image" title="profile image">
 														</a>
 												</div>
@@ -138,7 +138,7 @@
 										if (isset($_SESSION['idUser'])) {
 
 												echo '<div class="user_name">
-																<a href="perfil.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
+																<a href="profile.php?idUser=' . $line['idUser'] . '" style="color: #FFF;">
 																<span>' . $line["userName"] . '</span>
 																</a>
 															</div>
@@ -173,9 +173,9 @@
 
 		<div class="content_contact">
 			<div class="config_back contact_back">
-				<a href="inicio.php">
+				<a href="home.php">
 					<img src="../../images/flecha-izq_negro.png" />
-					<p class="back_text">IR A  HOME</p>
+					<p class="back_text">GO TO   HOME</p>
 				</a>
 			</div>
   		<div class="input_contact">
@@ -224,12 +224,12 @@
 			 <a href=""><li><img src="../../images/bottom-02.png"></li></a>
 		 </ul>
 		 <ul class="nav">
-			 <a href="inicio.php"><li><span>HOME</span></li></a>
-<!--			 <a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
-			 <a href="productores.php"><li><span>PRODUCTORES</span></li></a>
-			 <a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-			 <a href="perfil.php"><li><span>MI PERFIL</span></li></a>
-			 <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
+			 <a href="home.php"><li><span>HOME</span></li></a>
+<!--			 <a href="beers.php"><li><span>CERVEZAS</span></li></a>
+			 <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
+			 <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
+			 <a href="profile.php"><li><span>MI PERFIL</span></li></a>
+			 <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
 			 <a href="contact.php"><li><span>CONTACTO</span></li></a> -->
 		 </ul>
 		 <span class="right_about">About Us - Política de Privacidad - FAQS</span>
