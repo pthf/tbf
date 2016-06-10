@@ -393,7 +393,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -423,7 +423,7 @@ if (!isset($_SESSION['language'])) {
                             } else {
                                 echo '
                   										<div class="user_name">
-                  											<a href="#"><span>INICIA SESIÓN</span></a>
+                  											<a href="#"><span>LOG IN</span></a>
                   										</div>';
                             }
                             ?>
@@ -483,7 +483,7 @@ if (!isset($_SESSION['language'])) {
                     <a href="mailto:<?=$lineMateria['rawMaterialEmail'];?>?Subject=The_Beers_Fans" target="_top" class="message_button">
                         <div class="send_message">
                             <img src="../../images/social-03.png"/>
-                            <p>ENVIAR CORREO:</p>
+                            <p>SEND EMAIL:</p>
                         </div>
                     </a>
                     <br>

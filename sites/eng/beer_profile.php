@@ -403,7 +403,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -638,14 +638,14 @@ if (!isset($_SESSION['language'])) {
 
                               if(mysql_num_rows($r)>0){?>
                                 <img class="fav_button fav-selected" id="fav_button" src="../../images/fav1.svg">
-                                <p class="add_fav loginacepfavorites elim-opt" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE FAVORITOS</p> <?php
+                                <p class="add_fav loginacepfavorites elim-opt" data-function="deleteFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">DELETE FAVORITS</p> <?php
                               }else{ ?>
                                   <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
-                                  <p class="add_fav loginacepfavorites fav-opt " data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A FAVORITOS</p><?php
+                                  <p class="add_fav loginacepfavorites fav-opt " data-function="addFavorites" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ADD FAVORITS</p><?php
                               }
                             }else{ ?>
                               <img class="fav_button fav-unselected" id="fav_button" src="../../images/fav1.svg">
-                              <p class="add_fav logintoadd">AGREGAR A FAVORITOS</p> <?php
+                              <p class="add_fav logintoadd">ADD FAVORITS</p> <?php
                             } ?>
                         </a>
                     </div>
@@ -752,9 +752,9 @@ if (!isset($_SESSION['language'])) {
                               $r = mysql_query($q) or die(mysql_error());
 
                               if(mysql_num_rows($r)>0){?>
-                                <p class="add_fav loginacepwishlist" data-function="deleteWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ELIMINAR DE WISHLIST</p> <?php
+                                <p class="add_fav loginacepwishlist" data-function="deleteWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">DELETE WISHLIST</p> <?php
                               }else{ ?>
-                                  <p class="add_fav loginacepwishlist" data-function="addWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">AGREGAR A WISHLIST</p><?php
+                                  <p class="add_fav loginacepwishlist" data-function="addWishList" data-user="<?=$_SESSION['idUser']?>" data-beer="<?= $lineBeer['idBeer'] ?>">ADD WISHLIST</p><?php
                               }
                             }else{ ?>
                               <p class="add_fav logintoadd">AGREGAR A WISHLIST</p> <?php
@@ -819,7 +819,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <!-- comments -->
-                <span class="toptext_slider comments_title">COMENTARIOS</span>
+                <span class="toptext_slider comments_title">COMMENTS</span>
                 <div id="comments_box">
                     <div class="msn_content">
                     	<?php

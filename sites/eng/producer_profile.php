@@ -101,8 +101,9 @@ if (!isset($_SESSION['language'])) {
         <script type="text/javascript">
         $(document).ready(function(){
             $("#type-search").change(function(){
+              var id = <?php echo $_GET['id'];?>;
                 var option = $('select[id=type-search]').val();
-                location.href = "producer_profile.php?option="+option;
+                location.href = "producer_profile.php?id="+id+"&option="+option;
                 $('#type-search').val($(this).val());
             });
         });
@@ -400,7 +401,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -538,7 +539,7 @@ if (!isset($_SESSION['language'])) {
                                       <img src="../../images/beerBottles/'.$l["beerBottleImage"].'"> <br>
                                       <span class="title">'.$l["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span>
-                                      <a href="perfil_beer.php?id='.$l["idBeer"].'"><span class="ver_mas">VER MÁS</span></a>
+                                      <a href="beer_profile.php?id='.$l["idBeer"].'"><span class="ver_mas">READ MORE</span></a>
                                     </li>
                                 ';
                                 if($contador==8){
