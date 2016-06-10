@@ -538,7 +538,7 @@ if (!isset($_SESSION['language'])) {
                 <div class="part_info_bottom">
 
                     <div class="contact_us_or_follow">
-                        <img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
+                        <img src="../../images/banner-tbf.png" alt="tbf cervezas" title="tbf cervezas">
                         <div class="contenido_usuarios">
 <?php if (isset($_SESSION['idUser'])) { ?>
                                 <span class="user_list">USUARIOS RECOMENDADOS.</span>
