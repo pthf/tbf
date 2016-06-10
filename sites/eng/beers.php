@@ -522,7 +522,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
+			                                  <a href="beer_profile.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
 			                                </li>
 			                            ';
 			                            if($contador==8){
@@ -555,7 +555,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
+			                                  <a href="beer_profile.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
 			                                </li>
 			                            ';
 			                            if($contador==8){
@@ -590,7 +590,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
+			                                  <a href="beer_profile.php?id='.$row3['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
 			                                </li>
 			                            ';
 			                            if($contador==8){
@@ -617,7 +617,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row2['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row2['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-			                                  <a href="perfil_beer.php?id='.$row2['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
+			                                  <a href="beer_profile.php?id='.$row2['idBeer'].'"><span class="ver_mas">READ MORE</span></a>
 			                                </li>
 			                            ';
 			                            if($contador==8){
