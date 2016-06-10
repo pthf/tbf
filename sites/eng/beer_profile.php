@@ -298,7 +298,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
                         <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil_beer.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
@@ -308,7 +308,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="beers.php"><li><span>BEERS</span></li></a>
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
-                        <a href="../esp/perfil_beer.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil_beer.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>

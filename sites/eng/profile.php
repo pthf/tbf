@@ -300,7 +300,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
                         <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../esp/perfil.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil.php?idUser=<?= $_GET['idUser'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
@@ -310,7 +310,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="beers.php"><li><span>BEERS</span></li></a>
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
-                        <a href="../esp/perfil.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil.php?idUser=<?= $_GET['idUser'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -624,7 +624,7 @@ if (!isset($_SESSION['language'])) {
                                   $descriptionText .= "...";
                                 }
                                 echo '<li class="first_beer">
-                                        <a href="perfil_beer.php?id='.$l1['idBeer'].'"><img src="../../images/beerBottles/'.$l1["beerBottleImage"].'"></a> <br>
+                                        <a href="beer_profile.php?id='.$l1['idBeer'].'"><img src="../../images/beerBottles/'.$l1["beerBottleImage"].'"></a> <br>
                                         <span class="title">'.$l1["beerName"].'</span>
                                         <span class="subtitle">'.$descriptionText.'</span> <br>';
                                         if(isset($_SESSION['idUser'])) {
@@ -723,7 +723,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href=""><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile?id=<?=$l2['idBeer']?>"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l2["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
                                       if(isset($_SESSION['idUser'])){
@@ -823,7 +823,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href="perfil_beer.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l3["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
 
