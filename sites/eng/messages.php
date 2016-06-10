@@ -273,7 +273,6 @@ $(document).ready(function () {
 
             <div class="menu_list">
                 <?php if (isset($_SESSION['idUser'])) { ?>
-<<<<<<< HEAD
                     <ul>
                         <a href="inicio.php"><li><span>HOME</span></li></a>
                         <a href="cervezas.php"><li><span>BEERS</span></li></a>
@@ -293,27 +292,6 @@ $(document).ready(function () {
                         <a href="../eng//beers.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
-=======
-                <ul>
-                    <a href="home.php"><li><span>HOME</span></li></a>
-                    <a href="beers.php"><li><span>CERVEZAS</span></li></a>
-                    <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
-                    <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
-                    <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-										<a href="../esp/mensajes.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-                    <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
-                    <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
-                </ul>
-                <?php } else { ?>
-                <ul>
-                    <a href="home.php"><li><span>HOME</span></li></a>
-                    <a href="beers.php"><li><span>CERVEZAS</span></li></a>
-                    <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
-                    <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="../eng/beers.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
-                    <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
-                </ul>
->>>>>>> origin/master
                 <?php } ?>
             </div>
 
@@ -767,15 +745,9 @@ $(document).ready(function () {
 
                     <form id="SendRequestChat">
                         <input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
-<<<<<<< HEAD
-                        <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
-                        <input type="text" required name="message" placeholder="Escribe una respuesta..." autocomplete="off">
-                        <input type="submit" class="send_button" value="ENVIAR" style="background-color:#808080;">
-=======
                         <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
                         <input type="text" required name="message" placeholder="Send a message" autocomplete="off">
                         <input type="submit" class="send_button" value="SEND" style="background-color:#808080;">
->>>>>>> origin/master
                     </form>
 
                 </div>
@@ -799,7 +771,7 @@ $(document).ready(function () {
                         <a href=""><li><img src="../../images/bottom-02.png"></li></a>
                     </ul>
                     <?php if (isset($_SESSION['idUser'])) { ?>
-<<<<<<< HEAD
+
                                             <ul class="nav">
                                                 <a href="inicio.php"><li><span>HOME</span></li></a>
                                                 <a href="cervezas.php"><li><span>BEERS</span></li></a>
@@ -818,26 +790,7 @@ $(document).ready(function () {
                                                 <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
-=======
-                    <ul class="nav">
-                        <a href="home.php"><li><span>HOME</span></li></a>
-                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-                        <a href="settings.php"><li><span>CONFIGURACIÓN</span></li></a>
-                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                    </ul>
-                    <?php } else { ?>
-                    <ul class="nav">
-                        <a href="home.php"><li><span>HOME</span></li></a>
-                        <a href="beers.php"><li><span>CERVEZAS</span></li></a>
-                        <a href="producers.php"><li><span>PRODUCTORES</span></li></a>
-                        <a href="raw.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
-                        <a href="contact.php"><li><span>CONTACTO</span></li></a>
-                    </ul>
->>>>>>> origin/master
+
                     <?php } ?>
 
                     <span class="right_about">Us - Privacy Policy - FAQS</span>
