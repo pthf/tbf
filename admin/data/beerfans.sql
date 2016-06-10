@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `beer` (
   `beerInstagram` varchar(450) CHARACTER SET latin1 DEFAULT NULL,
   `idProducer` int(11) NOT NULL,
   `idSlider` int(11) NOT NULL,
-  `idBeerType` int(11) NOT NULL,
+  `idbeertype` int(11) NOT NULL,
   `language` tinyint(1) NOT NULL,
   `idPublicMessagesList` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -173,8 +173,8 @@ CREATE TABLE IF NOT EXISTS `beerslider` (
 --
 
 CREATE TABLE IF NOT EXISTS `beertype` (
-  `idBeerType` int(11) NOT NULL,
-  `beerTypeName` varchar(45) CHARACTER SET latin1 NOT NULL
+  `idbeertype` int(11) NOT NULL,
+  `beertypeName` varchar(45) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -4941,10 +4941,10 @@ ALTER TABLE `bannersliderpost`
 -- Indices de la tabla `beer`
 --
 ALTER TABLE `beer`
-  ADD PRIMARY KEY (`idBeer`,`idProducer`,`idSlider`,`idBeerType`,`idPublicMessagesList`),
+  ADD PRIMARY KEY (`idBeer`,`idProducer`,`idSlider`,`idbeertype`,`idPublicMessagesList`),
   ADD KEY `fk_beer_producer_idx` (`idProducer`),
   ADD KEY `fk_beer_beerSlider1_idx` (`idSlider`),
-  ADD KEY `fk_beer_beerType1_idx` (`idBeerType`),
+  ADD KEY `fk_beer_beertype1_idx` (`idbeertype`),
   ADD KEY `fk_beer_publicmessagebeer_idx` (`idPublicMessagesList`);
 
 --
@@ -4957,7 +4957,7 @@ ALTER TABLE `beerslider`
 -- Indices de la tabla `beertype`
 --
 ALTER TABLE `beertype`
-  ADD PRIMARY KEY (`idBeerType`);
+  ADD PRIMARY KEY (`idbeertype`);
 
 --
 -- Indices de la tabla `chat`
@@ -5148,7 +5148,7 @@ ALTER TABLE `beerslider`
 -- AUTO_INCREMENT de la tabla `beertype`
 --
 ALTER TABLE `beertype`
-  MODIFY `idBeerType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idbeertype` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
@@ -5259,7 +5259,7 @@ ALTER TABLE `bannerbeerslider`
 --
 ALTER TABLE `beer`
   ADD CONSTRAINT `fk_beer_beerSlider1` FOREIGN KEY (`idSlider`) REFERENCES `beerslider` (`idSlider`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_beer_beerType1` FOREIGN KEY (`idBeerType`) REFERENCES `beertype` (`idBeerType`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_beer_beertype1` FOREIGN KEY (`idbeertype`) REFERENCES `beertype` (`idbeertype`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_beer_producer` FOREIGN KEY (`idProducer`) REFERENCES `producer` (`idProducer`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
