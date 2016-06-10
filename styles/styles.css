@@ -1070,6 +1070,7 @@ select.filter-opt {
     outline: none;
     border: 0px solid rgba(255, 255, 255, .8) !important;
     height: 24px;
+    width: 85px;
     font-size: 10px;
 }
 
