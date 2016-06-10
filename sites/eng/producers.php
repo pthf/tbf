@@ -377,7 +377,7 @@ if (!isset($_SESSION['language'])) {
                               ?>
 
                               <div class="msg">
-                                  <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                  <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                       <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                       <?php
                                       if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -407,7 +407,7 @@ if (!isset($_SESSION['language'])) {
                           } else {
                               echo '
                                     <div class="user_name">
-                                      <a href="#"><span>INICIA SESIÓN</span></a>
+                                      <a href="#"><span>LOG IN</span></a>
                                     </div>';
                           }
                           ?>
@@ -423,11 +423,11 @@ if (!isset($_SESSION['language'])) {
 
             <div class="top_img">
                 <img src="../../images/beerBanners/photo_pthf_home-02.png" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
-                <span class="text_prin bottom_text">PRODUCTORES</span>
+                <span class="text_prin bottom_text">PRODUCERS</span>
             </div>
 
             <div class="beer_info">
-                <span class="title_beer_info">¿QUIERES DISTRIBUIR?</span>
+                <span class="title_beer_info">DO YOU WANT TO DISTRIBUTE?</span>
                 <div class="aside_info">
                     <div class="cont_search">
                         <div class="search">
@@ -437,7 +437,7 @@ if (!isset($_SESSION['language'])) {
                         <div class="list_options">
                             <ul class="options_li">
                                 <li class="option_principal">
-                                    <span class="principal_text type">TIPO</span>
+                                    <span class="principal_text type">TYPE</span>
                                     <ul class="suboptions_li type">
                                         <?php
                                         $query = "SELECT * FROM producertype";
@@ -455,7 +455,7 @@ if (!isset($_SESSION['language'])) {
                                     </ul>
                                 </li>
                                 <li class="option_principal">
-                                    <span class="principal_text country">PAÍS</span>
+                                    <span class="principal_text country">COUNTRY</span>
                                     <ul class="suboptions_li country">
                                         <?php
                                         $query1 = "SELECT c.id,c.name_c FROM producer p INNER JOIN countries c ON c.id = p.country_id WHERE p.language = ".$_SESSION['language']." GROUP BY name_c";
@@ -485,7 +485,7 @@ if (!isset($_SESSION['language'])) {
                     <div class="back_">
                         <a href="inicio.php">
                             <img src="../../images/flecha-izq_negro.png" />
-                            <p class="back_text">IR A  HOME</p>
+                            <p class="back_text">GO TO HOME</p>
                         </a>
                     </div>
 
@@ -519,7 +519,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
+				                                  <a href="producer_profile.php?id='.$row3['idProducer'].'"><span class="ver_mas">READ MORE</span></a>
 				                                </li>
 				                            ';
 				                            if($contador==8){
@@ -550,7 +550,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
+				                                  <a href="producer_profile.php?id='.$row3['idProducer'].'"><span class="ver_mas">READ MORE</span></a>
 				                                </li>
 				                            ';
 				                            if($contador==8){
@@ -579,7 +579,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row3['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row3['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-				                                  <a href="perfil_empresa.php?id='.$row3['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
+				                                  <a href="producer_profile.php?id='.$row3['idProducer'].'"><span class="ver_mas">READ MORE</span></a>
 				                                </li>
 				                            ';
 				                            if($contador==8){
@@ -606,7 +606,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/producerProfiles/'.$row2['producerProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['producerName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
-				                                  <a href="perfil_empresa.php?id='.$row2['idProducer'].'"><span class="ver_mas">VER MÁS</span></a>
+				                                  <a href="producer_profile.php?id='.$row2['idProducer'].'"><span class="ver_mas">READ MORE</span></a>
 				                                </li>
 				                            ';
 				                            if($contador==8){
