@@ -176,7 +176,7 @@
 	}
 
 	function iniciar(){
-		window.location = "home.html"
+		window.location = "home.php"
 	}
 
 	</script>

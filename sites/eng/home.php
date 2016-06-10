@@ -23,7 +23,7 @@ if (!isset($_SESSION['language'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Inicio | The Beer Fans | Red Social</title>
+        <title>Home | The Beer Fans | Social Network</title>
 
         <link rel="shortcut icon"  type="image/png" href="../../images/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
@@ -461,7 +461,7 @@ if (!isset($_SESSION['language'])) {
                     <a href="cervezas.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-04.png" alt="foto 1 principal tbf" title="foto 1 principal tbf">
                         <div class="capa">
-                            <span>CERVEZAS</span>
+                            <span>BEERS</span>
                         </div>
                     </a>
                 </div>
@@ -470,7 +470,7 @@ if (!isset($_SESSION['language'])) {
                     <a href="productores.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-02.png" alt="foto 2 principal tbf" title="foto 2 principal tbf">
                         <div class="capa">
-                            <span>PRODUCTORES</span>
+                            <span>PRODUCERS</span>
                         </div>
                         </ar>
                 </div>
@@ -479,7 +479,7 @@ if (!isset($_SESSION['language'])) {
                     <a href="materia.php" class="item-pring">
                         <img src="../../images/beerBanners/photo_pthf_home-03.png" alt="foto 3 principal tbf" title="foto 3 principal tbf">
                         <div class="capa">
-                            <span>MATERIA PRIMA</span>
+                            <span>RAW</span>
                         </div>
                     </a>
                 </div>
@@ -488,7 +488,7 @@ if (!isset($_SESSION['language'])) {
                     <a href="http://www.thebeerfans.com/blog" target="_blank" class="item-pring">
                         <img src="../../images/NOTICIAS.png" alt="foto 4 principal tbf" title="foto 4 principal tbf">
                         <div class="capa" id="news">
-                            <span>NOTICIAS</span>
+                            <span>NEWS</span>
                         </div>
                     </a>
                 </div>
@@ -511,7 +511,7 @@ if (!isset($_SESSION['language'])) {
                                     <span class="sub_title"> <?=$l['bannerSliderNewSubtitle']?> </span>
                                     <p><?=$l['bannerSliderNewDescription']?></p>
                                     <a href="<?=$l['bannerSliderNewUrl']?>" target="_blank">
-                                        <div class="boton_mas">VER MÁS</div>
+                                        <div class="boton_mas">LEARN MORE</div>
                                     </a>
                                 </div>
                             </div>
@@ -538,11 +538,11 @@ if (!isset($_SESSION['language'])) {
                 <div class="part_info_bottom">
 
                     <div class="contact_us_or_follow">
-                        <img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
+                        <img src="../../images/banner-tbf.png" alt="tbf cervezas" title="tbf cervezas">
                         <div class="contenido_usuarios">
 <?php if (isset($_SESSION['idUser'])) { ?>
-                                <span class="user_list">USUARIOS RECOMENDADOS.</span>
-                                <span class="user_list list-sub">ENCUENTRA OTROS USUARIOS CON GUSTOS SIMILARES A LOS TUYOS.</span>
+                                <span class="user_list">RECOMMENDED USERS.</span>
+                                <span class="user_list list-sub">FINDS OTHER USERS WITH SIMILAR TASTES LIKE YOU.</span>
                                 <div class="Grid" style="overflow: auto;">
 
                                 <?php
@@ -569,7 +569,7 @@ if (!isset($_SESSION['language'])) {
                                     echo '
 
                                           </div>
-                                          <a href="perfil.php?idUser='.$lineUser["idUser"].'"><img class="flex-item-info" src="../../images/userProfile/'.$lineUser["userProfileImage"].'"/></a>
+                                          <a href="profile.php?idUser='.$lineUser["idUser"].'"><img class="flex-item-info" src="../../images/userProfile/'.$lineUser["userProfileImage"].'"/></a>
                                           <div class="flex-item-info">
                                               <span>'.$lineUser["userName"].'</span>
                                               <span>'.$lineUser["userLastName"].'</span>
@@ -614,7 +614,7 @@ if (!isset($_SESSION['language'])) {
                                 <span class="sub_title"><?=$l['bannerSliderPostSubtitle']?></span>
                                 <p><?=$l['bannerSliderPostDescription']?></p>
                                 <a href="<?=$l['bannerSliderPostUrl']?>">
-                                    <div class="boton_mas">VER MÁS</div>
+                                    <div class="boton_mas">LEARN MORE</div>
                                 </a>
                             </div>
                         </div>
@@ -637,7 +637,7 @@ if (!isset($_SESSION['language'])) {
                                 <span class="sub_title"><?=$l['bannerSliderPostSubtitle']?></span>
                                 <p><?=$l['bannerSliderPostDescription']?></p>
                                 <a href="<?=$l['bannerSliderPostUrl']?>">
-                                    <div class="boton_mas">VER MÁS</div>
+                                    <div class="boton_mas">LEARN MORE</div>
                                 </a>
                             </div>
                         </div>
@@ -646,12 +646,12 @@ if (!isset($_SESSION['language'])) {
                     <div class="contact_us_or_follow">
                         <img src="../../images/postBanners/8150091.png" alt="tbf cervezas" title="tbf cervezas">
                         <div class="contenido_social">
-                            <span>CONTÁCTANOS O SÍGUENOS<br>EN NUESTRAS REDES SOCIALES</span>
+                            <span>CONTACT US OR FOLLLOW US<br>ON OUR SOCIAL NETWORKS</span>
                             <ul>
                                 <a href=""><li><img src="../../images/social-04.png"></li></a>
                                 <a href=""><li><img src="../../images/social-02.png"></li></a>
                                 <a href=""><li><img src="../../images/social-01.png"></li></a>
-                                <a href="contact.php"><li><img src="../../images/social-03.png"></li></a>
+                                <a href="contact_eng.php"><li><img src="../../images/social-03.png"></li></a>
                             </ul>
                         </div>
                     </div>
@@ -1134,7 +1134,7 @@ if (!isset($_SESSION['language'])) {
                     namefunction: namefunction
                 },
                 success: function (result) {
-                   
+
                 },
                 error: function (error) {
                 },
