@@ -593,7 +593,7 @@ if (!isset($_SESSION['language'])) {
                                 	$query_type = "SELECT * FROM rawmaterial rm
                       														INNER JOIN rawmaterial_has_rawmaterialtype mhrm
                       														ON mhrm.idRawMaterial = rm.idRawMaterial
-                      														INNER JOIN beerfans.rawmaterialtype rmt
+                      														INNER JOIN rawmaterialtype rmt
                       														ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType
                                                   WHERE rm.language = ".$_SESSION['language']."
                                                   AND rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";

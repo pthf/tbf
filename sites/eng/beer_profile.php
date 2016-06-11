@@ -34,7 +34,7 @@ if (!isset($_SESSION['language'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
     <head>
 
         <meta charset="UTF-8">
@@ -873,7 +873,9 @@ if (!isset($_SESSION['language'])) {
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
+                                  <a href="profile.php?idUser=<?php echo $rows2['idUser'];?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">

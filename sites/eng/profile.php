@@ -642,7 +642,7 @@ if (!isset($_SESSION['language'])) {
                                               }
                                         echo '</div>';
                                         } else {
-                                          echo ' <a href="#"><span class="heart-icon logintoadd" title="Agregar a favoritos">&#9825;</span></a>';
+                                          echo ' <a href="#"><span class="heart-icon logintoadd" title="Add favorits">&#9825;</span></a>';
                                         }
                                 echo '</li>';
 
@@ -743,7 +743,7 @@ if (!isset($_SESSION['language'])) {
                                         echo '
                                         </div>';
                                       }else{
-                                        echo '<a href="#"><span class="0 logintoadd">AGREGAR</span></a>';
+                                        echo '<a href="#"><span class="0 logintoadd">ADD</span></a>';
                                       }
                                     echo '</li>
                                 ';
@@ -1009,7 +1009,9 @@ if (!isset($_SESSION['language'])) {
 
 
                                 <div class="item i1">
+                                  <a href="profile.php?idUser=<?php echo $rows2['idUser']?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">

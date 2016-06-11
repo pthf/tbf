@@ -278,9 +278,9 @@ $(document).ready(function () {
                         <a href="cervezas.php"><li><span>BEERS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCERS</span></li></a>
                         <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                         <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
-                        <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                        <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
                 <?php } else { ?>
@@ -444,7 +444,7 @@ $(document).ready(function () {
                 <!--box top right -->
                 <div class="contacttop_messages">
                     <p>CONTACT</p>
-                    <div class="image_top">
+                    <div class="image_top" style="display:none">
                         <a href="#">
                             <img src="../../images/social-03.png"/>
                         </a>
@@ -553,7 +553,7 @@ $(document).ready(function () {
                             <div id="itemContainerInner">
 
                                 <div class="item i1 sent_">
-                                    <a href="perfil.php?idUser=<?php echo $line['idUser']?>">
+                                    <a href="profile.php?idUser=<?php echo $line['idUser']?>">
                                         <img src="../../images/userProfile/<?php echo $line['userProfileImage']; ?>"/>
                                     </a>
                                 </div>
@@ -750,7 +750,7 @@ $(document).ready(function () {
                     <form id="SendRequestChat">
                         <input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
                         <input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUserChat'];?>">
-                        <input type="text" required name="message" placeholder="Send a message" autocomplete="off">
+                        <input type="text" title="Completed this field" required name="message" placeholder="Send a message" autocomplete="off">
                         <input type="submit" class="send_button" value="SEND" style="background-color:#808080;">
                     </form>
 
@@ -781,8 +781,8 @@ $(document).ready(function () {
                                                 <a href="cervezas.php"><li><span>BEERS</span></li></a>
                                                 <a href="productores.php"><li><span>PRODUCERS</span></li></a>
                                                 <a href="materia.php"><li><span>RAW</span></li></a>
-                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                                                <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                                                <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                                                <a href="settings.php"><li><span>SETTINGS</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } else { ?>
