@@ -422,7 +422,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -723,7 +723,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href="beer_profile?id=<?=$l2['idBeer']?>"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile?id='.$l2['idBeer'].'"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l2["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
                                       if(isset($_SESSION['idUser'])){
