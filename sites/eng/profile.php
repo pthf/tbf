@@ -422,7 +422,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -548,7 +548,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="profile_res">
-                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'Ninguna descripción.' ?></p>
+                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'No description.' ?></p>
                 </div>
 
                 <!-- Send message popup -->
@@ -597,7 +597,7 @@ if (!isset($_SESSION['language'])) {
                     </a>
                 </div>
                 <div class="slides">
-                    <div class="toptext_slider"><span>FAVORITOS</span></div>
+                    <div class="toptext_slider"><span>FAVORITS</span></div>
                     <div class="overflow">
                         <div class="inner profile favoritos-slider">
 
@@ -637,9 +637,9 @@ if (!isset($_SESSION['language'])) {
                                             $qo = "SELECT idFavoriteElement FROM favoriteelement WHERE idBeer = ".$l1['idBeer']." AND $listaUser = idFavoritesList";
                                             $rr = mysql_query($qo) or die(mysql_error());
                                             if(mysql_num_rows($rr)>0) {
-                                            echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Eliminar de favoritos">&#9829;</span>';
+                                            echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Delete favorits">&#9829;</span>';
                                               } else {
-                                            echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Agregar a favoritos">&#9825;</span>';
+                                            echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Add favorits">&#9825;</span>';
                                               }
                                         echo '</div>';
                                         } else {
@@ -723,7 +723,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href="beer_profile?id=<?=$l2['idBeer']?>"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile?id='.$l2['idBeer'].'"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l2["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
                                       if(isset($_SESSION['idUser'])){
@@ -737,9 +737,9 @@ if (!isset($_SESSION['language'])) {
                                         $rz = mysql_query($qz) or die(mysql_error());
 
                                         if(mysql_num_rows($rz)>0){
-                                          echo '<span name="1" class="1" data-function="deleteWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ELIMINAR</span>';
+                                          echo '<span name="1" class="1" data-function="deleteWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">DELETE</span>';
                                         }else{
-                                          echo '<span name="0" class="0" data-function="addWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">AGREGAR</span>';
+                                          echo '<span name="0" class="0" data-function="addWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ADD</span>';
                                         }
                                         echo '
                                         </div>';
@@ -859,7 +859,7 @@ if (!isset($_SESSION['language'])) {
                                         $result = mysql_query($query) or die(mysql_error());
                                         if(mysql_num_rows($result)>0){
 
-                                            echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                                            echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">DELETE RANK</span><br><br>';
                                         }else{
                                           echo "
                                             <div class='rating-stars text-center'>
@@ -1092,7 +1092,7 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendComment">
                     		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Send commentary..."></textarea>
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
