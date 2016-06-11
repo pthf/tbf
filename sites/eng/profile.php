@@ -1034,52 +1034,52 @@ if (!isset($_SESSION['language'])) {
 							$fechats = strtotime($fecha);
 
 							switch (date('w', $fechats)){
-							    case 0: $nameDia[] = "Domingo";
-						    	break;
-						    	case 1: $nameDia[] = "Lunes";
-						    	break;
-						    	case 2: $nameDia[] = "Martes";
-						    	break;
-						    	case 3: $nameDia[] = "Miércoles";
-						    	break;
-						    	case 4: $nameDia[] = "Jueves";
-						    	break;
-						    	case 5: $nameDia[] = 'Viernes';
-						    	break;
-						    	case 6: $nameDia[] = 'Sábado';
-						    	break;
-							}
+                  case 0: $nameDia[] = "Sunday";
+                  break;
+                  case 1: $nameDia[] = "Monday";
+                  break;
+                  case 2: $nameDia[] = "Tuesday";
+                  break;
+                  case 3: $nameDia[] = "Wednesday";
+                  break;
+                  case 4: $nameDia[] = "Thursday";
+                  break;
+                  case 5: $nameDia[] = 'Friday';
+                  break;
+                  case 6: $nameDia[] = 'Saturday';
+                  break;
+              }
 
 							switch (date('n', $fechats)){
-							    case 1: $nameMes[] = "Enero";
-						    	break;
-						    	case 2: $nameMes[] = "Febrero";
-						    	break;
-						    	case 3: $nameMes[] = "Marzo";
-						    	break;
-						    	case 4: $nameMes[] = "Abril";
-						    	break;
-						    	case 5: $nameMes[] = 'Mayo';
-						    	break;
-						    	case 6: $nameMes[] = "Junio";
-						    	break;
-						    	case 7: $nameMes[] = "Julio";
-						    	break;
-						    	case 8: $nameMes[] = "Agosto";
-						    	break;
-						    	case 9: $nameMes[] = "Septiembre";
-						    	break;
-						    	case 10: $nameMes[] = "Octube";
-						    	break;
-						    	case 11: $nameMes[] = "Noviembre";
-						    	break;
-						    	case 12: $nameMes[] = "Diciembre";
-						    	break;
-							}
+                  case 1: $nameMes[] = "January";
+                  break;
+                  case 2: $nameMes[] = "February";
+                  break;
+                  case 3: $nameMes[] = "March";
+                  break;
+                  case 4: $nameMes[] = "April";
+                  break;
+                  case 5: $nameMes[] = 'May';
+                  break;
+                  case 6: $nameMes[] = "June";
+                  break;
+                  case 7: $nameMes[] = "July";
+                  break;
+                  case 8: $nameMes[] = "August";
+                  break;
+                  case 9: $nameMes[] = "September";
+                  break;
+                  case 10: $nameMes[] = "October";
+                  break;
+                  case 11: $nameMes[] = "November";
+                  break;
+                  case 12: $nameMes[] = "December";
+                  break;
+              }
 						    ?>
 
                             <h2>
-                            	<?php echo $nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                              <?php echo $nameDia[0].' '.$dia[0].' of '.$nameMes[0].', '.$fechafinal[0];?>
                             </h2>
                         </div>
                         <?php } ?>
