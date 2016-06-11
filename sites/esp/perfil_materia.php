@@ -498,7 +498,7 @@ if (!isset($_SESSION['language'])) {
 
                     <div class="social_company materia-width">
                         <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
-                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialSite'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
                         <?php } ?>
                         <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>
