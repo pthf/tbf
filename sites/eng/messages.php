@@ -578,53 +578,53 @@ $(document).ready(function () {
         $fechats = strtotime($fecha);
 
         switch (date('w', $fechats)){
-        case 0: $nameDia[] = "Domingo";
-        break;
-        case 1: $nameDia[] = "Lunes";
-        break;
-        case 2: $nameDia[] = "Martes";
-        break;
-        case 3: $nameDia[] = "Miércoles";
-        break;
-        case 4: $nameDia[] = "Jueves";
-        break;
-        case 5: $nameDia[] = 'Viernes';
-        break;
-        case 6: $nameDia[] = 'Sábado';
-        break;
+          case 0: $nameDia[] = "Sunday";
+          break;
+          case 1: $nameDia[] = "Monday";
+          break;
+          case 2: $nameDia[] = "Tuesday";
+          break;
+          case 3: $nameDia[] = "Wednesday";
+          break;
+          case 4: $nameDia[] = "Thursday";
+          break;
+          case 5: $nameDia[] = 'Friday';
+          break;
+          case 6: $nameDia[] = 'Saturday';
+          break;
         }
 
         switch (date('n', $fechats)){
-        case 1: $nameMes[] = "Enero";
-        break;
-        case 2: $nameMes[] = "Febrero";
-        break;
-        case 3: $nameMes[] = "Marzo";
-        break;
-        case 4: $nameMes[] = "Abril";
-        break;
-        case 5: $nameMes[] = 'Mayo';
-        break;
-        case 6: $nameMes[] = "Junio";
-        break;
-        case 7: $nameMes[] = "Julio";
-        break;
-        case 8: $nameMes[] = "Agosto";
-        break;
-        case 9: $nameMes[] = "Septiembre";
-        break;
-        case 10: $nameMes[] = "Octube";
-        break;
-        case 11: $nameMes[] = "Noviembre";
-        break;
-        case 12: $nameMes[] = "Diciembre";
-        break;
+          case 1: $nameMes[] = "January";
+          break;
+          case 2: $nameMes[] = "February";
+          break;
+          case 3: $nameMes[] = "March";
+          break;
+          case 4: $nameMes[] = "April";
+          break;
+          case 5: $nameMes[] = 'May';
+          break;
+          case 6: $nameMes[] = "June";
+          break;
+          case 7: $nameMes[] = "July";
+          break;
+          case 8: $nameMes[] = "August";
+          break;
+          case 9: $nameMes[] = "September";
+          break;
+          case 10: $nameMes[] = "October";
+          break;
+          case 11: $nameMes[] = "November";
+          break;
+          case 12: $nameMes[] = "December";
+          break;
         }
         ?>
 
                             <div class="date_sent">
                                 <h2>
-        <?php echo 'Enviado: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+        <?php echo 'Sent: '.$nameDia[0].' '.$dia[0].' of '.$nameMes[0].', '.$fechafinal[0];?>
                                 </h2>
                             </div>
                         </div>
@@ -659,53 +659,53 @@ $(document).ready(function () {
           $fechats = strtotime($fecha);
 
           switch (date('w', $fechats)){
-          case 0: $nameDia[] = "Domingo";
+          case 0: $nameDia[] = "Sunday";
           break;
-          case 1: $nameDia[] = "Lunes";
+          case 1: $nameDia[] = "Monday";
           break;
-          case 2: $nameDia[] = "Martes";
+          case 2: $nameDia[] = "Tuesday";
           break;
-          case 3: $nameDia[] = "Miércoles";
+          case 3: $nameDia[] = "Wednesday";
           break;
-          case 4: $nameDia[] = "Jueves";
+          case 4: $nameDia[] = "Thursday";
           break;
-          case 5: $nameDia[] = 'Viernes';
+          case 5: $nameDia[] = 'Friday';
           break;
-          case 6: $nameDia[] = 'Sábado';
+          case 6: $nameDia[] = 'Saturday';
           break;
           }
 
           switch (date('n', $fechats)){
-          case 1: $nameMes[] = "Enero";
+          case 1: $nameMes[] = "January";
           break;
-          case 2: $nameMes[] = "Febrero";
+          case 2: $nameMes[] = "February";
           break;
-          case 3: $nameMes[] = "Marzo";
+          case 3: $nameMes[] = "March";
           break;
-          case 4: $nameMes[] = "Abril";
+          case 4: $nameMes[] = "April";
           break;
-          case 5: $nameMes[] = 'Mayo';
+          case 5: $nameMes[] = 'May';
           break;
-          case 6: $nameMes[] = "Junio";
+          case 6: $nameMes[] = "June";
           break;
-          case 7: $nameMes[] = "Julio";
+          case 7: $nameMes[] = "July";
           break;
-          case 8: $nameMes[] = "Agosto";
+          case 8: $nameMes[] = "August";
           break;
-          case 9: $nameMes[] = "Septiembre";
+          case 9: $nameMes[] = "September";
           break;
-          case 10: $nameMes[] = "Octube";
+          case 10: $nameMes[] = "October";
           break;
-          case 11: $nameMes[] = "Noviembre";
+          case 11: $nameMes[] = "November";
           break;
-          case 12: $nameMes[] = "Diciembre";
+          case 12: $nameMes[] = "December";
           break;
           }
           ?>
 
                             <div class="date_sent" style="text-align: left;">
                                 <h2>
-          <?php echo 'Recibido: '.$nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+          <?php echo 'Received: '.$nameDia[0].' '.$dia[0].' of '.$nameMes[0].', '.$fechafinal[0];?>
                                 </h2>
                             </div>
                         </div>
