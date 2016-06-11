@@ -469,7 +469,7 @@ if (!isset($_SESSION['language'])) {
             <div class="top_img">
                 <img src="../../images/userCover/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                    <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
+                    <a href="#" class="image_banner_click"><span class="change_banner">CHANGE BANNER</span></a>
                 <?php } ?>
             </div>
             <div class="banner_change">
@@ -477,8 +477,7 @@ if (!isset($_SESSION['language'])) {
 					<div class="close-icon">
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
-					<div class="login-title">
-							<span class="login-title-text">CAMBIAR IMAGEN BANNER</span>
+					<div class="login-title">CHANGE YOUR IMAGE BANNER</span>
 					</div>
 
 					<form id="formChangeImageBanner">
@@ -492,7 +491,7 @@ if (!isset($_SESSION['language'])) {
 
 						<div class="send-login-content">
 								<br>
-								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+								<button type="submit" name="button" id="send-login" class="">CHANGE</button>
 						</div>
 					</form>
 				</div>
@@ -504,7 +503,7 @@ if (!isset($_SESSION['language'])) {
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
 					<div class="login-title">
-							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+							<span class="login-title-text">CHANGE YOUR IMAGE PROFILE</span>
 					</div>
 
 					<form id="formChangeImagePerfil">
@@ -518,7 +517,7 @@ if (!isset($_SESSION['language'])) {
 
 						<div class="send-login-content">
 								<br>
-								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+								<button type="submit" name="button" id="send-login" class="">CHANGE</button>
 						</div>
 					</form>
 				</div>
@@ -530,7 +529,7 @@ if (!isset($_SESSION['language'])) {
                 <div class="image_profile">
                     <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>" />
                     <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                        <a href="#" class="image_perfil_click"><span class="change_profile">CAMBIAR FOTO</span></a>
+                        <a href="#" class="image_perfil_click"><span class="change_profile">CHANGE PHOTO</span></a>
                     <?php } ?>
                 </div>
 
@@ -544,7 +543,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="age_profile">
-                    <p><?php echo $ano_diferencia; ?> años.</p>
+                    <p><?php echo $ano_diferencia; ?> years.</p>
                 </div>
 
                 <div class="profile_res">
@@ -557,7 +556,7 @@ if (!isset($_SESSION['language'])) {
                 	if(($_SESSION['idUser']) != $_GET['idUser']) { ?>
 	                <a id="show-img" href="#">
 	                    <img src="../../images/social-03.png" />
-	                    <p class="send_txt"> ENVIAR MENSAJE	</p>
+	                    <p class="send_txt"> SEND MESSAGE	</p>
 	                </a>
 	                <div id="lightbox-panel">
 	                    <div class="lightbox-content">
@@ -565,15 +564,15 @@ if (!isset($_SESSION['language'])) {
 	                            <img src="../../images/img_galeria-02_close.png" alt="" />
 	                        </a>
 
-	                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
+	                        	<p class="toptext-light"> SEND MESSAGE </p>
 	                        <div class="msn_form">
 	                        	<form id="formNewMessage">
 	                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
 	                        		<input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
 		                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
-		                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
+		                            <p class="text_form">MESSAGE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
 		                            <br>
-		                            <input type="submit" value="ENVIAR">
+		                            <input type="submit" value="SEND">
 		                            <div class="resultado"></div>
 		                        </form>
 	                        </div>
@@ -956,7 +955,7 @@ if (!isset($_SESSION['language'])) {
 
 
                 <!-- comments -->
-                <span class="toptext_slider comments_title">COMENTARIOS</span>
+                <span class="toptext_slider comments_title">COMMENTS</span>
                 <div id="comments_box">
                     <div class="msn_content">
                         <!-- message received -->
@@ -1092,13 +1091,13 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendComment">
                     		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Send commentary..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a commentary..."></textarea>
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
 		                        }
 		                    </style>
-	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                        <input type="submit" class="send_button comments_send" value="SEND" style="background-color:#808080;">
 	                    </form>
                     </div>
                 <?php } ?>

@@ -459,7 +459,7 @@ if (!isset($_SESSION['language'])) {
 
 
                 <div class="name_profile" style="width: 70%;">
-                    <p><a href="perfil_empresa.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
+                    <p><a href="producer_profile.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
@@ -954,13 +954,13 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendCommentBeer">
                     		<input type="text" name="idBeer" hidden value="<?php echo $_GET['id']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a comment..."></textarea>
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
 		                        }
 		                    </style>
-	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                        <input type="submit" class="send_button comments_send" value="SEND" style="background-color:#808080;">
 	                    </form>
                     </div>
                 <?php } ?>

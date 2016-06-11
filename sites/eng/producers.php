@@ -370,11 +370,11 @@ if (!isset($_SESSION['language'])) {
                           <?php if (isset($_SESSION['idUser'])) { ?>
 
                               <?php
-                              $consulta = "SELECT * FROM message m INNER JOIN chat c
-                                             ON m.chat_idChat = c.idChat
-                                             WHERE c.inbox_idInbox = " . $line['idInbox'] . "
-                                             AND message.user_idUser != " . $line['idUser'] . "
-                                             AND message.messageStatus = 0";
+                              $consulta = "SELECT * FROM message INNER JOIN chat
+                                             ON message.chat_idChat = chat.idChat
+                                             WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                               $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                               ?>
 
