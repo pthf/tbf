@@ -22,6 +22,11 @@
 					<list-users></list-users>
 				</div>
 
+				<div ng-show="itemBeer === 3" class="cont-nav">
+					<form-send-messages-users></form-send-messages-users>
+				</div>
+
+
 			</div>
 		</div>
 

@@ -1159,5 +1159,44 @@
 		}
 	})
 
+	.directive('formSendMessagesUsers', function(){
+		return{
+			restrict: 'E',
+			templateUrl: './../partials/form-send-messages-users.php',
+			controller: function($document){
+
+				$('#buttonSave').click(function(){
+					var message = $('#message').val();
+					var user = $(this).attr('name');
+					var namefunction = "sendMessageUser";
+
+					$.ajax({
+						beforeSend: function(){
+						},
+						url: "../php/functions.php",
+						type: "POST",
+						data: {
+							message : message,
+							namefunction : namefunction,
+							user : user
+						},
+						success: function(result){
+							$('.msg-newbeer').css({'display': 'block'});
+							setTimeout(function(){
+								location.reload();
+							},2000);
+						},
+						error: function(error){
+						},
+						complete: function(){
+						},
+						timeout: 10000
+					});
+				});
+
+			}
+		}
+	})
+
 
 })();

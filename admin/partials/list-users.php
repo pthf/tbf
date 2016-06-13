@@ -38,8 +38,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===1" ng-repeat="data in dataUsers | orderBy: 'registrationDate'">
@@ -57,8 +58,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===2" ng-repeat="data in dataUsers | orderBy: 'userName'">
@@ -76,8 +78,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===3" ng-repeat="data in dataUsers | orderBy: 'userLastName'">
@@ -95,8 +98,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===4" ng-repeat="data in dataUsers | orderBy: 'userBirthDate'">
@@ -114,8 +118,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===5" ng-repeat="data in dataUsers | orderBy: 'name_c'">
@@ -133,8 +138,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===6" ng-repeat="data in dataUsers | orderBy: 'name_s'">
@@ -152,8 +158,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===7" ng-repeat="data in dataUsers | orderBy: 'userEmail'">
@@ -171,8 +178,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===8" ng-repeat="data in dataUsers | orderBy: 'userStatus'">
@@ -190,8 +198,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
       <tr ng-if="itemShowElements===9" ng-repeat="data in dataUsers | orderBy: '-1*userExp'">
@@ -209,8 +218,9 @@
 				</td>
 				<td>{{data.userExp}}</td>
 				<td>
-					<span class="label label-danger blockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
-					<span class="label label-primary unlockUser" name='>{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
+					<span class="label label-primary blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-click="selectSendMessage(3,data.idUser)">Send Message</span>
+					<span class="label label-danger blockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 1" ng-click="modifyStatus(0,data.idUser)">Block</span>
+					<span class="label label-primary unlockUser" name='{{data.idUser}}' style="cursor:pointer" ng-show="data.userStatus == 0" ng-click="modifyStatus(1,data.idUser)">Unlock</span>
 				</td>
       <tr>
 

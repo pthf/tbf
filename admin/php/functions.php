@@ -125,6 +125,9 @@
 			case 'sendMessageAllUsers':
 				sendMessageAllUsers();
 				break;
+			case 'sendMessageUser':
+				sendMessageUser();
+				break;
 			case 'recoveryPassword':
 				recoveryPassword();
 				break;
@@ -173,14 +176,15 @@
 		    $randItem = array_rand($charArray);
 		    $newpassword .= "".$charArray[$randItem];
 	    }
-			$newpassword = password_hash($newpassword, PASSWORD_DEFAULT);
-			$query = "UPDATE user SET userPassword = '$newpassword' WHERE idUser = ".$line['idUser'];
-			$result = mysql_query($query) or die(mysql_error());
 
 			$to = $emailRecovery;
 			$title = "Recovery Password";
-			$message = "Hello!, your new password is: ".$newpassword." we recommend you change your password.";
+			$message = "Hello!, your new password is: ".$newpassword." we recommend you change your password. / !Hola!, tu nueva contraseña es: ".$newpassword." te recomendados cambiar tu contraseña.";
 			mail($to,$title,$message);
+
+			$newpassword = password_hash($newpassword, PASSWORD_DEFAULT);
+			$query = "UPDATE user SET userPassword = '$newpassword' WHERE idUser = ".$line['idUser'];
+			$result = mysql_query($query) or die(mysql_error());
 
 			echo "1";
 		}else{
@@ -194,6 +198,33 @@
 		$messageStatus = 0;
 		$user_idUser = 1;
 		$query = "SELECT * FROM user";
+		$result = mysql_query($query) or die(mysql_error());
+		while($line=mysql_fetch_array($result)){
+			$idInbox = $line['idInbox'];
+
+			$query2 = "SELECT idChat FROM chat WHERE inbox_idInbox = $idInbox AND user_idUser = $user_idUser";
+			$result2 = mysql_query($query2) or die(mysql_error());
+			if(mysql_num_rows($result2)>0){
+				$line2 = mysql_fetch_array($result2);
+				$chat = $line2['idChat'];
+			}else{
+				$query2 = "INSERT INTO chat (inbox_idInbox, user_idUser) VALUES ($idInbox, $user_idUser)";
+				$result2 = mysql_query($query2) or die(mysql_error());
+				$chat = mysql_insert_id();
+			}
+
+			$query2 = "INSERT INTO message(messageText, messageDate, messageStatus, chat_idChat, user_idUser) VALUES('$message', '$messageDate', $messageStatus, $chat, $user_idUser)";
+			$result2 = mysql_query($query2) or die(mysql_error());
+
+		}
+	}
+
+	function sendMessageUser(){
+		$message = $_POST['message'];
+		$messageDate = date("Y-m-d H:i:s");
+		$messageStatus = 0;
+		$user_idUser = 1;
+		$query = "SELECT * FROM user WHERE idUser = ".$_POST['user'];
 		$result = mysql_query($query) or die(mysql_error());
 		while($line=mysql_fetch_array($result)){
 			$idInbox = $line['idInbox'];
@@ -412,7 +443,7 @@
 				session_start();
 				$_SESSION['idUser'] = $idUser;
 
-				$message = "Welcome to the beer fans, we hope you enjoy your experience on our site. There are a lot of surprises so stay with us!";
+				$message = "Welcome to the beer fans, we hope you enjoy this experience on our site. There are a lot of surprises so stay with us! / Bienvenido a The Beer Fans, esperemos que disfrutes esta experiencia en nuestro sitio. !Hay muchas sopresas asi que permanece con nosotros! ";
 				$messageDate = date("Y-m-d H:i:s");
 				$messageStatus = 0;
 				$user_idUser = 1;
@@ -441,7 +472,7 @@
 
 		$query = "SELECT * FROM states WHERE country_id = $id ORDER BY name_s ASC";
 		$result = mysql_query($query) or die(mysql_error());
-		echo '<option disabled selected value="">Selecciona un estado &#x25BE;</option>';
+		echo '<option disabled selected value="">Select a state. &#x25BE;</option>';
 		while ($line = mysql_fetch_array($result)) {
 			echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
 		}
@@ -452,7 +483,7 @@
 
 		$query = "SELECT * FROM states WHERE country_id = $id ORDER BY name_s ASC";
 		$result = mysql_query($query) or die(mysql_error());
-		echo '<option disabled selected value="">Select a producer state</option>';
+		echo '<option disabled selected value="">Select a producer state.</option>';
 		while ($line = mysql_fetch_array($result)) {
 			echo '<option value="'.$line["id"].'" name="'.$line["id"].'">'.$line["name_s"].'</option>';
 		}

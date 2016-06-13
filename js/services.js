@@ -6,8 +6,8 @@ $("#formUser").submit(function(e){
 	var namefunction = "changeUser";
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : {
         	data : data,
         	namefunction : "changeUser",
@@ -30,10 +30,10 @@ $("#formChangeEmail").submit(function(e){
 	var namefunction = "changeEmail";
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : {
-        	data : data, 
+        	data : data,
         	namefunction : "changeEmail",
         },
         success: function(result){
@@ -55,10 +55,10 @@ $("#formChangePass").submit(function(e){
 	var namefunction = "changePass";
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : {
-        	data : data, 
+        	data : data,
         	namefunction : "changePass",
         },
         success: function(result){
@@ -80,10 +80,10 @@ $("#formNewMessage").submit(function(e){
 	var namefunction = "newMessage";
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : {
-        	data : data, 
+        	data : data,
         	namefunction : "newMessage",
         },
         success: function(result){
@@ -164,10 +164,10 @@ $("#SendRequestChat").submit(function(e){
 	var namefunction = "requestMessage";
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : {
-        	data : data, 
+        	data : data,
         	namefunction : "requestMessage",
         },
         success: function(result){
@@ -189,8 +189,8 @@ $("#SendComment").submit(function(e){
 	data.push({ name: "namefunction", value: "SendCommentMessage" });
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : data,
         success: function(result){
 			$('#SendComment')[0].reset();
@@ -210,8 +210,8 @@ $("#SendCommentBeer").submit(function(e){
 	data.push({ name: "namefunction", value: "SendCommentProfileBeer" });
 
 	$.ajax({
-        type : 'POST', 
-        url : '../../php/functions.php', 
+        type : 'POST',
+        url : '../../php/functions.php',
         data : data,
         success: function(result){
 			$('#SendCommentBeer')[0].reset();
@@ -222,5 +222,3 @@ $("#SendCommentBeer").submit(function(e){
 	 	}
     })
 });
-
-

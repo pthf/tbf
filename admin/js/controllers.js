@@ -22,6 +22,16 @@
 
 	.controller('beerNavController', ['$scope', function($scope){
 
+		$scope.selectSendMessage = function(item, idUser){
+			$scope.selectItemBeer(item);
+			$scope.sendtouser(idUser);
+		}
+
+		$scope.usertoseend = 0;
+		$scope.sendtouser = function(idUser){
+			$scope.usertoseend = idUser;
+		};
+
 		$scope.item = 1;
 		$scope.selectItem = function(item){
 			$scope.item = item;
@@ -49,7 +59,6 @@
 			  	type: "POST",
 			  	data: data,
 				success: function(result){
-					alert(result);
 				},
 				error: function(error){
 					alert(error);
