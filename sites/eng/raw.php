@@ -375,8 +375,8 @@ if (!isset($_SESSION['language'])) {
 
                                 <?php
                                 $consulta = "SELECT * FROM message INNER JOIN chat
-                                               ON message.chat_idChat = chat.idChat
-                                               WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
+                                             ON message.chat_idChat = chat.idChat
+                                             WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
                                                AND message.user_idUser != " . $line['idUser'] . "
                                                AND message.messageStatus = 0";
                                 $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
@@ -590,10 +590,10 @@ if (!isset($_SESSION['language'])) {
                                     }
                                   }
                                 } else if (isset($_GET['type'])) {
-                                	$query_type = "SELECT * FROM beerfans.rawmaterial rm
-                      														INNER JOIN beerfans.rawmaterial_has_rawmaterialtype mhrm
+                                	$query_type = "SELECT * FROM rawmaterial rm
+                      														INNER JOIN rawmaterial_has_rawmaterialtype mhrm
                       														ON mhrm.idRawMaterial = rm.idRawMaterial
-                      														INNER JOIN beerfans.rawmaterialtype rmt
+                      														INNER JOIN rawmaterialtype rmt
                       														ON rmt.idDrawMaterialType = mhrm.idDrawMaterialType
                                                   WHERE rm.language = ".$_SESSION['language']."
                                                   AND rmt.rawMaterialTypeName ='" . $_GET['type'] . "'";
@@ -687,7 +687,10 @@ if (!isset($_SESSION['language'])) {
                                     }
                                   }
 		                          	} else {
-		                          		$query2 = "SELECT * FROM rawmaterial WHERE language = ".$_SESSION['language'];
+		                          		$query2 = "SELECT * FROM rawmaterial rm
+                                            INNER JOIN rawmaterial_has_rawmaterialtype rhm ON rhm.idRawMaterial = rm.idRawMaterial
+                                            INNER JOIN rawmaterialtype rmt ON rmt. idDrawMaterialType = rhm.idDrawMaterialType
+                                            WHERE language = ".$_SESSION['language'];
                                         $resultado2 = mysql_query($query2) or die(mysql_error());
 	                                    $contador = 0;
 	                                    while ($row2 = mysql_fetch_array($resultado2)) {
@@ -705,6 +708,7 @@ if (!isset($_SESSION['language'])) {
 			                                      <img src="../../images/rawMaterialProfiles/'.$row2['rawMaterialProfileImage'].'"> <br>
 			                                      <span class="title">'.$row2['rawMaterialName'].'</span>
 				                                  <span class="subtitle">'.$descriptionText.'</span>
+                                          <span class="subtitle" style="display:none">'.$row2['rawMaterialTypeName'].'</span>
 				                                  <a href="raw_profile.php?id='.$row2['idRawMaterial'].'"><span class="ver_mas">READ MORE</span></a>
 				                                </li>
 				                            ';

@@ -46,7 +46,7 @@
 								$query = "SELECT * FROM beertype ORDER BY beertypeName ASC";
 								$result = mysql_query($query) or die(mysql_error());
 								while ($line = mysql_fetch_array($result)) {
-									echo '<option value="'.$line["idbeertype"].'" name="'.$line["idbeertype"].'" ng-selected="dataBeer[0].idbeertype == '.$line["idbeertype"].'">'.$line["beertypeName"].'</option>';
+									echo '<option value="'.$line["idBeerType"].'" name="'.$line["idBeerType"].'" ng-selected="dataBeer[0].idBeerType == '.$line["idBeerType"].'">'.$line["beerTypeName"].'</option>';
 								}
 							?>
 						</select>

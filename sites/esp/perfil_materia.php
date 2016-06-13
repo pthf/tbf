@@ -290,7 +290,7 @@ if (!isset($_SESSION['language'])) {
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
 												<a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MI PERFIL</span></li></a>
-												<a href="../eng/raw_profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+												<a href="../eng/raw_profile.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
 												<a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>SALIR</span></li></a>
 										</ul>
@@ -300,7 +300,7 @@ if (!isset($_SESSION['language'])) {
 												<a href="cervezas.php"><li><span>CERVEZAS</span></li></a>
 												<a href="productores.php"><li><span>PRODUCTORES</span></li></a>
 												<a href="materia.php"><li><span>MATERIA PRIMA</span></li></a>
-                        <a href="../eng/raw_profile.php"class="changeLanguage"><li><span>ENGLISH</span></li></a>
+                        <a href="../eng/raw_profile.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ENGLISH</span></li></a>
 												<a href="#" class="user_name_click"><li><span>INICIA SESIÓN</span></li></a>
 										</ul>
 								<?php } ?>
@@ -498,7 +498,7 @@ if (!isset($_SESSION['language'])) {
 
                     <div class="social_company materia-width">
                         <?php if(strlen($lineMateria['rawMaterialSite'])>0){?>
-                        <a target="_blank" href="<?= $lineMateria['Site'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
+                        <a target="_blank" href="<?= $lineMateria['rawMaterialSite'] ?>" class="first_contact web"><img src="../../images/web-icon.png"/></a>
                         <?php } ?>
                         <?php if(strlen($lineMateria['rawMaterialFacebook'])>0){?>
                         <a target="_blank" href="<?= $lineMateria['rawMaterialFacebook'] ?>" class="first_contact fb"><img src="../../images/social-04.png"/></a>

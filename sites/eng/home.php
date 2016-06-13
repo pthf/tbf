@@ -578,13 +578,13 @@ if (!isset($_SESSION['language'])) {
                                               <br>
                                               <span>'.$lineUser["name_s"].' - '.$lineUser["sortname"].'</span>
                                               <br>
-                                              <a href="profile.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">Ver perfil</span></a>
+                                              <a href="profile.php?idUser='.$lineUser["idUser"].'"><span class="AddFriend">See Profile</span></a>
                                           </div>
                                       </li>
                                     ';
                                     }
                                   }else{
-                                    echo '<span class="user_list list-sub" style="display:inline-block !important; width: auto !important;">SIN USUARIOS RECOMENDADOS.</span>';
+                                    echo '<span class="user_list list-sub" style="display:inline-block !important; width: auto !important;">WHITOUT RECOMMENDED USERS.</span>';
                                   }
 
 
@@ -596,6 +596,7 @@ if (!isset($_SESSION['language'])) {
                                 </div>
                             <?php } else { ?>
                                 <span class="user_list" style="text-align: center !important; display: block; margin: 0;">RECOMMENDED USERS.<a href="#"><br><span class="user_name" style="text-align:center">LOGIN</span><br></a> TO MEET MORE PEOPLE WITH SIMILAR TASTES LIKE YOU.</span>
+
 <?php } ?>
                         </div>
                     </div>

@@ -292,9 +292,9 @@ if (isset($_SESSION['idUser'])) {
                         <a href="cervezas.php"><li><span>BEERS</span></li></a>
                         <a href="productores.php"><li><span>PRODUCERS</span></li></a>
                         <a href="materia.php"><li><span>RAW</span></li></a>
-                        <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                        <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                         <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
-                        <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                        <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
                 <?php } else { ?>
@@ -624,8 +624,8 @@ if (isset($_SESSION['idUser'])) {
                                                 <a href="cervezas.php"><li><span>BEERS</span></li></a>
                                                 <a href="productores.php"><li><span>PRODUCERS</span></li></a>
                                                 <a href="materia.php"><li><span>RAW</span></li></a>
-                                                <a href="perfil.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                                                <a href="configuracion.php"><li><span>SETTINGS</span></li></a>
+                                                <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
+                                                <a href="settings.php"><li><span>SETTINGS</span></li></a>
                                                 <a href="contact.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } else { ?>

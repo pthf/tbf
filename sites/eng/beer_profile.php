@@ -34,7 +34,7 @@ if (!isset($_SESSION['language'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
     <head>
 
         <meta charset="UTF-8">
@@ -298,7 +298,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
                         <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../eng/producer_profile.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil_beer.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
@@ -308,7 +308,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="beers.php"><li><span>BEERS</span></li></a>
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
-                        <a href="../esp/perfil_beer.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil_beer.php?id=<?= $_GET['id'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -459,11 +459,11 @@ if (!isset($_SESSION['language'])) {
 
 
                 <div class="name_profile" style="width: 70%;">
-                    <p><a href="perfil_empresa.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
+                    <p><a href="producer_profile.php?id=<?= strtoupper($lineBeer['idProducer'])?>" style="text-decoration: underline;"><?= strtoupper($lineBeer['producerName'])?></a><br><?= strtoupper($lineBeer['beerName']) ?></p>
                 </div>
 
                 <div class="city_profile" style="width: 70%;">
-                    <p><?= strtoupper($lineBeer['beertypeName']) ?></p><br><br>
+                    <p><?= strtoupper($lineBeer['beerTypeName']) ?></p><br><br>
                     <p><?=$lineBeer['city']?>, <?= $lineBeer['name_s']?>, <?=$lineBeer['name_c']?>.</p>
                 </div>
                 <br>
@@ -474,7 +474,7 @@ if (!isset($_SESSION['language'])) {
                     <span>Country: </span> <span><?=$lineBeer['name_c']?></span> <br>
                     <span>State: </span> <span><?=$lineBeer['name_s']?></span> <br>
                     <span>City: </span> <span><?=$lineBeer['city']?></span> <br>
-                    <span>Style: </span> <span> <?= $lineBeer['beertypeName'] ?> </span> <br>
+                    <span>Style: </span> <span> <?= $lineBeer['beerTypeName'] ?> </span> <br>
                     <span>Alcoholic strength:</span> <span> <?= $lineBeer['beerStrength'] ?></span> <br>
                     <span>IBUS:</span> <span><?= $lineBeer['beerIBUS'] ?></span> <br>
 
@@ -873,7 +873,9 @@ if (!isset($_SESSION['language'])) {
                             <div id="itemContainerInner">
 
                                 <div class="item i1">
+                                  <a href="profile.php?idUser=<?php echo $rows2['idUser'];?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">
@@ -896,51 +898,51 @@ if (!isset($_SESSION['language'])) {
 								$fechats = strtotime($fecha);
 
 								switch (date('w', $fechats)){
-								    case 0: $nameDia[] = "Domingo";
+								    case 0: $nameDia[] = "Sunday";
 							    	break;
-							    	case 1: $nameDia[] = "Lunes";
+							    	case 1: $nameDia[] = "Monday";
 							    	break;
-							    	case 2: $nameDia[] = "Martes";
+							    	case 2: $nameDia[] = "Tuesday";
 							    	break;
-							    	case 3: $nameDia[] = "Miércoles";
+							    	case 3: $nameDia[] = "Wednesday";
 							    	break;
-							    	case 4: $nameDia[] = "Jueves";
+							    	case 4: $nameDia[] = "Thursday";
 							    	break;
-							    	case 5: $nameDia[] = 'Viernes';
+							    	case 5: $nameDia[] = 'Friday';
 							    	break;
-							    	case 6: $nameDia[] = 'Sábado';
+							    	case 6: $nameDia[] = 'Saturday';
 							    	break;
 								}
 
 								switch (date('n', $fechats)){
-								    case 1: $nameMes[] = "Enero";
+								    case 1: $nameMes[] = "January";
 							    	break;
-							    	case 2: $nameMes[] = "Febrero";
+							    	case 2: $nameMes[] = "February";
 							    	break;
-							    	case 3: $nameMes[] = "Marzo";
+							    	case 3: $nameMes[] = "March";
 							    	break;
-							    	case 4: $nameMes[] = "Abril";
+							    	case 4: $nameMes[] = "April";
 							    	break;
-							    	case 5: $nameMes[] = 'Mayo';
+							    	case 5: $nameMes[] = 'May';
 							    	break;
-							    	case 6: $nameMes[] = "Junio";
+							    	case 6: $nameMes[] = "June";
 							    	break;
-							    	case 7: $nameMes[] = "Julio";
+							    	case 7: $nameMes[] = "July";
 							    	break;
-							    	case 8: $nameMes[] = "Agosto";
+							    	case 8: $nameMes[] = "August";
 							    	break;
-							    	case 9: $nameMes[] = "Septiembre";
+							    	case 9: $nameMes[] = "September";
 							    	break;
-							    	case 10: $nameMes[] = "Octube";
+							    	case 10: $nameMes[] = "October";
 							    	break;
-							    	case 11: $nameMes[] = "Noviembre";
+							    	case 11: $nameMes[] = "November";
 							    	break;
-							    	case 12: $nameMes[] = "Diciembre";
+							    	case 12: $nameMes[] = "December";
 							    	break;
 								}
 						    ?>
                             <h2>
-                            	<?php echo $nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                            	<?php echo $nameDia[0].' '.$dia[0].' of '.$nameMes[0].', '.$fechafinal[0];?>
                             </h2>
                         </div>
                         <?php } ?>
@@ -954,13 +956,13 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendCommentBeer">
                     		<input type="text" name="idBeer" hidden value="<?php echo $_GET['id']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a comment..."></textarea>
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
 		                        }
 		                    </style>
-	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                        <input type="submit" class="send_button comments_send" value="SEND" style="background-color:#808080;">
 	                    </form>
                     </div>
                 <?php } ?>

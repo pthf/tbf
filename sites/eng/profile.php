@@ -300,7 +300,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
                         <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
-                        <a href="../esp/perfil.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil.php?idUser=<?= $_GET['idUser'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="settings.php"><li><span>SETTINGS</span></li></a>
                         <a href="#" class="logOut" name="<?= $line['idUser'] ?>"><li class="no_border"><span>LOG OUT</span></li></a>
                     </ul>
@@ -310,7 +310,7 @@ if (!isset($_SESSION['language'])) {
                         <a href="beers.php"><li><span>BEERS</span></li></a>
                         <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                         <a href="raw.php"><li><span>RAW</span></li></a>
-                        <a href="../esp/perfil.php"class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
+                        <a href="../esp/perfil.php?idUser=<?= $_GET['idUser'] ?>" class="changeLanguage"><li><span>ESPAÑOL</span></li></a>
                         <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
                     </ul>
                 <?php } ?>
@@ -422,7 +422,7 @@ if (!isset($_SESSION['language'])) {
                                 ?>
 
                                 <div class="msg">
-                                    <a href="mensajes.php?idUser=<?= $line['idUser'] ?>">
+                                    <a href="messages.php?idUser=<?= $line['idUser'] ?>">
                                         <img src="../../images/menu_options-03.png" alt="icon message" title="icon message">
                                         <?php
                                         if (mysql_num_rows($resultadoconsulta) > 0) {
@@ -483,6 +483,7 @@ if (!isset($_SESSION['language'])) {
 
           <div class="login-title resolution-title">
 							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolution recommended : 1366px por 375px</span>
+
 					</div>
 
 					<form id="formChangeImageBanner">
@@ -512,6 +513,7 @@ if (!isset($_SESSION['language'])) {
 					</div>
           <div class="login-title resolution-title">
 							<span class="login-title-text"  style="font-size: 14px; padding: 0 !important">Resolution recommended: 210px x 240px</span>
+
 					</div>
 
 					<form id="formChangeImagePerfil">
@@ -551,6 +553,7 @@ if (!isset($_SESSION['language'])) {
 
                 <div class="age_profile">
                     <p><?php echo $ano_diferencia; ?> years old.</p>
+
                 </div>
 
                 <div class="profile_res">
@@ -579,7 +582,7 @@ if (!isset($_SESSION['language'])) {
 		                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
 		                            <p class="text_form">MESSAGE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
 		                            <br>
-		                            <input type="submit" value="ENVIAR">
+		                            <input type="submit" value="SEND">
 		                            <div class="resultado"></div>
 		                        </form>
 	                        </div>
@@ -604,6 +607,7 @@ if (!isset($_SESSION['language'])) {
                 </div>
                 <div class="slides">
                     <div class="toptext_slider"><span>FAVORITES</span></div>
+
                     <div class="overflow">
                         <div class="inner profile favoritos-slider">
 
@@ -630,7 +634,7 @@ if (!isset($_SESSION['language'])) {
                                   $descriptionText .= "...";
                                 }
                                 echo '<li class="first_beer">
-                                        <a href="perfil_beer.php?id='.$l1['idBeer'].'"><img src="../../images/beerBottles/'.$l1["beerBottleImage"].'"></a> <br>
+                                        <a href="beer_profile.php?id='.$l1['idBeer'].'"><img src="../../images/beerBottles/'.$l1["beerBottleImage"].'"></a> <br>
                                         <span class="title">'.$l1["beerName"].'</span>
                                         <span class="subtitle">'.$descriptionText.'</span> <br>';
                                         if(isset($_SESSION['idUser'])) {
@@ -643,13 +647,13 @@ if (!isset($_SESSION['language'])) {
                                             $qo = "SELECT idFavoriteElement FROM favoriteelement WHERE idBeer = ".$l1['idBeer']." AND $listaUser = idFavoritesList";
                                             $rr = mysql_query($qo) or die(mysql_error());
                                             if(mysql_num_rows($rr)>0) {
-                                            echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Eliminar de favoritos">&#9829;</span>';
+                                            echo '<span name="1" class="heart-icon 1" data-function="deleteFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Delete favorits">&#9829;</span>';
                                               } else {
-                                            echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Agregar a favoritos">&#9825;</span>';
+                                            echo ' <span name="0" class="heart-icon 0" data-function="addFavorites" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l1['idBeer'].'" title="Add favorits">&#9825;</span>';
                                               }
                                         echo '</div>';
                                         } else {
-                                          echo ' <a href="#"><span class="heart-icon logintoadd" title="Agregar a favoritos">&#9825;</span></a>';
+                                          echo ' <a href="#"><span class="heart-icon logintoadd" title="Add favorits">&#9825;</span></a>';
                                         }
                                 echo '</li>';
 
@@ -729,7 +733,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href=""><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile?id='.$l2['idBeer'].'"><img src="../../images/beerBottles/'.$l2["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l2["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
                                       if(isset($_SESSION['idUser'])){
@@ -743,14 +747,14 @@ if (!isset($_SESSION['language'])) {
                                         $rz = mysql_query($qz) or die(mysql_error());
 
                                         if(mysql_num_rows($rz)>0){
-                                          echo '<span name="1" class="1" data-function="deleteWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ELIMINAR</span>';
+                                          echo '<span name="1" class="1" data-function="deleteWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">DELETE</span>';
                                         }else{
-                                          echo '<span name="0" class="0" data-function="addWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">AGREGAR</span>';
+                                          echo '<span name="0" class="0" data-function="addWishList" style="cursor:pointer;" data-user="'.$_SESSION['idUser'].'" data-beer="'.$l2['idBeer'].'">ADD</span>';
                                         }
                                         echo '
                                         </div>';
                                       }else{
-                                        echo '<a href="#"><span class="0 logintoadd">AGREGAR</span></a>';
+                                        echo '<a href="#"><span class="0 logintoadd">ADD</span></a>';
                                       }
                                     echo '</li>
                                 ';
@@ -829,7 +833,7 @@ if (!isset($_SESSION['language'])) {
                                 }
                                 echo '
                                     <li class="first_beer">
-                                      <a href="perfil_beer.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
+                                      <a href="beer_profile.php?id='.$l3['idBeer'].'"><img src="../../images/beerBottles/'.$l3["beerBottleImage"].'"></a> <br>
                                       <span class="title">'.$l3["beerName"].'</span>
                                       <span class="subtitle">'.$descriptionText.'</span> <br>';
 
@@ -865,7 +869,7 @@ if (!isset($_SESSION['language'])) {
                                         $result = mysql_query($query) or die(mysql_error());
                                         if(mysql_num_rows($result)>0){
 
-                                            echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">ELIMINAR RANK</span><br><br>';
+                                            echo '<span class="deleteRank" data-beer="'.$l3['idBeer'].'" data-list="'.$idRanksList.'" style="display:block; cursor:pointer;">DELETE RANK</span><br><br>';
                                         }else{
                                           echo "
                                             <div class='rating-stars text-center'>
@@ -1016,7 +1020,9 @@ if (!isset($_SESSION['language'])) {
 
 
                                 <div class="item i1">
+                                  <a href="profile.php?idUser=<?php echo $rows2['idUser']?>">
                                     <img src="../../images/userProfile/<?php echo $rows2['userProfileImage']?>"/>
+                                  </a>
                                 </div>
 
                                 <div class="item i2">
@@ -1039,52 +1045,52 @@ if (!isset($_SESSION['language'])) {
 							$fechats = strtotime($fecha);
 
 							switch (date('w', $fechats)){
-							    case 0: $nameDia[] = "Domingo";
-						    	break;
-						    	case 1: $nameDia[] = "Lunes";
-						    	break;
-						    	case 2: $nameDia[] = "Martes";
-						    	break;
-						    	case 3: $nameDia[] = "Miércoles";
-						    	break;
-						    	case 4: $nameDia[] = "Jueves";
-						    	break;
-						    	case 5: $nameDia[] = 'Viernes';
-						    	break;
-						    	case 6: $nameDia[] = 'Sábado';
-						    	break;
-							}
+                  case 0: $nameDia[] = "Sunday";
+                  break;
+                  case 1: $nameDia[] = "Monday";
+                  break;
+                  case 2: $nameDia[] = "Tuesday";
+                  break;
+                  case 3: $nameDia[] = "Wednesday";
+                  break;
+                  case 4: $nameDia[] = "Thursday";
+                  break;
+                  case 5: $nameDia[] = 'Friday';
+                  break;
+                  case 6: $nameDia[] = 'Saturday';
+                  break;
+              }
 
 							switch (date('n', $fechats)){
-							    case 1: $nameMes[] = "Enero";
-						    	break;
-						    	case 2: $nameMes[] = "Febrero";
-						    	break;
-						    	case 3: $nameMes[] = "Marzo";
-						    	break;
-						    	case 4: $nameMes[] = "Abril";
-						    	break;
-						    	case 5: $nameMes[] = 'Mayo';
-						    	break;
-						    	case 6: $nameMes[] = "Junio";
-						    	break;
-						    	case 7: $nameMes[] = "Julio";
-						    	break;
-						    	case 8: $nameMes[] = "Agosto";
-						    	break;
-						    	case 9: $nameMes[] = "Septiembre";
-						    	break;
-						    	case 10: $nameMes[] = "Octube";
-						    	break;
-						    	case 11: $nameMes[] = "Noviembre";
-						    	break;
-						    	case 12: $nameMes[] = "Diciembre";
-						    	break;
-							}
+                  case 1: $nameMes[] = "January";
+                  break;
+                  case 2: $nameMes[] = "February";
+                  break;
+                  case 3: $nameMes[] = "March";
+                  break;
+                  case 4: $nameMes[] = "April";
+                  break;
+                  case 5: $nameMes[] = 'May';
+                  break;
+                  case 6: $nameMes[] = "June";
+                  break;
+                  case 7: $nameMes[] = "July";
+                  break;
+                  case 8: $nameMes[] = "August";
+                  break;
+                  case 9: $nameMes[] = "September";
+                  break;
+                  case 10: $nameMes[] = "October";
+                  break;
+                  case 11: $nameMes[] = "November";
+                  break;
+                  case 12: $nameMes[] = "December";
+                  break;
+              }
 						    ?>
 
                             <h2>
-                            	<?php echo $nameDia[0].' '.$dia[0].' de '.$nameMes[0].' '.$fechafinal[0];?>
+                              <?php echo $nameDia[0].' '.$dia[0].' of '.$nameMes[0].', '.$fechafinal[0];?>
                             </h2>
                         </div>
                         <?php } ?>
@@ -1099,12 +1105,13 @@ if (!isset($_SESSION['language'])) {
                     		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
 	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a commment..."></textarea>
+
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
 		                        }
 		                    </style>
-	                        <input type="submit" class="send_button comments_send" value="COMENTAR" style="background-color:#808080;">
+	                        <input type="submit" class="send_button comments_send" value="SEND" style="background-color:#808080;">
 	                    </form>
                     </div>
                 <?php } ?>

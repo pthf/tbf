@@ -455,9 +455,9 @@ if (!isset($_SESSION['language'])) {
                                         while ($row = mysql_fetch_array($resultado)) {
                                             if (isset($_GET['country'])) {
                                                 ?>
-                                                <li><span><a href="?type=<?php echo $row['beertypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['beertypeName']; ?></a></span></li>
+                                                <li><span><a href="?type=<?php echo $row['beerTypeName']; ?>&country=<?php echo $_GET['country']; ?>"><?php echo $row['beerTypeName']; ?></a></span></li>
                                             <?php } else { ?>
-                                                <li><span><a href="?type=<?php echo $row['beertypeName']; ?>"><?php echo $row['beertypeName']; ?></a></span></li>
+                                                <li><span><a href="?type=<?php echo $row['beerTypeName']; ?>"><?php echo $row['beerTypeName']; ?></a></span></li>
     <?php }
 }
 ?>
@@ -514,7 +514,7 @@ if (!isset($_SESSION['language'])) {
 
                         	<?php
                         		if (isset($_GET['type'])) {
-		                          	$query_type = "SELECT * FROM beerfans.beertype bt INNER JOIN beerfans.beer b ON b.idbeertype = bt.idbeertype WHERE b.language = ".$_SESSION['language']." AND bt.beertypeName ='" . $_GET['type'] . "'";
+		                          	$query_type = "SELECT * FROM beertype bt INNER JOIN beer b ON b.idbeertype = bt.idbeertype WHERE b.language = ".$_SESSION['language']." AND bt.beerTypeName ='" . $_GET['type'] . "'";
 	                                $resultado_type = mysql_query($query_type) or die(mysql_error());
 		                          	$contador = 0;
 		                          	while ($row3 = mysql_fetch_array($resultado_type)) {
@@ -532,7 +532,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-                                        <span class="subtitle" style="display:none">'.$row3['beertypeName'].'</span>
+                                        <span class="subtitle" style="display:none">'.$row3['beerTypeName'].'</span>
 			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">VER MÁS</span></a>
 			                                </li>
 			                            ';
@@ -542,12 +542,12 @@ if (!isset($_SESSION['language'])) {
 			                            }
 	                          		}
 	                          	} else if (isset($_GET['country'])) {
-	                          		$query_country = "SELECT * FROM beerfans.beer b
+	                          		$query_country = "SELECT * FROM beer b
                                       INNER JOIN beertype bt
                                       ON bt.idbeertype = b.idbeertype
-									                    INNER JOIN beerfans.producer pro
+									                    INNER JOIN producer pro
 									                    ON pro.idProducer = b.idProducer
-									                    INNER JOIN beerfans.countries co
+									                    INNER JOIN countries co
 									                    ON co.id = pro.country_id
                                       WHERE b.language = ".$_SESSION['language']."
                                       AND co.name_c ='" . $_GET['country'] . "'";
@@ -568,7 +568,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-                                        <span class="subtitle" style="display:none">'.$row3['beertypeName'].'</span>
+                                        <span class="subtitle" style="display:none">'.$row3['beerTypeName'].'</span>
 			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">VER MÁS</span></a>
 			                                </li>
 			                            ';
@@ -586,7 +586,7 @@ if (!isset($_SESSION['language'])) {
 								                  INNER JOIN countries c
 								                  ON c.id = p.country_id
                                   WHERE b.language = ".$_SESSION['language']."
-								                  AND bt.beertypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
+								                  AND bt.beerTypeName = '" . $_GET['type'] . "' AND c.name_c = '" . $_GET['country'] . "'";
                                     $resultado3 = mysql_query($query3) or die(mysql_error());
                                     $contador = 0;
                                     while ($row3 = mysql_fetch_array($resultado3)) {
@@ -604,7 +604,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row3['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row3['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-                                        <span class="subtitle" style="display:none">'.$row3['beertypeName'].'</span>
+                                        <span class="subtitle" style="display:none">'.$row3['beerTypeName'].'</span>
 			                                  <a href="perfil_beer.php?id='.$row3['idBeer'].'"><span class="ver_mas">VER MÁS</span></a>
 			                                </li>
 			                            ';
@@ -632,7 +632,7 @@ if (!isset($_SESSION['language'])) {
 		                                      <img src="../../images/beerBottles/'.$row2['beerBottleImage'].'"> <br>
 		                                      <span class="title">'.$row2['beerName'].'</span>
 			                                  <span class="subtitle">'.$descriptionText.'</span>
-                                        <span class="subtitle" style="display:none">'.$row2['beertypeName'].'</span>
+                                        <span class="subtitle" style="display:none">'.$row2['beerTypeName'].'</span>
 			                                  <a href="perfil_beer.php?id='.$row2['idBeer'].'"><span class="ver_mas">VER MÁS</span></a>
 			                                </li>
 			                            ';

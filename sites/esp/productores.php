@@ -373,8 +373,8 @@ if (!isset($_SESSION['language'])) {
                               $consulta = "SELECT * FROM message INNER JOIN chat
                                              ON message.chat_idChat = chat.idChat
                                              WHERE chat.inbox_idInbox = " . $line['idInbox'] . "
-                                             AND message.user_idUser != " . $line['idUser'] . "
-                                             AND message.messageStatus = 0";
+                                               AND message.user_idUser != " . $line['idUser'] . "
+                                               AND message.messageStatus = 0";
                               $resultadoconsulta = mysql_query($consulta) or die(mysql_error());
                               ?>
 
