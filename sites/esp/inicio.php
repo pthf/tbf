@@ -595,7 +595,7 @@ if (!isset($_SESSION['language'])) {
 
                                 </div>
                             <?php } else { ?>
-                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><span class="user_name">INICIA SESIÓN</span></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
+                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><br><span class="user_name" style="text-align:center">INICIA SESIÓN</span><br></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
 <?php } ?>
                         </div>
                     </div>

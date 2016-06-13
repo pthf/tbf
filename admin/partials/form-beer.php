@@ -123,19 +123,19 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Image Profile *</label>
+					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Image Profile (optimal: 210x240px) *</label>
 					<div class="col-sm-12">
 						<input required type="file" class="form-control" id="beer-profile" name="beerImage[]" value=""></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Beer Cover *</label>
+					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Beer Cover (optimal: 1366x768px) *</label>
 					<div class="col-sm-12">
 						<input required type="file" class="form-control" id="beer-profile" name="beerImage[]" value="" ></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Beer Bottle *</label>
+					<label for="beer-profile" class="col-sm-12 control-label" style="text-align: left;">Beer Bottle (optimal: 60x150px) *</label>
 					<div class="col-sm-12">
 						<input required type="file" class="form-control" id="beer-profile" name="beerImage[]" value="" ></input>
 					</div>
