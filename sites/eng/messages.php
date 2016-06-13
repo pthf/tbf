@@ -121,7 +121,7 @@ $(document).ready(function () {
 
                         <div class="send-login-content">
                             <br>
-                            <div class="not-user">¿YOU DONT HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
+                            <div class="not-user">DONT YOU HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
                             <div class="forgot-password"><span class="underline">DID YOU FORGET YOUR PASSWORD? </span> </div>
                             <br><br>
                             <button type="button" name="button" id="send-login" class="sendLoginUser">SEND</button>
@@ -231,7 +231,7 @@ $(document).ready(function () {
 
                                                 <div class="send-login-content sign-up-send">
                                                         <br>
-                                                        <span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
+                                                        <span class="not-user"><label for="privacyTerms">I AGREE <a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
                                                         <input required type="checkbox" id="privacyTerms">
                                                         <br><br>
                                                         <button type="submit" name="button" id="send-login">REGISTRARTE</button>
@@ -783,7 +783,7 @@ $(document).ready(function () {
                                                 <a href="materia.php"><li><span>RAW</span></li></a>
                                                 <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                                                 <a href="settings.php"><li><span>SETTINGS</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } else { ?>
                                             <ul class="nav">
@@ -792,12 +792,14 @@ $(document).ready(function () {
                                                 <a href="productores.php"><li><span>PRODUCERS</span></li></a>
                                                 <a href="materia.php"><li><span>RAW</span></li></a>
                                                 <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                             </ul>
 
                     <?php } ?>
 
-                    <span class="right_about">Us - Privacy Policy - FAQS</span>
+                    <span class="right_about">
+                        <a href="video_eng.html" target="_blank" style="color:white">Us</a> - <a href="term.pdf" target="_blank" style="color:white">Privacy Policy</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                      </span>
 
                     <span class="right_about">© <?= date('Y') ?> The Beer Fans. All rights reserved.</span>
                 </div>

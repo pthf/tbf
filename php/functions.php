@@ -57,6 +57,12 @@ if(isset($_POST['namefunction'])){
 		case 'changeStatusMessage':
 			changeStatusMessage();
 		break;
+		case 'SendEmailContact':
+			SendEmailContact();
+		break;
+		case 'SendEmailContactEng':
+			SendEmailContactEng();
+		break;
 	}
 }
 
@@ -474,5 +480,35 @@ function changeStatusMessage () {
 
 	$query = "UPDATE message SET messageStatus = '1' WHERE chat_idChat = '".$_POST['data']."'";
 	$result = mysql_query($query) or die(mysql_error());
+
+}
+
+function SendEmailContact () {
+
+	$name = $_POST['name'];
+	$mensaje = $_POST['mensaje'];
+	$email = $_POST['email'];
+
+	$to = 'info@thebeerfans.com';
+	$title = "Alguien se quiere poner en contacto!";
+	$message = "Datos del contacto: Nombre: ".$name." Email: ".$mensaje." Mensaje: ".$email.".";
+	mail($to,$title,$message);
+
+	echo " <span class='not-user' style='color:blue;'><label for='privacyTerms'>Tu mensaje ha sido enviado con éxito.</label></span> ";
+
+}
+
+function SendEmailContactEng () {
+
+	$name = $_POST['name'];
+	$mensaje = $_POST['message'];
+	$email = $_POST['email'];
+
+	$to = 'info@thebeerfans.com';
+	$title = "Alguien se quiere poner en contacto!";
+	$message = "Datos del contacto: Nombre: ".$name." Email: ".$mensaje." Mensaje: ".$email.".";
+	mail($to,$title,$message);
+
+	echo " <span class='not-user' style='color:blue;'><label for='privacyTerms'>Your message has been sent successfully.</label></span> ";
 
 }
