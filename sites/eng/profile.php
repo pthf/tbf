@@ -469,7 +469,7 @@ if (!isset($_SESSION['language'])) {
             <div class="top_img">
                 <img src="../../images/userCover/<?php echo $row['userCoverImage']; ?>" alt="Imagen The Beer Fans Principal" title="Imagen The Beer Fans Principal">
                 <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                    <a href="#" class="image_banner_click"><span class="change_banner">CAMBIAR BANNER</span></a>
+                    <a href="#" class="image_banner_click"><span class="change_banner">CHANGE BANNER</span></a>
                 <?php } ?>
             </div>
             <div class="banner_change">
@@ -478,7 +478,11 @@ if (!isset($_SESSION['language'])) {
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
 					<div class="login-title">
-							<span class="login-title-text">CAMBIAR IMAGEN BANNER</span>
+							<span class="login-title-text">CHANGE BANNER</span>
+					</div>
+
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolution recommended : 1366px por 375px</span>
 					</div>
 
 					<form id="formChangeImageBanner">
@@ -492,7 +496,7 @@ if (!isset($_SESSION['language'])) {
 
 						<div class="send-login-content">
 								<br>
-								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+								<button type="submit" name="button" id="send-login" class="">CHANGE</button>
 						</div>
 					</form>
 				</div>
@@ -504,7 +508,10 @@ if (!isset($_SESSION['language'])) {
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
 					<div class="login-title">
-							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+							<span class="login-title-text">CHANGE PROFILE PHOTO</span>
+					</div>
+          <div class="login-title resolution-title">
+							<span class="login-title-text"  style="font-size: 14px; padding: 0 !important">Resolution recommended: 210px x 240px</span>
 					</div>
 
 					<form id="formChangeImagePerfil">
@@ -518,7 +525,7 @@ if (!isset($_SESSION['language'])) {
 
 						<div class="send-login-content">
 								<br>
-								<button type="submit" name="button" id="send-login" class="">CAMBIAR</button>
+								<button type="submit" name="button" id="send-login" class="">CHANGE</button>
 						</div>
 					</form>
 				</div>
@@ -530,10 +537,9 @@ if (!isset($_SESSION['language'])) {
                 <div class="image_profile">
                     <img src="../../images/userProfile/<?php echo $row['userProfileImage']; ?>" />
                     <?php if (isset($_SESSION['idUser']) && isset($_GET['idUser']) && $_GET['idUser'] == $_SESSION['idUser']) { ?>
-                        <a href="#" class="image_perfil_click"><span class="change_profile">CAMBIAR FOTO</span></a>
+                        <a href="#" class="image_perfil_click"><span class="change_profile">CHANGE PHOTO</span></a>
                     <?php } ?>
                 </div>
-
 
                 <div class="name_profile">
                     <p><?php echo $row['userName']; ?> <?php echo $row['userLastName']; ?></p>
@@ -544,11 +550,11 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="age_profile">
-                    <p><?php echo $ano_diferencia; ?> años.</p>
+                    <p><?php echo $ano_diferencia; ?> years old.</p>
                 </div>
 
                 <div class="profile_res">
-                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'Ninguna descripción.' ?></p>
+                    <p><?php echo ($row['userDescription']) ? $row['userDescription'] : 'No description.' ?></p>
                 </div>
 
                 <!-- Send message popup -->
@@ -557,7 +563,7 @@ if (!isset($_SESSION['language'])) {
                 	if(($_SESSION['idUser']) != $_GET['idUser']) { ?>
 	                <a id="show-img" href="#">
 	                    <img src="../../images/social-03.png" />
-	                    <p class="send_txt"> ENVIAR MENSAJE	</p>
+	                    <p class="send_txt"> SEND MESSAGE	</p>
 	                </a>
 	                <div id="lightbox-panel">
 	                    <div class="lightbox-content">
@@ -565,13 +571,13 @@ if (!isset($_SESSION['language'])) {
 	                            <img src="../../images/img_galeria-02_close.png" alt="" />
 	                        </a>
 
-	                        	<p class="toptext-light"> ENVIAR MENSAJE </p>
+	                        	<p class="toptext-light"> SEND MESSAGE </p>
 	                        <div class="msn_form">
 	                        	<form id="formNewMessage">
 	                        		<input type="text" name="idEmisor" hidden value="<?php echo $_SESSION['idUser'];?>">
 	                        		<input type="text" name="idReceptor" hidden value="<?php echo $_GET['idUser'];?>">
 		                            <!--<p class="subject_form">ASUNTO:<input required style="border:none" type="text" name="subject"></p>-->
-		                            <p class="text_form">MENSAJE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
+		                            <p class="text_form">MESSAGE: <textarea  required name="message" rows="8" cols="40"></textarea> </p>
 		                            <br>
 		                            <input type="submit" value="ENVIAR">
 		                            <div class="resultado"></div>
@@ -597,7 +603,7 @@ if (!isset($_SESSION['language'])) {
                     </a>
                 </div>
                 <div class="slides">
-                    <div class="toptext_slider"><span>FAVORITOS</span></div>
+                    <div class="toptext_slider"><span>FAVORITES</span></div>
                     <div class="overflow">
                         <div class="inner profile favoritos-slider">
 
@@ -956,7 +962,7 @@ if (!isset($_SESSION['language'])) {
 
 
                 <!-- comments -->
-                <span class="toptext_slider comments_title">COMENTARIOS</span>
+                <span class="toptext_slider comments_title">COMMENTS</span>
                 <div id="comments_box">
                     <div class="msn_content">
                         <!-- message received -->
@@ -1092,7 +1098,7 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendComment">
                     		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Escribe un comentario..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a commment..."></textarea>
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;

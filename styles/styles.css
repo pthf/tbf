@@ -4047,3 +4047,7 @@ input.slider-dot{
     border: 8px solid transparent;
     border-bottom: 9px solid #fff;
   }
+
+  .login-title.resolution-title{
+    padding: 0;
+  }

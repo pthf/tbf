@@ -182,13 +182,13 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="rawMaterial-profile" class="col-sm-12 control-label" style="text-align: left;">Image Profile *</label>
+					<label for="rawMaterial-profile" class="col-sm-12 control-label" style="text-align: left;">Image Profile(optimal: 210x240px) *</label>
 					<div class="col-sm-12">
 						<input required type="file" class="form-control" id="rawMaterial-profile" name="rawMaterialImage[]" value=""></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="rawMaterial-cover" class="col-sm-12 control-label" style="text-align: left;">Raw Material Cover *</label>
+					<label for="rawMaterial-cover" class="col-sm-12 control-label" style="text-align: left;">Raw Material Cover(optimal: 1366x375px) *</label>
 					<div class="col-sm-12">
 						<input required type="file" class="form-control" id="rawMaterial-cover" name="rawMaterialImage[]" value="" ></input>
 					</div>

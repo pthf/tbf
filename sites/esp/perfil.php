@@ -482,6 +482,10 @@ if (!isset($_SESSION['language'])) {
 							<span class="login-title-text">CAMBIAR IMAGEN BANNER</span>
 					</div>
 
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolución de imagen recomendada: 1366px por 375px</span>
+					</div>
+
 					<form id="formChangeImageBanner">
 						<div class="input-boxes">
 								<br>
@@ -506,6 +510,10 @@ if (!isset($_SESSION['language'])) {
 					</div>
 					<div class="login-title">
 							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+					</div>
+
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolución de imagen recomendada: 210px por 240px</span>
 					</div>
 
 					<form id="formChangeImagePerfil">

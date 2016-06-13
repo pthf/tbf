@@ -60,7 +60,7 @@
 	function getBeer($id){
 		$query = "SELECT * FROM beer
 			INNER JOIN producer ON beer.idProducer = producer.idProducer
-			INNER JOIN beertype ON beer.idbeertype = beertype.idbeertype WHERE beer.idBeer = $id";
+			INNER JOIN beertype ON beer.idBeerType = beertype.idBeerType WHERE beer.idBeer = $id";
 		$result = mysql_query($query) or die(mysql_error());
 		$line = mysql_fetch_array($result);
 
@@ -80,7 +80,7 @@
 			'beerInstagram' => $line['beerInstagram'],
 			'idProducer' => $line['idProducer'],
 			'producerName' => $line['producerName'],
-			'idbeertype' => $line['idbeertype'],
+			'idBeerType' => $line['idBeerType'],
 			'beertypeName' => $line['beertypeName']
 		);
 		echo json_encode($data);
