@@ -482,6 +482,10 @@ if (!isset($_SESSION['language'])) {
 							<span class="login-title-text">CAMBIAR IMAGEN BANNER</span>
 					</div>
 
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolución de imagen recomendada: 1366px por 375px</span>
+					</div>
+
 					<form id="formChangeImageBanner">
 						<div class="input-boxes">
 								<br>
@@ -506,6 +510,10 @@ if (!isset($_SESSION['language'])) {
 					</div>
 					<div class="login-title">
 							<span class="login-title-text">CAMBIAR IMAGEN PERFIL</span>
+					</div>
+
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolución de imagen recomendada: 210px por 240px</span>
 					</div>
 
 					<form id="formChangeImagePerfil">
@@ -1143,7 +1151,9 @@ if (!isset($_SESSION['language'])) {
                         </ul>
                     <?php } ?>
 
-                    <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+                    <span class="right_about">
+                          <a href="video_esp.html" target="_blank" style="color:white">Nosotros</a> - <a href="term.pdf" target="_blank" style="color:white">Política de Privacidad</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                        </span>
 
                     <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>

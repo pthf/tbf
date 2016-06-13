@@ -141,7 +141,7 @@ if (!isset($_SESSION['language'])) {
 
                         <div class="send-login-content">
                             <br>
-                            <div class="not-user">¿YOU DONT HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
+                            <div class="not-user">DONT YOU HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
                             <div class="forgot-password"><span class="underline">DID YOU FORGET YOUR PASSWORD? </span> </div>
                             <br><br>
                             <button type="button" name="button" id="send-login" class="sendLoginUser">SEND</button>
@@ -252,7 +252,7 @@ if (!isset($_SESSION['language'])) {
 
 												<div class="send-login-content sign-up-send">
 														<br>
-														<span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
+														<span class="not-user"><label for="privacyTerms">I AGREE <a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
 														<input required type="checkbox" id="privacyTerms">
 														<br><br>
 														<button type="submit" name="button" id="send-login">REGISTRARTE</button>
@@ -477,7 +477,13 @@ if (!isset($_SESSION['language'])) {
 					<div class="close-icon">
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
-					<div class="login-title">CHANGE YOUR IMAGE BANNER</span>
+					<div class="login-title">
+							<span class="login-title-text">CHANGE BANNER</span>
+					</div>
+
+          <div class="login-title resolution-title">
+							<span class="login-title-text" style="font-size: 14px; padding: 0 !important">Resolution recommended : 1366px por 375px</span>
+
 					</div>
 
 					<form id="formChangeImageBanner">
@@ -503,7 +509,11 @@ if (!isset($_SESSION['language'])) {
 							<img src="../../images/img_galeria-02_close.png" >
 					</div>
 					<div class="login-title">
-							<span class="login-title-text">CHANGE YOUR IMAGE PROFILE</span>
+							<span class="login-title-text">CHANGE PROFILE PHOTO</span>
+					</div>
+          <div class="login-title resolution-title">
+							<span class="login-title-text"  style="font-size: 14px; padding: 0 !important">Resolution recommended: 210px x 240px</span>
+
 					</div>
 
 					<form id="formChangeImagePerfil">
@@ -533,7 +543,6 @@ if (!isset($_SESSION['language'])) {
                     <?php } ?>
                 </div>
 
-
                 <div class="name_profile">
                     <p><?php echo $row['userName']; ?> <?php echo $row['userLastName']; ?></p>
                 </div>
@@ -543,7 +552,8 @@ if (!isset($_SESSION['language'])) {
                 </div>
 
                 <div class="age_profile">
-                    <p><?php echo $ano_diferencia; ?> years.</p>
+                    <p><?php echo $ano_diferencia; ?> years old.</p>
+
                 </div>
 
                 <div class="profile_res">
@@ -596,7 +606,8 @@ if (!isset($_SESSION['language'])) {
                     </a>
                 </div>
                 <div class="slides">
-                    <div class="toptext_slider"><span>FAVORITS</span></div>
+                    <div class="toptext_slider"><span>FAVORITES</span></div>
+
                     <div class="overflow">
                         <div class="inner profile favoritos-slider">
 
@@ -1093,7 +1104,8 @@ if (!isset($_SESSION['language'])) {
                     	<form id="SendComment">
                     		<input type="text" name="idUser" hidden value="<?php echo $row['idUser']?>">
                     		<input type="text" name="idSession" hidden value="<?php echo $_SESSION['idUser']?>">
-	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a commentary..."></textarea>
+	                        <textarea required name="message" rows="8" cols="40" placeholder="Write a commment..."></textarea>
+
 	                        <style media="screen">
 		                        ::-webkit-input-placeholder{
 		                          padding: 1.5% 0 0 1.5%;
@@ -1128,7 +1140,7 @@ if (!isset($_SESSION['language'])) {
                                                 <a href="raw.php"><li><span>RAW</span></li></a>
                                                 <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                                                 <a href="settings.php"><li><span>SETTINGS</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } else { ?>
                                             <ul class="nav">
@@ -1137,11 +1149,13 @@ if (!isset($_SESSION['language'])) {
                                                 <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                                                 <a href="raw.php"><li><span>RAW</span></li></a>
                                                 <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
-                                                <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                             </ul>
                     <?php } ?>
 
-                    <span class="right_about">Us - Privacy Policy - FAQS</span>
+                    <span class="right_about">
+                        <a href="video_eng.html" target="_blank" style="color:white">Us</a> - <a href="term.pdf" target="_blank" style="color:white">Privacy Policy</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                      </span>
 
                     <span class="right_about">© <?= date('Y') ?> The Beer Fans. All rights reserved.</span>
                 </div>

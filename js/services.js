@@ -38,7 +38,7 @@ $("#formChangeEmail").submit(function(e){
         },
         success: function(result){
 			$('.resultado_email').html(result);
-			$('.resultado_email').hide(3000);
+			$('.resultado_email').hide(4000);
 			$('#formChangeEmail')[0].reset();
 	 	},
 	 	error: function(error){
@@ -63,7 +63,7 @@ $("#formChangePass").submit(function(e){
         },
         success: function(result){
 			$('.resultado_pass').html(result);
-			$('.resultado_pass').hide(3000);
+			$('.resultado_pass').hide(4000);
 			$('#formChangePass')[0].reset();
 	 	},
 	 	error: function(error){
@@ -216,6 +216,50 @@ $("#SendCommentBeer").submit(function(e){
         success: function(result){
 			$('#SendCommentBeer')[0].reset();
 			location.reload();
+	 	},
+	 	error: function(error){
+	 		alert(error);
+	 	}
+    })
+});
+
+$("#formContact").submit(function(e){
+
+	e.preventDefault();
+
+	var data = $(this).serializeArray();
+	data.push({ name: "namefunction", value: "SendEmailContact" });
+
+	$.ajax({
+        type : 'POST',
+        url : '../../php/functions.php',
+        data : data,
+        success: function(result){
+        	$('.result_email').html(result);
+			$('.result_email').hide(4000);
+			$('#formContact')[0].reset();
+	 	},
+	 	error: function(error){
+	 		alert(error);
+	 	}
+    })
+});
+
+$("#formContactEng").submit(function(e){
+
+	e.preventDefault();
+
+	var data = $(this).serializeArray();
+	data.push({ name: "namefunction", value: "SendEmailContactEng" });
+
+	$.ajax({
+        type : 'POST',
+        url : '../../php/functions.php',
+        data : data,
+        success: function(result){
+        	$('.result_email').html(result);
+			$('.result_email').hide(4000);
+			$('#formContactEng')[0].reset();
 	 	},
 	 	error: function(error){
 	 		alert(error);

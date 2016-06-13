@@ -627,7 +627,9 @@ if (isset($_SESSION['idUser'])) {
                         <a href="configuracion.php"><li><span>CONFIGURACIÓN</span></li></a>
                         <a href="contact.php"><li><span>CONTACTO</span></li></a>
                     </ul>
-                    <span class="right_about">About Us - Política de Privacidad - FAQS</span>
+                    <span class="right_about">
+                          <a href="video_esp.html" target="_blank" style="color:white">Nosotros</a> - <a href="term.pdf" target="_blank" style="color:white">Política de Privacidad</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                        </span>
                     <span class="right_about">© 2015 The Beer Fans. All rights reserved.</span>
                 </div>
             </div>

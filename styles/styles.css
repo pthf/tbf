@@ -1682,6 +1682,15 @@ textarea{
   outline: none;
 }
 
+.input_contact input[value="SEND"]{
+  float: right;
+  text-align: center;
+  font-size: 18px;
+  color:  #525252;
+  border: 2px solid #525252;
+  outline: none;
+}
+
 .input_contact input[value="ENVIAR"]:active, .input_contact input[value="ENVIAR"]:hover, .input_contact input[value="ENVIAR"]:active, .input_contact input[value="ENVIAR"]:hover{
   cursor: pointer;
   opacity: .5;
@@ -4046,4 +4055,8 @@ input.slider-dot{
   	top: -17px;
     border: 8px solid transparent;
     border-bottom: 9px solid #fff;
+  }
+
+  .login-title.resolution-title{
+    padding: 0;
   }

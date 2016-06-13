@@ -129,7 +129,7 @@ if (!isset($_SESSION['language'])) {
 
                                                 <div class="send-login-content">
                                                         <br>
-                                                        <div class="not-user">¿YOU DONT HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
+                                                        <div class="not-user">DONT YOU HAVE A ACCOUNT YET? <span class="underline">SIGN UP.</span></div>
                             <div class="forgot-password"><span class="underline">DID YOU FORGET YOUR PASSWORD? </span> </div>
                                                         <br><br>
                                                         <button type="button" name="button" id="send-login" class="sendLoginUser">SEND</button>
@@ -240,7 +240,7 @@ if (!isset($_SESSION['language'])) {
 
                                                 <div class="send-login-content sign-up-send">
                                                         <br>
-                                                        <span class="not-user"><label for="privacyTerms">I AGREE<a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
+                                                        <span class="not-user"><label for="privacyTerms">I AGREE <a href="term.pdf" target="_blank"><u>TO THE TERMS</u></a>.</label></span>
                                                         <input required type="checkbox" id="privacyTerms">
                                                         <br><br>
                                                         <button type="submit" name="button" id="send-login">REGISTRARTE</button>
@@ -420,7 +420,7 @@ if (!isset($_SESSION['language'])) {
                   										<div class="user_name">
                   											<a href="#">
                       										<div class="user_name-title">
-                                            <span>INICIA SESIÓN</span>
+                                            <span>LOG IN</span>
                                           </div>
                                         </a>
                   										</div>';
@@ -595,7 +595,9 @@ if (!isset($_SESSION['language'])) {
 
                                 </div>
                             <?php } else { ?>
-                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">RECOMMENDED USERS.<a href="#"><span class="user_name">LOG IN</span></a> TO MEET PEOPLE WITH SIMILAR TASTES.. </span>
+
+                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">RECOMMENDED USERS.<a href="#"><br><span class="user_name" style="text-align:center">LOGIN</span><br></a> TO MEET MORE PEOPLE WITH SIMILAR TASTES LIKE YOU.</span>
+
 <?php } ?>
                         </div>
                     </div>
@@ -650,9 +652,9 @@ if (!isset($_SESSION['language'])) {
                         <div class="contenido_social">
                             <span>CONTACT US OR FOLLLOW US<br>ON OUR SOCIAL NETWORKS</span>
                             <ul>
-                                <a href=""><li><img src="../../images/social-04.png"></li></a>
-                                <a href=""><li><img src="../../images/social-02.png"></li></a>
-                                <a href=""><li><img src="../../images/social-01.png"></li></a>
+                                <a href="https://www.facebook.com/thebeerfans/"><li><img src="../../images/social-04.png"></li></a>
+                                <a href="https://twitter.com/TheBeerFans1"><li><img src="../../images/social-02.png"></li></a>
+                                <a href="https://www.instagram.com/the_beerfans/"><li><img src="../../images/social-01.png"></li></a>
                                 <a href="contact_eng.php"><li><img src="../../images/social-03.png"></li></a>
                             </ul>
                         </div>
@@ -682,7 +684,7 @@ if (!isset($_SESSION['language'])) {
                                                   <a href="raw.php"><li><span>RAW</span></li></a>
                                                   <a href="profile.php?idUser=<?= $line['idUser'] ?>"><li><span>MY PROFILE</span></li></a>
                                                   <a href="settings.php"><li><span>SETTINGS</span></li></a>
-                                                  <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                  <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                               </ul>
                       <?php } else { ?>
                                               <ul class="nav">
@@ -691,11 +693,13 @@ if (!isset($_SESSION['language'])) {
                                                   <a href="producers.php"><li><span>PRODUCERS</span></li></a>
                                                   <a href="raw.php"><li><span>RAW</span></li></a>
                                                   <a href="#" class="user_name_click"><li><span>LOG IN</span></li></a>
-                                                  <a href="contact.php"><li><span>CONTACT</span></li></a>
+                                                  <a href="contact_eng.php"><li><span>CONTACT</span></li></a>
                                               </ul>
                       <?php } ?>
 
-                      <span class="right_about">Us - Privacy Policy - FAQS</span>
+                      <span class="right_about">
+                        <a href="video_eng.html" target="_blank" style="color:white">Us</a> - <a href="term.pdf" target="_blank" style="color:white">Privacy Policy</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                      </span>
 
                       <span class="right_about">© <?= date('Y') ?> The Beer Fans. All rights reserved.</span>
                   </div>

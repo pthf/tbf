@@ -1003,7 +1003,9 @@ if (!isset($_SESSION['language'])) {
                                                 <a href="contact.php"><li><span>CONTACTO</span></li></a>
                                             </ul>
                     <?php } ?>
-                    <span class="right_about">Nosotros - PolÃ­tica de Privacidad - FAQS</span>
+                    <span class="right_about">
+                          <a href="video_esp.html" target="_blank" style="color:white">Nosotros</a> - <a href="term.pdf" target="_blank" style="color:white">Política de Privacidad</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                        </span>
 
                     <span class="right_about">Â© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>

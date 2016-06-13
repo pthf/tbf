@@ -595,7 +595,7 @@ if (!isset($_SESSION['language'])) {
 
                                 </div>
                             <?php } else { ?>
-                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><span class="user_name">INICIA SESIÓN</span></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
+                                <span class="user_list" style="text-align: center !important; display: block; margin: 0;">USUARIOS RECOMENDADOS.<a href="#"><br><span class="user_name" style="text-align:center">INICIA SESIÓN</span><br></a> PARA CONOCER GENTE CON TUS MISMOS GUSTOS.</span>
 <?php } ?>
                         </div>
                     </div>
@@ -650,9 +650,9 @@ if (!isset($_SESSION['language'])) {
                         <div class="contenido_social">
                             <span>CONTÁCTANOS O SÍGUENOS<br>EN NUESTRAS REDES SOCIALES</span>
                             <ul>
-                                <a href=""><li><img src="../../images/social-04.png"></li></a>
-                                <a href=""><li><img src="../../images/social-02.png"></li></a>
-                                <a href=""><li><img src="../../images/social-01.png"></li></a>
+                                <a href="https://www.facebook.com/thebeerfans/"><li><img src="../../images/social-04.png"></li></a>
+                                <a href="https://twitter.com/TheBeerFans1"><li><img src="../../images/social-02.png"></li></a>
+                                <a href="https://www.instagram.com/the_beerfans/"><li><img src="../../images/social-01.png"></li></a>
                                 <a href="contact.php"><li><img src="../../images/social-03.png"></li></a>
                             </ul>
                         </div>
@@ -696,7 +696,9 @@ if (!isset($_SESSION['language'])) {
                                             </ul>
                     <?php } ?>
 
-                    <span class="right_about">Nosotros - Política de Privacidad - FAQS</span>
+                    <span class="right_about">
+                          <a href="video_esp.html" target="_blank" style="color:white">Nosotros</a> - <a href="term.pdf" target="_blank" style="color:white">Política de Privacidad</a> - <a href="faqs.pdf" target="_blank" style="color:white">FAQS</a>
+                        </span>
 
                     <span class="right_about">© <?= date('Y') ?> The Beer Fans. Todos los derechos reservados.</span>
                 </div>
